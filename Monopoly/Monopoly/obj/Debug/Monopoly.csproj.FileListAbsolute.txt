@@ -12,3 +12,6 @@ C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Mo
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
+C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
+C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
+C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb

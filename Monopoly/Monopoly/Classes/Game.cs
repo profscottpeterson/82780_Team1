@@ -136,27 +136,19 @@
         /// <param name="currentPlayer">The player's whose turn it is</param>
         public void DrawCard(List<Card> pile, Player currentPlayer)
         {
-            Card top;
-            do
-            {
-                top = pile[0];
-                if (top.InDeck == false)
-                {
-                    this.MoveCardToBottomOfPile(top);
-                }
-            } while (top.InDeck == false);
+            Card top = pile[0];
 
             if (top.GetOutOfJailFree == true)
             {
                 // Card is a get out of jail free card
-                this.Players[this.Players.IndexOf(currentPlayer)].NumberOfGetOutOfJailFreeCards += 1;
+                this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards.Add(top);
                 if (top.Type == CardType.Chance)
                 {
-                    this.ChanceCards[this.ChanceCards.IndexOf(top)].InDeck = false;
+                    this.ChanceCards.Remove(top);
                 }
                 else
                 {
-                    this.CommunityChestCards[this.CommunityChestCards.IndexOf(top)].InDeck = false;
+                    this.CommunityChestCards.Remove(top);
                 }
             }
             else if (top.Amount > 0)
@@ -187,6 +179,9 @@
                             }
                         }
                     }
+
+                    // Move card to bottom of pile
+                    this.MoveCardToBottomOfPile(top);
                 }
                 else
                 {
@@ -252,10 +247,39 @@
                 }
 
                 this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
-            }
 
-            // Move card to bottom of pile
-            this.MoveCardToBottomOfPile(top);
+                // Move card to bottom of pile
+                this.MoveCardToBottomOfPile(top);
+            }
+        }
+
+        /// <summary>
+        /// Gets a player out of jail and adds the "get out of jail free" card back into its deck
+        /// </summary>
+        /// <param name="currentPlayer">The player who is using the card</param>
+        public void PlayGetOutOfJailFreeCard(Player currentPlayer)
+        {
+            // Set current player's in jail status to false
+            this.Players[this.Players.IndexOf(currentPlayer)].InJail = false;
+
+            // Get the first card from current players "get out of jail free" card list
+            // list should be checked for not empty before this method is called
+            Card card = this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards[0];
+
+            // Remove "get out of jail free" card from player
+            this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards.Remove(card);
+
+            // Check to see if the card was from the chance or community chest pile
+            if (card.Type == CardType.Chance)
+            {
+                // Add the card back to the chance pile
+                this.ChanceCards.Add(card);
+            }
+            else
+            {
+                // Add the card back to the community chest pile
+                this.CommunityChestCards.Add(card);
+            }
         }
 
         /// <summary>

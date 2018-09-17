@@ -22,7 +22,7 @@
             this.Color = color;
             this.InJail = false;
             this.Properties = new List<Spot>();
-            this.NumberOfGetOutOfJailFreeCards = 0;
+            this.GetOutOfJailFreeCards = new List<Card>();
             this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
             this.Money = 1500;  // Set Money to default value
         }
@@ -64,8 +64,8 @@
         public List<Spot> Properties { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of get out of jail free cards a player has
+        /// Gets or sets the list containing the "get out of jail free" cards a player may have 
         /// </summary>
-        public int NumberOfGetOutOfJailFreeCards { get; set; }
+        public List<Card> GetOutOfJailFreeCards { get; set; }
     }
 }

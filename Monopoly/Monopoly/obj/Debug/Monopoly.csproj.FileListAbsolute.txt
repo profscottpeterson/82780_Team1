@@ -1,0 +1,14 @@
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\bin\Debug\Monopoly.exe
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\bin\Debug\Monopoly.pdb
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.MonopolyMainForm.resources
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.Properties.Resources.resources
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.GenerateResource.Cache
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.exe
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.MonPopUp.resources
+C:\Users\Owner\Desktop\School Stuff\S3\Team Software Dev\Monopoly Local Files\Monopoly\Monopoly\obj\Debug\Monopoly.NonPropPopUp.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb

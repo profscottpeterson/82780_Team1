@@ -498,14 +498,14 @@
         }
 
         /// <summary>
-        /// Returns the list of a player's properties that are mortgagable
+        /// Returns the list of a player's properties that are mortgageable
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
-        /// <returns>The list of properties that are mortgagable</returns>
-        public List<Spot> GetListOfPlayersMortgagableProperties(Player currentPlayer)
+        /// <returns>The list of properties that are mortgageable</returns>
+        public List<Spot> GetListOfPlayersMortgageableProperties(Player currentPlayer)
         {
             // Declare and initialize a list of spots
-            List<Spot> mortgagableProperties = new List<Spot>();
+            List<Spot> mortgageableProperties = new List<Spot>();
 
             // Loop through the given player's list of properties
             foreach (Spot property in currentPlayer.Properties)
@@ -532,13 +532,13 @@
                     if (colorGroupHasNoHouses)
                     {
                         // Add property to list
-                        mortgagableProperties.Add(property);
+                        mortgageableProperties.Add(property);
                     }
                 }
             }
 
             // return list that was created
-            return mortgagableProperties;
+            return mortgageableProperties;
         }
 
         /// <summary>

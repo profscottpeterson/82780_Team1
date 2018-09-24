@@ -402,5 +402,104 @@
             temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
             Board.Add(temp);
         }
+        public void CreateCards()
+        {
+            // Chance Cards
+
+            Card TempCard = new Card(0, "Advance To Go", CardType.Chance, Board[0]);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, Board[23]);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, Board[11]);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(9, "Go directly to Jail", CardType.Chance, Board[10]);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, Board[5]);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, Board[39]);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
+            ChanceCards.Add(TempCard);
+
+            TempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
+            ChanceCards.Add(TempCard);
+
+            //Community Chest Cards
+
+            TempCard = new Card(0, "Advance To Go", CardType.CommunityChest, Board[0]);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(3, "Go to Jail", CardType.CommunityChest, Board[10]);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
+            CommunityChestCards.Add(TempCard);
+
+            TempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
+            CommunityChestCards.Add(TempCard);
+        }
     }
 }

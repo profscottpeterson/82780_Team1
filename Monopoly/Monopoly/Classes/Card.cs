@@ -24,7 +24,7 @@
             this.Bank = true;
             this.Collect = false;
             this.NewLocation = null;
-            this.GetOutOfJailFree = true;
+            this.GetOutOfJailFree = false;
             this.InDeck = true;
         }
 
@@ -114,5 +114,6 @@
         /// Gets or sets a value indicating whether a card is in the deck
         /// </summary>
         public bool InDeck { get; set; }
+
     }
 }

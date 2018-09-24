@@ -32,6 +32,8 @@ namespace Monopoly
 
     public partial class MonopolyMainForm : Form
     {
+        private Player currentPlayer;
+
         public MonopolyMainForm()
         {
             InitializeComponent();
@@ -39,38 +41,56 @@ namespace Monopoly
 
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
+            // Instantiate Game
             Game game = new Game();
-            List<PictureBox>spotPictures = new List<PictureBox>();
-            for (int i = 1; i <= 40; i++)
+
+            // Options to start game, player count notably
+            GameOptions options = new GameOptions(game);
+            DialogResult result = options.ShowDialog();
+
+            if (result == DialogResult.Cancel)
             {
-                spotPictures.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
-                spotPictures[i - 1].Tag = i - 1;
+                Application.Exit();
             }
 
-            foreach (PictureBox p in spotPictures)
+            if (result == DialogResult.OK)
             {
-                p.Click += delegate
+                game.Players = options.TempPlayers;
+                currentPlayer = game.Players[0];
+
+
+                List<PictureBox> spotPictures = new List<PictureBox>();
+                for (int i = 1; i <= 40; i++)
                 {
-                    Spot spot = game.Board[(int) p.Tag];
+                    spotPictures.Add((PictureBox) Controls.Find("pictureBox" + i, true)[0]);
+                    spotPictures[i - 1].Tag = i - 1;
+                }
 
-                    if (spot.Type == SpotType.Property)
+                foreach (PictureBox p in spotPictures)
+                {
+                    p.Click += delegate
                     {
-                        MonPopUp popUp = new MonPopUp(spot);
-                        popUp.ShowDialog();
-                    }
+                        Spot spot = game.Board[(int) p.Tag];
 
-                    if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
-                    {
-                        NonPropPopUp popUp = new NonPropPopUp(spot);
-                        popUp.ShowDialog();
-                    }
+                        if (spot.Type == SpotType.Property)
+                        {
+                            MonPopUp popUp = new MonPopUp(spot);
+                            popUp.ShowDialog();
+                        }
 
-                };
+                        if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
+                        {
+                            NonPropPopUp popUp = new NonPropPopUp(spot);
+                            popUp.ShowDialog();
+                        }
+
+                    };
+                }
             }
         }
 
         //Make new lists to hold players and spots
-        List<Player> players = new List<Player>();
+       
 
         /*
         public void instantiatePlayers(int num)

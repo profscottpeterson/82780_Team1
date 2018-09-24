@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Drawing;
+    using System.Windows.Forms;
 
     public class Game
     {
@@ -300,132 +301,7 @@
             }
         }
 
-        public void instantiateList()
-        {
-            //First Row
-            Spot temp = new Spot(0, "Go", SpotType.Go);
-            Board.Add(temp);
-
-            temp = new Spot(1, "Mediteranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
-            Board.Add(temp);
-
-            temp = new Spot(2, "Community Chest #1", SpotType.CommunityChest);
-            Board.Add(temp);
-
-            temp = new Spot(3, "Baltic Avenue", Color.Brown, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
-            Board.Add(temp);
-
-            temp = new Spot(4, "Income Tax", 200);
-            Board.Add(temp);
-
-            temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(6, "Oriental Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
-            Board.Add(temp);
-
-            temp = new Spot(7, "Chance #1", SpotType.Chance);
-            Board.Add(temp);
-
-            temp = new Spot(8, "Vermont Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
-            Board.Add(temp);
-
-            temp = new Spot(9, "Connecticut Avenue", Color.LightBlue, 120, 8, 40, 100, 300, 450, 600, 60, 50, 50);
-            Board.Add(temp);
-
-            //Second Row
-            temp = new Spot(10, "Jail", SpotType.Jail);
-            Board.Add(temp);
-
-            temp = new Spot(11, "St. Charles Place", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(12, "Electric Company", SpotType.Utility, 150, 75);
-            Board.Add(temp);
-
-            temp = new Spot(13, "States Avenue", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(14, "Virginia Avenue", Color.Pink, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(16, "St. James Place", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(17, "Community Chest #2", SpotType.CommunityChest);
-            Board.Add(temp);
-
-            temp = new Spot(18, "Tennessee Avenue", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(19, "New York Avenue", Color.Orange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
-            Board.Add(temp);
-
-            //Third Row
-            temp = new Spot(20, "Free Parking", SpotType.FreeParking);
-            Board.Add(temp);
-
-            temp = new Spot(21, "Kentucky Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(22, "Chance #2", SpotType.Chance);
-            Board.Add(temp);
-
-            temp = new Spot(23, "Indiana Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(24, "Illinois Avenue", Color.Red, 240, 20, 100, 300, 750, 925, 1100, 120, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(26, "Atlantic Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(27, "Ventnor Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(28, "Water Works", SpotType.Utility, 150, 75);
-            Board.Add(temp);
-
-            temp = new Spot(29, "Marvin Gardens", Color.Yellow, 280, 24, 120, 360, 850, 1025, 1200, 140, 150, 150);
-            Board.Add(temp);
-
-            //Fourth Row
-            temp = new Spot(30, "Go To Jail", SpotType.GoToJail);
-            Board.Add(temp);
-
-            temp = new Spot(31, "Pacific Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(32, "North Carolina Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(33, "Community Chest #3", SpotType.CommunityChest);
-            Board.Add(temp);
-
-            temp = new Spot(34, "Pennsylvania Avenue", Color.Green, 320, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(36, "Chance #3", SpotType.Chance);
-            Board.Add(temp);
-
-            temp = new Spot(37, "Park Place", Color.DarkBlue, 350, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(38, "Luxury Tax", 100);
-            Board.Add(temp);
-
-            temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
-            Board.Add(temp);
-        }
+        
 
         /// <summary>
         /// Mortgages a given property
@@ -565,6 +441,153 @@
             // Return the player with the calculated index
             return this.Players[index];
         }
+
+        /// <summary>
+        /// Method for checking if a player can purchase a property.
+        /// </summary>
+        /// <param name="currentPlayer"></param>
+        /// <param name="property"></param>
+        public void PlayerBuysProperty(Player currentPlayer, Spot property)
+        {
+            if (property.IsAvailable == true && currentPlayer.Money >= property.Price)
+            {
+                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", "", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    property.Owner = currentPlayer;
+                    currentPlayer.Money -= property.Price;
+                    property.IsAvailable = false;
+                }
+            }
+        }
+
+        public void instantiateList()
+        {
+            //First Row
+            Spot temp = new Spot(0, "Go", SpotType.Go);
+            Board.Add(temp);
+
+            temp = new Spot(1, "Mediteranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
+            Board.Add(temp);
+
+            temp = new Spot(2, "Community Chest #1", SpotType.CommunityChest);
+            Board.Add(temp);
+
+            temp = new Spot(3, "Baltic Avenue", Color.Brown, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
+            Board.Add(temp);
+
+            temp = new Spot(4, "Income Tax", 200);
+            Board.Add(temp);
+
+            temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 100);
+            Board.Add(temp);
+
+            temp = new Spot(6, "Oriental Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
+            Board.Add(temp);
+
+            temp = new Spot(7, "Chance #1", SpotType.Chance);
+            Board.Add(temp);
+
+            temp = new Spot(8, "Vermont Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
+            Board.Add(temp);
+
+            temp = new Spot(9, "Connecticut Avenue", Color.LightBlue, 120, 8, 40, 100, 300, 450, 600, 60, 50, 50);
+            Board.Add(temp);
+
+            //Second Row
+            temp = new Spot(10, "Jail", SpotType.Jail);
+            Board.Add(temp);
+
+            temp = new Spot(11, "St. Charles Place", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
+            Board.Add(temp);
+
+            temp = new Spot(12, "Electric Company", SpotType.Utility, 150, 75);
+            Board.Add(temp);
+
+            temp = new Spot(13, "States Avenue", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
+            Board.Add(temp);
+
+            temp = new Spot(14, "Virginia Avenue", Color.Pink, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
+            Board.Add(temp);
+
+            temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
+            Board.Add(temp);
+
+            temp = new Spot(16, "St. James Place", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
+            Board.Add(temp);
+
+            temp = new Spot(17, "Community Chest #2", SpotType.CommunityChest);
+            Board.Add(temp);
+
+            temp = new Spot(18, "Tennessee Avenue", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
+            Board.Add(temp);
+
+            temp = new Spot(19, "New York Avenue", Color.Orange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
+            Board.Add(temp);
+
+            //Third Row
+            temp = new Spot(20, "Free Parking", SpotType.FreeParking);
+            Board.Add(temp);
+
+            temp = new Spot(21, "Kentucky Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
+            Board.Add(temp);
+
+            temp = new Spot(22, "Chance #2", SpotType.Chance);
+            Board.Add(temp);
+
+            temp = new Spot(23, "Indiana Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
+            Board.Add(temp);
+
+            temp = new Spot(24, "Illinois Avenue", Color.Red, 240, 20, 100, 300, 750, 925, 1100, 120, 150, 150);
+            Board.Add(temp);
+
+            temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 100);
+            Board.Add(temp);
+
+            temp = new Spot(26, "Atlantic Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
+            Board.Add(temp);
+
+            temp = new Spot(27, "Ventnor Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
+            Board.Add(temp);
+
+            temp = new Spot(28, "Water Works", SpotType.Utility, 150, 75);
+            Board.Add(temp);
+
+            temp = new Spot(29, "Marvin Gardens", Color.Yellow, 280, 24, 120, 360, 850, 1025, 1200, 140, 150, 150);
+            Board.Add(temp);
+
+            //Fourth Row
+            temp = new Spot(30, "Go To Jail", SpotType.GoToJail);
+            Board.Add(temp);
+
+            temp = new Spot(31, "Pacific Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
+            Board.Add(temp);
+
+            temp = new Spot(32, "North Carolina Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
+            Board.Add(temp);
+
+            temp = new Spot(33, "Community Chest #3", SpotType.CommunityChest);
+            Board.Add(temp);
+
+            temp = new Spot(34, "Pennsylvania Avenue", Color.Green, 320, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200);
+            Board.Add(temp);
+
+            temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 100);
+            Board.Add(temp);
+
+            temp = new Spot(36, "Chance #3", SpotType.Chance);
+            Board.Add(temp);
+
+            temp = new Spot(37, "Park Place", Color.DarkBlue, 350, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200);
+            Board.Add(temp);
+
+            temp = new Spot(38, "Luxury Tax", 200);
+            Board.Add(temp);
+
+            temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
+            Board.Add(temp);
+        }
+
         public void CreateCards()
         {
             // Chance Cards

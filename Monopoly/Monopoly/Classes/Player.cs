@@ -9,6 +9,13 @@
 
     public class Player
     {
+        public Player()
+        {
+            this.InJail = false;
+            this.GetOutOfJailFreeCards = new List<Card>();
+            //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
+            this.Money = 1500;  // Set Money to default value
+        }
         /// <summary>
         /// Initializes a new instance of the Player class.
         /// </summary>
@@ -21,27 +28,26 @@
             this.PlayerName = playerName;
             this.Color = color;
             this.InJail = false;
-            this.Properties = new List<Spot>();
             this.GetOutOfJailFreeCards = new List<Card>();
-            this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
+            //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
             this.Money = 1500;  // Set Money to default value
         }
 
         /// <summary>
-        /// Gets the player's id
+        /// Gets or sets the player's id
         /// </summary>
-        public int PlayerId { get; }
+        public int PlayerId { get; set; }
 
         /// <summary>
-        /// Gets the player's name
+        /// Gets or sets the player's name
         /// </summary>
-        public string PlayerName { get; }
+        public string PlayerName { get; set; }
 
         /// <summary>
-        /// Gets the player's color - way to identify player on board
+        /// Gets or sets the player's color - way to identify player on board
         /// Or create an enum for pawns
         /// </summary>
-        public Color Color { get; }
+        public Color Color { get; set; }
 
         /// <summary>
         /// Gets or sets the current location of player's pawn
@@ -67,5 +73,10 @@
         /// Gets or sets the list containing the "get out of jail free" cards a player may have 
         /// </summary>
         public List<Card> GetOutOfJailFreeCards { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the player is ai
+        /// </summary>
+        public bool IsAi { get; set; }
     }
 }

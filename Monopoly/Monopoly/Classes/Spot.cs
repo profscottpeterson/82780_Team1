@@ -36,6 +36,7 @@
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
             this.HasHotel = false;
+            this.Owner = null;
         }
 
         /// <summary>
@@ -65,6 +66,7 @@
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
             this.HasHotel = false;
+            this.Owner = null;
         }
 
         /// <summary>
@@ -96,6 +98,7 @@
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
             this.HasHotel = false;
+            this.Owner = null;
         }
 
         /// <summary>
@@ -134,6 +137,7 @@
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
             this.Type = SpotType.Property;
+            this.Owner = null;
         }
 
         /// <summary>
@@ -227,5 +231,10 @@
         /// Gets or sets a value indicating whether the property has a hotel
         /// </summary>
         public bool HasHotel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the owner of a property.
+        /// </summary>
+        public Player Owner { get; set; }
     }
 }

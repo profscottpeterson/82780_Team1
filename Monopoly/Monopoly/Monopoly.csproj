@@ -50,6 +50,12 @@
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Spot.cs" />
+    <Compile Include="GameOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameOptions.Designer.cs">
+      <DependentUpon>GameOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonopolyMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GameOptions.resx">
+      <DependentUpon>GameOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MonopolyMainForm.resx">
       <DependentUpon>MonopolyMainForm.cs</DependentUpon>
     </EmbeddedResource>

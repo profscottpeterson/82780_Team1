@@ -20,17 +20,17 @@
 
             // Construct all the chance cards
             this.ChanceCards = new List<Card>();
-            this.ChanceCards.Add(new Card(0, "Get Out of Jail Free", CardType.Chance));
-            this.ChanceCards.Add(new Card(1, "Go Directly to Jail\nDo Not Pass Go, Do Not Collect $200", CardType.Chance, this.GetSpotByName("Jail")));
 
             // Construct all the community chest cards
             this.CommunityChestCards = new List<Card>();
-            this.CommunityChestCards.Add(new Card(16, "Get Out of Jail Free", CardType.CommunityChest));
+
+            // Creates community and chance cards
+            this.CreateCards();
 
             // Initialize the list of players
             this.Players = new List<Player>();
 
-            // Only house rules change this - in offical rules, free parking is just a safe space
+            // Only house rules change this - in official rules, free parking is just a safe space
             this.FreeParkingTotal = 0;
         }
 

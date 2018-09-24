@@ -35,6 +35,7 @@
             this.IsAvailable = true;
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
+            this.HasHotel = false;
         }
 
         /// <summary>
@@ -63,6 +64,7 @@
             this.IsAvailable = true;
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
+            this.HasHotel = false;
         }
 
         /// <summary>
@@ -93,6 +95,7 @@
             this.IsAvailable = true;
             this.IsMortgaged = false;
             this.NumberOfHouses = 0;
+            this.HasHotel = false;
         }
 
         /// <summary>
@@ -219,5 +222,10 @@
         /// Gets or sets the number of houses a property has
         /// </summary>
         public int NumberOfHouses { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the property has a hotel
+        /// </summary>
+        public bool HasHotel { get; set; }
     }
 }

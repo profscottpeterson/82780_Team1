@@ -25,7 +25,6 @@
             this.Collect = false;
             this.NewLocation = null;
             this.GetOutOfJailFree = true;
-            this.InDeck = true;
         }
 
         /// <summary>
@@ -47,7 +46,6 @@
             this.Bank = bank;
             this.Collect = collect;
             this.NewLocation = null;
-            this.InDeck = true;
         }
 
         /// <summary>
@@ -67,7 +65,6 @@
             this.Bank = true;
             this.Collect = false;
             this.NewLocation = newLocation;
-            this.InDeck = true;
         }
 
         /// <summary>
@@ -109,10 +106,5 @@
         /// Gets a value indicating whether a card is a get out of jail free card
         /// </summary>
         public bool GetOutOfJailFree { get; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether a card is in the deck
-        /// </summary>
-        public bool InDeck { get; set; }
     }
 }

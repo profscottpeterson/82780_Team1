@@ -136,27 +136,19 @@
         /// <param name="currentPlayer">The player's whose turn it is</param>
         public void DrawCard(List<Card> pile, Player currentPlayer)
         {
-            Card top;
-            do
-            {
-                top = pile[0];
-                if (top.InDeck == false)
-                {
-                    this.MoveCardToBottomOfPile(top);
-                }
-            } while (top.InDeck == false);
+            Card top = pile[0];
 
             if (top.GetOutOfJailFree == true)
             {
                 // Card is a get out of jail free card
-                this.Players[this.Players.IndexOf(currentPlayer)].NumberOfGetOutOfJailFreeCards += 1;
+                this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards.Add(top);
                 if (top.Type == CardType.Chance)
                 {
-                    this.ChanceCards[this.ChanceCards.IndexOf(top)].InDeck = false;
+                    this.ChanceCards.Remove(top);
                 }
                 else
                 {
-                    this.CommunityChestCards[this.CommunityChestCards.IndexOf(top)].InDeck = false;
+                    this.CommunityChestCards.Remove(top);
                 }
             }
             else if (top.Amount > 0)
@@ -187,6 +179,9 @@
                             }
                         }
                     }
+
+                    // Move card to bottom of pile
+                    this.MoveCardToBottomOfPile(top);
                 }
                 else
                 {
@@ -252,10 +247,39 @@
                 }
 
                 this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
-            }
 
-            // Move card to bottom of pile
-            this.MoveCardToBottomOfPile(top);
+                // Move card to bottom of pile
+                this.MoveCardToBottomOfPile(top);
+            }
+        }
+
+        /// <summary>
+        /// Gets a player out of jail and adds the "get out of jail free" card back into its deck
+        /// </summary>
+        /// <param name="currentPlayer">The player who is using the card</param>
+        public void PlayGetOutOfJailFreeCard(Player currentPlayer)
+        {
+            // Set current player's in jail status to false
+            this.Players[this.Players.IndexOf(currentPlayer)].InJail = false;
+
+            // Get the first card from current players "get out of jail free" card list
+            // list should be checked for not empty before this method is called
+            Card card = this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards[0];
+
+            // Remove "get out of jail free" card from player
+            this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards.Remove(card);
+
+            // Check to see if the card was from the chance or community chest pile
+            if (card.Type == CardType.Chance)
+            {
+                // Add the card back to the chance pile
+                this.ChanceCards.Add(card);
+            }
+            else
+            {
+                // Add the card back to the community chest pile
+                this.CommunityChestCards.Add(card);
+            }
         }
 
         /// <summary>
@@ -401,6 +425,145 @@
 
             temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
             Board.Add(temp);
+        }
+
+        /// <summary>
+        /// Mortgages a given property
+        /// </summary>
+        /// <param name="currentPlayer">The owner of the property</param>
+        /// <param name="property">The property to be mortgaged</param>
+        public void MortageProperty(Player currentPlayer, Spot property)
+        {
+            // Get the property index of the property in the current player's properties list
+            int propertyIndex = this.Players[this.Players.IndexOf(currentPlayer)].Properties.IndexOf(property);
+
+            // Set the is mortgaged value to true of the property in the current player's properties list
+            this.Players[this.Players.IndexOf(currentPlayer)].Properties[propertyIndex].IsMortgaged = true;
+
+            // Set the is mortgaged value to true of the property in the Board's list of spots
+            this.Board[this.Board.IndexOf(property)].IsMortgaged = true;
+
+            // Give the current player the mortgage value of the given property
+            this.Players[this.Players.IndexOf(currentPlayer)].Money += property.Mortgage;
+        }
+
+        /// <summary>
+        /// Returns the list of a player's properties that have hotels on them
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties with hotels on them</returns>
+        public List<Spot> GetListOfPlayersPropertiesWithHotel(Player currentPlayer)
+        {
+            // Declare and initialize a list of spots
+            List<Spot> propertiesWithHotel = new List<Spot>();
+
+            // Loop through the given player's list of properties
+            foreach (Spot property in currentPlayer.Properties)
+            {
+                // If that property has a hotel
+                if (property.HasHotel)
+                {
+                    // Add property to list
+                    propertiesWithHotel.Add(property);
+                }
+            }
+
+            // return list that was created
+            return propertiesWithHotel;
+        }
+
+        /// <summary>
+        /// Returns the list of a player's properties that have at least one house on them
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties with at least one house on them</returns>
+        public List<Spot> GetListOfPlayersPropertiesWithHouses(Player currentPlayer)
+        {
+            // Declare and initialize a list of spots
+            List<Spot> propertiesWithHouses = new List<Spot>();
+
+            // Loop through the given player's list of properties
+            foreach (Spot property in currentPlayer.Properties)
+            {
+                // If the number of houses is greater than zero
+                if (property.NumberOfHouses > 0)
+                {
+                    // Add property to list
+                    propertiesWithHouses.Add(property);
+                }
+            }
+
+            // return list that was created
+            return propertiesWithHouses;
+        }
+
+        /// <summary>
+        /// Returns the list of a player's properties that are mortgagable
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties that are mortgagable</returns>
+        public List<Spot> GetListOfPlayersMortgagableProperties(Player currentPlayer)
+        {
+            // Declare and initialize a list of spots
+            List<Spot> mortgagableProperties = new List<Spot>();
+
+            // Loop through the given player's list of properties
+            foreach (Spot property in currentPlayer.Properties)
+            {
+                // Declare a bool for whether a color group has all its properties not having houses
+                bool colorGroupHasNoHouses = true;
+
+                // If the number of houses is zero
+                if (property.NumberOfHouses == 0)
+                {
+                    // Loop through the given player's list of properties
+                    foreach (Spot p in currentPlayer.Properties)
+                    {
+                        // if the color of the property of the inner loop matches the color of the property of the outer loop
+                        // and the number of houses of the property of  the inner loop is greater than zero
+                        if (property.Color == p.Color && p.NumberOfHouses > 0)
+                        {
+                            // The color group does not have all its properties not having houses
+                            colorGroupHasNoHouses = false;
+                        }
+                    }
+
+                    // if the color group has all its properties not having houses
+                    if (colorGroupHasNoHouses)
+                    {
+                        // Add property to list
+                        mortgagableProperties.Add(property);
+                    }
+                }
+            }
+
+            // return list that was created
+            return mortgagableProperties;
+        }
+
+        /// <summary>
+        /// Finds the next player whose turn it would be and returns them
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The player whose turn it would be next</returns>
+        public Player NextPlayer(Player currentPlayer)
+        {
+            // Find the index of the current player in the Players list
+            int index = this.Players.IndexOf(currentPlayer);
+
+            // Increment the index by one
+            index++;
+
+            // If index is greater than or equal to the count of the players list
+            // (index would be out of bounds)
+            if (index >= this.Players.Count)
+            {
+                // Set index back to 0
+                index = 0;
+            }
+
+            // Return the player with the calculated index
+            return this.Players[index];
         }
     }
 }

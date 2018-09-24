@@ -118,19 +118,17 @@
             // 
             this.BoardBackgroundImage.BackColor = System.Drawing.Color.PeachPuff;
             this.BoardBackgroundImage.Location = new System.Drawing.Point(0, 0);
-            this.BoardBackgroundImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BoardBackgroundImage.Name = "BoardBackgroundImage";
-            this.BoardBackgroundImage.Size = new System.Drawing.Size(1200, 1108);
+            this.BoardBackgroundImage.Size = new System.Drawing.Size(900, 900);
             this.BoardBackgroundImage.TabIndex = 0;
             this.BoardBackgroundImage.TabStop = false;
             // 
             // BoardTemplateImage
             // 
             this.BoardTemplateImage.Image = global::Monopoly.Properties.Resources.TempBackImage;
-            this.BoardTemplateImage.Location = new System.Drawing.Point(33, 31);
-            this.BoardTemplateImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BoardTemplateImage.Location = new System.Drawing.Point(25, 25);
             this.BoardTemplateImage.Name = "BoardTemplateImage";
-            this.BoardTemplateImage.Size = new System.Drawing.Size(1133, 1046);
+            this.BoardTemplateImage.Size = new System.Drawing.Size(850, 850);
             this.BoardTemplateImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BoardTemplateImage.TabIndex = 1;
             this.BoardTemplateImage.TabStop = false;
@@ -139,10 +137,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Monopoly.Properties.Resources.card_go;
-            this.pictureBox1.Location = new System.Drawing.Point(1020, 942);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(765, 765);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 142);
+            this.pictureBox1.Size = new System.Drawing.Size(115, 115);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -150,10 +147,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Monopoly.Properties.Resources.prop_maroon;
-            this.pictureBox2.Location = new System.Drawing.Point(927, 942);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(695, 765);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox2.Size = new System.Drawing.Size(70, 115);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
@@ -161,10 +157,9 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Monopoly.Properties.Resources.card_chest;
-            this.pictureBox3.Location = new System.Drawing.Point(833, 942);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Location = new System.Drawing.Point(625, 765);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox3.Size = new System.Drawing.Size(70, 115);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
@@ -172,10 +167,9 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Monopoly.Properties.Resources.prop_maroon;
-            this.pictureBox4.Location = new System.Drawing.Point(740, 942);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Location = new System.Drawing.Point(555, 765);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox4.Size = new System.Drawing.Size(70, 115);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
@@ -183,10 +177,9 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Monopoly.Properties.Resources.card_tax;
-            this.pictureBox5.Location = new System.Drawing.Point(647, 942);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Location = new System.Drawing.Point(485, 765);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox5.Size = new System.Drawing.Size(70, 115);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
@@ -194,10 +187,9 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::Monopoly.Properties.Resources.card_railroad;
-            this.pictureBox6.Location = new System.Drawing.Point(553, 942);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Location = new System.Drawing.Point(415, 765);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox6.Size = new System.Drawing.Size(70, 115);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 7;
             this.pictureBox6.TabStop = false;
@@ -205,10 +197,9 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Monopoly.Properties.Resources.prop_lightblue;
-            this.pictureBox7.Location = new System.Drawing.Point(460, 942);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Location = new System.Drawing.Point(345, 765);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox7.Size = new System.Drawing.Size(70, 115);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 8;
             this.pictureBox7.TabStop = false;
@@ -216,10 +207,9 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::Monopoly.Properties.Resources.card_chance;
-            this.pictureBox8.Location = new System.Drawing.Point(367, 942);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Location = new System.Drawing.Point(275, 765);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox8.Size = new System.Drawing.Size(70, 115);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 9;
             this.pictureBox8.TabStop = false;
@@ -227,10 +217,9 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::Monopoly.Properties.Resources.prop_lightblue;
-            this.pictureBox9.Location = new System.Drawing.Point(273, 942);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Location = new System.Drawing.Point(205, 765);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox9.Size = new System.Drawing.Size(70, 115);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox9.TabIndex = 10;
             this.pictureBox9.TabStop = false;
@@ -238,10 +227,9 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = global::Monopoly.Properties.Resources.prop_lightblue;
-            this.pictureBox10.Location = new System.Drawing.Point(180, 942);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox10.Location = new System.Drawing.Point(135, 765);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox10.Size = new System.Drawing.Size(70, 115);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 11;
             this.pictureBox10.TabStop = false;
@@ -249,10 +237,9 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Monopoly.Properties.Resources.card_jail;
-            this.pictureBox11.Location = new System.Drawing.Point(27, 942);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox11.Location = new System.Drawing.Point(20, 765);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(153, 142);
+            this.pictureBox11.Size = new System.Drawing.Size(115, 115);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox11.TabIndex = 12;
             this.pictureBox11.TabStop = false;
@@ -260,10 +247,9 @@
             // pictureBox12
             // 
             this.pictureBox12.Image = global::Monopoly.Properties.Resources.prop_pink;
-            this.pictureBox12.Location = new System.Drawing.Point(27, 855);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox12.Location = new System.Drawing.Point(20, 695);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox12.Size = new System.Drawing.Size(115, 70);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox12.TabIndex = 13;
             this.pictureBox12.TabStop = false;
@@ -271,10 +257,9 @@
             // pictureBox13
             // 
             this.pictureBox13.Image = global::Monopoly.Properties.Resources.card_light_90;
-            this.pictureBox13.Location = new System.Drawing.Point(27, 769);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox13.Location = new System.Drawing.Point(20, 625);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox13.Size = new System.Drawing.Size(115, 70);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox13.TabIndex = 14;
             this.pictureBox13.TabStop = false;
@@ -282,10 +267,9 @@
             // pictureBox14
             // 
             this.pictureBox14.Image = global::Monopoly.Properties.Resources.prop_pink;
-            this.pictureBox14.Location = new System.Drawing.Point(27, 683);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox14.Location = new System.Drawing.Point(20, 555);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox14.Size = new System.Drawing.Size(115, 70);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox14.TabIndex = 15;
             this.pictureBox14.TabStop = false;
@@ -293,10 +277,9 @@
             // pictureBox15
             // 
             this.pictureBox15.Image = global::Monopoly.Properties.Resources.prop_pink;
-            this.pictureBox15.Location = new System.Drawing.Point(27, 597);
-            this.pictureBox15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox15.Location = new System.Drawing.Point(20, 485);
             this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox15.Size = new System.Drawing.Size(115, 70);
             this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox15.TabIndex = 16;
             this.pictureBox15.TabStop = false;
@@ -304,10 +287,9 @@
             // pictureBox16
             // 
             this.pictureBox16.Image = global::Monopoly.Properties.Resources.card_railroad_90;
-            this.pictureBox16.Location = new System.Drawing.Point(27, 511);
-            this.pictureBox16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox16.Location = new System.Drawing.Point(20, 415);
             this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox16.Size = new System.Drawing.Size(115, 70);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox16.TabIndex = 17;
             this.pictureBox16.TabStop = false;
@@ -315,10 +297,9 @@
             // pictureBox17
             // 
             this.pictureBox17.Image = global::Monopoly.Properties.Resources.prop_orange;
-            this.pictureBox17.Location = new System.Drawing.Point(27, 425);
-            this.pictureBox17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox17.Location = new System.Drawing.Point(20, 345);
             this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox17.Size = new System.Drawing.Size(115, 70);
             this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox17.TabIndex = 18;
             this.pictureBox17.TabStop = false;
@@ -326,10 +307,9 @@
             // pictureBox18
             // 
             this.pictureBox18.Image = global::Monopoly.Properties.Resources.card_chest_90;
-            this.pictureBox18.Location = new System.Drawing.Point(27, 338);
-            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox18.Location = new System.Drawing.Point(20, 275);
             this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox18.Size = new System.Drawing.Size(115, 70);
             this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox18.TabIndex = 19;
             this.pictureBox18.TabStop = false;
@@ -337,10 +317,9 @@
             // pictureBox19
             // 
             this.pictureBox19.Image = global::Monopoly.Properties.Resources.prop_orange;
-            this.pictureBox19.Location = new System.Drawing.Point(27, 252);
-            this.pictureBox19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox19.Location = new System.Drawing.Point(20, 205);
             this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox19.Size = new System.Drawing.Size(115, 70);
             this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox19.TabIndex = 20;
             this.pictureBox19.TabStop = false;
@@ -348,10 +327,9 @@
             // pictureBox20
             // 
             this.pictureBox20.Image = global::Monopoly.Properties.Resources.prop_orange;
-            this.pictureBox20.Location = new System.Drawing.Point(27, 166);
-            this.pictureBox20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox20.Location = new System.Drawing.Point(20, 135);
             this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox20.Size = new System.Drawing.Size(115, 70);
             this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox20.TabIndex = 21;
             this.pictureBox20.TabStop = false;
@@ -359,10 +337,9 @@
             // pictureBox21
             // 
             this.pictureBox21.Image = global::Monopoly.Properties.Resources.card_parking;
-            this.pictureBox21.Location = new System.Drawing.Point(27, 25);
-            this.pictureBox21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox21.Location = new System.Drawing.Point(20, 20);
             this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(153, 142);
+            this.pictureBox21.Size = new System.Drawing.Size(115, 115);
             this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox21.TabIndex = 22;
             this.pictureBox21.TabStop = false;
@@ -370,10 +347,9 @@
             // pictureBox22
             // 
             this.pictureBox22.Image = global::Monopoly.Properties.Resources.prop_red;
-            this.pictureBox22.Location = new System.Drawing.Point(180, 25);
-            this.pictureBox22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox22.Location = new System.Drawing.Point(135, 20);
             this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox22.Size = new System.Drawing.Size(70, 115);
             this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox22.TabIndex = 23;
             this.pictureBox22.TabStop = false;
@@ -381,10 +357,9 @@
             // pictureBox23
             // 
             this.pictureBox23.Image = global::Monopoly.Properties.Resources.card_chance_270;
-            this.pictureBox23.Location = new System.Drawing.Point(273, 25);
-            this.pictureBox23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox23.Location = new System.Drawing.Point(205, 20);
             this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox23.Size = new System.Drawing.Size(70, 115);
             this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox23.TabIndex = 24;
             this.pictureBox23.TabStop = false;
@@ -392,10 +367,9 @@
             // pictureBox24
             // 
             this.pictureBox24.Image = global::Monopoly.Properties.Resources.prop_red;
-            this.pictureBox24.Location = new System.Drawing.Point(367, 25);
-            this.pictureBox24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox24.Location = new System.Drawing.Point(275, 20);
             this.pictureBox24.Name = "pictureBox24";
-            this.pictureBox24.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox24.Size = new System.Drawing.Size(70, 115);
             this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox24.TabIndex = 25;
             this.pictureBox24.TabStop = false;
@@ -403,10 +377,9 @@
             // pictureBox25
             // 
             this.pictureBox25.Image = global::Monopoly.Properties.Resources.prop_red;
-            this.pictureBox25.Location = new System.Drawing.Point(460, 25);
-            this.pictureBox25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox25.Location = new System.Drawing.Point(345, 20);
             this.pictureBox25.Name = "pictureBox25";
-            this.pictureBox25.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox25.Size = new System.Drawing.Size(70, 115);
             this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox25.TabIndex = 26;
             this.pictureBox25.TabStop = false;
@@ -414,10 +387,9 @@
             // pictureBox26
             // 
             this.pictureBox26.Image = global::Monopoly.Properties.Resources.card_railroad_180;
-            this.pictureBox26.Location = new System.Drawing.Point(553, 25);
-            this.pictureBox26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox26.Location = new System.Drawing.Point(415, 20);
             this.pictureBox26.Name = "pictureBox26";
-            this.pictureBox26.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox26.Size = new System.Drawing.Size(70, 115);
             this.pictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox26.TabIndex = 27;
             this.pictureBox26.TabStop = false;
@@ -425,10 +397,9 @@
             // pictureBox27
             // 
             this.pictureBox27.Image = global::Monopoly.Properties.Resources.prop_yellow;
-            this.pictureBox27.Location = new System.Drawing.Point(647, 25);
-            this.pictureBox27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox27.Location = new System.Drawing.Point(485, 20);
             this.pictureBox27.Name = "pictureBox27";
-            this.pictureBox27.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox27.Size = new System.Drawing.Size(70, 115);
             this.pictureBox27.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox27.TabIndex = 28;
             this.pictureBox27.TabStop = false;
@@ -436,10 +407,9 @@
             // pictureBox28
             // 
             this.pictureBox28.Image = global::Monopoly.Properties.Resources.prop_yellow;
-            this.pictureBox28.Location = new System.Drawing.Point(740, 25);
-            this.pictureBox28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox28.Location = new System.Drawing.Point(555, 20);
             this.pictureBox28.Name = "pictureBox28";
-            this.pictureBox28.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox28.Size = new System.Drawing.Size(70, 115);
             this.pictureBox28.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox28.TabIndex = 29;
             this.pictureBox28.TabStop = false;
@@ -447,10 +417,9 @@
             // pictureBox29
             // 
             this.pictureBox29.Image = global::Monopoly.Properties.Resources.card_water_180;
-            this.pictureBox29.Location = new System.Drawing.Point(833, 25);
-            this.pictureBox29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox29.Location = new System.Drawing.Point(625, 20);
             this.pictureBox29.Name = "pictureBox29";
-            this.pictureBox29.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox29.Size = new System.Drawing.Size(70, 115);
             this.pictureBox29.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox29.TabIndex = 30;
             this.pictureBox29.TabStop = false;
@@ -458,10 +427,9 @@
             // pictureBox30
             // 
             this.pictureBox30.Image = global::Monopoly.Properties.Resources.prop_yellow;
-            this.pictureBox30.Location = new System.Drawing.Point(927, 25);
-            this.pictureBox30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox30.Location = new System.Drawing.Point(695, 20);
             this.pictureBox30.Name = "pictureBox30";
-            this.pictureBox30.Size = new System.Drawing.Size(93, 142);
+            this.pictureBox30.Size = new System.Drawing.Size(70, 115);
             this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox30.TabIndex = 31;
             this.pictureBox30.TabStop = false;
@@ -469,10 +437,9 @@
             // pictureBox31
             // 
             this.pictureBox31.Image = global::Monopoly.Properties.Resources.card_gtjail;
-            this.pictureBox31.Location = new System.Drawing.Point(1020, 25);
-            this.pictureBox31.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox31.Location = new System.Drawing.Point(765, 20);
             this.pictureBox31.Name = "pictureBox31";
-            this.pictureBox31.Size = new System.Drawing.Size(153, 142);
+            this.pictureBox31.Size = new System.Drawing.Size(115, 115);
             this.pictureBox31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox31.TabIndex = 32;
             this.pictureBox31.TabStop = false;
@@ -480,10 +447,9 @@
             // pictureBox32
             // 
             this.pictureBox32.Image = global::Monopoly.Properties.Resources.prop_green;
-            this.pictureBox32.Location = new System.Drawing.Point(1020, 166);
-            this.pictureBox32.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox32.Location = new System.Drawing.Point(765, 135);
             this.pictureBox32.Name = "pictureBox32";
-            this.pictureBox32.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox32.Size = new System.Drawing.Size(115, 70);
             this.pictureBox32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox32.TabIndex = 33;
             this.pictureBox32.TabStop = false;
@@ -491,10 +457,9 @@
             // pictureBox33
             // 
             this.pictureBox33.Image = global::Monopoly.Properties.Resources.prop_green;
-            this.pictureBox33.Location = new System.Drawing.Point(1020, 252);
-            this.pictureBox33.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox33.Location = new System.Drawing.Point(765, 205);
             this.pictureBox33.Name = "pictureBox33";
-            this.pictureBox33.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox33.Size = new System.Drawing.Size(115, 70);
             this.pictureBox33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox33.TabIndex = 34;
             this.pictureBox33.TabStop = false;
@@ -502,10 +467,9 @@
             // pictureBox34
             // 
             this.pictureBox34.Image = global::Monopoly.Properties.Resources.card_chest_270;
-            this.pictureBox34.Location = new System.Drawing.Point(1020, 338);
-            this.pictureBox34.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox34.Location = new System.Drawing.Point(765, 275);
             this.pictureBox34.Name = "pictureBox34";
-            this.pictureBox34.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox34.Size = new System.Drawing.Size(115, 70);
             this.pictureBox34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox34.TabIndex = 35;
             this.pictureBox34.TabStop = false;
@@ -513,10 +477,9 @@
             // pictureBox35
             // 
             this.pictureBox35.Image = global::Monopoly.Properties.Resources.prop_green;
-            this.pictureBox35.Location = new System.Drawing.Point(1020, 425);
-            this.pictureBox35.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox35.Location = new System.Drawing.Point(765, 345);
             this.pictureBox35.Name = "pictureBox35";
-            this.pictureBox35.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox35.Size = new System.Drawing.Size(115, 70);
             this.pictureBox35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox35.TabIndex = 36;
             this.pictureBox35.TabStop = false;
@@ -524,10 +487,9 @@
             // pictureBox36
             // 
             this.pictureBox36.Image = global::Monopoly.Properties.Resources.card_railroad_270;
-            this.pictureBox36.Location = new System.Drawing.Point(1020, 511);
-            this.pictureBox36.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox36.Location = new System.Drawing.Point(765, 415);
             this.pictureBox36.Name = "pictureBox36";
-            this.pictureBox36.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox36.Size = new System.Drawing.Size(115, 70);
             this.pictureBox36.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox36.TabIndex = 37;
             this.pictureBox36.TabStop = false;
@@ -535,10 +497,9 @@
             // pictureBox37
             // 
             this.pictureBox37.Image = global::Monopoly.Properties.Resources.card_chance_180;
-            this.pictureBox37.Location = new System.Drawing.Point(1020, 597);
-            this.pictureBox37.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox37.Location = new System.Drawing.Point(765, 485);
             this.pictureBox37.Name = "pictureBox37";
-            this.pictureBox37.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox37.Size = new System.Drawing.Size(115, 70);
             this.pictureBox37.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox37.TabIndex = 38;
             this.pictureBox37.TabStop = false;
@@ -546,10 +507,9 @@
             // pictureBox38
             // 
             this.pictureBox38.Image = global::Monopoly.Properties.Resources.prop_blue;
-            this.pictureBox38.Location = new System.Drawing.Point(1020, 683);
-            this.pictureBox38.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox38.Location = new System.Drawing.Point(765, 555);
             this.pictureBox38.Name = "pictureBox38";
-            this.pictureBox38.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox38.Size = new System.Drawing.Size(115, 70);
             this.pictureBox38.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox38.TabIndex = 39;
             this.pictureBox38.TabStop = false;
@@ -557,10 +517,9 @@
             // pictureBox39
             // 
             this.pictureBox39.Image = global::Monopoly.Properties.Resources.card_ltax_270;
-            this.pictureBox39.Location = new System.Drawing.Point(1020, 769);
-            this.pictureBox39.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox39.Location = new System.Drawing.Point(765, 625);
             this.pictureBox39.Name = "pictureBox39";
-            this.pictureBox39.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox39.Size = new System.Drawing.Size(115, 70);
             this.pictureBox39.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox39.TabIndex = 40;
             this.pictureBox39.TabStop = false;
@@ -568,19 +527,18 @@
             // pictureBox40
             // 
             this.pictureBox40.Image = global::Monopoly.Properties.Resources.prop_blue;
-            this.pictureBox40.Location = new System.Drawing.Point(1020, 855);
-            this.pictureBox40.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox40.Location = new System.Drawing.Point(765, 695);
             this.pictureBox40.Name = "pictureBox40";
-            this.pictureBox40.Size = new System.Drawing.Size(153, 86);
+            this.pictureBox40.Size = new System.Drawing.Size(115, 70);
             this.pictureBox40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox40.TabIndex = 41;
             this.pictureBox40.TabStop = false;
             // 
             // MonopolyMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1845, 1108);
+            this.ClientSize = new System.Drawing.Size(1384, 902);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox40);
             this.Controls.Add(this.pictureBox39);
@@ -623,7 +581,6 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.BoardTemplateImage);
             this.Controls.Add(this.BoardBackgroundImage);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MonopolyMainForm";
             this.Text = "Monopoly";
             this.Load += new System.EventHandler(this.MonopolyMainForm_Load);

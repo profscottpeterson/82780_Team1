@@ -61,6 +61,31 @@
         public int FreeParkingTotal { get; set; }
 
         /// <summary>
+        /// Gets the list of properties a given player owns
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties the given player owns</returns>
+        public List<Spot> GetPlayersPropertyList(Player currentPlayer)
+        {
+            // Declare and initialize a list of Spots
+            List<Spot> playersPropertyList = new List<Spot>();
+
+            // Loop through all the spots on the board
+            foreach (Spot spot in this.Board)
+            {
+                // if the spot's owner is the given player
+                if (spot.Owner == currentPlayer)
+                {
+                    // add that spot to the list
+                    playersPropertyList.Add(spot);
+                }
+            }
+
+            // return the list
+            return playersPropertyList;
+        }
+
+        /// <summary>
         /// Finds the nearest spot to the spot given that matches the spot type given
         /// </summary>
         /// <param name="currentLocation">The player's current location</param>
@@ -310,12 +335,6 @@
         /// <param name="property">The property to be mortgaged</param>
         public void MortageProperty(Player currentPlayer, Spot property)
         {
-            // Get the property index of the property in the current player's properties list
-            int propertyIndex = this.Players[this.Players.IndexOf(currentPlayer)].Properties.IndexOf(property);
-
-            // Set the is mortgaged value to true of the property in the current player's properties list
-            this.Players[this.Players.IndexOf(currentPlayer)].Properties[propertyIndex].IsMortgaged = true;
-
             // Set the is mortgaged value to true of the property in the Board's list of spots
             this.Board[this.Board.IndexOf(property)].IsMortgaged = true;
 
@@ -333,8 +352,11 @@
             // Declare and initialize a list of spots
             List<Spot> propertiesWithHotel = new List<Spot>();
 
+            // Get the current player's property list
+            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
+
             // Loop through the given player's list of properties
-            foreach (Spot property in currentPlayer.Properties)
+            foreach (Spot property in propertyList)
             {
                 // If that property has a hotel
                 if (property.HasHotel)
@@ -358,8 +380,11 @@
             // Declare and initialize a list of spots
             List<Spot> propertiesWithHouses = new List<Spot>();
 
+            // Get the current player's property list
+            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
+
             // Loop through the given player's list of properties
-            foreach (Spot property in currentPlayer.Properties)
+            foreach (Spot property in propertyList)
             {
                 // If the number of houses is greater than zero
                 if (property.NumberOfHouses > 0)
@@ -383,8 +408,11 @@
             // Declare and initialize a list of spots
             List<Spot> mortgageableProperties = new List<Spot>();
 
+            // Get the current player's property list
+            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
+
             // Loop through the given player's list of properties
-            foreach (Spot property in currentPlayer.Properties)
+            foreach (Spot property in propertyList)
             {
                 // Declare a bool for whether a color group has all its properties not having houses
                 bool colorGroupHasNoHouses = true;
@@ -393,7 +421,7 @@
                 if (property.NumberOfHouses == 0)
                 {
                     // Loop through the given player's list of properties
-                    foreach (Spot p in currentPlayer.Properties)
+                    foreach (Spot p in propertyList)
                     {
                         // if the color of the property of the inner loop matches the color of the property of the outer loop
                         // and the number of houses of the property of  the inner loop is greater than zero

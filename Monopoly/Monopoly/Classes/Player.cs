@@ -65,11 +65,6 @@
         public bool InJail { get; set; }
 
         /// <summary>
-        /// Gets or sets the list of properties a player owns
-        /// </summary>
-        public List<Spot> Properties { get; set; }
-
-        /// <summary>
         /// Gets or sets the list containing the "get out of jail free" cards a player may have 
         /// </summary>
         public List<Card> GetOutOfJailFreeCards { get; set; }

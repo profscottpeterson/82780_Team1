@@ -123,7 +123,7 @@
             this.panelPlayer2.Location = new System.Drawing.Point(26, 97);
             this.panelPlayer2.Name = "panelPlayer2";
             this.panelPlayer2.Size = new System.Drawing.Size(209, 58);
-            this.panelPlayer2.TabIndex = 3;
+            this.panelPlayer2.TabIndex = 2;
             this.panelPlayer2.Visible = false;
             // 
             // lblPlayerName2
@@ -161,7 +161,7 @@
             this.panelPlayer3.Location = new System.Drawing.Point(26, 162);
             this.panelPlayer3.Name = "panelPlayer3";
             this.panelPlayer3.Size = new System.Drawing.Size(209, 58);
-            this.panelPlayer3.TabIndex = 4;
+            this.panelPlayer3.TabIndex = 3;
             this.panelPlayer3.Visible = false;
             // 
             // lblPlayerName3
@@ -199,7 +199,7 @@
             this.panelPlayer4.Location = new System.Drawing.Point(26, 226);
             this.panelPlayer4.Name = "panelPlayer4";
             this.panelPlayer4.Size = new System.Drawing.Size(209, 58);
-            this.panelPlayer4.TabIndex = 3;
+            this.panelPlayer4.TabIndex = 4;
             this.panelPlayer4.Visible = false;
             // 
             // lblPlayerName4

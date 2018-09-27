@@ -17,6 +17,7 @@ namespace Monopoly
         /// </summary>
         public List<Player> TempPlayers { get; set; }
 
+
         private Game game;
 
         public GameOptions()
@@ -81,77 +82,134 @@ namespace Monopoly
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            // Loop through all the controls on the form
-            foreach (var control in Controls)
+            Player tempPlayer;
+
+            if (panelPlayer1.Visible)
             {
-                // If the control is of type panel
-                if (control.GetType() == typeof(Panel))
+                tempPlayer = new Player();
+                string name = txtPlayer1Name.Text;
+                // If the textbox was empty
+                if (name == string.Empty)
                 {
-                    // Declare a panel that is that control
-                    Panel p = (Panel) control;
-
-                    // if the panel is visible
-                    if (p.Visible)
-                    {
-                        // Construct a new Player called tempPlayer
-                        Player tempPlayer = new Player();
-
-                        // Loop through all the panel's controls
-                        foreach (var c in p.Controls)
-                        {
-                            // If the control inside the panel is a textbox
-                            if (c.GetType() == typeof(TextBox))
-                            {
-                                // Declare a textbox that is that control
-                                TextBox textBox = (TextBox) c;
-
-                                // Get the text in the textbox
-                                string name = textBox.Text;
-
-                                // If the textbox was empty
-                                if (name == string.Empty)
-                                {
-                                    // Get name the text that is in the tag
-                                    name = textBox.Tag.ToString();
-                                }
-
-                                // Set the player name of tempPlayer
-                                tempPlayer.PlayerName = name;
-                            }
-                            else if (c.GetType() == typeof(CheckBox))
-                            {
-                                // If the control inside the panel is a checkbox
-                                // Declare a checkbox that is that control
-                                CheckBox checkBox = (CheckBox) c;
-
-                                // If the checkbox is checked
-                                if (checkBox.Checked)
-                                {
-                                    // Set tempPlayer's boolean IsAi to true
-                                    tempPlayer.IsAi = true;
-                                }
-                                else
-                                {
-                                    // The checkbox was not checked
-                                    // Set tempPlayer's boolean IsAi to false
-                                    tempPlayer.IsAi = false;
-                                }
-                            }
-                        }
-
-                        // Add tempPlayer to the List of Players
-                        TempPlayers.Add(tempPlayer);
-                    }
+                    // Get name the text that is in the tag
+                    name = txtPlayer1Name.Tag.ToString();
                 }
+
+                // Set the player name of tempPlayer
+                tempPlayer.PlayerName = name;
+
+                // If the checkbox is checked
+                if (chkAI1.Checked)
+                {
+                    // Set tempPlayer's boolean IsAi to true
+                    tempPlayer.IsAi = true;
+                }
+                else
+                {
+                    // The checkbox was not checked
+                    // Set tempPlayer's boolean IsAi to false
+                    tempPlayer.IsAi = false;
+                }
+
+                this.TempPlayers.Add(tempPlayer);
             }
 
-            // Reverse the list of players so the first player added is in position 0
-            TempPlayers.Reverse();
+            if (panelPlayer2.Visible)
+            {
+                tempPlayer = new Player();
+                string name = txtPlayerName2.Text;
+                // If the textbox was empty
+                if (name == string.Empty)
+                {
+                    // Get name the text that is in the tag
+                    name = txtPlayerName2.Tag.ToString();
+                }
+
+                // Set the player name of tempPlayer
+                tempPlayer.PlayerName = name;
+
+                // If the checkbox is checked
+                if (chkAI2.Checked)
+                {
+                    // Set tempPlayer's boolean IsAi to true
+                    tempPlayer.IsAi = true;
+                }
+                else
+                {
+                    // The checkbox was not checked
+                    // Set tempPlayer's boolean IsAi to false
+                    tempPlayer.IsAi = false;
+                }
+
+                this.TempPlayers.Add(tempPlayer);
+            }
+
+            if (panelPlayer3.Visible)
+            {
+                tempPlayer = new Player();
+                string name = txtPlayerName3.Text;
+                // If the textbox was empty
+                if (name == string.Empty)
+                {
+                    // Get name the text that is in the tag
+                    name = txtPlayerName3.Tag.ToString();
+                }
+
+                // Set the player name of tempPlayer
+                tempPlayer.PlayerName = name;
+
+                // If the checkbox is checked
+                if (chkAI3.Checked)
+                {
+                    // Set tempPlayer's boolean IsAi to true
+                    tempPlayer.IsAi = true;
+                }
+                else
+                {
+                    // The checkbox was not checked
+                    // Set tempPlayer's boolean IsAi to false
+                    tempPlayer.IsAi = false;
+                }
+
+                this.TempPlayers.Add(tempPlayer);
+            }
+
+            if (panelPlayer4.Visible)
+            {
+                tempPlayer = new Player();
+                string name = txtPlayerName4.Text;
+                // If the textbox was empty
+                if (name == string.Empty)
+                {
+                    // Get name the text that is in the tag
+                    name = txtPlayerName4.Tag.ToString();
+                }
+
+                // Set the player name of tempPlayer
+                tempPlayer.PlayerName = name;
+
+                // If the checkbox is checked
+                if (chkAI4.Checked)
+                {
+                    // Set tempPlayer's boolean IsAi to true
+                    tempPlayer.IsAi = true;
+                }
+                else
+                {
+                    // The checkbox was not checked
+                    // Set tempPlayer's boolean IsAi to false
+                    tempPlayer.IsAi = false;
+                }
+
+                this.TempPlayers.Add(tempPlayer);
+            }
+           
 
             // Loop through the list of players
             for (int i = 0; i < this.TempPlayers.Count; i++)
             {
                 // Set each player id to its position in the list
+                this.TempPlayers[i].CurrentLocation = game.GetSpotByName("Go");
                 this.TempPlayers[i].PlayerId = i;
             }
 

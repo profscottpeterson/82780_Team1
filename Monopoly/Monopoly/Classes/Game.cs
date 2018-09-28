@@ -156,6 +156,28 @@
         }
 
         /// <summary>
+        /// Finds a spot by using its id
+        /// </summary>
+        /// <param name="id">The id of the spot</param>
+        /// <returns>The spot that has the given id</returns>
+        public Spot GetSpotById(int id)
+        {
+            // Loop through the spots on the board
+            foreach (Spot spot in this.Board)
+            {
+                // If the current spot name equals the given name
+                if (spot.SpotId == id)
+                {
+                    // return that spot
+                    return spot;
+                }
+            }
+
+            // no spot with that name was found
+            return null;
+        }
+
+        /// <summary>
         /// Does the actions of the Chance and Community Chest cards
         /// </summary>
         /// <param name="pile">The card pile the card drawn is from</param>
@@ -453,14 +475,14 @@
         public Player NextPlayer(Player currentPlayer)
         {
             // Find the index of the current player in the Players list
-            int index = this.Players.IndexOf(currentPlayer);
+            int index = currentPlayer.PlayerId;
 
             // Increment the index by one
             index++;
 
             // If index is greater than or equal to the count of the players list
             // (index would be out of bounds)
-            if (index >= this.Players.Count)
+            if (index == this.Players.Count)
             {
                 // Set index back to 0
                 index = 0;

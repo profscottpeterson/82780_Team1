@@ -70,6 +70,14 @@
             this.pictureBox38 = new System.Windows.Forms.PictureBox();
             this.pictureBox39 = new System.Windows.Forms.PictureBox();
             this.pictureBox40 = new System.Windows.Forms.PictureBox();
+            this.picPlayer1 = new System.Windows.Forms.PictureBox();
+            this.picPlayer2 = new System.Windows.Forms.PictureBox();
+            this.picPlayer3 = new System.Windows.Forms.PictureBox();
+            this.picPlayer4 = new System.Windows.Forms.PictureBox();
+            this.btnRoll = new System.Windows.Forms.Button();
+            this.lblDie1 = new System.Windows.Forms.Label();
+            this.lblDie2 = new System.Windows.Forms.Label();
+            this.lblPlayerTurn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -112,6 +120,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer4)).BeginInit();
             this.SuspendLayout();
             // 
             // BoardBackgroundImage
@@ -534,11 +546,99 @@
             this.pictureBox40.TabIndex = 41;
             this.pictureBox40.TabStop = false;
             // 
+            // picPlayer1
+            // 
+            this.picPlayer1.BackColor = System.Drawing.Color.Red;
+            this.picPlayer1.Location = new System.Drawing.Point(790, 790);
+            this.picPlayer1.Name = "picPlayer1";
+            this.picPlayer1.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer1.TabIndex = 42;
+            this.picPlayer1.TabStop = false;
+            this.picPlayer1.Tag = "1";
+            // 
+            // picPlayer2
+            // 
+            this.picPlayer2.BackColor = System.Drawing.Color.Green;
+            this.picPlayer2.Location = new System.Drawing.Point(840, 790);
+            this.picPlayer2.Name = "picPlayer2";
+            this.picPlayer2.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer2.TabIndex = 43;
+            this.picPlayer2.TabStop = false;
+            this.picPlayer2.Tag = "2";
+            // 
+            // picPlayer3
+            // 
+            this.picPlayer3.BackColor = System.Drawing.Color.Blue;
+            this.picPlayer3.Location = new System.Drawing.Point(790, 840);
+            this.picPlayer3.Name = "picPlayer3";
+            this.picPlayer3.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer3.TabIndex = 44;
+            this.picPlayer3.TabStop = false;
+            this.picPlayer3.Tag = "3";
+            // 
+            // picPlayer4
+            // 
+            this.picPlayer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.picPlayer4.Location = new System.Drawing.Point(840, 840);
+            this.picPlayer4.Name = "picPlayer4";
+            this.picPlayer4.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer4.TabIndex = 45;
+            this.picPlayer4.TabStop = false;
+            this.picPlayer4.Tag = "4";
+            // 
+            // btnRoll
+            // 
+            this.btnRoll.Location = new System.Drawing.Point(415, 506);
+            this.btnRoll.Name = "btnRoll";
+            this.btnRoll.Size = new System.Drawing.Size(75, 23);
+            this.btnRoll.TabIndex = 46;
+            this.btnRoll.Text = "Roll";
+            this.btnRoll.UseVisualStyleBackColor = true;
+            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
+            // 
+            // lblDie1
+            // 
+            this.lblDie1.AutoSize = true;
+            this.lblDie1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDie1.Location = new System.Drawing.Point(392, 456);
+            this.lblDie1.Name = "lblDie1";
+            this.lblDie1.Size = new System.Drawing.Size(45, 26);
+            this.lblDie1.TabIndex = 47;
+            this.lblDie1.Text = "Die";
+            // 
+            // lblDie2
+            // 
+            this.lblDie2.AutoSize = true;
+            this.lblDie2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDie2.Location = new System.Drawing.Point(482, 456);
+            this.lblDie2.Name = "lblDie2";
+            this.lblDie2.Size = new System.Drawing.Size(45, 26);
+            this.lblDie2.TabIndex = 48;
+            this.lblDie2.Text = "Die";
+            // 
+            // lblPlayerTurn
+            // 
+            this.lblPlayerTurn.AutoSize = true;
+            this.lblPlayerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerTurn.Location = new System.Drawing.Point(1069, 47);
+            this.lblPlayerTurn.Name = "lblPlayerTurn";
+            this.lblPlayerTurn.Size = new System.Drawing.Size(156, 26);
+            this.lblPlayerTurn.TabIndex = 49;
+            this.lblPlayerTurn.Text = "Player 1\'s Turn";
+            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 902);
+            this.Controls.Add(this.lblPlayerTurn);
+            this.Controls.Add(this.lblDie2);
+            this.Controls.Add(this.lblDie1);
+            this.Controls.Add(this.btnRoll);
+            this.Controls.Add(this.picPlayer4);
+            this.Controls.Add(this.picPlayer3);
+            this.Controls.Add(this.picPlayer2);
+            this.Controls.Add(this.picPlayer1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox40);
             this.Controls.Add(this.pictureBox39);
@@ -626,7 +726,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer4)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -674,6 +779,14 @@
         private System.Windows.Forms.PictureBox pictureBox38;
         private System.Windows.Forms.PictureBox pictureBox39;
         private System.Windows.Forms.PictureBox pictureBox40;
+        private System.Windows.Forms.PictureBox picPlayer1;
+        private System.Windows.Forms.PictureBox picPlayer2;
+        private System.Windows.Forms.PictureBox picPlayer3;
+        private System.Windows.Forms.PictureBox picPlayer4;
+        private System.Windows.Forms.Button btnRoll;
+        private System.Windows.Forms.Label lblDie1;
+        private System.Windows.Forms.Label lblDie2;
+        private System.Windows.Forms.Label lblPlayerTurn;
     }
 }
 

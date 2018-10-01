@@ -127,10 +127,55 @@
         /// <param name="currentPlayer">The current player</param>
         public void CheckPassGo(Spot prevLocation, Spot currentLocation, Player currentPlayer)
         {
-            if (prevLocation.SpotId > currentLocation.SpotId)
+            // Check to see if the previous location id is greater than the current location id plus 3
+            // the plus 3 is for the "go back 3 spaces" card
+            if (prevLocation.SpotId > currentLocation.SpotId + 3)
             {
                 this.Players[this.Players.IndexOf(currentPlayer)].Money += 200;
             }
+        }
+
+        /// <summary>
+        /// Changes a player's current loaction property and checks to see if they passed Go
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="spacesForward">The number of spaces to move forward</param>
+        public void MovePlayerLocation(Player currentPlayer, int spacesForward)
+        {
+            // Get the player's current location
+            int currentLocationSpotId = currentPlayer.CurrentLocation.SpotId;
+
+            // Find the player's new location
+            int newLocationSpotId = (spacesForward + currentLocationSpotId) % this.Board.Count;
+
+            // Check to see if they passed Go
+            CheckPassGo(this.Board[currentLocationSpotId], this.Board[newLocationSpotId], currentPlayer);
+
+            // Change Current Location property of player to new location
+            this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = this.Board[newLocationSpotId];
+        }
+
+        /// <summary>
+        /// Has given player pay rent for given spot
+        /// </summary>
+        /// <param name="currentPlayer">The player to pay rent</param>
+        /// <param name="currentLocation">The location the player is at</param>
+        public void PayRent(Player currentPlayer, Spot currentLocation)
+        {
+            // Find the owner
+            Player owner = currentLocation.Owner;
+
+            // Find the rent
+            int rent = currentLocation.Rent;
+
+            // Give the owner the rent
+            this.Players[this.Players.IndexOf(owner)].Money += rent;
+
+            // Have current player pay rent
+            this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+
+            // Check if current player could not afford rent
+            this.CheckIfPlayerHasEnoughMoney(currentPlayer);
         }
 
         /// <summary>
@@ -224,6 +269,9 @@
                             {
                                 // Take money from other players
                                 this.Players[i].Money -= top.Amount;
+
+                                // Check if player cannot afford to pay current player
+                                this.CheckIfPlayerHasEnoughMoney(this.Players[i]);
                             }
                         }
                     }
@@ -248,6 +296,9 @@
                             {
                                 // Current player pays the amount listed on the card times the number of other players
                                 this.Players[this.Players.IndexOf(currentPlayer)].Money -= top.Amount * (this.Players.Count - 1);
+
+                                // Check if current player cannot afford to pay other players
+                                this.CheckIfPlayerHasEnoughMoney(currentPlayer);
                             }
                             else
                             {
@@ -292,6 +343,10 @@
                 {
                     // If player was not sent to jail, check to see if they passed Go
                     this.CheckPassGo(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, top.NewLocation, currentPlayer);
+                }
+                else
+                {
+                    this.Players[this.Players.IndexOf(currentPlayer)].InJail = true;
                 }
 
                 this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
@@ -508,6 +563,62 @@
                     currentPlayer.Money -= property.Price;
                     property.IsAvailable = false;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Finds a player's total net worth
+        /// </summary>
+        /// <param name="currentPlayer">The player it finds the net worth of</param>
+        /// <returns>The player's net worth</returns>
+        public int TotalNetWorth(Player currentPlayer)
+        {
+            // Get the amount the player has in cash
+            int total = currentPlayer.Money;
+
+            // Get the player's list of properties
+            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
+
+            // Loop through the player's list of properties
+            foreach (var p in propertyList)
+            {
+                // Add the property's mortgage value to total
+                total += p.Mortgage;
+
+                // Check for hotel or houses
+                if (p.HasHotel)
+                {
+                    // Add the cost of the hotel if it has a hotel
+                    total += p.HotelCost;
+                }
+                else if (p.NumberOfHouses > 0)
+                {
+                    // Add the cost of a house time the number of houses the property has
+                    total += (p.HouseCost * p.NumberOfHouses);
+                }
+            }
+
+            // return the total value
+            return total;
+        }
+
+        /// <summary>
+        /// Checks the cash and total net worth of a player to determine the players options
+        /// if they cannot pay (are they bankrupt or do they have to sell something)
+        /// </summary>
+        /// <param name="player">The player</param>
+        public void CheckIfPlayerHasEnoughMoney(Player player)
+        {
+            if (player.NeedMoreMoney() && this.TotalNetWorth(player) > 0)
+            {
+                // TODO: Change this to show a form with options on what the player can do
+                MessageBox.Show(player.PlayerName + " needs more money to pay.");
+            }
+            else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
+            {
+                // Player is bankrupt
+                MessageBox.Show(player.PlayerName + " is bankrupt!");
+                this.Players.Remove(player);
             }
         }
 

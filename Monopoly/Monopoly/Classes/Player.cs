@@ -73,5 +73,15 @@
         /// Gets or sets a value indicating whether the player is ai
         /// </summary>
         public bool IsAi { get; set; }
+
+        /// <summary>
+        /// Returns a bool indicating whether a player needs more money
+        /// </summary>
+        /// <returns>A bool indicating whether a player needs more money</returns>
+        public bool NeedMoreMoney()
+        {
+            // True if a player's money is less than zero
+            return this.Money < 0;
+        }
     }
 }

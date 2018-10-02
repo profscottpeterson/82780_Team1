@@ -72,11 +72,6 @@
         }
 
         /// <summary>
-        /// Shows Chance or Community cards.
-        /// </summary>
-        public MiscCardForm CCCard { get; set; }
-
-        /// <summary>
         /// Player has landed on chance card.
         /// </summary>
         public bool OnChanceCard { get; set; }

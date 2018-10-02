@@ -160,22 +160,99 @@
         /// </summary>
         /// <param name="currentPlayer">The player to pay rent</param>
         /// <param name="currentLocation">The location the player is at</param>
-        public void PayRent(Player currentPlayer, Spot currentLocation)
+        public void CheckPayRent(Player currentPlayer, Spot currentLocation)
         {
-            // Find the owner
-            Player owner = currentLocation.Owner;
+            // Check to see if the current location is a property, railroad, or utility
+            if (currentLocation.Type == SpotType.Property || currentLocation.Type == SpotType.Railroad ||
+                currentLocation.Type == SpotType.Utility)
+            {
+                // Find the owner
+                Player owner = currentLocation.Owner;
 
-            // Find the rent
-            int rent = currentLocation.Rent;
+                if (!currentLocation.IsAvailable && owner != currentPlayer)
+                {
 
-            // Give the owner the rent
-            this.Players[this.Players.IndexOf(owner)].Money += rent;
+                    // Find the rent
+                    int rent = currentLocation.Rent;
 
-            // Have current player pay rent
-            this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+                    // Give the owner the rent
+                    this.Players[this.Players.IndexOf(owner)].Money += rent;
 
-            // Check if current player could not afford rent
-            this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                    // Have current player pay rent
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+
+                    // Check if current player could not afford rent
+                    this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns a boolean indicating whether the spot landed on can be bought
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot landed on can be bought</returns>
+        public bool ShowBuyPropertyButton(Player currentPlayer, Spot currentLocation)
+        {
+            // Check to see if the current location is a property, railroad, or utility
+            if (currentLocation.Type == SpotType.Property || currentLocation.Type == SpotType.Railroad ||
+                currentLocation.Type == SpotType.Utility)
+            {
+                // Check to see whether the spot is available and player has enough money to buy it
+                if (currentLocation.IsAvailable && currentPlayer.Money >= currentLocation.Price )
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check to see if tax needs to be paid
+        /// </summary>
+        /// <param name="currentPlayer">Player to pay tax</param>
+        /// <param name="currentLocation">Spot landed on</param>
+        public void CheckPayTax(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.Tax)
+            {
+                ////TODO: or pay 10% - add form
+                
+                // Pay Tax
+                this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;
+
+                // Check that player had enough money to pay tax
+                this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if player landed on "Go to Jail" and sends them to jail if yes
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        public void CheckGoToJail(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.GoToJail)
+            {
+                // Send player to Jail
+                this.SendToJail(currentPlayer);
+            }
+        }
+
+        /// <summary>
+        /// Sends player to Jail
+        /// </summary>
+        /// <param name="currentPlayer">Player to be sent to Jail</param>
+        public void SendToJail(Player currentPlayer)
+        {
+            // Set current player's location to jail
+            this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = this.GetSpotByName("Jail");
+
+            // Set player's in jail boolean to true
+            this.Players[this.Players.IndexOf(currentPlayer)].InJail = true;
         }
 
         /// <summary>
@@ -230,6 +307,9 @@
         public void DrawCard(List<Card> pile, Player currentPlayer)
         {
             Card top = pile[0];
+
+            //// TODO: show card nicer
+            MessageBox.Show(top.Description, top.Type.ToString());
 
             if (top.GetOutOfJailFree == true)
             {
@@ -343,13 +423,15 @@
                 {
                     // If player was not sent to jail, check to see if they passed Go
                     this.CheckPassGo(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, top.NewLocation, currentPlayer);
+
+                    // Reset player's current location
+                    this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
                 }
                 else
                 {
-                    this.Players[this.Players.IndexOf(currentPlayer)].InJail = true;
-                }
-
-                this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
+                    // Send player to jail
+                    this.SendToJail(currentPlayer);
+                }        
 
                 // Move card to bottom of pile
                 this.MoveCardToBottomOfPile(top);
@@ -611,7 +693,7 @@
         {
             if (player.NeedMoreMoney() && this.TotalNetWorth(player) > 0)
             {
-                // TODO: Change this to show a form with options on what the player can do
+                //// TODO: change this to show a form with options on what the player can do
                 MessageBox.Show(player.PlayerName + " needs more money to pay.");
             }
             else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Monopoly
 {
+    // Theres community chest and chance in spottype enum
     public enum SpotType
     {
         Property,
@@ -24,6 +25,7 @@ namespace Monopoly
         FreeParking
     }
 
+    // Theres community chest and chance in spottype enum
     public enum CardType
     {
         CommunityChest,
@@ -33,7 +35,7 @@ namespace Monopoly
     public partial class MonopolyMainForm : Form
     {
         private Player currentPlayer;
-        Game game;
+        public Game game;
         int P1Jail = 1;
         int P2Jail = 1;
         int P3Jail = 1;
@@ -72,18 +74,23 @@ namespace Monopoly
                     spotPictures[i - 1].Tag = i - 1;
                 }
 
+                // Click events for pictureboxes 
                 foreach (PictureBox p in spotPictures)
                 {
                     p.Click += delegate
                     {
                         Spot spot = game.Board[(int) p.Tag];
 
+                        // handle different types of cards
+
+                        // Properties
                         if (spot.Type == SpotType.Property)
                         {
                             MonPopUp popUp = new MonPopUp(spot);
                             popUp.ShowDialog();
                         }
 
+                        // Railroad
                         if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
                         {
                             NonPropPopUp popUp = new NonPropPopUp(spot);

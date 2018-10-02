@@ -6,9 +6,13 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     public class Player
     {
+
+        private Spot _currentlocation;
+
         public Player()
         {
             this.InJail = false;
@@ -52,7 +56,65 @@
         /// <summary>
         /// Gets or sets the current location of player's pawn
         /// </summary>
-        public Spot CurrentLocation { get; set; }
+        public Spot CurrentLocation
+        {
+            set
+            {
+                if(_currentlocation != value)
+                {
+                    OnChanceCard = false; // "reset"
+                    OnCmntyCard = false; // "reset"
+
+                    if (value.Type == SpotType.Chance || value.Type == SpotType.CommunityChest)
+                    {
+                        MiscCardForm miscCardForm = new MiscCardForm();
+
+                        switch (value.Type)
+                        {
+                            case SpotType.Chance:
+                                OnChanceCard = true;
+                                miscCardForm.Text = "Chance";
+                                // Set picture in picturebox
+                                //cardPopup.picture.Image = new Bitmap("filename");
+                                // Other logic
+                                break;
+                            case SpotType.CommunityChest:
+                                OnCmntyCard = true;
+                                miscCardForm.Text = "Community";
+                                // Set picture in picturebox
+                                //cardPopup.picture.Image = new Bitmap("filename");
+                                // Other logic
+                                break;
+                        }
+
+                        miscCardForm.ShowDialog(); // Show the card form
+                    }
+                    else
+                    {
+                        _currentlocation = value;
+                    }
+                }
+            }
+            get
+            {
+                return _currentlocation;
+            }
+        }
+
+        /// <summary>
+        /// Shows Chance or Community cards.
+        /// </summary>
+        public MiscCardForm CCCard { get; set; }
+
+        /// <summary>
+        /// Player has landed on chance card.
+        /// </summary>
+        public bool OnChanceCard { get; set; }
+
+        /// <summary>
+        /// Player has landed on cmnty card.
+        /// </summary>
+        public bool OnCmntyCard { get; set; }
 
         /// <summary>
         /// Gets or sets how much money a player has

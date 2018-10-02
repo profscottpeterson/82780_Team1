@@ -12,9 +12,18 @@ namespace Monopoly
 {
     public partial class MiscCardForm : Form
     {
+        private Card _card;
+
         public MiscCardForm()
         {
             InitializeComponent();
+        }
+
+        public MiscCardForm(string title, Card card)
+        {
+            InitializeComponent();
+            this.Text = title;
+            cardTextLabel.Text = card.Description;
         }
 
         public PictureBox picture { get; set; }

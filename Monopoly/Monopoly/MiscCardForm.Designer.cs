@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.cardPictureBox = new System.Windows.Forms.PictureBox();
+            this.cardTextLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,22 +41,33 @@
             this.cardPictureBox.TabIndex = 0;
             this.cardPictureBox.TabStop = false;
             // 
+            // cardTextLabel
+            // 
+            this.cardTextLabel.AutoSize = true;
+            this.cardTextLabel.Location = new System.Drawing.Point(195, 103);
+            this.cardTextLabel.Name = "cardTextLabel";
+            this.cardTextLabel.Size = new System.Drawing.Size(0, 13);
+            this.cardTextLabel.TabIndex = 1;
+            // 
             // MiscCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(437, 232);
+            this.Controls.Add(this.cardTextLabel);
             this.Controls.Add(this.cardPictureBox);
             this.Name = "MiscCardForm";
             this.Text = "MiscCardForm";
             this.Load += new System.EventHandler(this.MiscCardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox cardPictureBox;
+        private System.Windows.Forms.Label cardTextLabel;
     }
 }

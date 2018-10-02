@@ -133,6 +133,48 @@ namespace Monopoly
 
                 currentPlayer.CurrentLocation = game.GetSpotById(newLocation);
 
+                // handle chance or community cards
+
+                currentPlayer.OnChanceCard = false; // "reset"
+                currentPlayer.OnCmntyCard = false; // "reset"
+
+                if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
+                {
+                    string formTitle = ""; // This will be the title of the pop up form
+                    Card cardDrawn; // Card that will be shown to the player
+
+                    switch (currentPlayer.CurrentLocation.Type)
+                    {
+                        case SpotType.Chance:
+                            currentPlayer.OnChanceCard = true;
+                            formTitle = "Chance";
+                            cardDrawn = game.ChanceCards[0]; // Get "top" card
+                            game.DrawCard(game.ChanceCards, currentPlayer); // Draw card and perform actions
+                            // Set picture in picturebox
+                            //cardPopup.picture.Image = new Bitmap("filename");
+                            // Other logic
+                            break;
+                        case SpotType.CommunityChest:
+                            currentPlayer.OnCmntyCard = true;
+                            formTitle = "Community";
+                            cardDrawn = game.CommunityChestCards[0];  // Get "top" card
+                            game.DrawCard(game.CommunityChestCards, currentPlayer); // Draw card and perform actions
+                            // Set picture in picturebox
+                            //cardPopup.picture.Image = new Bitmap("filename");
+                            // Other logic
+                            break;
+                        default:
+                            cardDrawn = null;
+                            break;
+                    }
+
+                    if(cardDrawn != null)
+                    {
+                        MiscCardForm miscCardForm = new MiscCardForm(formTitle, cardDrawn); // instantiate form
+                        miscCardForm.ShowDialog(); // Show the card form
+                    }
+                }
+
                 // Bottom Row
                 if (newLocation > 0 &&  newLocation < 10)
                 {

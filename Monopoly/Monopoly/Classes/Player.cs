@@ -62,37 +62,7 @@
             {
                 if(_currentlocation != value)
                 {
-                    OnChanceCard = false; // "reset"
-                    OnCmntyCard = false; // "reset"
-
-                    if (value.Type == SpotType.Chance || value.Type == SpotType.CommunityChest)
-                    {
-                        MiscCardForm miscCardForm = new MiscCardForm();
-
-                        switch (value.Type)
-                        {
-                            case SpotType.Chance:
-                                OnChanceCard = true;
-                                miscCardForm.Text = "Chance";
-                                // Set picture in picturebox
-                                //cardPopup.picture.Image = new Bitmap("filename");
-                                // Other logic
-                                break;
-                            case SpotType.CommunityChest:
-                                OnCmntyCard = true;
-                                miscCardForm.Text = "Community";
-                                // Set picture in picturebox
-                                //cardPopup.picture.Image = new Bitmap("filename");
-                                // Other logic
-                                break;
-                        }
-
-                        miscCardForm.ShowDialog(); // Show the card form
-                    }
-                    else
-                    {
-                        _currentlocation = value;
-                    }
+                    _currentlocation = value;
                 }
             }
             get

@@ -33,7 +33,7 @@ namespace Monopoly
     public partial class MonopolyMainForm : Form
     {
         private Player currentPlayer;
-        Game game;
+        public Game game;
         int P1Jail = 1;
         int P2Jail = 1;
         int P3Jail = 1;
@@ -153,12 +153,6 @@ namespace Monopoly
 
                 // Move pawn picture
                 FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
-
-
-                // Next Player
-                currentPlayer = game.NextPlayer(currentPlayer);
-                lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
-                // End of not jail roll
             }
             else
             {
@@ -276,14 +270,11 @@ namespace Monopoly
                         }
                     }
                 }
-
-                
-
-                // Next Player
-                currentPlayer = game.NextPlayer(currentPlayer);
-                lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
-                // End of if in jail roll
             }
+
+            // Next Player
+            currentPlayer = game.NextPlayer(currentPlayer);
+            lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
         }
 
         public void FindNewPawnLocations(int newLocation)

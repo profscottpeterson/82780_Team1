@@ -166,23 +166,27 @@
             if (currentLocation.Type == SpotType.Property || currentLocation.Type == SpotType.Railroad ||
                 currentLocation.Type == SpotType.Utility)
             {
-                // Find the owner
-                Player owner = currentLocation.Owner;
-
-                if (!currentLocation.IsAvailable && owner != currentPlayer)
+                // If property is not mortgaged
+                if (!currentLocation.IsMortgaged)
                 {
+                    // Find the owner
+                    Player owner = currentLocation.Owner;
 
-                    // Find the rent
-                    int rent = currentLocation.Rent;
+                    if (!currentLocation.IsAvailable && owner != currentPlayer)
+                    {
 
-                    // Give the owner the rent
-                    this.Players[this.Players.IndexOf(owner)].Money += rent;
+                        // Find the rent
+                        int rent = currentLocation.Rent;
 
-                    // Have current player pay rent
-                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+                        // Give the owner the rent
+                        this.Players[this.Players.IndexOf(owner)].Money += rent;
 
-                    // Check if current player could not afford rent
-                    this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                        // Have current player pay rent
+                        this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+
+                        // Check if current player could not afford rent
+                        this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                    }
                 }
             }
         }
@@ -307,9 +311,6 @@
         public void DrawCard(List<Card> pile, Player currentPlayer)
         {
             Card top = pile[0];
-
-            //// TODO: show card nicer
-            MessageBox.Show(top.Description, top.Type.ToString());
 
             if (top.GetOutOfJailFree == true)
             {

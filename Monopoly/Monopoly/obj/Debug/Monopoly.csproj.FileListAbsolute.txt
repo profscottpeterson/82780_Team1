@@ -46,3 +46,6 @@ C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csp
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.CoreCompileInputs.cache
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources

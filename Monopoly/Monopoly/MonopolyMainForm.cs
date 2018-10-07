@@ -44,6 +44,11 @@ namespace Monopoly
             InitializeComponent();
         }
 
+        public Player getCurrentPlayer()
+        {
+            return this.currentPlayer;
+        }
+
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
             // Instantiate Game
@@ -140,7 +145,10 @@ namespace Monopoly
                 // Check to see if spot landed on can be bought
                 if (game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
                 {
-                    ////TODO: Show Buy Property button
+                    ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
+
+                    BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
+                    buyProp.ShowDialog();
                 }
 
                 // Check to see if tax needs to be paid and pay it if yes
@@ -442,7 +450,7 @@ namespace Monopoly
                 }
             }
             // Visiting Jail
-            else if (newLocation == 10)
+            else if (newLocation == 10 && currentPlayer.InJail == false)
             {
                 Point p = new Point();
 
@@ -471,6 +479,40 @@ namespace Monopoly
                 {
                     p.X = 99;
                     p.Y = 846;
+
+                    picPlayer4.Location = p;
+                }
+            }
+            // If they are on the jail space but are in jail this will put them in jail
+            else if (newLocation == 10 && currentPlayer.InJail)
+            {
+                Point p = new Point();
+
+                if (currentPlayer.PlayerId == 0)
+                {
+                    p.X = 72;
+                    p.Y = 771;
+
+                    picPlayer1.Location = p;
+                }
+                else if (currentPlayer.PlayerId == 1)
+                {
+                    p.X = 100;
+                    p.Y = 771;
+
+                    picPlayer2.Location = p;
+                }
+                else if (currentPlayer.PlayerId == 2)
+                {
+                    p.X = 72;
+                    p.Y = 802;
+
+                    picPlayer3.Location = p;
+                }
+                else if (currentPlayer.PlayerId == 3)
+                {
+                    p.X = 100;
+                    p.Y = 802;
 
                     picPlayer4.Location = p;
                 }
@@ -546,6 +588,13 @@ namespace Monopoly
                     picPlayer4.Location = p;
                 }
             }
+        }
+
+        private void btnTradeRequest_Click(object sender, EventArgs e)
+        {
+            Trade tradeForm = new Trade(currentPlayer, game);
+
+            tradeForm.ShowDialog();
         }
 
 

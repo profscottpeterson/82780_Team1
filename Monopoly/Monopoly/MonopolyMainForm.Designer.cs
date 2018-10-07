@@ -78,6 +78,7 @@
             this.lblDie1 = new System.Windows.Forms.Label();
             this.lblDie2 = new System.Windows.Forms.Label();
             this.lblPlayerTurn = new System.Windows.Forms.Label();
+            this.btnTradeRequest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -626,11 +627,22 @@
             this.lblPlayerTurn.TabIndex = 49;
             this.lblPlayerTurn.Text = "Player 1\'s Turn";
             // 
+            // btnTradeRequest
+            // 
+            this.btnTradeRequest.Location = new System.Drawing.Point(968, 242);
+            this.btnTradeRequest.Name = "btnTradeRequest";
+            this.btnTradeRequest.Size = new System.Drawing.Size(114, 23);
+            this.btnTradeRequest.TabIndex = 50;
+            this.btnTradeRequest.Text = "Trade Request";
+            this.btnTradeRequest.UseVisualStyleBackColor = true;
+            this.btnTradeRequest.Click += new System.EventHandler(this.btnTradeRequest_Click);
+            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 902);
+            this.Controls.Add(this.btnTradeRequest);
             this.Controls.Add(this.lblPlayerTurn);
             this.Controls.Add(this.lblDie2);
             this.Controls.Add(this.lblDie1);
@@ -787,6 +799,7 @@
         private System.Windows.Forms.Label lblDie1;
         private System.Windows.Forms.Label lblDie2;
         private System.Windows.Forms.Label lblPlayerTurn;
+        private System.Windows.Forms.Button btnTradeRequest;
     }
 }
 

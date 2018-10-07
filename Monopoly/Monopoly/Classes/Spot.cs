@@ -1,4 +1,6 @@
-﻿namespace Monopoly
+﻿using System.Windows.Forms;
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
@@ -37,6 +39,7 @@
             this.NumberOfHouses = 0;
             this.HasHotel = false;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
         }
 
         /// <summary>
@@ -67,6 +70,7 @@
             this.NumberOfHouses = 0;
             this.HasHotel = false;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
         }
 
         /// <summary>
@@ -99,6 +103,7 @@
             this.NumberOfHouses = 0;
             this.HasHotel = false;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
         }
 
         /// <summary>
@@ -138,6 +143,12 @@
             this.NumberOfHouses = 0;
             this.Type = SpotType.Property;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
+        }
+
+        public Spot()
+        {
+
         }
 
         /// <summary>
@@ -236,5 +247,10 @@
         /// Gets or sets the owner of a property.
         /// </summary>
         public Player Owner { get; set; }
+
+        /// <summary>
+        /// Gets or sets the spots picture box
+        /// </summary>
+        public PictureBox SpotBox { get; set; }
     }
 }

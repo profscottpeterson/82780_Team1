@@ -28,113 +28,606 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BoardBackgroundImage = new System.Windows.Forms.PictureBox();
-            this.BoardTemplateImage = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
-            this.pictureBox21 = new System.Windows.Forms.PictureBox();
-            this.pictureBox22 = new System.Windows.Forms.PictureBox();
-            this.pictureBox23 = new System.Windows.Forms.PictureBox();
-            this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.pictureBox25 = new System.Windows.Forms.PictureBox();
-            this.pictureBox26 = new System.Windows.Forms.PictureBox();
-            this.pictureBox27 = new System.Windows.Forms.PictureBox();
-            this.pictureBox28 = new System.Windows.Forms.PictureBox();
-            this.pictureBox29 = new System.Windows.Forms.PictureBox();
-            this.pictureBox30 = new System.Windows.Forms.PictureBox();
-            this.pictureBox31 = new System.Windows.Forms.PictureBox();
-            this.pictureBox32 = new System.Windows.Forms.PictureBox();
-            this.pictureBox33 = new System.Windows.Forms.PictureBox();
-            this.pictureBox34 = new System.Windows.Forms.PictureBox();
-            this.pictureBox35 = new System.Windows.Forms.PictureBox();
-            this.pictureBox36 = new System.Windows.Forms.PictureBox();
-            this.pictureBox37 = new System.Windows.Forms.PictureBox();
-            this.pictureBox38 = new System.Windows.Forms.PictureBox();
-            this.pictureBox39 = new System.Windows.Forms.PictureBox();
-            this.pictureBox40 = new System.Windows.Forms.PictureBox();
-            this.picPlayer1 = new System.Windows.Forms.PictureBox();
-            this.picPlayer2 = new System.Windows.Forms.PictureBox();
-            this.picPlayer3 = new System.Windows.Forms.PictureBox();
-            this.picPlayer4 = new System.Windows.Forms.PictureBox();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonopolyMainForm));
             this.btnRoll = new System.Windows.Forms.Button();
-            this.lblDie1 = new System.Windows.Forms.Label();
-            this.lblDie2 = new System.Windows.Forms.Label();
             this.lblPlayerTurn = new System.Windows.Forms.Label();
             this.btnTradeRequest = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer3)).BeginInit();
+            this.pbxDiceRight = new System.Windows.Forms.PictureBox();
+            this.pbxDiceLeft = new System.Windows.Forms.PictureBox();
+            this.picPlayer4 = new System.Windows.Forms.PictureBox();
+            this.picPlayer3 = new System.Windows.Forms.PictureBox();
+            this.picPlayer2 = new System.Windows.Forms.PictureBox();
+            this.picPlayer1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox40 = new System.Windows.Forms.PictureBox();
+            this.pictureBox39 = new System.Windows.Forms.PictureBox();
+            this.pictureBox38 = new System.Windows.Forms.PictureBox();
+            this.pictureBox37 = new System.Windows.Forms.PictureBox();
+            this.pictureBox36 = new System.Windows.Forms.PictureBox();
+            this.pictureBox35 = new System.Windows.Forms.PictureBox();
+            this.pictureBox34 = new System.Windows.Forms.PictureBox();
+            this.pictureBox33 = new System.Windows.Forms.PictureBox();
+            this.pictureBox32 = new System.Windows.Forms.PictureBox();
+            this.pictureBox31 = new System.Windows.Forms.PictureBox();
+            this.pictureBox30 = new System.Windows.Forms.PictureBox();
+            this.pictureBox29 = new System.Windows.Forms.PictureBox();
+            this.pictureBox28 = new System.Windows.Forms.PictureBox();
+            this.pictureBox27 = new System.Windows.Forms.PictureBox();
+            this.pictureBox26 = new System.Windows.Forms.PictureBox();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.pictureBox23 = new System.Windows.Forms.PictureBox();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.BoardTemplateImage = new System.Windows.Forms.PictureBox();
+            this.BoardBackgroundImage = new System.Windows.Forms.PictureBox();
+            this.pbxCurrentPlayerPicture = new System.Windows.Forms.PictureBox();
+            this.dicePictures = new System.Windows.Forms.ImageList(this.components);
+            this.flpCurrentPlayerProps = new System.Windows.Forms.FlowLayoutPanel();
+            this.usableSpotPictures = new System.Windows.Forms.ImageList(this.components);
+            this.lblCurrentBalance = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             this.SuspendLayout();
             // 
-            // BoardBackgroundImage
+            // btnRoll
             // 
-            this.BoardBackgroundImage.BackColor = System.Drawing.Color.PeachPuff;
-            this.BoardBackgroundImage.Location = new System.Drawing.Point(0, 0);
-            this.BoardBackgroundImage.Name = "BoardBackgroundImage";
-            this.BoardBackgroundImage.Size = new System.Drawing.Size(900, 900);
-            this.BoardBackgroundImage.TabIndex = 0;
-            this.BoardBackgroundImage.TabStop = false;
+            this.btnRoll.Location = new System.Drawing.Point(335, 506);
+            this.btnRoll.Name = "btnRoll";
+            this.btnRoll.Size = new System.Drawing.Size(230, 23);
+            this.btnRoll.TabIndex = 46;
+            this.btnRoll.Text = "Roll";
+            this.btnRoll.UseVisualStyleBackColor = true;
+            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
+            // 
+            // lblPlayerTurn
+            // 
+            this.lblPlayerTurn.AutoSize = true;
+            this.lblPlayerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerTurn.Location = new System.Drawing.Point(906, 9);
+            this.lblPlayerTurn.Name = "lblPlayerTurn";
+            this.lblPlayerTurn.Size = new System.Drawing.Size(156, 26);
+            this.lblPlayerTurn.TabIndex = 49;
+            this.lblPlayerTurn.Text = "Player 1\'s Turn";
+            // 
+            // btnTradeRequest
+            // 
+            this.btnTradeRequest.Location = new System.Drawing.Point(911, 877);
+            this.btnTradeRequest.Name = "btnTradeRequest";
+            this.btnTradeRequest.Size = new System.Drawing.Size(114, 23);
+            this.btnTradeRequest.TabIndex = 50;
+            this.btnTradeRequest.Text = "Trade Request";
+            this.btnTradeRequest.UseVisualStyleBackColor = true;
+            this.btnTradeRequest.Click += new System.EventHandler(this.btnTradeRequest_Click);
+            // 
+            // pbxDiceRight
+            // 
+            this.pbxDiceRight.BackColor = System.Drawing.Color.Transparent;
+            this.pbxDiceRight.Image = global::Monopoly.Properties.Resources.dice_1;
+            this.pbxDiceRight.Location = new System.Drawing.Point(485, 415);
+            this.pbxDiceRight.Name = "pbxDiceRight";
+            this.pbxDiceRight.Size = new System.Drawing.Size(80, 80);
+            this.pbxDiceRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxDiceRight.TabIndex = 52;
+            this.pbxDiceRight.TabStop = false;
+            // 
+            // pbxDiceLeft
+            // 
+            this.pbxDiceLeft.BackColor = System.Drawing.Color.Transparent;
+            this.pbxDiceLeft.Image = global::Monopoly.Properties.Resources.dice_1;
+            this.pbxDiceLeft.Location = new System.Drawing.Point(335, 415);
+            this.pbxDiceLeft.Name = "pbxDiceLeft";
+            this.pbxDiceLeft.Size = new System.Drawing.Size(80, 80);
+            this.pbxDiceLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxDiceLeft.TabIndex = 51;
+            this.pbxDiceLeft.TabStop = false;
+            // 
+            // picPlayer4
+            // 
+            this.picPlayer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.picPlayer4.Location = new System.Drawing.Point(840, 840);
+            this.picPlayer4.Name = "picPlayer4";
+            this.picPlayer4.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer4.TabIndex = 45;
+            this.picPlayer4.TabStop = false;
+            this.picPlayer4.Tag = "4";
+            // 
+            // picPlayer3
+            // 
+            this.picPlayer3.BackColor = System.Drawing.Color.Blue;
+            this.picPlayer3.Location = new System.Drawing.Point(790, 840);
+            this.picPlayer3.Name = "picPlayer3";
+            this.picPlayer3.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer3.TabIndex = 44;
+            this.picPlayer3.TabStop = false;
+            this.picPlayer3.Tag = "3";
+            // 
+            // picPlayer2
+            // 
+            this.picPlayer2.BackColor = System.Drawing.Color.Green;
+            this.picPlayer2.Location = new System.Drawing.Point(840, 790);
+            this.picPlayer2.Name = "picPlayer2";
+            this.picPlayer2.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer2.TabIndex = 43;
+            this.picPlayer2.TabStop = false;
+            this.picPlayer2.Tag = "2";
+            // 
+            // picPlayer1
+            // 
+            this.picPlayer1.BackColor = System.Drawing.Color.Red;
+            this.picPlayer1.Location = new System.Drawing.Point(790, 790);
+            this.picPlayer1.Name = "picPlayer1";
+            this.picPlayer1.Size = new System.Drawing.Size(25, 25);
+            this.picPlayer1.TabIndex = 42;
+            this.picPlayer1.TabStop = false;
+            this.picPlayer1.Tag = "1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Monopoly.Properties.Resources.card_go;
+            this.pictureBox1.Location = new System.Drawing.Point(765, 765);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(115, 115);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox40
+            // 
+            this.pictureBox40.Image = global::Monopoly.Properties.Resources.prop_blue;
+            this.pictureBox40.Location = new System.Drawing.Point(765, 695);
+            this.pictureBox40.Name = "pictureBox40";
+            this.pictureBox40.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox40.TabIndex = 41;
+            this.pictureBox40.TabStop = false;
+            // 
+            // pictureBox39
+            // 
+            this.pictureBox39.Image = global::Monopoly.Properties.Resources.card_ltax_270;
+            this.pictureBox39.Location = new System.Drawing.Point(765, 625);
+            this.pictureBox39.Name = "pictureBox39";
+            this.pictureBox39.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox39.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox39.TabIndex = 40;
+            this.pictureBox39.TabStop = false;
+            // 
+            // pictureBox38
+            // 
+            this.pictureBox38.Image = global::Monopoly.Properties.Resources.prop_blue;
+            this.pictureBox38.Location = new System.Drawing.Point(765, 555);
+            this.pictureBox38.Name = "pictureBox38";
+            this.pictureBox38.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox38.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox38.TabIndex = 39;
+            this.pictureBox38.TabStop = false;
+            // 
+            // pictureBox37
+            // 
+            this.pictureBox37.Image = global::Monopoly.Properties.Resources.card_chance_180;
+            this.pictureBox37.Location = new System.Drawing.Point(765, 485);
+            this.pictureBox37.Name = "pictureBox37";
+            this.pictureBox37.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox37.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox37.TabIndex = 38;
+            this.pictureBox37.TabStop = false;
+            // 
+            // pictureBox36
+            // 
+            this.pictureBox36.Image = global::Monopoly.Properties.Resources.card_railroad_270;
+            this.pictureBox36.Location = new System.Drawing.Point(765, 415);
+            this.pictureBox36.Name = "pictureBox36";
+            this.pictureBox36.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox36.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox36.TabIndex = 37;
+            this.pictureBox36.TabStop = false;
+            // 
+            // pictureBox35
+            // 
+            this.pictureBox35.Image = global::Monopoly.Properties.Resources.prop_green;
+            this.pictureBox35.Location = new System.Drawing.Point(765, 345);
+            this.pictureBox35.Name = "pictureBox35";
+            this.pictureBox35.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox35.TabIndex = 36;
+            this.pictureBox35.TabStop = false;
+            // 
+            // pictureBox34
+            // 
+            this.pictureBox34.Image = global::Monopoly.Properties.Resources.card_chest_270;
+            this.pictureBox34.Location = new System.Drawing.Point(765, 275);
+            this.pictureBox34.Name = "pictureBox34";
+            this.pictureBox34.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox34.TabIndex = 35;
+            this.pictureBox34.TabStop = false;
+            // 
+            // pictureBox33
+            // 
+            this.pictureBox33.Image = global::Monopoly.Properties.Resources.prop_green;
+            this.pictureBox33.Location = new System.Drawing.Point(765, 205);
+            this.pictureBox33.Name = "pictureBox33";
+            this.pictureBox33.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox33.TabIndex = 34;
+            this.pictureBox33.TabStop = false;
+            // 
+            // pictureBox32
+            // 
+            this.pictureBox32.Image = global::Monopoly.Properties.Resources.prop_green;
+            this.pictureBox32.Location = new System.Drawing.Point(765, 135);
+            this.pictureBox32.Name = "pictureBox32";
+            this.pictureBox32.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox32.TabIndex = 33;
+            this.pictureBox32.TabStop = false;
+            // 
+            // pictureBox31
+            // 
+            this.pictureBox31.Image = global::Monopoly.Properties.Resources.card_gtjail;
+            this.pictureBox31.Location = new System.Drawing.Point(765, 20);
+            this.pictureBox31.Name = "pictureBox31";
+            this.pictureBox31.Size = new System.Drawing.Size(115, 115);
+            this.pictureBox31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox31.TabIndex = 32;
+            this.pictureBox31.TabStop = false;
+            // 
+            // pictureBox30
+            // 
+            this.pictureBox30.Image = global::Monopoly.Properties.Resources.prop_yellow;
+            this.pictureBox30.Location = new System.Drawing.Point(695, 20);
+            this.pictureBox30.Name = "pictureBox30";
+            this.pictureBox30.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox30.TabIndex = 31;
+            this.pictureBox30.TabStop = false;
+            // 
+            // pictureBox29
+            // 
+            this.pictureBox29.Image = global::Monopoly.Properties.Resources.card_water_180;
+            this.pictureBox29.Location = new System.Drawing.Point(625, 20);
+            this.pictureBox29.Name = "pictureBox29";
+            this.pictureBox29.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox29.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox29.TabIndex = 30;
+            this.pictureBox29.TabStop = false;
+            // 
+            // pictureBox28
+            // 
+            this.pictureBox28.Image = global::Monopoly.Properties.Resources.prop_yellow;
+            this.pictureBox28.Location = new System.Drawing.Point(555, 20);
+            this.pictureBox28.Name = "pictureBox28";
+            this.pictureBox28.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox28.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox28.TabIndex = 29;
+            this.pictureBox28.TabStop = false;
+            // 
+            // pictureBox27
+            // 
+            this.pictureBox27.Image = global::Monopoly.Properties.Resources.prop_yellow;
+            this.pictureBox27.Location = new System.Drawing.Point(485, 20);
+            this.pictureBox27.Name = "pictureBox27";
+            this.pictureBox27.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox27.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox27.TabIndex = 28;
+            this.pictureBox27.TabStop = false;
+            // 
+            // pictureBox26
+            // 
+            this.pictureBox26.Image = global::Monopoly.Properties.Resources.card_railroad_180;
+            this.pictureBox26.Location = new System.Drawing.Point(415, 20);
+            this.pictureBox26.Name = "pictureBox26";
+            this.pictureBox26.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox26.TabIndex = 27;
+            this.pictureBox26.TabStop = false;
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.Image = global::Monopoly.Properties.Resources.prop_red;
+            this.pictureBox25.Location = new System.Drawing.Point(345, 20);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox25.TabIndex = 26;
+            this.pictureBox25.TabStop = false;
+            // 
+            // pictureBox24
+            // 
+            this.pictureBox24.Image = global::Monopoly.Properties.Resources.prop_red;
+            this.pictureBox24.Location = new System.Drawing.Point(275, 20);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox24.TabIndex = 25;
+            this.pictureBox24.TabStop = false;
+            // 
+            // pictureBox23
+            // 
+            this.pictureBox23.Image = global::Monopoly.Properties.Resources.card_chance_270;
+            this.pictureBox23.Location = new System.Drawing.Point(205, 20);
+            this.pictureBox23.Name = "pictureBox23";
+            this.pictureBox23.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox23.TabIndex = 24;
+            this.pictureBox23.TabStop = false;
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.Image = global::Monopoly.Properties.Resources.prop_red;
+            this.pictureBox22.Location = new System.Drawing.Point(135, 20);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox22.TabIndex = 23;
+            this.pictureBox22.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.Image = global::Monopoly.Properties.Resources.card_parking;
+            this.pictureBox21.Location = new System.Drawing.Point(20, 20);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(115, 115);
+            this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox21.TabIndex = 22;
+            this.pictureBox21.TabStop = false;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Image = global::Monopoly.Properties.Resources.prop_orange;
+            this.pictureBox20.Location = new System.Drawing.Point(20, 135);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox20.TabIndex = 21;
+            this.pictureBox20.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.Image = global::Monopoly.Properties.Resources.prop_orange;
+            this.pictureBox19.Location = new System.Drawing.Point(20, 205);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox19.TabIndex = 20;
+            this.pictureBox19.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.Image = global::Monopoly.Properties.Resources.card_chest_90;
+            this.pictureBox18.Location = new System.Drawing.Point(20, 275);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox18.TabIndex = 19;
+            this.pictureBox18.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.Image = global::Monopoly.Properties.Resources.prop_orange;
+            this.pictureBox17.Location = new System.Drawing.Point(20, 345);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox17.TabIndex = 18;
+            this.pictureBox17.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Image = global::Monopoly.Properties.Resources.card_railroad_90;
+            this.pictureBox16.Location = new System.Drawing.Point(20, 415);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox16.TabIndex = 17;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Image = global::Monopoly.Properties.Resources.prop_pink;
+            this.pictureBox15.Location = new System.Drawing.Point(20, 485);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox15.TabIndex = 16;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Image = global::Monopoly.Properties.Resources.prop_pink;
+            this.pictureBox14.Location = new System.Drawing.Point(20, 555);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox14.TabIndex = 15;
+            this.pictureBox14.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = global::Monopoly.Properties.Resources.card_light_90;
+            this.pictureBox13.Location = new System.Drawing.Point(20, 625);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox13.TabIndex = 14;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::Monopoly.Properties.Resources.prop_pink;
+            this.pictureBox12.Location = new System.Drawing.Point(20, 695);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(115, 70);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 13;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::Monopoly.Properties.Resources.card_jail;
+            this.pictureBox11.Location = new System.Drawing.Point(20, 765);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(115, 115);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 12;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = global::Monopoly.Properties.Resources.prop_lightblue;
+            this.pictureBox10.Location = new System.Drawing.Point(135, 765);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 11;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::Monopoly.Properties.Resources.prop_lightblue;
+            this.pictureBox9.Location = new System.Drawing.Point(205, 765);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 10;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::Monopoly.Properties.Resources.card_chance;
+            this.pictureBox8.Location = new System.Drawing.Point(275, 765);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 9;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Monopoly.Properties.Resources.prop_lightblue;
+            this.pictureBox7.Location = new System.Drawing.Point(345, 765);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 8;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Monopoly.Properties.Resources.card_railroad;
+            this.pictureBox6.Location = new System.Drawing.Point(415, 765);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 7;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Monopoly.Properties.Resources.card_tax;
+            this.pictureBox5.Location = new System.Drawing.Point(485, 765);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 6;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Monopoly.Properties.Resources.prop_maroon;
+            this.pictureBox4.Location = new System.Drawing.Point(555, 765);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 5;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Monopoly.Properties.Resources.card_chest;
+            this.pictureBox3.Location = new System.Drawing.Point(625, 765);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Monopoly.Properties.Resources.prop_maroon;
+            this.pictureBox2.Location = new System.Drawing.Point(695, 765);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(70, 115);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
             // 
             // BoardTemplateImage
             // 
@@ -147,505 +640,78 @@
             this.BoardTemplateImage.TabStop = false;
             this.BoardTemplateImage.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Monopoly.Properties.Resources.card_go;
-            this.pictureBox1.Location = new System.Drawing.Point(765, 765);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(115, 115);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Monopoly.Properties.Resources.prop_maroon;
-            this.pictureBox2.Location = new System.Drawing.Point(695, 765);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Monopoly.Properties.Resources.card_chest;
-            this.pictureBox3.Location = new System.Drawing.Point(625, 765);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Monopoly.Properties.Resources.prop_maroon;
-            this.pictureBox4.Location = new System.Drawing.Point(555, 765);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Monopoly.Properties.Resources.card_tax;
-            this.pictureBox5.Location = new System.Drawing.Point(485, 765);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 6;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Monopoly.Properties.Resources.card_railroad;
-            this.pictureBox6.Location = new System.Drawing.Point(415, 765);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 7;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Monopoly.Properties.Resources.prop_lightblue;
-            this.pictureBox7.Location = new System.Drawing.Point(345, 765);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 8;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::Monopoly.Properties.Resources.card_chance;
-            this.pictureBox8.Location = new System.Drawing.Point(275, 765);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 9;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::Monopoly.Properties.Resources.prop_lightblue;
-            this.pictureBox9.Location = new System.Drawing.Point(205, 765);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 10;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = global::Monopoly.Properties.Resources.prop_lightblue;
-            this.pictureBox10.Location = new System.Drawing.Point(135, 765);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 11;
-            this.pictureBox10.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::Monopoly.Properties.Resources.card_jail;
-            this.pictureBox11.Location = new System.Drawing.Point(20, 765);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(115, 115);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox11.TabIndex = 12;
-            this.pictureBox11.TabStop = false;
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::Monopoly.Properties.Resources.prop_pink;
-            this.pictureBox12.Location = new System.Drawing.Point(20, 695);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox12.TabIndex = 13;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.Image = global::Monopoly.Properties.Resources.card_light_90;
-            this.pictureBox13.Location = new System.Drawing.Point(20, 625);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox13.TabIndex = 14;
-            this.pictureBox13.TabStop = false;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Image = global::Monopoly.Properties.Resources.prop_pink;
-            this.pictureBox14.Location = new System.Drawing.Point(20, 555);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox14.TabIndex = 15;
-            this.pictureBox14.TabStop = false;
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.Image = global::Monopoly.Properties.Resources.prop_pink;
-            this.pictureBox15.Location = new System.Drawing.Point(20, 485);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox15.TabIndex = 16;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.Image = global::Monopoly.Properties.Resources.card_railroad_90;
-            this.pictureBox16.Location = new System.Drawing.Point(20, 415);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox16.TabIndex = 17;
-            this.pictureBox16.TabStop = false;
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.Image = global::Monopoly.Properties.Resources.prop_orange;
-            this.pictureBox17.Location = new System.Drawing.Point(20, 345);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox17.TabIndex = 18;
-            this.pictureBox17.TabStop = false;
-            // 
-            // pictureBox18
-            // 
-            this.pictureBox18.Image = global::Monopoly.Properties.Resources.card_chest_90;
-            this.pictureBox18.Location = new System.Drawing.Point(20, 275);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox18.TabIndex = 19;
-            this.pictureBox18.TabStop = false;
-            // 
-            // pictureBox19
-            // 
-            this.pictureBox19.Image = global::Monopoly.Properties.Resources.prop_orange;
-            this.pictureBox19.Location = new System.Drawing.Point(20, 205);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox19.TabIndex = 20;
-            this.pictureBox19.TabStop = false;
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.Image = global::Monopoly.Properties.Resources.prop_orange;
-            this.pictureBox20.Location = new System.Drawing.Point(20, 135);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox20.TabIndex = 21;
-            this.pictureBox20.TabStop = false;
-            // 
-            // pictureBox21
-            // 
-            this.pictureBox21.Image = global::Monopoly.Properties.Resources.card_parking;
-            this.pictureBox21.Location = new System.Drawing.Point(20, 20);
-            this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(115, 115);
-            this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox21.TabIndex = 22;
-            this.pictureBox21.TabStop = false;
-            // 
-            // pictureBox22
-            // 
-            this.pictureBox22.Image = global::Monopoly.Properties.Resources.prop_red;
-            this.pictureBox22.Location = new System.Drawing.Point(135, 20);
-            this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox22.TabIndex = 23;
-            this.pictureBox22.TabStop = false;
-            // 
-            // pictureBox23
-            // 
-            this.pictureBox23.Image = global::Monopoly.Properties.Resources.card_chance_270;
-            this.pictureBox23.Location = new System.Drawing.Point(205, 20);
-            this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox23.TabIndex = 24;
-            this.pictureBox23.TabStop = false;
-            // 
-            // pictureBox24
-            // 
-            this.pictureBox24.Image = global::Monopoly.Properties.Resources.prop_red;
-            this.pictureBox24.Location = new System.Drawing.Point(275, 20);
-            this.pictureBox24.Name = "pictureBox24";
-            this.pictureBox24.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox24.TabIndex = 25;
-            this.pictureBox24.TabStop = false;
-            // 
-            // pictureBox25
-            // 
-            this.pictureBox25.Image = global::Monopoly.Properties.Resources.prop_red;
-            this.pictureBox25.Location = new System.Drawing.Point(345, 20);
-            this.pictureBox25.Name = "pictureBox25";
-            this.pictureBox25.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox25.TabIndex = 26;
-            this.pictureBox25.TabStop = false;
-            // 
-            // pictureBox26
-            // 
-            this.pictureBox26.Image = global::Monopoly.Properties.Resources.card_railroad_180;
-            this.pictureBox26.Location = new System.Drawing.Point(415, 20);
-            this.pictureBox26.Name = "pictureBox26";
-            this.pictureBox26.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox26.TabIndex = 27;
-            this.pictureBox26.TabStop = false;
-            // 
-            // pictureBox27
-            // 
-            this.pictureBox27.Image = global::Monopoly.Properties.Resources.prop_yellow;
-            this.pictureBox27.Location = new System.Drawing.Point(485, 20);
-            this.pictureBox27.Name = "pictureBox27";
-            this.pictureBox27.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox27.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox27.TabIndex = 28;
-            this.pictureBox27.TabStop = false;
-            // 
-            // pictureBox28
-            // 
-            this.pictureBox28.Image = global::Monopoly.Properties.Resources.prop_yellow;
-            this.pictureBox28.Location = new System.Drawing.Point(555, 20);
-            this.pictureBox28.Name = "pictureBox28";
-            this.pictureBox28.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox28.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox28.TabIndex = 29;
-            this.pictureBox28.TabStop = false;
-            // 
-            // pictureBox29
-            // 
-            this.pictureBox29.Image = global::Monopoly.Properties.Resources.card_water_180;
-            this.pictureBox29.Location = new System.Drawing.Point(625, 20);
-            this.pictureBox29.Name = "pictureBox29";
-            this.pictureBox29.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox29.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox29.TabIndex = 30;
-            this.pictureBox29.TabStop = false;
-            // 
-            // pictureBox30
-            // 
-            this.pictureBox30.Image = global::Monopoly.Properties.Resources.prop_yellow;
-            this.pictureBox30.Location = new System.Drawing.Point(695, 20);
-            this.pictureBox30.Name = "pictureBox30";
-            this.pictureBox30.Size = new System.Drawing.Size(70, 115);
-            this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox30.TabIndex = 31;
-            this.pictureBox30.TabStop = false;
-            // 
-            // pictureBox31
-            // 
-            this.pictureBox31.Image = global::Monopoly.Properties.Resources.card_gtjail;
-            this.pictureBox31.Location = new System.Drawing.Point(765, 20);
-            this.pictureBox31.Name = "pictureBox31";
-            this.pictureBox31.Size = new System.Drawing.Size(115, 115);
-            this.pictureBox31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox31.TabIndex = 32;
-            this.pictureBox31.TabStop = false;
-            // 
-            // pictureBox32
-            // 
-            this.pictureBox32.Image = global::Monopoly.Properties.Resources.prop_green;
-            this.pictureBox32.Location = new System.Drawing.Point(765, 135);
-            this.pictureBox32.Name = "pictureBox32";
-            this.pictureBox32.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox32.TabIndex = 33;
-            this.pictureBox32.TabStop = false;
-            // 
-            // pictureBox33
-            // 
-            this.pictureBox33.Image = global::Monopoly.Properties.Resources.prop_green;
-            this.pictureBox33.Location = new System.Drawing.Point(765, 205);
-            this.pictureBox33.Name = "pictureBox33";
-            this.pictureBox33.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox33.TabIndex = 34;
-            this.pictureBox33.TabStop = false;
-            // 
-            // pictureBox34
-            // 
-            this.pictureBox34.Image = global::Monopoly.Properties.Resources.card_chest_270;
-            this.pictureBox34.Location = new System.Drawing.Point(765, 275);
-            this.pictureBox34.Name = "pictureBox34";
-            this.pictureBox34.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox34.TabIndex = 35;
-            this.pictureBox34.TabStop = false;
-            // 
-            // pictureBox35
-            // 
-            this.pictureBox35.Image = global::Monopoly.Properties.Resources.prop_green;
-            this.pictureBox35.Location = new System.Drawing.Point(765, 345);
-            this.pictureBox35.Name = "pictureBox35";
-            this.pictureBox35.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox35.TabIndex = 36;
-            this.pictureBox35.TabStop = false;
-            // 
-            // pictureBox36
-            // 
-            this.pictureBox36.Image = global::Monopoly.Properties.Resources.card_railroad_270;
-            this.pictureBox36.Location = new System.Drawing.Point(765, 415);
-            this.pictureBox36.Name = "pictureBox36";
-            this.pictureBox36.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox36.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox36.TabIndex = 37;
-            this.pictureBox36.TabStop = false;
-            // 
-            // pictureBox37
-            // 
-            this.pictureBox37.Image = global::Monopoly.Properties.Resources.card_chance_180;
-            this.pictureBox37.Location = new System.Drawing.Point(765, 485);
-            this.pictureBox37.Name = "pictureBox37";
-            this.pictureBox37.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox37.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox37.TabIndex = 38;
-            this.pictureBox37.TabStop = false;
-            // 
-            // pictureBox38
-            // 
-            this.pictureBox38.Image = global::Monopoly.Properties.Resources.prop_blue;
-            this.pictureBox38.Location = new System.Drawing.Point(765, 555);
-            this.pictureBox38.Name = "pictureBox38";
-            this.pictureBox38.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox38.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox38.TabIndex = 39;
-            this.pictureBox38.TabStop = false;
-            // 
-            // pictureBox39
-            // 
-            this.pictureBox39.Image = global::Monopoly.Properties.Resources.card_ltax_270;
-            this.pictureBox39.Location = new System.Drawing.Point(765, 625);
-            this.pictureBox39.Name = "pictureBox39";
-            this.pictureBox39.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox39.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox39.TabIndex = 40;
-            this.pictureBox39.TabStop = false;
-            // 
-            // pictureBox40
-            // 
-            this.pictureBox40.Image = global::Monopoly.Properties.Resources.prop_blue;
-            this.pictureBox40.Location = new System.Drawing.Point(765, 695);
-            this.pictureBox40.Name = "pictureBox40";
-            this.pictureBox40.Size = new System.Drawing.Size(115, 70);
-            this.pictureBox40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox40.TabIndex = 41;
-            this.pictureBox40.TabStop = false;
-            // 
-            // picPlayer1
-            // 
-            this.picPlayer1.BackColor = System.Drawing.Color.Red;
-            this.picPlayer1.Location = new System.Drawing.Point(790, 790);
-            this.picPlayer1.Name = "picPlayer1";
-            this.picPlayer1.Size = new System.Drawing.Size(25, 25);
-            this.picPlayer1.TabIndex = 42;
-            this.picPlayer1.TabStop = false;
-            this.picPlayer1.Tag = "1";
-            // 
-            // picPlayer2
-            // 
-            this.picPlayer2.BackColor = System.Drawing.Color.Green;
-            this.picPlayer2.Location = new System.Drawing.Point(840, 790);
-            this.picPlayer2.Name = "picPlayer2";
-            this.picPlayer2.Size = new System.Drawing.Size(25, 25);
-            this.picPlayer2.TabIndex = 43;
-            this.picPlayer2.TabStop = false;
-            this.picPlayer2.Tag = "2";
-            // 
-            // picPlayer3
-            // 
-            this.picPlayer3.BackColor = System.Drawing.Color.Blue;
-            this.picPlayer3.Location = new System.Drawing.Point(790, 840);
-            this.picPlayer3.Name = "picPlayer3";
-            this.picPlayer3.Size = new System.Drawing.Size(25, 25);
-            this.picPlayer3.TabIndex = 44;
-            this.picPlayer3.TabStop = false;
-            this.picPlayer3.Tag = "3";
-            // 
-            // picPlayer4
-            // 
-            this.picPlayer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.picPlayer4.Location = new System.Drawing.Point(840, 840);
-            this.picPlayer4.Name = "picPlayer4";
-            this.picPlayer4.Size = new System.Drawing.Size(25, 25);
-            this.picPlayer4.TabIndex = 45;
-            this.picPlayer4.TabStop = false;
-            this.picPlayer4.Tag = "4";
-            // 
-            // btnRoll
-            // 
-            this.btnRoll.Location = new System.Drawing.Point(415, 506);
-            this.btnRoll.Name = "btnRoll";
-            this.btnRoll.Size = new System.Drawing.Size(75, 23);
-            this.btnRoll.TabIndex = 46;
-            this.btnRoll.Text = "Roll";
-            this.btnRoll.UseVisualStyleBackColor = true;
-            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
-            // 
-            // lblDie1
-            // 
-            this.lblDie1.AutoSize = true;
-            this.lblDie1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDie1.Location = new System.Drawing.Point(392, 456);
-            this.lblDie1.Name = "lblDie1";
-            this.lblDie1.Size = new System.Drawing.Size(45, 26);
-            this.lblDie1.TabIndex = 47;
-            this.lblDie1.Text = "Die";
-            // 
-            // lblDie2
-            // 
-            this.lblDie2.AutoSize = true;
-            this.lblDie2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDie2.Location = new System.Drawing.Point(482, 456);
-            this.lblDie2.Name = "lblDie2";
-            this.lblDie2.Size = new System.Drawing.Size(45, 26);
-            this.lblDie2.TabIndex = 48;
-            this.lblDie2.Text = "Die";
-            // 
-            // lblPlayerTurn
-            // 
-            this.lblPlayerTurn.AutoSize = true;
-            this.lblPlayerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerTurn.Location = new System.Drawing.Point(1069, 47);
-            this.lblPlayerTurn.Name = "lblPlayerTurn";
-            this.lblPlayerTurn.Size = new System.Drawing.Size(156, 26);
-            this.lblPlayerTurn.TabIndex = 49;
-            this.lblPlayerTurn.Text = "Player 1\'s Turn";
-            // 
-            // btnTradeRequest
-            // 
-            this.btnTradeRequest.Location = new System.Drawing.Point(968, 242);
-            this.btnTradeRequest.Name = "btnTradeRequest";
-            this.btnTradeRequest.Size = new System.Drawing.Size(114, 23);
-            this.btnTradeRequest.TabIndex = 50;
-            this.btnTradeRequest.Text = "Trade Request";
-            this.btnTradeRequest.UseVisualStyleBackColor = true;
-            this.btnTradeRequest.Click += new System.EventHandler(this.btnTradeRequest_Click);
+            // BoardBackgroundImage
+            // 
+            this.BoardBackgroundImage.BackColor = System.Drawing.Color.PeachPuff;
+            this.BoardBackgroundImage.Location = new System.Drawing.Point(0, 0);
+            this.BoardBackgroundImage.Name = "BoardBackgroundImage";
+            this.BoardBackgroundImage.Size = new System.Drawing.Size(900, 900);
+            this.BoardBackgroundImage.TabIndex = 0;
+            this.BoardBackgroundImage.TabStop = false;
+            // 
+            // pbxCurrentPlayerPicture
+            // 
+            this.pbxCurrentPlayerPicture.Location = new System.Drawing.Point(1093, 9);
+            this.pbxCurrentPlayerPicture.Name = "pbxCurrentPlayerPicture";
+            this.pbxCurrentPlayerPicture.Size = new System.Drawing.Size(80, 80);
+            this.pbxCurrentPlayerPicture.TabIndex = 53;
+            this.pbxCurrentPlayerPicture.TabStop = false;
+            // 
+            // dicePictures
+            // 
+            this.dicePictures.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("dicePictures.ImageStream")));
+            this.dicePictures.TransparentColor = System.Drawing.Color.Transparent;
+            this.dicePictures.Images.SetKeyName(0, "dice_1.png");
+            this.dicePictures.Images.SetKeyName(1, "dice_2.png");
+            this.dicePictures.Images.SetKeyName(2, "dice_3.png");
+            this.dicePictures.Images.SetKeyName(3, "dice_4.png");
+            this.dicePictures.Images.SetKeyName(4, "dice_5.png");
+            this.dicePictures.Images.SetKeyName(5, "dice_6.png");
+            // 
+            // flpCurrentPlayerProps
+            // 
+            this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 105);
+            this.flpCurrentPlayerProps.Name = "flpCurrentPlayerProps";
+            this.flpCurrentPlayerProps.Size = new System.Drawing.Size(461, 310);
+            this.flpCurrentPlayerProps.TabIndex = 54;
+            // 
+            // usableSpotPictures
+            // 
+            this.usableSpotPictures.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("usableSpotPictures.ImageStream")));
+            this.usableSpotPictures.TransparentColor = System.Drawing.Color.Transparent;
+            this.usableSpotPictures.Images.SetKeyName(0, "card_light.jpg");
+            this.usableSpotPictures.Images.SetKeyName(1, "card_railroad.jpg");
+            this.usableSpotPictures.Images.SetKeyName(2, "card_water.jpg");
+            this.usableSpotPictures.Images.SetKeyName(3, "prop_b.jpg");
+            this.usableSpotPictures.Images.SetKeyName(4, "prop_g.jpg");
+            this.usableSpotPictures.Images.SetKeyName(5, "prop_l.jpg");
+            this.usableSpotPictures.Images.SetKeyName(6, "prop_m.jpg");
+            this.usableSpotPictures.Images.SetKeyName(7, "prop_o.jpg");
+            this.usableSpotPictures.Images.SetKeyName(8, "prop_p.jpg");
+            this.usableSpotPictures.Images.SetKeyName(9, "prop_r.jpg");
+            this.usableSpotPictures.Images.SetKeyName(10, "prop_y.jpg");
+            // 
+            // lblCurrentBalance
+            // 
+            this.lblCurrentBalance.AutoSize = true;
+            this.lblCurrentBalance.Location = new System.Drawing.Point(908, 67);
+            this.lblCurrentBalance.Name = "lblCurrentBalance";
+            this.lblCurrentBalance.Size = new System.Drawing.Size(35, 13);
+            this.lblCurrentBalance.TabIndex = 55;
+            this.lblCurrentBalance.Text = "label1";
             // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 902);
+            this.Controls.Add(this.lblCurrentBalance);
+            this.Controls.Add(this.flpCurrentPlayerProps);
+            this.Controls.Add(this.pbxCurrentPlayerPicture);
+            this.Controls.Add(this.pbxDiceRight);
+            this.Controls.Add(this.pbxDiceLeft);
             this.Controls.Add(this.btnTradeRequest);
             this.Controls.Add(this.lblPlayerTurn);
-            this.Controls.Add(this.lblDie2);
-            this.Controls.Add(this.lblDie1);
             this.Controls.Add(this.btnRoll);
             this.Controls.Add(this.picPlayer4);
             this.Controls.Add(this.picPlayer3);
@@ -696,52 +762,55 @@
             this.Name = "MonopolyMainForm";
             this.Text = "Monopoly";
             this.Load += new System.EventHandler(this.MonopolyMainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -796,10 +865,15 @@
         private System.Windows.Forms.PictureBox picPlayer3;
         private System.Windows.Forms.PictureBox picPlayer4;
         private System.Windows.Forms.Button btnRoll;
-        private System.Windows.Forms.Label lblDie1;
-        private System.Windows.Forms.Label lblDie2;
         private System.Windows.Forms.Label lblPlayerTurn;
         private System.Windows.Forms.Button btnTradeRequest;
+        private System.Windows.Forms.PictureBox pbxDiceLeft;
+        private System.Windows.Forms.PictureBox pbxDiceRight;
+        private System.Windows.Forms.PictureBox pbxCurrentPlayerPicture;
+        private System.Windows.Forms.ImageList dicePictures;
+        private System.Windows.Forms.FlowLayoutPanel flpCurrentPlayerProps;
+        private System.Windows.Forms.ImageList usableSpotPictures;
+        private System.Windows.Forms.Label lblCurrentBalance;
     }
 }
 

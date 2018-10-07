@@ -1,4 +1,7 @@
-﻿namespace Monopoly
+﻿using System.Diagnostics.Contracts;
+using System.Windows.Forms;
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +16,7 @@
         {
             this.InJail = false;
             this.GetOutOfJailFreeCards = new List<Card>();
+            this.PlayerPictureBox = new PictureBox();
             //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
             this.Money = 1500;  // Set Money to default value
         }
@@ -73,6 +77,11 @@
         /// Gets or sets a value indicating whether the player is ai
         /// </summary>
         public bool IsAi { get; set; }
+
+        /// <summary>
+        /// Gets or sets the players image
+        /// </summary>
+        public PictureBox PlayerPictureBox { get; set; }
 
         /// <summary>
         /// Returns a bool indicating whether a player needs more money

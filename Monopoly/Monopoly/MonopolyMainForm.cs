@@ -65,24 +65,43 @@ namespace Monopoly
 
             if (result == DialogResult.OK)
             {
+                // Sets the list of players to the list of players passed from the game options form
                 game.Players = options.TempPlayers;
                 currentPlayer = game.Players[0];
 
-                lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
+                // Sets the players picture box to their picture box on the form
+                List<PictureBox> playerBoxes = new List<PictureBox>();
+                for (int i = 0; i < game.Players.Count; i++)
+                {
+                    playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i+1), true)[0]);
+                    game.Players[i].PlayerPictureBox = playerBoxes[i];
+                }
 
+                // Shows the players the current players image or color as well as the current player
+                SetCurrentPlayerImage(currentPlayer);
+                lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
+                lblCurrentBalance.Text = currentPlayer.Money.ToString();
+
+                // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
                 for (int i = 1; i <= 40; i++)
                 {
                     spotPictures.Add((PictureBox) Controls.Find("pictureBox" + i, true)[0]);
+
+                    // Sets a tag for the image 
                     spotPictures[i - 1].Tag = i - 1;
                 }
 
+                // A foreach loop that runs through each picture box that is a spot
                 foreach (PictureBox p in spotPictures)
                 {
+                    Spot spot = game.Board[(int)p.Tag];
+                    spot.SpotBox = p;
+
+                    // Assigns a click event to the picture box
                     p.Click += delegate
                     {
-                        Spot spot = game.Board[(int) p.Tag];
-
+                        /*
                         if (spot.Type == SpotType.Property)
                         {
                             MonPopUp popUp = new MonPopUp(spot);
@@ -94,7 +113,8 @@ namespace Monopoly
                             NonPropPopUp popUp = new NonPropPopUp(spot);
                             popUp.ShowDialog();
                         }
-
+                        */
+                        PropertyClickEvent(spot);
                     };
                 }
             }
@@ -110,8 +130,11 @@ namespace Monopoly
             die1 = rand.Next(1, 7);
             die2 = rand.Next(1, 7);
 
-            lblDie1.Text = die1.ToString();
-            lblDie2.Text = die2.ToString();
+            // lblDie1.Text = die1.ToString();
+            // lblDie2.Text = die2.ToString();
+
+            pbxDiceLeft.Image = this.dicePictures.Images[die1 - 1];
+            pbxDiceRight.Image = this.dicePictures.Images[die2 - 1];
 
             if (currentPlayer.InJail == false) {
 
@@ -280,9 +303,8 @@ namespace Monopoly
                 }
             }
 
-            // Next Player
             currentPlayer = game.NextPlayer(currentPlayer);
-            lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
+            SetNextPlayer(currentPlayer);
         }
 
         public void FindNewPawnLocations(int newLocation)
@@ -590,150 +612,152 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// The method used for setting up the next player's information on the form
+        /// </summary>
+        /// <param name="player"></param>
+        private void SetNextPlayer(Player player)
+        {
+            flpCurrentPlayerProps.Controls.Clear();
+            List<Spot> currentPlayerSpots = new List<Spot>();
+            currentPlayerSpots = game.GetPlayersPropertyList(player);
+            PictureBox[] pictureBoxes = new PictureBox[currentPlayerSpots.Count];
+            if (pictureBoxes.Length > 0)
+            {
+                for (int r = 0; r < pictureBoxes.Length; r++)
+                {
+                    pictureBoxes[r] = new PictureBox();
+                }
+
+                foreach (PictureBox pb in pictureBoxes)
+                {
+                    pb.Width = 70;
+                    pb.Height = 115;
+                }
+                Spot s = new Spot();
+                Image tempImage = new Bitmap(70, 115);
+                PictureBox p = new PictureBox();
+                for (int g = 0; g < currentPlayerSpots.Count; g++)
+                {
+                    p = pictureBoxes[g];
+                    s = currentPlayerSpots[g];
+                    if (s.Color == Color.Black)
+                    {
+                        if (s.Type == SpotType.Utility)
+                        {
+                            if (s.SpotName == "Electric Company")
+                            {
+                                tempImage = usableSpotPictures.Images[0];
+                                p.Image = tempImage;   
+                            }
+                            else
+                            {
+                                tempImage = usableSpotPictures.Images[2];
+                                p.Image = tempImage;
+                            }
+                        }
+                        else
+                        {
+                            tempImage = usableSpotPictures.Images[1];
+                            p.Image = tempImage;
+                            
+                        }
+                    }
+                    else if (s.Color == Color.DarkBlue)
+                    {
+                        tempImage = usableSpotPictures.Images[3];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.Green)
+                    {
+                        tempImage = usableSpotPictures.Images[4];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.LightBlue)
+                    {
+                        tempImage = usableSpotPictures.Images[5];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.Brown)
+                    {
+                        tempImage = usableSpotPictures.Images[6];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.Orange)
+                    {
+                        tempImage = usableSpotPictures.Images[7];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.Pink)
+                    {
+                        tempImage = usableSpotPictures.Images[8];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.Red)
+                    {
+                        tempImage = usableSpotPictures.Images[9];
+                        p.Image = tempImage;
+                        
+                    }
+                    else if (s.Color == Color.Yellow)
+                    {
+                        tempImage = usableSpotPictures.Images[10];
+                        p.Image = tempImage;
+                    }
+
+                    p.Tag = g.ToString();
+                }
+            }
+        
+            foreach (PictureBox pbx in pictureBoxes)
+            {
+                flpCurrentPlayerProps.Controls.Add(pbx);
+                pbx.Click += delegate { PropertyClickEvent(currentPlayerSpots[Int32.Parse(pbx.Tag.ToString())]); };
+            }
+       
+            SetCurrentPlayerImage(player);
+            lblPlayerTurn.Text = player.PlayerName + "'s Turn";
+            lblCurrentBalance.Text = player.Money.ToString();
+        }
+
+        private void SetCurrentPlayerImage(Player player)
+        {
+            if (player.PlayerPictureBox.Image != null)
+            {
+                pbxCurrentPlayerPicture.Image = player.PlayerPictureBox.Image;
+            }
+            else
+            {
+                pbxCurrentPlayerPicture.BackColor = player.PlayerPictureBox.BackColor;
+            }
+        }
+
+        private void PropertyClickEvent(Spot spot)
+        {
+            if (spot.Type == SpotType.Property)
+            {
+                MonPopUp popUp = new MonPopUp(spot);
+                popUp.ShowDialog();
+            }
+
+            if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
+            {
+                NonPropPopUp popUp = new NonPropPopUp(spot);
+                popUp.ShowDialog();
+            }
+        }
+
         private void btnTradeRequest_Click(object sender, EventArgs e)
         {
             Trade tradeForm = new Trade(currentPlayer, game);
 
             tradeForm.ShowDialog();
         }
-
-
-        //Make new lists to hold players and spots
-
-
-        /*
-        public void instantiatePlayers(int num)
-        {
-            //Based on int of how many players
-            for (int i = 0; i < num; i++)
-            {
-                int o = i + 1;
-
-                if (o == 1)
-                {
-                    if (chkAiPlayer1.isChecked())
-                    {
-                        Player temp = new Player(1, txtName1.Text, Color.One, true);
-                        players.Add(temp);
-                    }
-                    else
-                    {
-                        Player temp = new Player(1, txtName1.Text, Color.One);
-                        players.Add(temp);
-                    }
-                }
-                else if (o == 2)
-                {
-                    if (chkAiPlayer2.isChecked())
-                    {
-                        Player temp = new Player(2, txtName2.Text, Color.Two, true);
-                        players.Add(temp);
-                    }
-                    else
-                    {
-                        Player temp = new Player(2, txtName2.Text, Color.Two);
-                        players.Add(temp);
-                    }
-                }
-                else if (o == 3)
-                {
-                    if (chkAiPlayer3.isChecked())
-                    {
-                        Player temp = new Player(3, txtName3.Text, Color.Three, true);
-                        players.Add(temp);
-                    }
-                    else
-                    {
-                        Player temp = new Player(3, txtName3.Text, Color.Three);
-                        players.Add(temp);
-                    }
-                }
-                else if (o == 4)
-                {
-                    if (chkAiPlayer4.isChecked())
-                    {
-                        Player temp = new Player(4, txtName4.Text, Color.Four, true);
-                        players.Add(temp);
-                    }
-                    else
-                    {
-                        Player temp = new Player(4, txtName4.Text, Color.Four);
-                        players.Add(temp);
-                    }
-                }
-            }
-        }
-        */
-
-
-
-        /*
-        //Give p1 Spot to p2 if p2 has enough money.
-        public void GiveToPlayer(Player p1, Player p2, int amount, int index)
-        {
-            if (p2.Money >= amount)
-            {
-                int indexInList = 0;
-                Spot temp;
-
-                for (int i = 0; i < p1.Properties.Count; i++)
-                {
-                    if (p1.Properties[i].SpotId == index)
-                    {
-                        indexInList = i;
-                    }
-                }
-
-                temp = p1.Properties[indexInList];
-                p1.Properties.Remove(indexInList);
-                p2.Properties.Add(temp);
-                p2.Money -= amount;
-            }
-        }
-
-        //A player buys an unowned Spot
-        public void Buy(Player p, int index)
-        {
-            Player owner = FindOwner();
-
-            if (owner == null)
-            {
-                Spot prop;
-
-                foreach (Spot p in Board)
-                {
-                    if (p.SpotId == index)
-                    {
-                        prop = p;
-                    }
-                }
-
-                if (p.Money >= prop.Price)
-                {
-                    p.Properties.Add(prop);
-                    p.Money -= prop.Price;
-                }
-            }
-        }
-
-        //Finds owner of a Spot
-        public Player FindOwner(Spot p)
-        {
-            Player owner = null;
-
-            foreach (Player pl in players)
-            {
-                foreach (Spot pr in p.properties)
-                {
-                    if (pr == p)
-                    {
-                        owner = pl;
-                    }
-                }
-            }
-
-            return owner;
-        }
-        */
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Monopoly
+﻿using Monopoly.Properties;
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
@@ -136,7 +138,7 @@
         }
 
         /// <summary>
-        /// Changes a player's current loaction property and checks to see if they passed Go
+        /// Changes a player's current location property and checks to see if they passed Go
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
         /// <param name="spacesForward">The number of spaces to move forward</param>

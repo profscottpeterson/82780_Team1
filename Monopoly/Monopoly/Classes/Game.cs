@@ -803,8 +803,39 @@ namespace Monopoly
             {
                 // Player is bankrupt
                 MessageBox.Show(player.PlayerName + " is bankrupt!");
-                this.Players.Remove(player);
+                this.Forfeit(player);
             }
+        }
+
+        /// <summary>
+        /// Removes a player from the game and resets any properties they may have
+        /// </summary>
+        /// <param name="player">The player to remove</param>
+        public void Forfeit(Player player)
+        {
+            // Get the player's list of properties
+            List<Spot> properties = this.GetPlayersPropertyList(player);
+
+            // If the player still owns properties
+            if (properties.Count > 0)
+            {
+                // Loop through the properties they own
+                foreach (Spot property in properties)
+                {
+                    // Reset values of property so property is not owned
+                    property.Owner = null;
+                    property.IsAvailable = true;
+                    property.HasHotel = false;
+                    property.NumberOfHouses = 0;
+                    property.IsMortgaged = false;
+
+                    // Set the spot on the board to the spot with changed values
+                    this.Board[property.SpotId] = property;
+                }
+            }
+
+            // Remove player from player list
+            this.Players.Remove(player);
         }
 
         /// <summary>

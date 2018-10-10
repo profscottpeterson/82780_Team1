@@ -187,6 +187,21 @@ namespace Monopoly
                         // Find the rent
                         int rent = currentLocation.Rent;
 
+                        // If the current location is a railroad
+                        if (currentLocation.Type == SpotType.Railroad)
+                        {
+                            // Find the rent based on how many railroads the owner of the current location owns
+                            rent = this.FindCurrentRentOfRailroad(currentLocation);
+                        }
+
+                        // If the current location is a utility
+                        if (currentLocation.Type == SpotType.Utility)
+                        {
+                            // Find the rent based on how many utilities the owner of the current location owns
+                            // and the dice roll (random number)
+                            rent = this.FindRentOfUtility(currentLocation);
+                        }
+
                         // Give the owner the rent
                         this.Players[this.Players.IndexOf(owner)].Money += rent;
 
@@ -609,6 +624,87 @@ namespace Monopoly
 
             // return list that was created
             return mortgageableProperties;
+        }
+
+        /// <summary>
+        /// Finds out what the rent of a railroad should be based on the number of railroads 
+        /// the player that owns the given railroad owns
+        /// </summary>
+        /// <param name="railroad">The railroad to check the rent of</param>
+        /// <returns></returns>
+        public int FindCurrentRentOfRailroad(Spot railroad)
+        {
+            // Find the current owner of the railroad
+            Player owner = railroad.Owner;
+
+            // Find rent if just one railroad is owned
+            int rent = railroad.Rent;
+
+            // Double check to make sure railroad has an owner
+            if (owner != null)
+            {
+                // Loop through the spots on the board
+                foreach (Spot spot in this.Board)
+                {
+                    // If the spot is a railroad and it is not the given railroad and the owner is the same as the given railroad's
+                    if (spot.Type == SpotType.Railroad && spot != railroad && spot.Owner == owner)
+                    {
+                        // double the rent
+                        rent *= 2;
+                    }
+                }
+            }
+
+            return rent;
+        }
+
+        /// <summary>
+        /// Find what what the rent should be based on how many utilities the owner of the 
+        /// given utility owns and the number on the dice rolled (random number generated)
+        /// </summary>
+        /// <param name="utility">The utility to check the rent of</param>
+        /// <returns></returns>
+        public int FindRentOfUtility(Spot utility)
+        {
+            // Declare and initialize a boolean for whether owner of given utility owns both utilities
+            bool bothOwned = false;
+
+            // Declare and initialize a number that the rent is multiplied by depending on utilities owned
+            int multiplyFactor = 4;
+
+            // Loop through the board
+            foreach (Spot spot in this.Board)
+            {
+                // If the spot is a utility and is not the given utility and has the same owner as the given utility
+                if (spot.Type == SpotType.Utility && spot != utility && utility.Owner == spot.Owner)
+                {
+                    // Set both owned to true
+                    bothOwned = true;
+                }
+            }
+
+            // If owner of given utility owns both utilities
+            if (bothOwned)
+            {
+                // Set multiplyFactor to 10
+                multiplyFactor = 10;
+            }
+
+            // Declare and initialize a new random object
+            Random random = new Random();
+
+            // Get a random number between 1 and 6 (values of a die)
+            // For some reason, this is always the value of die 1
+            int rent = random.Next(6) + 1;
+
+            // Message box informing player of die roll and rent to be paid
+            MessageBox.Show("You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
+                "Utility Rent");
+
+            // Increase rent by multiptyFactor
+            rent *= multiplyFactor;
+
+            return rent;
         }
 
         /// <summary>

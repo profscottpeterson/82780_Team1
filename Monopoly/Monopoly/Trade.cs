@@ -41,10 +41,7 @@ namespace Monopoly
 
             requester = game.GetPlayersPropertyList(currentPlayer);
 
-            foreach (Spot s in requester)
-            {
-                lstRequesterProperties.Items.Add(s.SpotName);
-            }
+            FillListView(this.lstRequesterProperties, requester);
 
             // set the requesters money equal to their current money in game
             lblRequesterTotal.Text = "/ " + currentPlayer.Money.ToString();
@@ -161,10 +158,7 @@ namespace Monopoly
 
                     target = game.GetPlayersPropertyList(chosenPlayer);
 
-                    foreach (Spot s in target)
-                    {
-                        lstRequesteeProperties.Items.Add(s.SpotName);
-                    }
+                    FillListView(this.lstRequesteeProperties, target);
 
                     // Reset the offer list if a new player is selected
                     targetOffer = new List<Spot>();
@@ -172,14 +166,80 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// Fills a given list view with the given list of spots (name and price)
+        /// </summary>
+        /// <param name="listView">The list view to fill</param>
+        /// <param name="spots">The list of spots used to fill list view</param>
+        public void FillListView(ListView listView, List<Spot> spots)
+        {
+            // Add Column Headers only if they don't already exist
+            if (listView.Columns.Count == 0)
+            {
+                listView.Columns.Add("Property Name", 125);
+                listView.Columns.Add("Price", 50);
+            }
+
+            // Array to hold to contents of each row of the list view
+            string[] rowContents = new string[2];
+
+            // Loop through each spot in list of spots given
+            foreach (Spot s in spots)
+            {
+                // Put the spot name in the first column
+                rowContents[0] = s.SpotName;
+
+                // Put the price in the second column
+                rowContents[1] = s.Price.ToString("c0");
+
+                // Create a list view item that is a row made up of the spot name and price
+                var row = new ListViewItem(rowContents);
+
+                // Add created row to list view
+                listView.Items.Add(row);
+            }
+
+            // Loop through each item in the list view
+            foreach (ListViewItem item in listView.Items)
+            {
+                // Get the spot that corresponds with the spot name
+                Spot spot = game.GetSpotByName(item.Text);
+
+                // If a spot was found with that name
+                if (spot != null)
+                {
+                    // Set the text color to the property's color
+                    item.ForeColor = spot.Color;
+
+                    // Change the color for the lighter colors to darker colors
+                    if (spot.Color == Color.LightBlue)
+                    {
+                        item.ForeColor = Color.DodgerBlue;
+                    }
+                    else if (spot.Color == Color.Pink)
+                    {
+                        item.ForeColor = Color.DeepPink;
+                    }
+                    else if (spot.Color == Color.Yellow)
+                    {
+                        item.ForeColor = Color.FromArgb(255, 220, 220, 0);
+                    }
+                    else if (spot.Color == Color.Orange)
+                    {
+                        item.ForeColor = Color.DarkOrange;
+                    }
+                }
+            }
+        }
+
         private void lstRequesterProperties_DoubleClick(object sender, EventArgs e)
         {
-            if (lstRequesterProperties.SelectedItem != null)
+            if (lstRequesterProperties.SelectedItems[0] != null)
             {
                 // Check for the spot with the spot name as listed by the listbox
                 foreach (Spot s in requester)
                 {
-                    if (s.SpotName == (string)lstRequesterProperties.SelectedItem)
+                    if (s.SpotName == lstRequesterProperties.SelectedItems[0].Text)
                     {
                         if (s.HasHotel || s.NumberOfHouses > 0)
                         {
@@ -194,8 +254,8 @@ namespace Monopoly
 
                             // Remove it from the spots that the requester will keep
                             // Add it to the list of spots to add to the other
-                            lstRequesterOffering.Items.Add(lstRequesterProperties.SelectedItem);
-                            lstRequesterProperties.Items.RemoveAt(lstRequesterProperties.SelectedIndex);
+                            lstRequesterOffering.Items.Add(lstRequesterProperties.SelectedItems[0].Text);
+                            lstRequesterProperties.Items.RemoveAt(lstRequesterProperties.SelectedIndices[0]);
                             break;
                         }
                     }
@@ -225,7 +285,8 @@ namespace Monopoly
 
                             // Remove it from the spots that the requester will keep
                             // Add it to the list of spots to add to the other
-                            lstRequesterProperties.Items.Add(lstRequesterOffering.SelectedItem);
+                            // lstRequesterProperties.Items.Add(lstRequesterOffering.SelectedItem.ToString());
+                            this.FillListView(this.lstRequesterProperties, requester);
                             lstRequesterOffering.Items.RemoveAt(lstRequesterOffering.SelectedIndex);
                             break;
                         }
@@ -236,12 +297,12 @@ namespace Monopoly
 
         private void lstRequesteeProperties_DoubleClick(object sender, EventArgs e)
         {
-            if (lstRequesteeProperties.SelectedItem != null)
+            if (lstRequesteeProperties.SelectedItems[0] != null)
             {
                 // Check for the spot with the spot name as listed by the listbox
                 foreach (Spot s in target)
                 {
-                    if (s.SpotName == (string)lstRequesteeProperties.SelectedItem)
+                    if (s.SpotName == lstRequesteeProperties.SelectedItems[0].Text)
                     {
                         if (s.HasHotel || s.NumberOfHouses > 0)
                         {
@@ -256,8 +317,8 @@ namespace Monopoly
 
                             // Remove if from the listbox of spots that the target will keep
                             // Add it to the listbox of spots to add to the other
-                            lstRequesteeOffering.Items.Add(lstRequesteeProperties.SelectedItem);
-                            lstRequesteeProperties.Items.RemoveAt(lstRequesteeProperties.SelectedIndex);
+                            this.lstRequesteeOffering.Items.Add(lstRequesteeProperties.SelectedItems[0].Text);
+                            lstRequesteeProperties.Items.RemoveAt(lstRequesteeProperties.SelectedIndices[0]);
                             break;
                         }
                     }
@@ -287,7 +348,8 @@ namespace Monopoly
 
                             // Remove if from the listbox of spots that the target will keep
                             // Add it to the listbox of spots to add to the other
-                            lstRequesteeProperties.Items.Add(lstRequesteeOffering.SelectedItem);
+                            // lstRequesteeProperties.Items.Add(lstRequesteeOffering.SelectedItem.ToString());
+                            FillListView(this.lstRequesteeProperties, target);
                             lstRequesteeOffering.Items.RemoveAt(lstRequesteeOffering.SelectedIndex);
                             break;
                         }

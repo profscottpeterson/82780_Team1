@@ -96,7 +96,7 @@ namespace Monopoly
                 // Shows the players the current players image or color as well as the current player
                 SetCurrentPlayerImage(currentPlayer);
                 lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
-                lblCurrentBalance.Text = currentPlayer.Money.ToString();
+                lblCurrentBalance.Text = currentPlayer.Money.ToString("c0");
 
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
@@ -779,7 +779,7 @@ namespace Monopoly
             }
             SetCurrentPlayerImage(player);
             lblPlayerTurn.Text = player.PlayerName + "'s Turn";
-            lblCurrentBalance.Text = player.Money.ToString();
+            lblCurrentBalance.Text = player.Money.ToString("c0");
         }
 
         private void SetCurrentPlayerImage(Player player)

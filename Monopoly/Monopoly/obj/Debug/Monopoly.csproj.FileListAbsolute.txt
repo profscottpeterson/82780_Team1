@@ -52,3 +52,6 @@ C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Tra
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources

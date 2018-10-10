@@ -27,8 +27,8 @@ namespace Monopoly
         private void NonPropPopUp_Load(object sender, EventArgs e)
         {
             NameLabel.Text = spot.SpotName;
-            PriceLabel.Text = spot.Price.ToString("C");
-            AmtOwedLabel.Text = spot.Rent.ToString("C");
+            PriceLabel.Text = "Price: " + spot.Price.ToString("C0");
+            AmtOwedLabel.Text = "Rent: " + spot.Rent.ToString("C0");
         }
     }
 }

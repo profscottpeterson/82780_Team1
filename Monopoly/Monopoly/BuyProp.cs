@@ -57,17 +57,17 @@ namespace Monopoly
             this.spotNameLabel.Text = spot.SpotName;
 
             // this.BackColor = spot.Color;
-            this.priceLabel.Text = "Price: " + spot.Price.ToString("C");
-            this.rentLabel.Text = "Rent: " + spot.Rent.ToString("C");
-            this.rent1Label.Text = "Rent with 1 House: " + spot.Rent1House.ToString("C");
-            this.rent2Label.Text = "Rent with 2 Houses: " + spot.Rent2Houses.ToString("C");
-            this.rent3Label.Text = "Rent with 3 Houses: " + spot.Rent3Houses.ToString("C");
-            this.rent4Label.Text = "Rent with 4 Houses: " + spot.Rent4Houses.ToString("C");
-            this.rentHotelLabel.Text = "Rent with a Hotel: " + spot.HotelCost.ToString("C");
-            this.mortgageLabel.Text = "Mortgage: " + spot.Mortgage.ToString("C");
+            this.priceLabel.Text = "Price: " + spot.Price.ToString("C0");
+            this.rentLabel.Text = "Rent: " + spot.Rent.ToString("C0");
+            this.rent1Label.Text = "Rent with 1 House: " + spot.Rent1House.ToString("C0");
+            this.rent2Label.Text = "Rent with 2 Houses: " + spot.Rent2Houses.ToString("C0");
+            this.rent3Label.Text = "Rent with 3 Houses: " + spot.Rent3Houses.ToString("C0");
+            this.rent4Label.Text = "Rent with 4 Houses: " + spot.Rent4Houses.ToString("C0");
+            this.rentHotelLabel.Text = "Rent with a Hotel: " + spot.HotelCost.ToString("C0");
+            this.mortgageLabel.Text = "Mortgage: " + spot.Mortgage.ToString("C0");
 
             // Output the players balance
-            this.lblYourMoney.Text = p.Money.ToString();
+            this.lblYourMoney.Text = p.Money.ToString("c0");
 
             // Check to see if the player is even able to purchase the property
             if (p.Money < spot.Price)

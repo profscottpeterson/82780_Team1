@@ -30,14 +30,14 @@ namespace Monopoly
             ColorPicBox.BackColor = spot.Color;
             SpotNameLabel.Text = spot.SpotName;
             //this.BackColor = spot.Color;
-            PriceLabel.Text = "Price: " + spot.Price.ToString("C");
-            RentLabel.Text = "Rent: " + spot.Rent.ToString("C");
-            Rent1Label.Text = "Rent with 1 House: " + spot.Rent1House.ToString("C");
-            Rent2Label.Text = "Rent with 2 Houses: " + spot.Rent2Houses.ToString("C");
-            Rent3Label.Text = "Rent with 3 Houses: " + spot.Rent3Houses.ToString("C");
-            Rent4Label.Text = "Rent with 4 Houses: " + spot.Rent4Houses.ToString("C");
-            RentHotelLabel.Text = "Rent with a Hotel: " + spot.HotelCost.ToString("C");
-            MortgageLabel.Text = "Mortgage: " + spot.Mortgage.ToString("C");
+            PriceLabel.Text = "Price: " + spot.Price.ToString("C0");
+            RentLabel.Text = "Rent: " + spot.Rent.ToString("C0");
+            Rent1Label.Text = "Rent with 1 House: " + spot.Rent1House.ToString("C0");
+            Rent2Label.Text = "Rent with 2 Houses: " + spot.Rent2Houses.ToString("C0");
+            Rent3Label.Text = "Rent with 3 Houses: " + spot.Rent3Houses.ToString("C0");
+            Rent4Label.Text = "Rent with 4 Houses: " + spot.Rent4Houses.ToString("C0");
+            RentHotelLabel.Text = "Rent with a Hotel: " + spot.HotelCost.ToString("C0");
+            MortgageLabel.Text = "Mortgage: " + spot.Mortgage.ToString("C0");
 
         }
     }

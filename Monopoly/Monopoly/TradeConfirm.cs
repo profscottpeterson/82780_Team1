@@ -18,6 +18,7 @@ namespace Monopoly
         private List<Spot> mainList = new List<Spot>();
         private List<Spot> targetList = new List<Spot>();
         private int moneyChange = 0;
+        public string reason = "";
 
         public TradeConfirm(Game g, Player main, Player target, List<Spot> mainList, List<Spot> targetList, int moneyChange)
         {
@@ -32,6 +33,9 @@ namespace Monopoly
 
         private void btnNo_Click(object sender, EventArgs e)
         {
+            // Set the reason to No
+            this.reason = "No";
+
             this.Close();
         }
 
@@ -55,7 +59,10 @@ namespace Monopoly
             // Also set the target money to be updated
             game.Players[main.PlayerId].Money = main.Money + moneyChange;
 
-            //close the form
+            // Set the reason to Yes
+            this.reason = "Yes";
+
+            // close the form
             this.Close();
         }
 

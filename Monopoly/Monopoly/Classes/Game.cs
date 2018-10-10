@@ -1,15 +1,23 @@
-﻿using Monopoly.Properties;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Game.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using System.Drawing;
     using System.Windows.Forms;
+    using Monopoly.Properties;
 
+    /// <summary>
+    /// The class for a game
+    /// </summary>
     public class Game
     {
         /// <summary>
@@ -19,7 +27,7 @@ namespace Monopoly
         {
             // Construct all the properties  
             this.Board = new List<Spot>();
-            this.instantiateList();
+            this.InstantiateList();
 
             // Construct all the chance cards
             this.ChanceCards = new List<Card>();
@@ -151,7 +159,7 @@ namespace Monopoly
             int newLocationSpotId = (spacesForward + currentLocationSpotId) % this.Board.Count;
 
             // Check to see if they passed Go
-            CheckPassGo(this.Board[currentLocationSpotId], this.Board[newLocationSpotId], currentPlayer);
+            this.CheckPassGo(this.Board[currentLocationSpotId], this.Board[newLocationSpotId], currentPlayer);
 
             // Change Current Location property of player to new location
             this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = this.Board[newLocationSpotId];
@@ -176,7 +184,6 @@ namespace Monopoly
 
                     if (!currentLocation.IsAvailable && owner != currentPlayer)
                     {
-
                         // Find the rent
                         int rent = currentLocation.Rent;
 
@@ -206,7 +213,7 @@ namespace Monopoly
                 currentLocation.Type == SpotType.Utility)
             {
                 // Check to see whether the spot is available and player has enough money to buy it
-                if (currentLocation.IsAvailable && currentPlayer.Money >= currentLocation.Price )
+                if (currentLocation.IsAvailable && currentPlayer.Money >= currentLocation.Price)
                 {
                     return true;
                 }
@@ -400,12 +407,12 @@ namespace Monopoly
                     if (top.Description.Contains("Railroad"))
                     {
                         // Find the nearest railroad
-                        top.NewLocation = FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Railroad);
+                        top.NewLocation = this.FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Railroad);
                     }
                     else if (top.Description.Contains("Utility"))
                     {
                         // Find the nearest utility
-                        top.NewLocation = FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Utility);
+                        top.NewLocation = this.FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Utility);
                     }
                     else
                     {
@@ -421,7 +428,6 @@ namespace Monopoly
                     }
                 }
 
-                
                 if (top.NewLocation.Type != SpotType.Jail)
                 {
                     // If player was not sent to jail, check to see if they passed Go
@@ -487,8 +493,6 @@ namespace Monopoly
                 this.CommunityChestCards.Add(top);
             }
         }
-
-        
 
         /// <summary>
         /// Mortgages a given property
@@ -635,13 +639,13 @@ namespace Monopoly
         /// <summary>
         /// Method for checking if a player can purchase a property.
         /// </summary>
-        /// <param name="currentPlayer"></param>
-        /// <param name="property"></param>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="property">The selected property</param>
         public void PlayerBuysProperty(Player currentPlayer, Spot property)
         {
             if (property.IsAvailable == true && currentPlayer.Money >= property.Price)
             {
-                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", "", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", string.Empty, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     property.Owner = currentPlayer;
@@ -679,7 +683,7 @@ namespace Monopoly
                 else if (p.NumberOfHouses > 0)
                 {
                     // Add the cost of a house time the number of houses the property has
-                    total += (p.HouseCost * p.NumberOfHouses);
+                    total += p.HouseCost * p.NumberOfHouses;
                 }
             }
 
@@ -707,231 +711,235 @@ namespace Monopoly
             }
         }
 
-        public void instantiateList()
+        /// <summary>
+        /// The method used to instantiate the spots
+        /// </summary>
+        public void InstantiateList()
         {
-            //First Row
+            // First Row
             Spot temp = new Spot(0, "Go", SpotType.Go);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
-            temp = new Spot(1, "Mediteranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
-            Board.Add(temp);
+            temp = new Spot(1, "Mediterranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
+            this.Board.Add(temp);
 
             temp = new Spot(2, "Community Chest #1", SpotType.CommunityChest);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(3, "Baltic Avenue", Color.Brown, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(4, "Income Tax", 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(6, "Oriental Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(7, "Chance #1", SpotType.Chance);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(8, "Vermont Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(9, "Connecticut Avenue", Color.LightBlue, 120, 8, 40, 100, 300, 450, 600, 60, 50, 50);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
-            //Second Row
+            // Second Row
             temp = new Spot(10, "Jail", SpotType.Jail);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(11, "St. Charles Place", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(12, "Electric Company", SpotType.Utility, 150, 75);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(13, "States Avenue", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(14, "Virginia Avenue", Color.Pink, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(16, "St. James Place", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(17, "Community Chest #2", SpotType.CommunityChest);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(18, "Tennessee Avenue", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(19, "New York Avenue", Color.Orange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
-            //Third Row
+            // Third Row
             temp = new Spot(20, "Free Parking", SpotType.FreeParking);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(21, "Kentucky Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(22, "Chance #2", SpotType.Chance);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(23, "Indiana Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(24, "Illinois Avenue", Color.Red, 240, 20, 100, 300, 750, 925, 1100, 120, 150, 150);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(26, "Atlantic Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(27, "Ventnor Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(28, "Water Works", SpotType.Utility, 150, 75);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(29, "Marvin Gardens", Color.Yellow, 280, 24, 120, 360, 850, 1025, 1200, 140, 150, 150);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
-            //Fourth Row
+            // Fourth Row
             temp = new Spot(30, "Go To Jail", SpotType.GoToJail);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(31, "Pacific Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(32, "North Carolina Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(33, "Community Chest #3", SpotType.CommunityChest);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(34, "Pennsylvania Avenue", Color.Green, 320, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(36, "Chance #3", SpotType.Chance);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(37, "Park Place", Color.DarkBlue, 350, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(38, "Luxury Tax", 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
 
             temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
-            Board.Add(temp);
+            this.Board.Add(temp);
         }
 
+        /// <summary>
+        /// The method used to create the chance and community chest cards
+        /// </summary>
         public void CreateCards()
         {
             // Chance Cards
+            Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0]);
+            this.ChanceCards.Add(tempCard);
 
-            Card TempCard = new Card(0, "Advance To Go", CardType.Chance, Board[0]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, Board[23]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, Board[11]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(9, "Go directly to Jail", CardType.Chance, Board[10]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, Board[5]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, Board[39]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
-            ChanceCards.Add(TempCard);
+            // Community Chest Cards
+            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0]);
+            this.CommunityChestCards.Add(tempCard);
 
-            //Community Chest Cards
+            tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(0, "Advance To Go", CardType.CommunityChest, Board[0]);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10]);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(3, "Go to Jail", CardType.CommunityChest, Board[10]);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
-            CommunityChestCards.Add(TempCard);
-
-            TempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
-            CommunityChestCards.Add(TempCard);
-
-            TempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
+            this.CommunityChestCards.Add(tempCard);
         }
     }
 }

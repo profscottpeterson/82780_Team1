@@ -1,15 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MonopolyMainForm.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// An enum for dictating a spots type
+    /// </summary>
     public enum SpotType
     {
         Property,
@@ -24,11 +33,15 @@ namespace Monopoly
         FreeParking
     }
 
+    /// <summary>
+    /// An enum for dictating a cards type
+    /// </summary>
     public enum CardType
     {
         CommunityChest,
         Chance
     }
+
 
     public partial class MonopolyMainForm : Form
     {
@@ -44,11 +57,13 @@ namespace Monopoly
             InitializeComponent();
         }
 
+        /*
         public Player getCurrentPlayer()
         {
             return this.currentPlayer;
         }
-
+        */
+        
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
             // Instantiate Game
@@ -56,6 +71,7 @@ namespace Monopoly
 
             // Options to start game, player count notably
             GameOptions options = new GameOptions(game);
+            options.StartPosition = FormStartPosition.CenterParent;
             DialogResult result = options.ShowDialog();
 
             if (result == DialogResult.Cancel)
@@ -120,6 +136,11 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// The click event for rolling the two dice on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRoll_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
@@ -171,6 +192,7 @@ namespace Monopoly
                     ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
 
                     BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
+                    buyProp.StartPosition = FormStartPosition.CenterParent;
                     buyProp.ShowDialog();
                 }
 
@@ -307,7 +329,7 @@ namespace Monopoly
             SetNextPlayer(currentPlayer);
         }
 
-        public void FindNewPawnLocations(int newLocation)
+        private void FindNewPawnLocations(int newLocation)
         {
             // Bottom Row
             if (newLocation > 0 && newLocation < 10)
@@ -622,25 +644,50 @@ namespace Monopoly
             List<Spot> currentPlayerSpots = new List<Spot>();
             currentPlayerSpots = game.GetPlayersPropertyList(player);
             PictureBox[] pictureBoxes = new PictureBox[currentPlayerSpots.Count];
+            Panel[] playerPropertyPanels = new Panel[currentPlayerSpots.Count];
+            Label[] playerPropertyLabels = new Label[currentPlayerSpots.Count];
             if (pictureBoxes.Length > 0)
             {
                 for (int r = 0; r < pictureBoxes.Length; r++)
                 {
                     pictureBoxes[r] = new PictureBox();
+                    playerPropertyPanels[r] = new Panel();
+                    playerPropertyLabels[r] = new Label();
                 }
 
                 foreach (PictureBox pb in pictureBoxes)
                 {
+                    Point point = new Point(5,30);
                     pb.Width = 70;
                     pb.Height = 115;
+                    pb.Location = point;
                 }
+
+                foreach (Panel pl in playerPropertyPanels)
+                {
+                    pl.Width = 80;
+                    pl.Height = 150;
+                    pl.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                }
+
+                foreach (Label lbl in playerPropertyLabels)
+                {
+                    lbl.MaximumSize = new Size(80,40);
+                    lbl.AutoSize = true;
+                    lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                }
+
                 Spot s = new Spot();
                 Image tempImage = new Bitmap(70, 115);
                 PictureBox p = new PictureBox();
+                Panel panel = new Panel();
+                Label label = new Label();
                 for (int g = 0; g < currentPlayerSpots.Count; g++)
                 {
                     p = pictureBoxes[g];
                     s = currentPlayerSpots[g];
+                    panel = playerPropertyPanels[g];
+                    label = playerPropertyLabels[g];
                     if (s.Color == Color.Black)
                     {
                         if (s.Type == SpotType.Utility)
@@ -648,7 +695,8 @@ namespace Monopoly
                             if (s.SpotName == "Electric Company")
                             {
                                 tempImage = usableSpotPictures.Images[0];
-                                p.Image = tempImage;   
+                                p.Image = tempImage;
+                                
                             }
                             else
                             {
@@ -712,15 +760,23 @@ namespace Monopoly
                     }
 
                     p.Tag = g.ToString();
+                    panel.Tag = g.ToString();
+                    label.Tag = g.ToString();
+                    label.Text = s.SpotName;
                 }
             }
-        
+
             foreach (PictureBox pbx in pictureBoxes)
             {
-                flpCurrentPlayerProps.Controls.Add(pbx);
                 pbx.Click += delegate { PropertyClickEvent(currentPlayerSpots[Int32.Parse(pbx.Tag.ToString())]); };
             }
-       
+
+            foreach (Panel panel in playerPropertyPanels)
+            {
+                panel.Controls.Add(playerPropertyLabels[int.Parse(panel.Tag.ToString())]);
+                panel.Controls.Add(pictureBoxes[int.Parse(panel.Tag.ToString())]);
+                flpCurrentPlayerProps.Controls.Add(panel);
+            }
             SetCurrentPlayerImage(player);
             lblPlayerTurn.Text = player.PlayerName + "'s Turn";
             lblCurrentBalance.Text = player.Money.ToString();
@@ -743,12 +799,14 @@ namespace Monopoly
             if (spot.Type == SpotType.Property)
             {
                 MonPopUp popUp = new MonPopUp(spot);
+                popUp.StartPosition = FormStartPosition.CenterParent;
                 popUp.ShowDialog();
             }
 
             if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
             {
                 NonPropPopUp popUp = new NonPropPopUp(spot);
+                popUp.StartPosition = FormStartPosition.CenterParent;
                 popUp.ShowDialog();
             }
         }
@@ -756,8 +814,11 @@ namespace Monopoly
         private void btnTradeRequest_Click(object sender, EventArgs e)
         {
             Trade tradeForm = new Trade(currentPlayer, game);
-
+            tradeForm.StartPosition = FormStartPosition.CenterParent;
             tradeForm.ShowDialog();
+            
+
+            SetNextPlayer(currentPlayer);
         }
     }
 }

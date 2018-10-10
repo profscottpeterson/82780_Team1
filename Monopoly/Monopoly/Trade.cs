@@ -74,7 +74,10 @@ namespace Monopoly
             TradeConfirm confirm = new TradeConfirm(game, currentPlayer, chosenPlayer, requesterOffer, targetOffer, int.Parse(lastConfirmed));
             confirm.ShowDialog();
 
-            this.Close();
+            if (confirm.reason == "Yes")
+            {
+                this.Close();
+            }
         }
 
         private void txtRequesterMoney_TextChanged(object sender, EventArgs e)

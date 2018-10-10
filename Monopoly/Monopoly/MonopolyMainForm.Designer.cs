@@ -643,6 +643,7 @@
             // BoardBackgroundImage
             // 
             this.BoardBackgroundImage.BackColor = System.Drawing.Color.PeachPuff;
+            this.BoardBackgroundImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BoardBackgroundImage.Location = new System.Drawing.Point(0, 0);
             this.BoardBackgroundImage.Name = "BoardBackgroundImage";
             this.BoardBackgroundImage.Size = new System.Drawing.Size(900, 900);
@@ -670,9 +671,12 @@
             // 
             // flpCurrentPlayerProps
             // 
+            this.flpCurrentPlayerProps.AutoScroll = true;
+            this.flpCurrentPlayerProps.BackColor = System.Drawing.Color.PeachPuff;
+            this.flpCurrentPlayerProps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 105);
             this.flpCurrentPlayerProps.Name = "flpCurrentPlayerProps";
-            this.flpCurrentPlayerProps.Size = new System.Drawing.Size(461, 310);
+            this.flpCurrentPlayerProps.Size = new System.Drawing.Size(460, 330);
             this.flpCurrentPlayerProps.TabIndex = 54;
             // 
             // usableSpotPictures
@@ -696,9 +700,9 @@
             this.lblCurrentBalance.AutoSize = true;
             this.lblCurrentBalance.Location = new System.Drawing.Point(908, 67);
             this.lblCurrentBalance.Name = "lblCurrentBalance";
-            this.lblCurrentBalance.Size = new System.Drawing.Size(35, 13);
+            this.lblCurrentBalance.Size = new System.Drawing.Size(90, 13);
             this.lblCurrentBalance.TabIndex = 55;
-            this.lblCurrentBalance.Text = "label1";
+            this.lblCurrentBalance.Text = "lblCurrentBalance";
             // 
             // MonopolyMainForm
             // 

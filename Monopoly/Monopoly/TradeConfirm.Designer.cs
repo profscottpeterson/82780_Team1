@@ -1,7 +1,96 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="TradeConfirm.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
+    /// <summary>
+    /// The class for the trade confirm form
+    /// </summary>
     partial class TradeConfirm
     {
+        /// <summary>
+        /// The group box for what the requestee is offering
+        /// </summary>
+        private System.Windows.Forms.GroupBox grpRequesteeOffering;
+
+        /// <summary>
+        /// The label for how much the requestee offered
+        /// </summary>
+        private System.Windows.Forms.Label lblRequesteeMoneyNew;
+
+        /// <summary>
+        /// A label for an arrow
+        /// </summary>
+        private System.Windows.Forms.Label lblArrow2;
+
+        /// <summary>
+        /// The label for how much the requestee is offering
+        /// </summary>
+        private System.Windows.Forms.Label lblRequsteeMoneyOffering;
+
+        /// <summary>
+        /// A list box of properties
+        /// </summary>
+        private System.Windows.Forms.ListBox lstRequesteeOffering;
+
+        /// <summary>
+        /// A group box for something
+        /// </summary>
+        private System.Windows.Forms.GroupBox grpRequesterOffering;
+
+        /// <summary>
+        /// A label for the requester money
+        /// </summary>
+        private System.Windows.Forms.Label lblRequesterMoneyNew;
+
+        /// <summary>
+        /// Also a label for an arrow
+        /// </summary>
+        private System.Windows.Forms.Label lblArrow1;
+
+        /// <summary>
+        /// Also a label
+        /// </summary>
+        private System.Windows.Forms.Label lblRequesterMoneyOffering;
+
+        /// <summary>
+        /// What the requester is offering
+        /// </summary>
+        private System.Windows.Forms.ListBox lstRequesterOffering;
+
+        /// <summary>
+        /// ANOTHER ARROW
+        /// </summary>
+        private System.Windows.Forms.Label lblDoubleArrow;
+
+        /// <summary>
+        /// The label for a question
+        /// </summary>
+        private System.Windows.Forms.Label lblQuestion;
+
+        /// <summary>
+        /// The button for yes
+        /// </summary>
+        private System.Windows.Forms.Button btnYes;
+
+        /// <summary>
+        /// The button for no
+        /// </summary>
+        private System.Windows.Forms.Button btnNo;
+
+        /// <summary>
+        /// The original money the requestee had
+        /// </summary>
+        private System.Windows.Forms.Label lblRequesteeOriginTotal;
+
+        /// <summary>
+        /// The original money for the requester
+        /// </summary>
+        private System.Windows.Forms.Label lblRequesterOriginTotal;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -13,9 +102,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -240,22 +329,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox grpRequesteeOffering;
-        private System.Windows.Forms.Label lblRequesteeMoneyNew;
-        private System.Windows.Forms.Label lblArrow2;
-        private System.Windows.Forms.Label lblRequsteeMoneyOffering;
-        private System.Windows.Forms.ListBox lstRequesteeOffering;
-        private System.Windows.Forms.GroupBox grpRequesterOffering;
-        private System.Windows.Forms.Label lblRequesterMoneyNew;
-        private System.Windows.Forms.Label lblArrow1;
-        private System.Windows.Forms.Label lblRequesterMoneyOffering;
-        private System.Windows.Forms.ListBox lstRequesterOffering;
-        private System.Windows.Forms.Label lblDoubleArrow;
-        private System.Windows.Forms.Label lblQuestion;
-        private System.Windows.Forms.Button btnYes;
-        private System.Windows.Forms.Button btnNo;
-        private System.Windows.Forms.Label lblRequesteeOriginTotal;
-        private System.Windows.Forms.Label lblRequesterOriginTotal;
     }
 }

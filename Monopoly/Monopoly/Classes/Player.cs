@@ -1,25 +1,38 @@
-﻿using System.Diagnostics.Contracts;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Player.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
+    /// <summary>
+    /// The class for a player
+    /// </summary>
     public class Player
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class. 
+        /// </summary>
         public Player()
         {
             this.InJail = false;
             this.GetOutOfJailFreeCards = new List<Card>();
             this.PlayerPictureBox = new PictureBox();
-            //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
-            this.Money = 1500;  // Set Money to default value
+
+            // Set Money to default value
+            this.Money = 1500;  
         }
+
         /// <summary>
         /// Initializes a new instance of the Player class.
         /// </summary>
@@ -33,8 +46,9 @@ namespace Monopoly
             this.Color = color;
             this.InJail = false;
             this.GetOutOfJailFreeCards = new List<Card>();
-            //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
-            this.Money = 1500;  // Set Money to default value
+
+            // Set Money to default value
+            this.Money = 1500;  
         }
 
         /// <summary>

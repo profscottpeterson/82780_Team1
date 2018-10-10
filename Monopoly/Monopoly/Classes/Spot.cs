@@ -1,4 +1,8 @@
-﻿using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Spot.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
@@ -8,7 +12,11 @@ namespace Monopoly
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
+    /// <summary>
+    /// The class for a spot
+    /// </summary>
     public class Spot
     {
         /// <summary>
@@ -122,8 +130,20 @@ namespace Monopoly
         /// <param name="mortgage">The price of a property's mortgage</param>
         /// <param name="houseCost">The cost to buy a house</param>
         /// <param name="hotelCost">The cost to buy a hotel</param>
-        public Spot(int spotId, string spotName, Color color, int price, int rent, int rent1House,
-            int rent2Houses, int rent3Houses, int rent4Houses, int rentHotel, int mortgage, int houseCost, int hotelCost)
+        public Spot(
+               int spotId, 
+               string spotName, 
+               Color color, 
+               int price, 
+               int rent, 
+               int rent1House,
+               int rent2Houses, 
+               int rent3Houses, 
+               int rent4Houses, 
+               int rentHotel, 
+               int mortgage, 
+               int houseCost, 
+               int hotelCost)
         {
             this.SpotId = spotId;
             this.SpotName = spotName;
@@ -146,9 +166,11 @@ namespace Monopoly
             this.SpotBox = new PictureBox();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Spot"/> class.
+        /// </summary>
         public Spot()
         {
-
         }
 
         /// <summary>

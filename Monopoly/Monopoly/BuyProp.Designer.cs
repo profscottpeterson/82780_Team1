@@ -1,7 +1,96 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="BuyProp.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
-    partial class BuyProp
+    /// <summary>
+    /// The designer class for the form buy Prop
+    /// </summary>
+    public partial class BuyProp
     {
+        /// <summary>
+        /// The cards color picture box
+        /// </summary>
+        private System.Windows.Forms.PictureBox colorPicBox;
+
+        /// <summary>
+        /// Rent with 3 houses
+        /// </summary>
+        private System.Windows.Forms.Label rent3Label;
+
+        /// <summary>
+        /// Rent with 1 house
+        /// </summary>
+        private System.Windows.Forms.Label rent1Label;
+
+        /// <summary>
+        /// Price for card
+        /// </summary>
+        private System.Windows.Forms.Label priceLabel;
+
+        /// <summary>
+        /// Rent with a hotel
+        /// </summary>
+        private System.Windows.Forms.Label rentHotelLabel;
+
+        /// <summary>
+        /// Rent with 4 houses
+        /// </summary>
+        private System.Windows.Forms.Label rent4Label;
+
+        /// <summary>
+        /// Mortgage label
+        /// </summary>
+        private System.Windows.Forms.Label mortgageLabel;
+
+        /// <summary>
+        /// Rent with 2 houses
+        /// </summary>
+        private System.Windows.Forms.Label rent2Label;
+
+        /// <summary>
+        /// Regular rent without house or hotel
+        /// </summary>
+        private System.Windows.Forms.Label rentLabel;
+
+        /// <summary>
+        /// The name of the spot
+        /// </summary>
+        private System.Windows.Forms.Label spotNameLabel;
+
+        /// <summary>
+        /// A question
+        /// </summary>
+        private System.Windows.Forms.Panel pnlQuestion;
+
+        /// <summary>
+        /// Yes button
+        /// </summary>
+        private System.Windows.Forms.Button btnYes;
+
+        /// <summary>
+        /// No button
+        /// </summary>
+        private System.Windows.Forms.Button btnNo;
+
+        /// <summary>
+        /// Label with question
+        /// </summary>
+        private System.Windows.Forms.Label lblQuestion;
+
+        /// <summary>
+        /// How much money you have
+        /// </summary>
+        private System.Windows.Forms.Label lblYourMoney;
+
+        /// <summary>
+        /// IDK another label with your money
+        /// </summary>
+        private System.Windows.Forms.Label lblYourMoneyText;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -13,10 +102,11 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -28,114 +118,114 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ColorPicBox = new System.Windows.Forms.PictureBox();
-            this.Rent3Label = new System.Windows.Forms.Label();
-            this.Rent1Label = new System.Windows.Forms.Label();
-            this.PriceLabel = new System.Windows.Forms.Label();
-            this.RentHotelLabel = new System.Windows.Forms.Label();
-            this.Rent4Label = new System.Windows.Forms.Label();
-            this.MortgageLabel = new System.Windows.Forms.Label();
-            this.Rent2Label = new System.Windows.Forms.Label();
-            this.RentLabel = new System.Windows.Forms.Label();
-            this.SpotNameLabel = new System.Windows.Forms.Label();
+            this.colorPicBox = new System.Windows.Forms.PictureBox();
+            this.rent3Label = new System.Windows.Forms.Label();
+            this.rent1Label = new System.Windows.Forms.Label();
+            this.priceLabel = new System.Windows.Forms.Label();
+            this.rentHotelLabel = new System.Windows.Forms.Label();
+            this.rent4Label = new System.Windows.Forms.Label();
+            this.mortgageLabel = new System.Windows.Forms.Label();
+            this.rent2Label = new System.Windows.Forms.Label();
+            this.rentLabel = new System.Windows.Forms.Label();
+            this.spotNameLabel = new System.Windows.Forms.Label();
             this.pnlQuestion = new System.Windows.Forms.Panel();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.btnYes = new System.Windows.Forms.Button();
             this.btnNo = new System.Windows.Forms.Button();
             this.lblYourMoneyText = new System.Windows.Forms.Label();
             this.lblYourMoney = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ColorPicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPicBox)).BeginInit();
             this.pnlQuestion.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ColorPicBox
+            // colorPicBox
             // 
-            this.ColorPicBox.Location = new System.Drawing.Point(12, 12);
-            this.ColorPicBox.Name = "ColorPicBox";
-            this.ColorPicBox.Size = new System.Drawing.Size(251, 35);
-            this.ColorPicBox.TabIndex = 22;
-            this.ColorPicBox.TabStop = false;
+            this.colorPicBox.Location = new System.Drawing.Point(12, 12);
+            this.colorPicBox.Name = "colorPicBox";
+            this.colorPicBox.Size = new System.Drawing.Size(251, 35);
+            this.colorPicBox.TabIndex = 22;
+            this.colorPicBox.TabStop = false;
             // 
-            // Rent3Label
+            // rent3Label
             // 
-            this.Rent3Label.AutoSize = true;
-            this.Rent3Label.Location = new System.Drawing.Point(9, 188);
-            this.Rent3Label.Name = "Rent3Label";
-            this.Rent3Label.Size = new System.Drawing.Size(41, 13);
-            this.Rent3Label.TabIndex = 21;
-            this.Rent3Label.Text = "label12";
+            this.rent3Label.AutoSize = true;
+            this.rent3Label.Location = new System.Drawing.Point(9, 188);
+            this.rent3Label.Name = "rent3Label";
+            this.rent3Label.Size = new System.Drawing.Size(41, 13);
+            this.rent3Label.TabIndex = 21;
+            this.rent3Label.Text = "label12";
             // 
-            // Rent1Label
+            // rent1Label
             // 
-            this.Rent1Label.AutoSize = true;
-            this.Rent1Label.Location = new System.Drawing.Point(9, 130);
-            this.Rent1Label.Name = "Rent1Label";
-            this.Rent1Label.Size = new System.Drawing.Size(41, 13);
-            this.Rent1Label.TabIndex = 20;
-            this.Rent1Label.Text = "label11";
+            this.rent1Label.AutoSize = true;
+            this.rent1Label.Location = new System.Drawing.Point(9, 130);
+            this.rent1Label.Name = "rent1Label";
+            this.rent1Label.Size = new System.Drawing.Size(41, 13);
+            this.rent1Label.TabIndex = 20;
+            this.rent1Label.Text = "label11";
             // 
-            // PriceLabel
+            // priceLabel
             // 
-            this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(9, 73);
-            this.PriceLabel.Name = "PriceLabel";
-            this.PriceLabel.Size = new System.Drawing.Size(41, 13);
-            this.PriceLabel.TabIndex = 19;
-            this.PriceLabel.Text = "label10";
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Location = new System.Drawing.Point(9, 73);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(41, 13);
+            this.priceLabel.TabIndex = 19;
+            this.priceLabel.Text = "label10";
             // 
-            // RentHotelLabel
+            // rentHotelLabel
             // 
-            this.RentHotelLabel.AutoSize = true;
-            this.RentHotelLabel.Location = new System.Drawing.Point(113, 50);
-            this.RentHotelLabel.Name = "RentHotelLabel";
-            this.RentHotelLabel.Size = new System.Drawing.Size(35, 13);
-            this.RentHotelLabel.TabIndex = 18;
-            this.RentHotelLabel.Text = "label6";
+            this.rentHotelLabel.AutoSize = true;
+            this.rentHotelLabel.Location = new System.Drawing.Point(113, 50);
+            this.rentHotelLabel.Name = "rentHotelLabel";
+            this.rentHotelLabel.Size = new System.Drawing.Size(35, 13);
+            this.rentHotelLabel.TabIndex = 18;
+            this.rentHotelLabel.Text = "label6";
             // 
-            // Rent4Label
+            // rent4Label
             // 
-            this.Rent4Label.AutoSize = true;
-            this.Rent4Label.Location = new System.Drawing.Point(9, 211);
-            this.Rent4Label.Name = "Rent4Label";
-            this.Rent4Label.Size = new System.Drawing.Size(35, 13);
-            this.Rent4Label.TabIndex = 17;
-            this.Rent4Label.Text = "label5";
+            this.rent4Label.AutoSize = true;
+            this.rent4Label.Location = new System.Drawing.Point(9, 211);
+            this.rent4Label.Name = "rent4Label";
+            this.rent4Label.Size = new System.Drawing.Size(35, 13);
+            this.rent4Label.TabIndex = 17;
+            this.rent4Label.Text = "label5";
             // 
-            // MortgageLabel
+            // mortgageLabel
             // 
-            this.MortgageLabel.AutoSize = true;
-            this.MortgageLabel.Location = new System.Drawing.Point(113, 73);
-            this.MortgageLabel.Name = "MortgageLabel";
-            this.MortgageLabel.Size = new System.Drawing.Size(35, 13);
-            this.MortgageLabel.TabIndex = 16;
-            this.MortgageLabel.Text = "label4";
+            this.mortgageLabel.AutoSize = true;
+            this.mortgageLabel.Location = new System.Drawing.Point(113, 73);
+            this.mortgageLabel.Name = "mortgageLabel";
+            this.mortgageLabel.Size = new System.Drawing.Size(35, 13);
+            this.mortgageLabel.TabIndex = 16;
+            this.mortgageLabel.Text = "label4";
             // 
-            // Rent2Label
+            // rent2Label
             // 
-            this.Rent2Label.AutoSize = true;
-            this.Rent2Label.Location = new System.Drawing.Point(9, 163);
-            this.Rent2Label.Name = "Rent2Label";
-            this.Rent2Label.Size = new System.Drawing.Size(35, 13);
-            this.Rent2Label.TabIndex = 15;
-            this.Rent2Label.Text = "label3";
+            this.rent2Label.AutoSize = true;
+            this.rent2Label.Location = new System.Drawing.Point(9, 163);
+            this.rent2Label.Name = "rent2Label";
+            this.rent2Label.Size = new System.Drawing.Size(35, 13);
+            this.rent2Label.TabIndex = 15;
+            this.rent2Label.Text = "label3";
             // 
-            // RentLabel
+            // rentLabel
             // 
-            this.RentLabel.AutoSize = true;
-            this.RentLabel.Location = new System.Drawing.Point(9, 96);
-            this.RentLabel.Name = "RentLabel";
-            this.RentLabel.Size = new System.Drawing.Size(35, 13);
-            this.RentLabel.TabIndex = 14;
-            this.RentLabel.Text = "label2";
+            this.rentLabel.AutoSize = true;
+            this.rentLabel.Location = new System.Drawing.Point(9, 96);
+            this.rentLabel.Name = "rentLabel";
+            this.rentLabel.Size = new System.Drawing.Size(35, 13);
+            this.rentLabel.TabIndex = 14;
+            this.rentLabel.Text = "label2";
             // 
-            // SpotNameLabel
+            // spotNameLabel
             // 
-            this.SpotNameLabel.AutoSize = true;
-            this.SpotNameLabel.Location = new System.Drawing.Point(9, 50);
-            this.SpotNameLabel.Name = "SpotNameLabel";
-            this.SpotNameLabel.Size = new System.Drawing.Size(35, 13);
-            this.SpotNameLabel.TabIndex = 13;
-            this.SpotNameLabel.Text = "label1";
+            this.spotNameLabel.AutoSize = true;
+            this.spotNameLabel.Location = new System.Drawing.Point(9, 50);
+            this.spotNameLabel.Name = "spotNameLabel";
+            this.spotNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.spotNameLabel.TabIndex = 13;
+            this.spotNameLabel.Text = "label1";
             // 
             // pnlQuestion
             // 
@@ -168,7 +258,7 @@
             this.btnYes.TabIndex = 24;
             this.btnYes.Text = "Yes";
             this.btnYes.UseVisualStyleBackColor = true;
-            this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
+            this.btnYes.Click += new System.EventHandler(this.BtnYes_Click);
             // 
             // btnNo
             // 
@@ -178,7 +268,7 @@
             this.btnNo.TabIndex = 25;
             this.btnNo.Text = "No";
             this.btnNo.UseVisualStyleBackColor = true;
-            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
+            this.btnNo.Click += new System.EventHandler(this.BtnNo_Click);
             // 
             // lblYourMoneyText
             // 
@@ -206,19 +296,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 405);
             this.Controls.Add(this.pnlQuestion);
-            this.Controls.Add(this.ColorPicBox);
-            this.Controls.Add(this.Rent3Label);
-            this.Controls.Add(this.Rent1Label);
-            this.Controls.Add(this.PriceLabel);
-            this.Controls.Add(this.RentHotelLabel);
-            this.Controls.Add(this.Rent4Label);
-            this.Controls.Add(this.MortgageLabel);
-            this.Controls.Add(this.Rent2Label);
-            this.Controls.Add(this.RentLabel);
-            this.Controls.Add(this.SpotNameLabel);
+            this.Controls.Add(this.colorPicBox);
+            this.Controls.Add(this.rent3Label);
+            this.Controls.Add(this.rent1Label);
+            this.Controls.Add(this.priceLabel);
+            this.Controls.Add(this.rentHotelLabel);
+            this.Controls.Add(this.rent4Label);
+            this.Controls.Add(this.mortgageLabel);
+            this.Controls.Add(this.rent2Label);
+            this.Controls.Add(this.rentLabel);
+            this.Controls.Add(this.spotNameLabel);
             this.Name = "BuyProp";
             this.Text = "BuyProp";
-            ((System.ComponentModel.ISupportInitialize)(this.ColorPicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPicBox)).EndInit();
             this.pnlQuestion.ResumeLayout(false);
             this.pnlQuestion.PerformLayout();
             this.ResumeLayout(false);
@@ -227,22 +317,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox ColorPicBox;
-        private System.Windows.Forms.Label Rent3Label;
-        private System.Windows.Forms.Label Rent1Label;
-        private System.Windows.Forms.Label PriceLabel;
-        private System.Windows.Forms.Label RentHotelLabel;
-        private System.Windows.Forms.Label Rent4Label;
-        private System.Windows.Forms.Label MortgageLabel;
-        private System.Windows.Forms.Label Rent2Label;
-        private System.Windows.Forms.Label RentLabel;
-        private System.Windows.Forms.Label SpotNameLabel;
-        private System.Windows.Forms.Panel pnlQuestion;
-        private System.Windows.Forms.Button btnYes;
-        private System.Windows.Forms.Button btnNo;
-        private System.Windows.Forms.Label lblQuestion;
-        private System.Windows.Forms.Label lblYourMoney;
-        private System.Windows.Forms.Label lblYourMoneyText;
     }
 }

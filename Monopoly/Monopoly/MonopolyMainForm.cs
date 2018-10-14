@@ -93,6 +93,28 @@ namespace Monopoly
                     game.Players[i].PlayerPictureBox = playerBoxes[i];
                 }
 
+                if (game.Players.Count == 2)
+                {
+                    picPlayer1.Visible = true;
+                    picPlayer2.Visible = true;
+                    picPlayer3.Visible = false;
+                    picPlayer4.Visible = false;
+                }
+                else if (game.Players.Count == 3)
+                {
+                    picPlayer1.Visible = true;
+                    picPlayer2.Visible = true;
+                    picPlayer3.Visible = true;
+                    picPlayer4.Visible = false;
+                }
+                else if (game.Players.Count == 4)
+                {
+                    picPlayer1.Visible = true;
+                    picPlayer2.Visible = true;
+                    picPlayer3.Visible = true;
+                    picPlayer4.Visible = true;
+                }
+
                 // Shows the players the current players image or color as well as the current player
                 SetCurrentPlayerImage(currentPlayer);
                 lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
@@ -190,10 +212,12 @@ namespace Monopoly
                 if (game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
                 {
                     ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
-
                     BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
-                    buyProp.StartPosition = FormStartPosition.CenterParent;
-                    buyProp.ShowDialog();
+                    if (buyProp.IsDisposed == false)
+                    {
+                        buyProp.StartPosition = FormStartPosition.CenterParent;
+                        buyProp.ShowDialog();
+                    }
                 }
 
                 // Check to see if tax needs to be paid and pay it if yes
@@ -817,6 +841,27 @@ namespace Monopoly
             tradeForm.StartPosition = FormStartPosition.CenterParent;
             tradeForm.ShowDialog();
             
+
+            SetNextPlayer(currentPlayer);
+        }
+
+        private void btnSell_Click(object sender, EventArgs e)
+        {
+            GetMoney money = new GetMoney(this.game, this.currentPlayer);
+
+            money.ShowDialog();
+
+            SetNextPlayer(currentPlayer);
+        }
+
+        private void btnBuyHouseOrHotel_Click(object sender, EventArgs e)
+        {
+            UpgradeProperty upgrade = new UpgradeProperty(game, currentPlayer);
+            if (upgrade.IsDisposed == false)
+            {
+                upgrade.ShowDialog();
+                currentPlayer = game.Players[currentPlayer.PlayerId];
+            }
 
             SetNextPlayer(currentPlayer);
         }

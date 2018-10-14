@@ -247,9 +247,20 @@ namespace Monopoly
             if (currentLocation.Type == SpotType.Tax)
             {
                 ////TODO: or pay 10% - add form
+                int tenPercent = (int)((TotalNetWorth(currentPlayer))*.1);
                 
-                // Pay Tax
-                this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;
+                //Choose for the player whether the 200 or 10% of their total net worth is lower
+                if (currentLocation.Rent > tenPercent)
+                {
+                    // Pay Tax
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;
+                }
+                else
+                {
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= tenPercent;
+                }
+
+                
 
                 // Check that player had enough money to pay tax
                 this.CheckIfPlayerHasEnoughMoney(currentPlayer);
@@ -796,8 +807,10 @@ namespace Monopoly
         {
             if (player.NeedMoreMoney() && this.TotalNetWorth(player) > 0)
             {
+                GetMoney money = new GetMoney(this, player, (player.Money*-1));
+                money.ShowDialog();
                 //// TODO: change this to show a form with options on what the player can do
-                MessageBox.Show(player.PlayerName + " needs more money to pay.");
+                //MessageBox.Show(player.PlayerName + " needs more money to pay.");
             }
             else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
             {
@@ -836,6 +849,182 @@ namespace Monopoly
 
             // Remove player from player list
             this.Players.Remove(player);
+        }
+
+        public List<Color> checkIfEligibleForHouse(List<Spot> prop)
+        {
+            //create a list of colors to hold which colors are eligible for houses 
+            List<Color> houseOkay = new List<Color>();
+
+            //Create counters for every color
+            int numBrown = 0; //out of 2
+            int numLightBlue = 0; // out of 3
+            int numPink = 0; // out of 3
+            int numOrange = 0; // out of 3
+            int numRed = 0; // out of 3
+            int numYellow = 0; // out of 3
+            int numGreen = 0; // out of 3
+            int numDarkBlue = 0; // out of 2
+
+            //Check through the list and add each color to the respective counter
+            foreach (Spot s in prop)
+            {
+                if (s.Color == Color.Brown)
+                {
+                    numBrown++;
+                } else if (s.Color == Color.LightBlue)
+                {
+                    numLightBlue++;
+                } else if (s.Color == Color.Pink)
+                {
+                    numPink++;
+                } else if (s.Color == Color.Orange)
+                {
+                    numOrange++;
+                } else if (s.Color == Color.Red)
+                {
+                    numRed++;
+                } else if (s.Color == Color.Yellow)
+                {
+                    numYellow++;
+                } else if (s.Color == Color.Green)
+                {
+                    numGreen++;
+                } else if (s.Color == Color.DarkBlue)
+                {
+                    numDarkBlue++;
+                }
+            }
+
+            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
+            if (numBrown == 2)
+            {
+                houseOkay.Add(Color.Brown);
+            }
+            if (numLightBlue == 3)
+            {
+                houseOkay.Add(Color.LightBlue);
+            }
+            if (numPink == 3)
+            {
+                houseOkay.Add(Color.Pink);
+            }
+            if (numOrange == 3)
+            {
+                houseOkay.Add(Color.Orange);
+            }
+            if (numRed == 3)
+            {
+                houseOkay.Add(Color.Red);
+            }
+            if (numYellow == 3)
+            {
+                houseOkay.Add(Color.Yellow);
+            }
+            if (numGreen == 3)
+            {
+                houseOkay.Add(Color.Green);
+            }
+            if (numDarkBlue == 2)
+            {
+                houseOkay.Add(Color.DarkBlue);
+            }
+
+            //return the list
+            return houseOkay;
+        }
+
+        public List<Color> checkIfEligibleForHotel(List<Spot> prop)
+        {
+            //create a list of colors to hold which colors are eligible for houses 
+            List<Color> hotelOkay = new List<Color>();
+
+            //Create counters for every color
+            int numBrown = 0; //out of 2
+            int numLightBlue = 0; // out of 3
+            int numPink = 0; // out of 3
+            int numOrange = 0; // out of 3
+            int numRed = 0; // out of 3
+            int numYellow = 0; // out of 3
+            int numGreen = 0; // out of 3
+            int numDarkBlue = 0; // out of 2
+
+            //Check through the list and add each color to the respective counter
+            foreach (Spot s in prop)
+            {
+                if (s.NumberOfHouses >= 4)
+                {
+                    if (s.Color == Color.Brown)
+                    {
+                        numBrown++;
+                    }
+                    else if (s.Color == Color.LightBlue)
+                    {
+                        numLightBlue++;
+                    }
+                    else if (s.Color == Color.Pink)
+                    {
+                        numPink++;
+                    }
+                    else if (s.Color == Color.Orange)
+                    {
+                        numOrange++;
+                    }
+                    else if (s.Color == Color.Red)
+                    {
+                        numRed++;
+                    }
+                    else if (s.Color == Color.Yellow)
+                    {
+                        numYellow++;
+                    }
+                    else if (s.Color == Color.Green)
+                    {
+                        numGreen++;
+                    }
+                    else if (s.Color == Color.DarkBlue)
+                    {
+                        numDarkBlue++;
+                    }
+                }
+            }
+
+            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
+            if (numBrown == 2)
+            {
+                hotelOkay.Add(Color.Brown);
+            }
+            else if (numLightBlue == 3)
+            {
+                hotelOkay.Add(Color.LightBlue);
+            }
+            else if (numPink == 3)
+            {
+                hotelOkay.Add(Color.Pink);
+            }
+            else if (numOrange == 3)
+            {
+                hotelOkay.Add(Color.Orange);
+            }
+            else if (numRed == 3)
+            {
+                hotelOkay.Add(Color.Red);
+            }
+            else if (numYellow == 3)
+            {
+                hotelOkay.Add(Color.Yellow);
+            }
+            else if (numGreen == 3)
+            {
+                hotelOkay.Add(Color.Green);
+            }
+            else if (numDarkBlue == 2)
+            {
+                hotelOkay.Add(Color.DarkBlue);
+            }
+
+            //return the list
+            return hotelOkay;
         }
 
         /// <summary>

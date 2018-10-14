@@ -173,6 +173,8 @@ namespace Monopoly
         /// <param name="spots">The list of spots used to fill list view</param>
         public void FillListView(ListView listView, List<Spot> spots)
         {
+            listView.Clear();
+
             // Add Column Headers only if they don't already exist
             if (listView.Columns.Count == 0)
             {

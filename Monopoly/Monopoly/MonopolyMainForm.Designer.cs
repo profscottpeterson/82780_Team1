@@ -33,6 +33,13 @@
             this.btnRoll = new System.Windows.Forms.Button();
             this.lblPlayerTurn = new System.Windows.Forms.Label();
             this.btnTradeRequest = new System.Windows.Forms.Button();
+            this.dicePictures = new System.Windows.Forms.ImageList(this.components);
+            this.flpCurrentPlayerProps = new System.Windows.Forms.FlowLayoutPanel();
+            this.usableSpotPictures = new System.Windows.Forms.ImageList(this.components);
+            this.lblCurrentBalance = new System.Windows.Forms.Label();
+            this.btnSell = new System.Windows.Forms.Button();
+            this.btnBuyHouseOrHotel = new System.Windows.Forms.Button();
+            this.pbxCurrentPlayerPicture = new System.Windows.Forms.PictureBox();
             this.pbxDiceRight = new System.Windows.Forms.PictureBox();
             this.pbxDiceLeft = new System.Windows.Forms.PictureBox();
             this.picPlayer4 = new System.Windows.Forms.PictureBox();
@@ -81,11 +88,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.BoardTemplateImage = new System.Windows.Forms.PictureBox();
             this.BoardBackgroundImage = new System.Windows.Forms.PictureBox();
-            this.pbxCurrentPlayerPicture = new System.Windows.Forms.PictureBox();
-            this.dicePictures = new System.Windows.Forms.ImageList(this.components);
-            this.flpCurrentPlayerProps = new System.Windows.Forms.FlowLayoutPanel();
-            this.usableSpotPictures = new System.Windows.Forms.ImageList(this.components);
-            this.lblCurrentBalance = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer4)).BeginInit();
@@ -134,7 +137,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRoll
@@ -166,6 +168,80 @@
             this.btnTradeRequest.Text = "Trade Request";
             this.btnTradeRequest.UseVisualStyleBackColor = true;
             this.btnTradeRequest.Click += new System.EventHandler(this.btnTradeRequest_Click);
+            // 
+            // dicePictures
+            // 
+            this.dicePictures.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("dicePictures.ImageStream")));
+            this.dicePictures.TransparentColor = System.Drawing.Color.Transparent;
+            this.dicePictures.Images.SetKeyName(0, "dice_1.png");
+            this.dicePictures.Images.SetKeyName(1, "dice_2.png");
+            this.dicePictures.Images.SetKeyName(2, "dice_3.png");
+            this.dicePictures.Images.SetKeyName(3, "dice_4.png");
+            this.dicePictures.Images.SetKeyName(4, "dice_5.png");
+            this.dicePictures.Images.SetKeyName(5, "dice_6.png");
+            // 
+            // flpCurrentPlayerProps
+            // 
+            this.flpCurrentPlayerProps.AutoScroll = true;
+            this.flpCurrentPlayerProps.BackColor = System.Drawing.Color.PeachPuff;
+            this.flpCurrentPlayerProps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 105);
+            this.flpCurrentPlayerProps.Name = "flpCurrentPlayerProps";
+            this.flpCurrentPlayerProps.Size = new System.Drawing.Size(460, 330);
+            this.flpCurrentPlayerProps.TabIndex = 54;
+            // 
+            // usableSpotPictures
+            // 
+            this.usableSpotPictures.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("usableSpotPictures.ImageStream")));
+            this.usableSpotPictures.TransparentColor = System.Drawing.Color.Transparent;
+            this.usableSpotPictures.Images.SetKeyName(0, "card_light.jpg");
+            this.usableSpotPictures.Images.SetKeyName(1, "card_railroad.jpg");
+            this.usableSpotPictures.Images.SetKeyName(2, "card_water.jpg");
+            this.usableSpotPictures.Images.SetKeyName(3, "prop_b.jpg");
+            this.usableSpotPictures.Images.SetKeyName(4, "prop_g.jpg");
+            this.usableSpotPictures.Images.SetKeyName(5, "prop_l.jpg");
+            this.usableSpotPictures.Images.SetKeyName(6, "prop_m.jpg");
+            this.usableSpotPictures.Images.SetKeyName(7, "prop_o.jpg");
+            this.usableSpotPictures.Images.SetKeyName(8, "prop_p.jpg");
+            this.usableSpotPictures.Images.SetKeyName(9, "prop_r.jpg");
+            this.usableSpotPictures.Images.SetKeyName(10, "prop_y.jpg");
+            // 
+            // lblCurrentBalance
+            // 
+            this.lblCurrentBalance.AutoSize = true;
+            this.lblCurrentBalance.Location = new System.Drawing.Point(908, 67);
+            this.lblCurrentBalance.Name = "lblCurrentBalance";
+            this.lblCurrentBalance.Size = new System.Drawing.Size(90, 13);
+            this.lblCurrentBalance.TabIndex = 55;
+            this.lblCurrentBalance.Text = "lblCurrentBalance";
+            // 
+            // btnSell
+            // 
+            this.btnSell.Location = new System.Drawing.Point(1078, 877);
+            this.btnSell.Name = "btnSell";
+            this.btnSell.Size = new System.Drawing.Size(106, 23);
+            this.btnSell.TabIndex = 56;
+            this.btnSell.Text = "Sell";
+            this.btnSell.UseVisualStyleBackColor = true;
+            this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
+            // 
+            // btnBuyHouseOrHotel
+            // 
+            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(1258, 877);
+            this.btnBuyHouseOrHotel.Name = "btnBuyHouseOrHotel";
+            this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(114, 23);
+            this.btnBuyHouseOrHotel.TabIndex = 57;
+            this.btnBuyHouseOrHotel.Text = "Buy House Or Hotel";
+            this.btnBuyHouseOrHotel.UseVisualStyleBackColor = true;
+            this.btnBuyHouseOrHotel.Click += new System.EventHandler(this.btnBuyHouseOrHotel_Click);
+            // 
+            // pbxCurrentPlayerPicture
+            // 
+            this.pbxCurrentPlayerPicture.Location = new System.Drawing.Point(1093, 9);
+            this.pbxCurrentPlayerPicture.Name = "pbxCurrentPlayerPicture";
+            this.pbxCurrentPlayerPicture.Size = new System.Drawing.Size(80, 80);
+            this.pbxCurrentPlayerPicture.TabIndex = 53;
+            this.pbxCurrentPlayerPicture.TabStop = false;
             // 
             // pbxDiceRight
             // 
@@ -650,65 +726,13 @@
             this.BoardBackgroundImage.TabIndex = 0;
             this.BoardBackgroundImage.TabStop = false;
             // 
-            // pbxCurrentPlayerPicture
-            // 
-            this.pbxCurrentPlayerPicture.Location = new System.Drawing.Point(1093, 9);
-            this.pbxCurrentPlayerPicture.Name = "pbxCurrentPlayerPicture";
-            this.pbxCurrentPlayerPicture.Size = new System.Drawing.Size(80, 80);
-            this.pbxCurrentPlayerPicture.TabIndex = 53;
-            this.pbxCurrentPlayerPicture.TabStop = false;
-            // 
-            // dicePictures
-            // 
-            this.dicePictures.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("dicePictures.ImageStream")));
-            this.dicePictures.TransparentColor = System.Drawing.Color.Transparent;
-            this.dicePictures.Images.SetKeyName(0, "dice_1.png");
-            this.dicePictures.Images.SetKeyName(1, "dice_2.png");
-            this.dicePictures.Images.SetKeyName(2, "dice_3.png");
-            this.dicePictures.Images.SetKeyName(3, "dice_4.png");
-            this.dicePictures.Images.SetKeyName(4, "dice_5.png");
-            this.dicePictures.Images.SetKeyName(5, "dice_6.png");
-            // 
-            // flpCurrentPlayerProps
-            // 
-            this.flpCurrentPlayerProps.AutoScroll = true;
-            this.flpCurrentPlayerProps.BackColor = System.Drawing.Color.PeachPuff;
-            this.flpCurrentPlayerProps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 105);
-            this.flpCurrentPlayerProps.Name = "flpCurrentPlayerProps";
-            this.flpCurrentPlayerProps.Size = new System.Drawing.Size(460, 330);
-            this.flpCurrentPlayerProps.TabIndex = 54;
-            // 
-            // usableSpotPictures
-            // 
-            this.usableSpotPictures.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("usableSpotPictures.ImageStream")));
-            this.usableSpotPictures.TransparentColor = System.Drawing.Color.Transparent;
-            this.usableSpotPictures.Images.SetKeyName(0, "card_light.jpg");
-            this.usableSpotPictures.Images.SetKeyName(1, "card_railroad.jpg");
-            this.usableSpotPictures.Images.SetKeyName(2, "card_water.jpg");
-            this.usableSpotPictures.Images.SetKeyName(3, "prop_b.jpg");
-            this.usableSpotPictures.Images.SetKeyName(4, "prop_g.jpg");
-            this.usableSpotPictures.Images.SetKeyName(5, "prop_l.jpg");
-            this.usableSpotPictures.Images.SetKeyName(6, "prop_m.jpg");
-            this.usableSpotPictures.Images.SetKeyName(7, "prop_o.jpg");
-            this.usableSpotPictures.Images.SetKeyName(8, "prop_p.jpg");
-            this.usableSpotPictures.Images.SetKeyName(9, "prop_r.jpg");
-            this.usableSpotPictures.Images.SetKeyName(10, "prop_y.jpg");
-            // 
-            // lblCurrentBalance
-            // 
-            this.lblCurrentBalance.AutoSize = true;
-            this.lblCurrentBalance.Location = new System.Drawing.Point(908, 67);
-            this.lblCurrentBalance.Name = "lblCurrentBalance";
-            this.lblCurrentBalance.Size = new System.Drawing.Size(90, 13);
-            this.lblCurrentBalance.TabIndex = 55;
-            this.lblCurrentBalance.Text = "lblCurrentBalance";
-            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 902);
+            this.Controls.Add(this.btnBuyHouseOrHotel);
+            this.Controls.Add(this.btnSell);
             this.Controls.Add(this.lblCurrentBalance);
             this.Controls.Add(this.flpCurrentPlayerProps);
             this.Controls.Add(this.pbxCurrentPlayerPicture);
@@ -766,6 +790,7 @@
             this.Name = "MonopolyMainForm";
             this.Text = "Monopoly";
             this.Load += new System.EventHandler(this.MonopolyMainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer4)).EndInit();
@@ -814,7 +839,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoardTemplateImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoardBackgroundImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -878,6 +902,8 @@
         private System.Windows.Forms.FlowLayoutPanel flpCurrentPlayerProps;
         private System.Windows.Forms.ImageList usableSpotPictures;
         private System.Windows.Forms.Label lblCurrentBalance;
+        private System.Windows.Forms.Button btnSell;
+        private System.Windows.Forms.Button btnBuyHouseOrHotel;
     }
 }
 

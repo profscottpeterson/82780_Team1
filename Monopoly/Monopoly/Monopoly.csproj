@@ -62,6 +62,12 @@
     <Compile Include="GameOptions.Designer.cs">
       <DependentUpon>GameOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetMoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetMoney.Designer.cs">
+      <DependentUpon>GetMoney.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonopolyMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +100,20 @@
     <Compile Include="TradeConfirm.Designer.cs">
       <DependentUpon>TradeConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpgradeProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpgradeProperty.Designer.cs">
+      <DependentUpon>UpgradeProperty.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BuyProp.resx">
       <DependentUpon>BuyProp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameOptions.resx">
       <DependentUpon>GameOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GetMoney.resx">
+      <DependentUpon>GetMoney.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonopolyMainForm.resx">
       <DependentUpon>MonopolyMainForm.cs</DependentUpon>
@@ -118,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TradeConfirm.resx">
       <DependentUpon>TradeConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeProperty.resx">
+      <DependentUpon>UpgradeProperty.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

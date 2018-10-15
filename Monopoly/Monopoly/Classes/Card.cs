@@ -1,4 +1,10 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="Card.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +12,9 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// The class for a card
+    /// </summary>
     public class Card
     {
         /// <summary>

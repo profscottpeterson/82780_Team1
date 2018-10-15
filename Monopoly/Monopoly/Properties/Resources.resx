@@ -118,85 +118,103 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="card_chance" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_chance.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_chance_180" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_chance_180.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_chance_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_chance_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_chest.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_chest_90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_chest_90.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_chest_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_chest_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_go" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_go.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_gtjail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_gtjail.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_jail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_jail.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_light_90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_light_90.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_ltax_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_ltax_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="card_railroad_90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_railroad_90.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="card_parking" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\card_parking.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="card_railroad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_railroad.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_railroad_90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_railroad_90.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_railroad_180" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_railroad_180.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_railroad_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_railroad_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_tax" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_tax.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="card_water_180" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\card_water_180.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="prop_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prop_blue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="prop_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prop_green.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="prop_lightblue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prop_lightblue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="prop_maroon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prop_maroon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="prop_orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prop_orange.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="prop_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prop_pink.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="card_chance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_chance.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prop_orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prop_orange.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TempBackImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TempBackImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_chance_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_chance_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_light_90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_light_90.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_go" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_go.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_chest.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prop_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prop_blue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_railroad_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_railroad_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_chest_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_chest_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prop_maroon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prop_maroon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_railroad_180" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_railroad_180.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_gtjail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_gtjail.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prop_lightblue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prop_lightblue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_jail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_jail.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_chance_180" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_chance_180.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_railroad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_railroad.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="prop_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prop_red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_chest_90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_chest_90.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prop_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prop_green.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="card_ltax_270" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_ltax_270.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="prop_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prop_yellow.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TempBackImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TempBackImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="card_tax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_tax.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

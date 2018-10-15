@@ -46,17 +46,14 @@ C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csp
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.CoreCompileInputs.cache
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.pdb
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GameOptions.resources
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonopolyMainForm.resources
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonPopUp.resources
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.NonPropPopUp.resources
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Properties.Resources.resources
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.GenerateResource.cache
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.CoreCompileInputs.cache
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
-C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GetMoney.resources
+C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources

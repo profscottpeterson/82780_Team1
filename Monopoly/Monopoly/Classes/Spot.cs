@@ -1,4 +1,10 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="Spot.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +12,11 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
+    /// <summary>
+    /// The class for a spot
+    /// </summary>
     public class Spot
     {
         /// <summary>
@@ -37,6 +47,7 @@
             this.NumberOfHouses = 0;
             this.HasHotel = false;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
         }
 
         /// <summary>
@@ -67,6 +78,7 @@
             this.NumberOfHouses = 0;
             this.HasHotel = false;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
         }
 
         /// <summary>
@@ -91,7 +103,14 @@
             this.Rent3Houses = 0;
             this.Rent4Houses = 0;
             this.RentHotel = 0;
-            this.Mortgage = 0;
+            if (type == SpotType.Railroad)
+            {
+                this.Mortgage = 100;
+            }
+            else if (type == SpotType.Utility)
+            {
+                this.Mortgage = 75;
+            }
             this.HouseCost = 0;
             this.HotelCost = 0;
             this.IsAvailable = true;
@@ -99,6 +118,7 @@
             this.NumberOfHouses = 0;
             this.HasHotel = false;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
         }
 
         /// <summary>
@@ -117,8 +137,20 @@
         /// <param name="mortgage">The price of a property's mortgage</param>
         /// <param name="houseCost">The cost to buy a house</param>
         /// <param name="hotelCost">The cost to buy a hotel</param>
-        public Spot(int spotId, string spotName, Color color, int price, int rent, int rent1House,
-            int rent2Houses, int rent3Houses, int rent4Houses, int rentHotel, int mortgage, int houseCost, int hotelCost)
+        public Spot(
+               int spotId, 
+               string spotName, 
+               Color color, 
+               int price, 
+               int rent, 
+               int rent1House,
+               int rent2Houses, 
+               int rent3Houses, 
+               int rent4Houses, 
+               int rentHotel, 
+               int mortgage, 
+               int houseCost, 
+               int hotelCost)
         {
             this.SpotId = spotId;
             this.SpotName = spotName;
@@ -138,6 +170,14 @@
             this.NumberOfHouses = 0;
             this.Type = SpotType.Property;
             this.Owner = null;
+            this.SpotBox = new PictureBox();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Spot"/> class.
+        /// </summary>
+        public Spot()
+        {
         }
 
         /// <summary>
@@ -236,5 +276,10 @@
         /// Gets or sets the owner of a property.
         /// </summary>
         public Player Owner { get; set; }
+
+        /// <summary>
+        /// Gets or sets the spots picture box
+        /// </summary>
+        public PictureBox SpotBox { get; set; }
     }
 }

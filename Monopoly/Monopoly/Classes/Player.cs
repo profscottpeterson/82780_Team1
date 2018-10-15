@@ -1,25 +1,38 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="Player.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// The class for a player
+    /// </summary>
     public class Player
     {
-
-        private Spot _currentlocation;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class. 
+        /// </summary>
         public Player()
         {
             this.InJail = false;
             this.GetOutOfJailFreeCards = new List<Card>();
-            //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
-            this.Money = 1500;  // Set Money to default value
+            this.PlayerPictureBox = new PictureBox();
+
+            // Set Money to default value
+            this.Money = 1500;  
         }
+
         /// <summary>
         /// Initializes a new instance of the Player class.
         /// </summary>
@@ -33,8 +46,9 @@
             this.Color = color;
             this.InJail = false;
             this.GetOutOfJailFreeCards = new List<Card>();
-            //this.CurrentLocation = this.Properties[0];   // Set CurrentLocation to Go
-            this.Money = 1500;  // Set Money to default value
+
+            // Set Money to default value
+            this.Money = 1500;  
         }
 
         /// <summary>
@@ -56,30 +70,7 @@
         /// <summary>
         /// Gets or sets the current location of player's pawn
         /// </summary>
-        public Spot CurrentLocation
-        {
-            set
-            {
-                if(_currentlocation != value)
-                {
-                    _currentlocation = value;
-                }
-            }
-            get
-            {
-                return _currentlocation;
-            }
-        }
-
-        /// <summary>
-        /// Player has landed on chance card.
-        /// </summary>
-        public bool OnChanceCard { get; set; }
-
-        /// <summary>
-        /// Player has landed on cmnty card.
-        /// </summary>
-        public bool OnCmntyCard { get; set; }
+        public Spot CurrentLocation { get; set; }
 
         /// <summary>
         /// Gets or sets how much money a player has
@@ -100,5 +91,20 @@
         /// Gets or sets a value indicating whether the player is ai
         /// </summary>
         public bool IsAi { get; set; }
+
+        /// <summary>
+        /// Gets or sets the players image
+        /// </summary>
+        public PictureBox PlayerPictureBox { get; set; }
+
+        /// <summary>
+        /// Returns a bool indicating whether a player needs more money
+        /// </summary>
+        /// <returns>A bool indicating whether a player needs more money</returns>
+        public bool NeedMoreMoney()
+        {
+            // True if a player's money is less than zero
+            return this.Money < 0;
+        }
     }
 }

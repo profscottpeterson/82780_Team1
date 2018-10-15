@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuyProp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyProp.Designer.cs">
+      <DependentUpon>BuyProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Card.cs" />
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\Player.cs" />
@@ -56,11 +62,11 @@
     <Compile Include="GameOptions.Designer.cs">
       <DependentUpon>GameOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiscCardForm.cs">
+    <Compile Include="GetMoney.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MiscCardForm.Designer.cs">
-      <DependentUpon>MiscCardForm.cs</DependentUpon>
+    <Compile Include="GetMoney.Designer.cs">
+      <DependentUpon>GetMoney.cs</DependentUpon>
     </Compile>
     <Compile Include="MonopolyMainForm.cs">
       <SubType>Form</SubType>
@@ -82,11 +88,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trade.Designer.cs">
+      <DependentUpon>Trade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TradeConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TradeConfirm.Designer.cs">
+      <DependentUpon>TradeConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpgradeProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpgradeProperty.Designer.cs">
+      <DependentUpon>UpgradeProperty.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BuyProp.resx">
+      <DependentUpon>BuyProp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameOptions.resx">
       <DependentUpon>GameOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiscCardForm.resx">
-      <DependentUpon>MiscCardForm.cs</DependentUpon>
+    <EmbeddedResource Include="GetMoney.resx">
+      <DependentUpon>GetMoney.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonopolyMainForm.resx">
       <DependentUpon>MonopolyMainForm.cs</DependentUpon>
@@ -100,6 +127,15 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trade.resx">
+      <DependentUpon>Trade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TradeConfirm.resx">
+      <DependentUpon>TradeConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpgradeProperty.resx">
+      <DependentUpon>UpgradeProperty.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -199,6 +235,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TempBackImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice_6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

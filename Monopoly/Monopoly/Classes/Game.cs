@@ -1,13 +1,23 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="Game.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using System.Drawing;
     using System.Windows.Forms;
+    using Monopoly.Properties;
 
+    /// <summary>
+    /// The class for a game
+    /// </summary>
     public class Game
     {
         /// <summary>
@@ -17,7 +27,7 @@
         {
             // Construct all the properties  
             this.Board = new List<Spot>();
-            this.instantiateList();
+            this.InstantiateList();
 
             // Construct all the chance cards
             this.ChanceCards = new List<Card>();
@@ -127,10 +137,161 @@
         /// <param name="currentPlayer">The current player</param>
         public void CheckPassGo(Spot prevLocation, Spot currentLocation, Player currentPlayer)
         {
-            if (prevLocation.SpotId > currentLocation.SpotId)
+            // Check to see if the previous location id is greater than the current location id plus 3
+            // the plus 3 is for the "go back 3 spaces" card
+            if (prevLocation.SpotId > currentLocation.SpotId + 3)
             {
                 this.Players[this.Players.IndexOf(currentPlayer)].Money += 200;
             }
+        }
+
+        /// <summary>
+        /// Changes a player's current location property and checks to see if they passed Go
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="spacesForward">The number of spaces to move forward</param>
+        public void MovePlayerLocation(Player currentPlayer, int spacesForward)
+        {
+            // Get the player's current location
+            int currentLocationSpotId = currentPlayer.CurrentLocation.SpotId;
+
+            // Find the player's new location
+            int newLocationSpotId = (spacesForward + currentLocationSpotId) % this.Board.Count;
+
+            // Check to see if they passed Go
+            this.CheckPassGo(this.Board[currentLocationSpotId], this.Board[newLocationSpotId], currentPlayer);
+
+            // Change Current Location property of player to new location
+            this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = this.Board[newLocationSpotId];
+        }
+
+        /// <summary>
+        /// Has given player pay rent for given spot
+        /// </summary>
+        /// <param name="currentPlayer">The player to pay rent</param>
+        /// <param name="currentLocation">The location the player is at</param>
+        public void CheckPayRent(Player currentPlayer, Spot currentLocation)
+        {
+            // Check to see if the current location is a property, railroad, or utility
+            if (currentLocation.Type == SpotType.Property || currentLocation.Type == SpotType.Railroad ||
+                currentLocation.Type == SpotType.Utility)
+            {
+                // If property is not mortgaged
+                if (!currentLocation.IsMortgaged)
+                {
+                    // Find the owner
+                    Player owner = currentLocation.Owner;
+
+                    if (!currentLocation.IsAvailable && owner != currentPlayer)
+                    {
+                        // Find the rent
+                        int rent = currentLocation.Rent;
+
+                        // If the current location is a railroad
+                        if (currentLocation.Type == SpotType.Railroad)
+                        {
+                            // Find the rent based on how many railroads the owner of the current location owns
+                            rent = this.FindCurrentRentOfRailroad(currentLocation);
+                        }
+
+                        // If the current location is a utility
+                        if (currentLocation.Type == SpotType.Utility)
+                        {
+                            // Find the rent based on how many utilities the owner of the current location owns
+                            // and the dice roll (random number)
+                            rent = this.FindRentOfUtility(currentLocation);
+                        }
+
+                        // Give the owner the rent
+                        this.Players[this.Players.IndexOf(owner)].Money += rent;
+
+                        // Have current player pay rent
+                        this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+
+                        // Check if current player could not afford rent
+                        this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns a boolean indicating whether the spot landed on can be bought
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot landed on can be bought</returns>
+        public bool ShowBuyPropertyButton(Player currentPlayer, Spot currentLocation)
+        {
+            // Check to see if the current location is a property, railroad, or utility
+            if (currentLocation.Type == SpotType.Property || currentLocation.Type == SpotType.Railroad ||
+                currentLocation.Type == SpotType.Utility)
+            {
+                // Check to see whether the spot is available and player has enough money to buy it
+                if (currentLocation.IsAvailable && currentPlayer.Money >= currentLocation.Price)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check to see if tax needs to be paid
+        /// </summary>
+        /// <param name="currentPlayer">Player to pay tax</param>
+        /// <param name="currentLocation">Spot landed on</param>
+        public void CheckPayTax(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.Tax)
+            {
+                ////TODO: or pay 10% - add form
+                int tenPercent = (int)((TotalNetWorth(currentPlayer))*.1);
+                
+                //Choose for the player whether the 200 or 10% of their total net worth is lower
+                if (currentLocation.Rent > tenPercent)
+                {
+                    // Pay Tax
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;
+                }
+                else
+                {
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= tenPercent;
+                }
+
+                
+
+                // Check that player had enough money to pay tax
+                this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if player landed on "Go to Jail" and sends them to jail if yes
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        public void CheckGoToJail(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.GoToJail)
+            {
+                // Send player to Jail
+                this.SendToJail(currentPlayer);
+            }
+        }
+
+        /// <summary>
+        /// Sends player to Jail
+        /// </summary>
+        /// <param name="currentPlayer">Player to be sent to Jail</param>
+        public void SendToJail(Player currentPlayer)
+        {
+            // Set current player's location to jail
+            this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = this.GetSpotByName("Jail");
+
+            // Set player's in jail boolean to true
+            this.Players[this.Players.IndexOf(currentPlayer)].InJail = true;
         }
 
         /// <summary>
@@ -224,6 +385,9 @@
                             {
                                 // Take money from other players
                                 this.Players[i].Money -= top.Amount;
+
+                                // Check if player cannot afford to pay current player
+                                this.CheckIfPlayerHasEnoughMoney(this.Players[i]);
                             }
                         }
                     }
@@ -248,6 +412,9 @@
                             {
                                 // Current player pays the amount listed on the card times the number of other players
                                 this.Players[this.Players.IndexOf(currentPlayer)].Money -= top.Amount * (this.Players.Count - 1);
+
+                                // Check if current player cannot afford to pay other players
+                                this.CheckIfPlayerHasEnoughMoney(currentPlayer);
                             }
                             else
                             {
@@ -266,12 +433,12 @@
                     if (top.Description.Contains("Railroad"))
                     {
                         // Find the nearest railroad
-                        top.NewLocation = FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Railroad);
+                        top.NewLocation = this.FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Railroad);
                     }
                     else if (top.Description.Contains("Utility"))
                     {
                         // Find the nearest utility
-                        top.NewLocation = FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Utility);
+                        top.NewLocation = this.FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Utility);
                     }
                     else
                     {
@@ -287,14 +454,19 @@
                     }
                 }
 
-                
                 if (top.NewLocation.Type != SpotType.Jail)
                 {
                     // If player was not sent to jail, check to see if they passed Go
                     this.CheckPassGo(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, top.NewLocation, currentPlayer);
-                }
 
-                this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
+                    // Reset player's current location
+                    this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
+                }
+                else
+                {
+                    // Send player to jail
+                    this.SendToJail(currentPlayer);
+                }        
 
                 // Move card to bottom of pile
                 this.MoveCardToBottomOfPile(top);
@@ -347,8 +519,6 @@
                 this.CommunityChestCards.Add(top);
             }
         }
-
-        
 
         /// <summary>
         /// Mortgages a given property
@@ -468,6 +638,87 @@
         }
 
         /// <summary>
+        /// Finds out what the rent of a railroad should be based on the number of railroads 
+        /// the player that owns the given railroad owns
+        /// </summary>
+        /// <param name="railroad">The railroad to check the rent of</param>
+        /// <returns></returns>
+        public int FindCurrentRentOfRailroad(Spot railroad)
+        {
+            // Find the current owner of the railroad
+            Player owner = railroad.Owner;
+
+            // Find rent if just one railroad is owned
+            int rent = railroad.Rent;
+
+            // Double check to make sure railroad has an owner
+            if (owner != null)
+            {
+                // Loop through the spots on the board
+                foreach (Spot spot in this.Board)
+                {
+                    // If the spot is a railroad and it is not the given railroad and the owner is the same as the given railroad's
+                    if (spot.Type == SpotType.Railroad && spot != railroad && spot.Owner == owner)
+                    {
+                        // double the rent
+                        rent *= 2;
+                    }
+                }
+            }
+
+            return rent;
+        }
+
+        /// <summary>
+        /// Find what what the rent should be based on how many utilities the owner of the 
+        /// given utility owns and the number on the dice rolled (random number generated)
+        /// </summary>
+        /// <param name="utility">The utility to check the rent of</param>
+        /// <returns></returns>
+        public int FindRentOfUtility(Spot utility)
+        {
+            // Declare and initialize a boolean for whether owner of given utility owns both utilities
+            bool bothOwned = false;
+
+            // Declare and initialize a number that the rent is multiplied by depending on utilities owned
+            int multiplyFactor = 4;
+
+            // Loop through the board
+            foreach (Spot spot in this.Board)
+            {
+                // If the spot is a utility and is not the given utility and has the same owner as the given utility
+                if (spot.Type == SpotType.Utility && spot != utility && utility.Owner == spot.Owner)
+                {
+                    // Set both owned to true
+                    bothOwned = true;
+                }
+            }
+
+            // If owner of given utility owns both utilities
+            if (bothOwned)
+            {
+                // Set multiplyFactor to 10
+                multiplyFactor = 10;
+            }
+
+            // Declare and initialize a new random object
+            Random random = new Random();
+
+            // Get a random number between 1 and 6 (values of a die)
+            // For some reason, this is always the value of die 1
+            int rent = random.Next(6) + 1;
+
+            // Message box informing player of die roll and rent to be paid
+            MessageBox.Show("You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
+                "Utility Rent");
+
+            // Increase rent by multiptyFactor
+            rent *= multiplyFactor;
+
+            return rent;
+        }
+
+        /// <summary>
         /// Finds the next player whose turn it would be and returns them
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
@@ -495,13 +746,13 @@
         /// <summary>
         /// Method for checking if a player can purchase a property.
         /// </summary>
-        /// <param name="currentPlayer"></param>
-        /// <param name="property"></param>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="property">The selected property</param>
         public void PlayerBuysProperty(Player currentPlayer, Spot property)
         {
             if (property.IsAvailable == true && currentPlayer.Money >= property.Price)
             {
-                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", "", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", string.Empty, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     property.Owner = currentPlayer;
@@ -511,231 +762,500 @@
             }
         }
 
-        public void instantiateList()
+        /// <summary>
+        /// Finds a player's total net worth
+        /// </summary>
+        /// <param name="currentPlayer">The player it finds the net worth of</param>
+        /// <returns>The player's net worth</returns>
+        public int TotalNetWorth(Player currentPlayer)
         {
-            //First Row
-            Spot temp = new Spot(0, "Go", SpotType.Go);
-            Board.Add(temp);
+            // Get the amount the player has in cash
+            int total = currentPlayer.Money;
 
-            temp = new Spot(1, "Mediteranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
-            Board.Add(temp);
+            // Get the player's list of properties
+            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
 
-            temp = new Spot(2, "Community Chest #1", SpotType.CommunityChest);
-            Board.Add(temp);
+            // Loop through the player's list of properties
+            foreach (var p in propertyList)
+            {
+                // Add the property's mortgage value to total
+                total += p.Mortgage;
 
-            temp = new Spot(3, "Baltic Avenue", Color.Brown, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
-            Board.Add(temp);
+                // Check for hotel or houses
+                if (p.HasHotel)
+                {
+                    // Add the cost of the hotel if it has a hotel
+                    total += p.HotelCost;
+                }
+                else if (p.NumberOfHouses > 0)
+                {
+                    // Add the cost of a house time the number of houses the property has
+                    total += p.HouseCost * p.NumberOfHouses;
+                }
+            }
 
-            temp = new Spot(4, "Income Tax", 200);
-            Board.Add(temp);
-
-            temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(6, "Oriental Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
-            Board.Add(temp);
-
-            temp = new Spot(7, "Chance #1", SpotType.Chance);
-            Board.Add(temp);
-
-            temp = new Spot(8, "Vermont Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
-            Board.Add(temp);
-
-            temp = new Spot(9, "Connecticut Avenue", Color.LightBlue, 120, 8, 40, 100, 300, 450, 600, 60, 50, 50);
-            Board.Add(temp);
-
-            //Second Row
-            temp = new Spot(10, "Jail", SpotType.Jail);
-            Board.Add(temp);
-
-            temp = new Spot(11, "St. Charles Place", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(12, "Electric Company", SpotType.Utility, 150, 75);
-            Board.Add(temp);
-
-            temp = new Spot(13, "States Avenue", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(14, "Virginia Avenue", Color.Pink, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(16, "St. James Place", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(17, "Community Chest #2", SpotType.CommunityChest);
-            Board.Add(temp);
-
-            temp = new Spot(18, "Tennessee Avenue", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
-            Board.Add(temp);
-
-            temp = new Spot(19, "New York Avenue", Color.Orange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
-            Board.Add(temp);
-
-            //Third Row
-            temp = new Spot(20, "Free Parking", SpotType.FreeParking);
-            Board.Add(temp);
-
-            temp = new Spot(21, "Kentucky Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(22, "Chance #2", SpotType.Chance);
-            Board.Add(temp);
-
-            temp = new Spot(23, "Indiana Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(24, "Illinois Avenue", Color.Red, 240, 20, 100, 300, 750, 925, 1100, 120, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(26, "Atlantic Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(27, "Ventnor Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
-            Board.Add(temp);
-
-            temp = new Spot(28, "Water Works", SpotType.Utility, 150, 75);
-            Board.Add(temp);
-
-            temp = new Spot(29, "Marvin Gardens", Color.Yellow, 280, 24, 120, 360, 850, 1025, 1200, 140, 150, 150);
-            Board.Add(temp);
-
-            //Fourth Row
-            temp = new Spot(30, "Go To Jail", SpotType.GoToJail);
-            Board.Add(temp);
-
-            temp = new Spot(31, "Pacific Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(32, "North Carolina Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(33, "Community Chest #3", SpotType.CommunityChest);
-            Board.Add(temp);
-
-            temp = new Spot(34, "Pennsylvania Avenue", Color.Green, 320, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 100);
-            Board.Add(temp);
-
-            temp = new Spot(36, "Chance #3", SpotType.Chance);
-            Board.Add(temp);
-
-            temp = new Spot(37, "Park Place", Color.DarkBlue, 350, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200);
-            Board.Add(temp);
-
-            temp = new Spot(38, "Luxury Tax", 200);
-            Board.Add(temp);
-
-            temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
-            Board.Add(temp);
+            // return the total value
+            return total;
         }
 
+        /// <summary>
+        /// Checks the cash and total net worth of a player to determine the players options
+        /// if they cannot pay (are they bankrupt or do they have to sell something)
+        /// </summary>
+        /// <param name="player">The player</param>
+        public void CheckIfPlayerHasEnoughMoney(Player player)
+        {
+            if (player.NeedMoreMoney() && this.TotalNetWorth(player) > 0)
+            {
+                GetMoney money = new GetMoney(this, player, (player.Money*-1));
+                money.ShowDialog();
+                //// TODO: change this to show a form with options on what the player can do
+                //MessageBox.Show(player.PlayerName + " needs more money to pay.");
+            }
+            else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
+            {
+                // Player is bankrupt
+                MessageBox.Show(player.PlayerName + " is bankrupt!");
+                this.Forfeit(player);
+            }
+        }
+
+        /// <summary>
+        /// Removes a player from the game and resets any properties they may have
+        /// </summary>
+        /// <param name="player">The player to remove</param>
+        public void Forfeit(Player player)
+        {
+            // Get the player's list of properties
+            List<Spot> properties = this.GetPlayersPropertyList(player);
+
+            // If the player still owns properties
+            if (properties.Count > 0)
+            {
+                // Loop through the properties they own
+                foreach (Spot property in properties)
+                {
+                    // Reset values of property so property is not owned
+                    property.Owner = null;
+                    property.IsAvailable = true;
+                    property.HasHotel = false;
+                    property.NumberOfHouses = 0;
+                    property.IsMortgaged = false;
+
+                    // Set the spot on the board to the spot with changed values
+                    this.Board[property.SpotId] = property;
+                }
+            }
+
+            // Remove player from player list
+            this.Players.Remove(player);
+        }
+
+        public List<Color> checkIfEligibleForHouse(List<Spot> prop)
+        {
+            //create a list of colors to hold which colors are eligible for houses 
+            List<Color> houseOkay = new List<Color>();
+
+            //Create counters for every color
+            int numBrown = 0; //out of 2
+            int numLightBlue = 0; // out of 3
+            int numPink = 0; // out of 3
+            int numOrange = 0; // out of 3
+            int numRed = 0; // out of 3
+            int numYellow = 0; // out of 3
+            int numGreen = 0; // out of 3
+            int numDarkBlue = 0; // out of 2
+
+            //Check through the list and add each color to the respective counter
+            foreach (Spot s in prop)
+            {
+                if (s.Color == Color.Brown)
+                {
+                    numBrown++;
+                } else if (s.Color == Color.LightBlue)
+                {
+                    numLightBlue++;
+                } else if (s.Color == Color.Pink)
+                {
+                    numPink++;
+                } else if (s.Color == Color.Orange)
+                {
+                    numOrange++;
+                } else if (s.Color == Color.Red)
+                {
+                    numRed++;
+                } else if (s.Color == Color.Yellow)
+                {
+                    numYellow++;
+                } else if (s.Color == Color.Green)
+                {
+                    numGreen++;
+                } else if (s.Color == Color.DarkBlue)
+                {
+                    numDarkBlue++;
+                }
+            }
+
+            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
+            if (numBrown == 2)
+            {
+                houseOkay.Add(Color.Brown);
+            }
+            if (numLightBlue == 3)
+            {
+                houseOkay.Add(Color.LightBlue);
+            }
+            if (numPink == 3)
+            {
+                houseOkay.Add(Color.Pink);
+            }
+            if (numOrange == 3)
+            {
+                houseOkay.Add(Color.Orange);
+            }
+            if (numRed == 3)
+            {
+                houseOkay.Add(Color.Red);
+            }
+            if (numYellow == 3)
+            {
+                houseOkay.Add(Color.Yellow);
+            }
+            if (numGreen == 3)
+            {
+                houseOkay.Add(Color.Green);
+            }
+            if (numDarkBlue == 2)
+            {
+                houseOkay.Add(Color.DarkBlue);
+            }
+
+            //return the list
+            return houseOkay;
+        }
+
+        public List<Color> checkIfEligibleForHotel(List<Spot> prop)
+        {
+            //create a list of colors to hold which colors are eligible for houses 
+            List<Color> hotelOkay = new List<Color>();
+
+            //Create counters for every color
+            int numBrown = 0; //out of 2
+            int numLightBlue = 0; // out of 3
+            int numPink = 0; // out of 3
+            int numOrange = 0; // out of 3
+            int numRed = 0; // out of 3
+            int numYellow = 0; // out of 3
+            int numGreen = 0; // out of 3
+            int numDarkBlue = 0; // out of 2
+
+            //Check through the list and add each color to the respective counter
+            foreach (Spot s in prop)
+            {
+                if (s.NumberOfHouses >= 4)
+                {
+                    if (s.Color == Color.Brown)
+                    {
+                        numBrown++;
+                    }
+                    else if (s.Color == Color.LightBlue)
+                    {
+                        numLightBlue++;
+                    }
+                    else if (s.Color == Color.Pink)
+                    {
+                        numPink++;
+                    }
+                    else if (s.Color == Color.Orange)
+                    {
+                        numOrange++;
+                    }
+                    else if (s.Color == Color.Red)
+                    {
+                        numRed++;
+                    }
+                    else if (s.Color == Color.Yellow)
+                    {
+                        numYellow++;
+                    }
+                    else if (s.Color == Color.Green)
+                    {
+                        numGreen++;
+                    }
+                    else if (s.Color == Color.DarkBlue)
+                    {
+                        numDarkBlue++;
+                    }
+                }
+            }
+
+            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
+            if (numBrown == 2)
+            {
+                hotelOkay.Add(Color.Brown);
+            }
+            else if (numLightBlue == 3)
+            {
+                hotelOkay.Add(Color.LightBlue);
+            }
+            else if (numPink == 3)
+            {
+                hotelOkay.Add(Color.Pink);
+            }
+            else if (numOrange == 3)
+            {
+                hotelOkay.Add(Color.Orange);
+            }
+            else if (numRed == 3)
+            {
+                hotelOkay.Add(Color.Red);
+            }
+            else if (numYellow == 3)
+            {
+                hotelOkay.Add(Color.Yellow);
+            }
+            else if (numGreen == 3)
+            {
+                hotelOkay.Add(Color.Green);
+            }
+            else if (numDarkBlue == 2)
+            {
+                hotelOkay.Add(Color.DarkBlue);
+            }
+
+            //return the list
+            return hotelOkay;
+        }
+
+        /// <summary>
+        /// The method used to instantiate the spots
+        /// </summary>
+        public void InstantiateList()
+        {
+            // First Row
+            Spot temp = new Spot(0, "Go", SpotType.Go);
+            this.Board.Add(temp);
+
+            temp = new Spot(1, "Mediterranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
+            this.Board.Add(temp);
+
+            temp = new Spot(2, "Community Chest #1", SpotType.CommunityChest);
+            this.Board.Add(temp);
+
+            temp = new Spot(3, "Baltic Avenue", Color.Brown, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
+            this.Board.Add(temp);
+
+            temp = new Spot(4, "Income Tax", 200);
+            this.Board.Add(temp);
+
+            temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(6, "Oriental Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
+            this.Board.Add(temp);
+
+            temp = new Spot(7, "Chance #1", SpotType.Chance);
+            this.Board.Add(temp);
+
+            temp = new Spot(8, "Vermont Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
+            this.Board.Add(temp);
+
+            temp = new Spot(9, "Connecticut Avenue", Color.LightBlue, 120, 8, 40, 100, 300, 450, 600, 60, 50, 50);
+            this.Board.Add(temp);
+
+            // Second Row
+            temp = new Spot(10, "Jail", SpotType.Jail);
+            this.Board.Add(temp);
+
+            temp = new Spot(11, "St. Charles Place", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(12, "Electric Company", SpotType.Utility, 150, 75);
+            this.Board.Add(temp);
+
+            temp = new Spot(13, "States Avenue", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(14, "Virginia Avenue", Color.Pink, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(16, "St. James Place", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(17, "Community Chest #2", SpotType.CommunityChest);
+            this.Board.Add(temp);
+
+            temp = new Spot(18, "Tennessee Avenue", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(19, "New York Avenue", Color.Orange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
+            this.Board.Add(temp);
+
+            // Third Row
+            temp = new Spot(20, "Free Parking", SpotType.FreeParking);
+            this.Board.Add(temp);
+
+            temp = new Spot(21, "Kentucky Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
+            this.Board.Add(temp);
+
+            temp = new Spot(22, "Chance #2", SpotType.Chance);
+            this.Board.Add(temp);
+
+            temp = new Spot(23, "Indiana Avenue", Color.Red, 220, 18, 90, 250, 700, 875, 1050, 110, 150, 150);
+            this.Board.Add(temp);
+
+            temp = new Spot(24, "Illinois Avenue", Color.Red, 240, 20, 100, 300, 750, 925, 1100, 120, 150, 150);
+            this.Board.Add(temp);
+
+            temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(26, "Atlantic Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
+            this.Board.Add(temp);
+
+            temp = new Spot(27, "Ventnor Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
+            this.Board.Add(temp);
+
+            temp = new Spot(28, "Water Works", SpotType.Utility, 150, 75);
+            this.Board.Add(temp);
+
+            temp = new Spot(29, "Marvin Gardens", Color.Yellow, 280, 24, 120, 360, 850, 1025, 1200, 140, 150, 150);
+            this.Board.Add(temp);
+
+            // Fourth Row
+            temp = new Spot(30, "Go To Jail", SpotType.GoToJail);
+            this.Board.Add(temp);
+
+            temp = new Spot(31, "Pacific Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
+            this.Board.Add(temp);
+
+            temp = new Spot(32, "North Carolina Avenue", Color.Green, 300, 26, 130, 390, 900, 1100, 1275, 150, 200, 200);
+            this.Board.Add(temp);
+
+            temp = new Spot(33, "Community Chest #3", SpotType.CommunityChest);
+            this.Board.Add(temp);
+
+            temp = new Spot(34, "Pennsylvania Avenue", Color.Green, 320, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200);
+            this.Board.Add(temp);
+
+            temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 100);
+            this.Board.Add(temp);
+
+            temp = new Spot(36, "Chance #3", SpotType.Chance);
+            this.Board.Add(temp);
+
+            temp = new Spot(37, "Park Place", Color.DarkBlue, 350, 35, 175, 500, 1100, 1300, 1500, 175, 200, 200);
+            this.Board.Add(temp);
+
+            temp = new Spot(38, "Luxury Tax", 200);
+            this.Board.Add(temp);
+
+            temp = new Spot(39, "Boardwalk", Color.DarkBlue, 400, 50, 200, 600, 1400, 1700, 2000, 200, 200, 200);
+            this.Board.Add(temp);
+        }
+
+        /// <summary>
+        /// The method used to create the chance and community chest cards
+        /// </summary>
         public void CreateCards()
         {
             // Chance Cards
+            Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0]);
+            this.ChanceCards.Add(tempCard);
 
-            Card TempCard = new Card(0, "Advance To Go", CardType.Chance, Board[0]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, Board[23]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, Board[11]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(9, "Go directly to Jail", CardType.Chance, Board[10]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, Board[5]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39]);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, Board[39]);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
-            ChanceCards.Add(TempCard);
+            tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
+            this.ChanceCards.Add(tempCard);
 
-            TempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
-            ChanceCards.Add(TempCard);
+            // Community Chest Cards
+            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0]);
+            this.CommunityChestCards.Add(tempCard);
 
-            //Community Chest Cards
+            tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(0, "Advance To Go", CardType.CommunityChest, Board[0]);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10]);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(3, "Go to Jail", CardType.CommunityChest, Board[10]);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
+            this.CommunityChestCards.Add(tempCard);
 
-            TempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
-            CommunityChestCards.Add(TempCard);
-
-            TempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
-            CommunityChestCards.Add(TempCard);
-
-            TempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
-            CommunityChestCards.Add(TempCard);
+            tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
+            this.CommunityChestCards.Add(tempCard);
         }
     }
 }

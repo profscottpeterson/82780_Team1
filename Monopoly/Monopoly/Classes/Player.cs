@@ -52,6 +52,16 @@ namespace Monopoly
         }
 
         /// <summary>
+        /// Player has landed on chance card.
+        /// </summary>
+        public bool OnChanceCard { get; set; }
+
+        /// <summary>
+        /// Player has landed on cmnty card.
+        /// </summary>
+        public bool OnCmntyCard { get; set; }
+
+        /// <summary>
         /// Gets or sets the player's id
         /// </summary>
         public int PlayerId { get; set; }

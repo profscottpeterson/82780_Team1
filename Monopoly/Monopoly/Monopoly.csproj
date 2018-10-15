@@ -68,6 +68,12 @@
     <Compile Include="GetMoney.Designer.cs">
       <DependentUpon>GetMoney.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiscCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiscCardForm.Designer.cs">
+      <DependentUpon>MiscCardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonopolyMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GetMoney.resx">
       <DependentUpon>GetMoney.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscCardForm.resx">
+      <DependentUpon>MiscCardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonopolyMainForm.resx">
       <DependentUpon>MonopolyMainForm.cs</DependentUpon>

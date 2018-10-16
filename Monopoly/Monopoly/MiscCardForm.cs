@@ -12,7 +12,7 @@ namespace Monopoly
 {
     public partial class MiscCardForm : Form
     {
-        private Card _card;
+        // private Card _card;
 
         public MiscCardForm()
         {

@@ -103,14 +103,6 @@ namespace Monopoly
             this.Rent3Houses = 0;
             this.Rent4Houses = 0;
             this.RentHotel = 0;
-            if (type == SpotType.Railroad)
-            {
-                this.Mortgage = 100;
-            }
-            else if (type == SpotType.Utility)
-            {
-                this.Mortgage = 75;
-            }
             this.HouseCost = 0;
             this.HotelCost = 0;
             this.IsAvailable = true;
@@ -119,6 +111,15 @@ namespace Monopoly
             this.HasHotel = false;
             this.Owner = null;
             this.SpotBox = new PictureBox();
+
+            if (type == SpotType.Railroad)
+            {
+                this.Mortgage = 100;
+            }
+            else if (type == SpotType.Utility)
+            {
+                this.Mortgage = 75;
+            }
         }
 
         /// <summary>

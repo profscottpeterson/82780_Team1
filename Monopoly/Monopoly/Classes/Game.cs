@@ -246,10 +246,10 @@ namespace Monopoly
         {
             if (currentLocation.Type == SpotType.Tax)
             {
-                ////TODO: or pay 10% - add form
-                int tenPercent = (int)((TotalNetWorth(currentPlayer))*.1);
+                // TODO: or pay 10% - add form
+                int tenPercent = (int)(this.TotalNetWorth(currentPlayer) * .1);
                 
-                //Choose for the player whether the 200 or 10% of their total net worth is lower
+                // Choose for the player whether the 200 or 10% of their total net worth is lower
                 if (currentLocation.Rent > tenPercent)
                 {
                     // Pay Tax
@@ -259,8 +259,6 @@ namespace Monopoly
                 {
                     this.Players[this.Players.IndexOf(currentPlayer)].Money -= tenPercent;
                 }
-
-                
 
                 // Check that player had enough money to pay tax
                 this.CheckIfPlayerHasEnoughMoney(currentPlayer);
@@ -642,7 +640,7 @@ namespace Monopoly
         /// the player that owns the given railroad owns
         /// </summary>
         /// <param name="railroad">The railroad to check the rent of</param>
-        /// <returns></returns>
+        /// <returns>Returns an integer value</returns>
         public int FindCurrentRentOfRailroad(Spot railroad)
         {
             // Find the current owner of the railroad
@@ -674,7 +672,7 @@ namespace Monopoly
         /// given utility owns and the number on the dice rolled (random number generated)
         /// </summary>
         /// <param name="utility">The utility to check the rent of</param>
-        /// <returns></returns>
+        /// <returns>Returns an integer value</returns>
         public int FindRentOfUtility(Spot utility)
         {
             // Declare and initialize a boolean for whether owner of given utility owns both utilities
@@ -709,8 +707,9 @@ namespace Monopoly
             int rent = random.Next(6) + 1;
 
             // Message box informing player of die roll and rent to be paid
-            MessageBox.Show("You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
-                "Utility Rent");
+            MessageBox.Show(
+                       "You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
+                       "Utility Rent");
 
             // Increase rent by multiptyFactor
             rent *= multiplyFactor;
@@ -807,10 +806,10 @@ namespace Monopoly
         {
             if (player.NeedMoreMoney() && this.TotalNetWorth(player) > 0)
             {
-                GetMoney money = new GetMoney(this, player, (player.Money*-1));
+                GetMoney money = new GetMoney(this, player, player.Money * -1);
                 money.ShowDialog();
                 //// TODO: change this to show a form with options on what the player can do
-                //MessageBox.Show(player.PlayerName + " needs more money to pay.");
+                // MessageBox.Show(player.PlayerName + " needs more money to pay.");
             }
             else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
             {
@@ -848,16 +847,23 @@ namespace Monopoly
             }
 
             // Remove player from player list
-            this.Players.Remove(player);
+            // this.Players.Remove(player);
+            player.IsActive = false;
+            player.PlayerPictureBox.Visible = false;
         }
 
-        public List<Color> checkIfEligibleForHouse(List<Spot> prop)
+        /// <summary>
+        /// Returns a list of colors for every property that is eligible for a house.
+        /// </summary>
+        /// <param name="prop">The players properties</param>
+        /// <returns>A list of colors</returns>
+        public List<Color> CheckIfEligibleForHouse(List<Spot> prop)
         {
-            //create a list of colors to hold which colors are eligible for houses 
+            // create a list of colors to hold which colors are eligible for houses 
             List<Color> houseOkay = new List<Color>();
 
-            //Create counters for every color
-            int numBrown = 0; //out of 2
+            // Create counters for every color
+            int numBrown = 0; // out of 2
             int numLightBlue = 0; // out of 3
             int numPink = 0; // out of 3
             int numOrange = 0; // out of 3
@@ -866,81 +872,96 @@ namespace Monopoly
             int numGreen = 0; // out of 3
             int numDarkBlue = 0; // out of 2
 
-            //Check through the list and add each color to the respective counter
+            // Check through the list and add each color to the respective counter
             foreach (Spot s in prop)
             {
                 if (s.Color == Color.Brown)
                 {
                     numBrown++;
-                } else if (s.Color == Color.LightBlue)
+                }
+                else if (s.Color == Color.LightBlue)
                 {
                     numLightBlue++;
-                } else if (s.Color == Color.Pink)
+                }
+                else if (s.Color == Color.Pink)
                 {
                     numPink++;
-                } else if (s.Color == Color.Orange)
+                }
+                else if (s.Color == Color.Orange)
                 {
                     numOrange++;
-                } else if (s.Color == Color.Red)
+                }
+                else if (s.Color == Color.Red)
                 {
                     numRed++;
-                } else if (s.Color == Color.Yellow)
+                }
+                else if (s.Color == Color.Yellow)
                 {
                     numYellow++;
-                } else if (s.Color == Color.Green)
+                }
+                else if (s.Color == Color.Green)
                 {
                     numGreen++;
-                } else if (s.Color == Color.DarkBlue)
+                }
+                else if (s.Color == Color.DarkBlue)
                 {
                     numDarkBlue++;
                 }
             }
 
-            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
+            // Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
             if (numBrown == 2)
             {
                 houseOkay.Add(Color.Brown);
             }
+
             if (numLightBlue == 3)
             {
                 houseOkay.Add(Color.LightBlue);
             }
+
             if (numPink == 3)
             {
                 houseOkay.Add(Color.Pink);
             }
+
             if (numOrange == 3)
             {
                 houseOkay.Add(Color.Orange);
             }
+
             if (numRed == 3)
             {
                 houseOkay.Add(Color.Red);
             }
+
             if (numYellow == 3)
             {
                 houseOkay.Add(Color.Yellow);
             }
+
             if (numGreen == 3)
             {
                 houseOkay.Add(Color.Green);
             }
+
             if (numDarkBlue == 2)
             {
                 houseOkay.Add(Color.DarkBlue);
             }
 
-            //return the list
+            // return the list
             return houseOkay;
         }
 
-        public List<Color> checkIfEligibleForHotel(List<Spot> prop)
+        /*
+        public List<Color> CheckIfEligibleForHotel(List<Spot> prop)
         {
-            //create a list of colors to hold which colors are eligible for houses 
+            // create a list of colors to hold which colors are eligible for houses 
             List<Color> hotelOkay = new List<Color>();
 
-            //Create counters for every color
-            int numBrown = 0; //out of 2
+            // Create counters for every color
+            int numBrown = 0; // out of 2
             int numLightBlue = 0; // out of 3
             int numPink = 0; // out of 3
             int numOrange = 0; // out of 3
@@ -1026,6 +1047,7 @@ namespace Monopoly
             //return the list
             return hotelOkay;
         }
+        */
 
         /// <summary>
         /// The method used to instantiate the spots

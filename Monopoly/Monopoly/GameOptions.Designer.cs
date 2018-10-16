@@ -1,6 +1,15 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="GameOptions.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
-    partial class GameOptions
+    /// <summary>
+    /// The class that holds all the form information
+    /// </summary>
+    public partial class GameOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -13,12 +22,113 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
+
+        /// <summary>
+        /// The combo box for the number of players
+        /// </summary>
+        private System.Windows.Forms.ComboBox cmboNumPlayers;
+
+        /// <summary>
+        /// Player 1 option panel
+        /// </summary>
+        private System.Windows.Forms.Panel panelPlayer1;
+
+        /// <summary>
+        /// Asking for number of players label
+        /// </summary>
+        private System.Windows.Forms.Label lblNumPlayer;
+
+        /// <summary>
+        /// Player 1 Name label
+        /// </summary>
+        private System.Windows.Forms.Label lblPlayerName1;
+
+        /// <summary>
+        /// Text box for adding a player name
+        /// </summary>
+        private System.Windows.Forms.TextBox txtPlayer1Name;
+
+        /// <summary>
+        /// A check box for determining if the player is an ai
+        /// </summary>
+        private System.Windows.Forms.CheckBox chkAI1;
+
+        /// <summary>
+        /// Player 2 option panel
+        /// </summary>
+        private System.Windows.Forms.Panel panelPlayer2;
+
+        /// <summary>
+        /// Player 2 Name label
+        /// </summary>
+        private System.Windows.Forms.Label lblPlayerName2;
+
+        /// <summary>
+        /// Text box for adding a player name
+        /// </summary>
+        private System.Windows.Forms.TextBox txtPlayerName2;
+
+        /// <summary>
+        /// A check box for determining if the player is an ai
+        /// </summary>
+        private System.Windows.Forms.CheckBox chkAI2;
+
+        /// <summary>
+        /// Player 3 option panel
+        /// </summary>
+        private System.Windows.Forms.Panel panelPlayer3;
+
+        /// <summary>
+        /// Player 3 Name label
+        /// </summary>
+        private System.Windows.Forms.Label lblPlayerName3;
+
+        /// <summary>
+        /// Text box for adding a player name
+        /// </summary>
+        private System.Windows.Forms.TextBox txtPlayerName3;
+
+        /// <summary>
+        /// A check box for determining if the player is an ai
+        /// </summary>
+        private System.Windows.Forms.CheckBox chkAI3;
+
+        /// <summary>
+        /// Player 4 option panel
+        /// </summary>
+        private System.Windows.Forms.Panel panelPlayer4;
+
+        /// <summary>
+        /// Player 4 Name label
+        /// </summary>
+        private System.Windows.Forms.Label lblPlayerName4;
+
+        /// <summary>
+        /// Text box for adding a player name
+        /// </summary>
+        private System.Windows.Forms.TextBox txtPlayerName4;
+
+        /// <summary>
+        /// A check box for determining if the player is an ai
+        /// </summary>
+        private System.Windows.Forms.CheckBox chkAI4;
+
+        /// <summary>
+        /// Button for starting the game
+        /// </summary>
+        private System.Windows.Forms.Button btnStart;
+
+        /// <summary>
+        /// Button for exiting the game
+        /// </summary>
+        private System.Windows.Forms.Button btnQuit;
 
         #region Windows Form Designer generated code
 
@@ -66,7 +176,7 @@
             this.cmboNumPlayers.Name = "cmboNumPlayers";
             this.cmboNumPlayers.Size = new System.Drawing.Size(121, 21);
             this.cmboNumPlayers.TabIndex = 0;
-            this.cmboNumPlayers.SelectedValueChanged += new System.EventHandler(this.cmboNumPlayers_SelectedValueChanged);
+            this.cmboNumPlayers.SelectedValueChanged += new System.EventHandler(this.CmboNumPlayers_SelectedValueChanged);
             // 
             // panelPlayer1
             // 
@@ -238,7 +348,7 @@
             this.btnStart.TabIndex = 5;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnQuit
             // 
@@ -248,7 +358,7 @@
             this.btnQuit.TabIndex = 6;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = true;
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
+            this.btnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
             // 
             // GameOptions
             // 
@@ -279,26 +389,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cmboNumPlayers;
-        private System.Windows.Forms.Panel panelPlayer1;
-        private System.Windows.Forms.Label lblNumPlayer;
-        private System.Windows.Forms.Label lblPlayerName1;
-        private System.Windows.Forms.TextBox txtPlayer1Name;
-        private System.Windows.Forms.CheckBox chkAI1;
-        private System.Windows.Forms.Panel panelPlayer2;
-        private System.Windows.Forms.Label lblPlayerName2;
-        private System.Windows.Forms.TextBox txtPlayerName2;
-        private System.Windows.Forms.CheckBox chkAI2;
-        private System.Windows.Forms.Panel panelPlayer3;
-        private System.Windows.Forms.Label lblPlayerName3;
-        private System.Windows.Forms.TextBox txtPlayerName3;
-        private System.Windows.Forms.CheckBox chkAI3;
-        private System.Windows.Forms.Panel panelPlayer4;
-        private System.Windows.Forms.Label lblPlayerName4;
-        private System.Windows.Forms.TextBox txtPlayerName4;
-        private System.Windows.Forms.CheckBox chkAI4;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnQuit;
     }
 }

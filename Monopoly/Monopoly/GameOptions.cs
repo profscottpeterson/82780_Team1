@@ -21,86 +21,111 @@ namespace Monopoly
     /// </summary>
     public partial class GameOptions : Form
     {
-        /// <summary>
-        /// Gets or sets the list of players
-        /// </summary>
-        public List<Player> TempPlayers { get; set; }
-
-        private Game game;
-
+        /*
         public GameOptions()
         {
             InitializeComponent();
             TempPlayers = new List<Player>();
         }
+        */
 
+        /// <summary>
+        /// The game
+        /// </summary>
+        private Game game;
+
+        /// <summary>
+        /// Initializes a new instance of the GameOptions class.
+        /// </summary>
+        /// <param name="game">The game.</param>
         public GameOptions(Game game)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.game = game;
-            TempPlayers = new List<Player>();
+            this.TempPlayers = new List<Player>();
         }
 
-        private void cmboNumPlayers_SelectedValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Gets or sets the list of players
+        /// </summary>
+        public List<Player> TempPlayers { get; set; }
+
+        /// <summary>
+        /// The method for whenever a different player is selected
+        /// </summary>
+        /// <param name="sender">The object</param>
+        /// <param name="e">The event</param>
+        private void CmboNumPlayers_SelectedValueChanged(object sender, EventArgs e)
         {
             // Get the value selected from the combobox
-            int value = int.Parse(cmboNumPlayers.Text);
+            int value = int.Parse(this.cmboNumPlayers.Text);
 
             if (value == 2)
             {
                 // If the value is two
                 // Make the first two panels visible
-                panelPlayer1.Visible = true;
-                panelPlayer2.Visible = true;
+                this.panelPlayer1.Visible = true;
+                this.panelPlayer2.Visible = true;
 
                 // Make the last two panels invisible
-                panelPlayer4.Visible = false;
-                panelPlayer3.Visible = false;
+                this.panelPlayer4.Visible = false;
+                this.panelPlayer3.Visible = false;
             }
             else if (value == 3)
             {
                 // If the value is three
                 // Make the first three panels visible
-                panelPlayer1.Visible = true;
-                panelPlayer2.Visible = true;
-                panelPlayer3.Visible = true;
+                this.panelPlayer1.Visible = true;
+                this.panelPlayer2.Visible = true;
+                this.panelPlayer3.Visible = true;
 
                 // Make the last panel invisible
-                panelPlayer4.Visible = false;
+                this.panelPlayer4.Visible = false;
             }
             else if (value == 4)
             {
                 // If the value is four
                 // Make all the panels visible
-                panelPlayer1.Visible = true;
-                panelPlayer2.Visible = true;
-                panelPlayer3.Visible = true;
-                panelPlayer4.Visible = true;
+                this.panelPlayer1.Visible = true;
+                this.panelPlayer2.Visible = true;
+                this.panelPlayer3.Visible = true;
+                this.panelPlayer4.Visible = true;
             }
 
             // Enable the start button
             this.btnStart.Enabled = true;
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The button for closing the game options form.
+        /// </summary>
+        /// <param name="sender">The object</param>
+        /// <param name="e">The event</param>
+        private void BtnQuit_Click(object sender, EventArgs e)
         {
             // Close down everything
             Environment.Exit(0);
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The button for starting the game.
+        /// </summary>
+        /// <param name="sender">The object</param>
+        /// <param name="e">The event</param>
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             Player tempPlayer;
 
-            if (panelPlayer1.Visible)
+            if (this.panelPlayer1.Visible)
             {
                 tempPlayer = new Player();
-                string name = txtPlayer1Name.Text;
+                string name = this.txtPlayer1Name.Text;
+
                 // If the textbox was empty
                 if (name == string.Empty)
                 {
                     // Get name the text that is in the tag
-                    name = txtPlayer1Name.Tag.ToString();
+                    name = this.txtPlayer1Name.Tag.ToString();
                 }
 
                 // Set the player name of tempPlayer
@@ -125,12 +150,13 @@ namespace Monopoly
             if (panelPlayer2.Visible)
             {
                 tempPlayer = new Player();
-                string name = txtPlayerName2.Text;
+                string name = this.txtPlayerName2.Text;
+
                 // If the textbox was empty
                 if (name == string.Empty)
                 {
                     // Get name the text that is in the tag
-                    name = txtPlayerName2.Tag.ToString();
+                    name = this.txtPlayerName2.Tag.ToString();
                 }
 
                 // Set the player name of tempPlayer
@@ -156,11 +182,12 @@ namespace Monopoly
             {
                 tempPlayer = new Player();
                 string name = txtPlayerName3.Text;
+
                 // If the textbox was empty
                 if (name == string.Empty)
                 {
                     // Get name the text that is in the tag
-                    name = txtPlayerName3.Tag.ToString();
+                    name = this.txtPlayerName3.Tag.ToString();
                 }
 
                 // Set the player name of tempPlayer
@@ -186,11 +213,12 @@ namespace Monopoly
             {
                 tempPlayer = new Player();
                 string name = txtPlayerName4.Text;
+
                 // If the textbox was empty
                 if (name == string.Empty)
                 {
                     // Get name the text that is in the tag
-                    name = txtPlayerName4.Tag.ToString();
+                    name = this.txtPlayerName4.Tag.ToString();
                 }
 
                 // Set the player name of tempPlayer
@@ -212,12 +240,11 @@ namespace Monopoly
                 this.TempPlayers.Add(tempPlayer);
             }
            
-
             // Loop through the list of players
             for (int i = 0; i < this.TempPlayers.Count; i++)
             {
                 // Set each player id to its position in the list
-                this.TempPlayers[i].CurrentLocation = game.GetSpotByName("Go");
+                this.TempPlayers[i].CurrentLocation = this.game.GetSpotByName("Go");
                 this.TempPlayers[i].PlayerId = i;
             }
 

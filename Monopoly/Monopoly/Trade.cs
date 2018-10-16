@@ -52,7 +52,10 @@ namespace Monopoly
                 if (currentPlayer.PlayerName != p.PlayerName)
                 {
                     // If the player isn't the requester, add them to the combo box
-                    cmboRequestee.Items.Add(p.PlayerName);
+                    if (p.IsActive == true)
+                    {
+                        cmboRequestee.Items.Add(p.PlayerName);
+                    }
                 }
             }
 

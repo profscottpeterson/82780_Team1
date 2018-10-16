@@ -202,9 +202,12 @@ namespace Monopoly
                 // Find player's new location and set current location property of player
                 game.MovePlayerLocation(currentPlayer, totalMove);
 
+                // Move pawn picture
+                FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+
                 // handle chance or community cards
                 currentPlayer.OnChanceCard = false; // "reset"
-                currentPlayer.OnCmntyCard = false; // "reset"
+                currentPlayer.OnComCard = false; // "reset"
 
                 if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
                 {
@@ -223,7 +226,7 @@ namespace Monopoly
                             // Other logic
                             break;
                         case SpotType.CommunityChest:
-                            currentPlayer.OnCmntyCard = true;
+                            currentPlayer.OnComCard = true;
                             formTitle = "Community";
                             cardDrawn = game.CommunityChestCards[0];  // Get "top" card
                             game.DrawCard(game.CommunityChestCards, currentPlayer); // Draw card and perform actions
@@ -242,9 +245,6 @@ namespace Monopoly
                         miscCardForm.ShowDialog(); // Show the card form
                     }
                 }
-
-                // Move pawn picture
-                FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
 
                 // Check to see if rent needs to be paid and pay it if so
                 game.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
@@ -267,7 +267,7 @@ namespace Monopoly
                 // Check to see if player landed on "Go to Jail"
                 game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
 
-                ////TODO: Chance and Community Chest cards
+                // TODO: Chance and Community Chest cards
 
                 // Move pawn picture
                 FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
@@ -391,6 +391,12 @@ namespace Monopoly
             }
 
             currentPlayer = game.NextPlayer(currentPlayer);
+
+            while (currentPlayer.IsActive == false)
+            {
+                currentPlayer = game.NextPlayer(currentPlayer);
+            }
+
             SetNextPlayer(currentPlayer);
         }
 
@@ -891,6 +897,10 @@ namespace Monopoly
             GetMoney money = new GetMoney(this.game, this.currentPlayer);
 
             money.ShowDialog();
+            while(currentPlayer.IsActive == false)
+            {
+                currentPlayer = game.NextPlayer(currentPlayer);
+            }
 
             SetNextPlayer(currentPlayer);
         }

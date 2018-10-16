@@ -87,7 +87,7 @@ namespace Monopoly
 
         private void fillColors(List<Spot> prop)
         {
-            this.houseEligible = this.game.checkIfEligibleForHouse(prop);
+            this.houseEligible = this.game.CheckIfEligibleForHouse(prop);
         }
 
         /// <summary>

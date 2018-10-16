@@ -76,3 +76,6 @@ C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopol
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GetMoney.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources

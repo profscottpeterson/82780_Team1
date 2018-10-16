@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -70,19 +71,34 @@ namespace Monopoly
 
             List<Spot> spotsEligible = new List<Spot>();
 
-            List<Color> colorsEligible = game.checkIfEligibleForHouse(playerSpots);
+            List<Color> colorsEligible = game.CheckIfEligibleForHouse(playerSpots);
 
-            if (colorsEligible.Count > 0)
+            List<Spot> mortgage = new List<Spot>();
+
+            foreach (Spot s in playerSpots)
+            {
+                if (s.IsMortgaged == true)
+                {
+                    mortgage.Add(s);
+                }
+            }
+
+            if (colorsEligible.Count > 0 || mortgage.Count > 0)
             {
                 //Get every spot that matches a color in the list
                 foreach (Spot s in playerSpots)
                 {
                     foreach (Color c in colorsEligible)
                     {
-                        if (s.Color == c)
+                        if ((s.Color == c || s.IsMortgaged == true) && !spotsEligible.Contains(s))
                         {
                             spotsEligible.Add(s);
                         }
+                    }
+
+                    if (!spotsEligible.Contains(s) && s.IsMortgaged)
+                    {
+                        spotsEligible.Add(s);
                     }
                 }
 
@@ -452,7 +468,7 @@ namespace Monopoly
                     }
                     else
                     {
-                        txtMessage.Text = "Other properties of this color are mortgaged - nothing can be upgraded on any of thes properties.";
+                        txtMessage.Text = "Other properties of this color are mortgaged - nothing can be upgraded on any of these properties.";
                     }
                 }
                 else
@@ -466,6 +482,18 @@ namespace Monopoly
                         txtMessage.Text = txtMessage.Text + "You do not have enough money to un-mortgage this property";
                     }
                 }
+            }
+            else if (selectedSpot.IsMortgaged)
+            {
+                if (currentPlayer.Money >= (int) (selectedSpot.Mortgage * 1.1))
+                {
+                    btnUnmortgage.Enabled = true;
+                }
+                else
+                {
+                    txtMessage.Text = "You do not have enough money to un-mortgage this property";
+                }
+
             }
 
             //Add the selected spot to the list of spots for that color
@@ -492,7 +520,7 @@ namespace Monopoly
 
         private void btnUnmortgage_Click(object sender, EventArgs e)
         {
-            game.Board[selectedSpot.SpotId].IsMortgaged = false;
+            this.game.Board[selectedSpot.SpotId].IsMortgaged = false;
             this.game.Players[currentPlayer.PlayerId].Money = this.game.Players[currentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
             this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
 

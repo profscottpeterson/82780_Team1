@@ -30,7 +30,9 @@ namespace Monopoly
             this.PlayerPictureBox = new PictureBox();
 
             // Set Money to default value
-            this.Money = 1500;  
+            this.Money = 1500;
+
+            this.IsActive = true;
         }
 
         /// <summary>
@@ -52,14 +54,14 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// Player has landed on chance card.
+        /// Gets or sets a value indicating whether a Player has landed on chance card.
         /// </summary>
         public bool OnChanceCard { get; set; }
 
         /// <summary>
-        /// Player has landed on cmnty card.
+        /// Gets or sets a value indicating whether a Player has landed on community card.
         /// </summary>
-        public bool OnCmntyCard { get; set; }
+        public bool OnComCard { get; set; }
 
         /// <summary>
         /// Gets or sets the player's id
@@ -106,6 +108,11 @@ namespace Monopoly
         /// Gets or sets the players image
         /// </summary>
         public PictureBox PlayerPictureBox { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the player is active
+        /// </summary>
+        public bool IsActive { get; set; }
 
         /// <summary>
         /// Returns a bool indicating whether a player needs more money

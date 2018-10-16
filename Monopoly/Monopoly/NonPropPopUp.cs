@@ -13,10 +13,6 @@ namespace Monopoly
     public partial class NonPropPopUp : Form
     {
         private Spot spot; 
-        public NonPropPopUp()
-        {
-            InitializeComponent();
-        }
 
         public NonPropPopUp(Spot spot)
         {
@@ -26,6 +22,7 @@ namespace Monopoly
 
         private void NonPropPopUp_Load(object sender, EventArgs e)
         {
+            this.Text = spot.SpotName;
             NameLabel.Text = spot.SpotName;
             PriceLabel.Text = "Price: " + spot.Price.ToString("C0");
             AmtOwedLabel.Text = "Rent: " + spot.Rent.ToString("C0");

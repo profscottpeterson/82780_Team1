@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using Monopoly.Properties;
+
 namespace Monopoly
 {
     using System;
@@ -51,18 +53,12 @@ namespace Monopoly
         int P2Jail = 1;
         int P3Jail = 1;
         int P4Jail = 1;
+        private int DoubleCounter = 0;
 
         public MonopolyMainForm()
         {
             InitializeComponent();
         }
-
-        /*
-        public Player getCurrentPlayer()
-        {
-            return this.currentPlayer;
-        }
-        */
         
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
@@ -118,7 +114,7 @@ namespace Monopoly
                 // Shows the players the current players image or color as well as the current player
                 SetCurrentPlayerImage(currentPlayer);
                 lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
-                lblCurrentBalance.Text = currentPlayer.Money.ToString("c0");
+                lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
 
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
@@ -173,9 +169,6 @@ namespace Monopoly
             die1 = rand.Next(1, 7);
             die2 = rand.Next(1, 7);
 
-            // lblDie1.Text = die1.ToString();
-            // lblDie2.Text = die2.ToString();
-
             pbxDiceLeft.Image = this.dicePictures.Images[die1 - 1];
             pbxDiceRight.Image = this.dicePictures.Images[die2 - 1];
 
@@ -184,20 +177,6 @@ namespace Monopoly
                 int totalMove = 0;
 
                 totalMove = die1 + die2;
-
-                /*int newLocation = 0;
-
-                int currentLocation = currentPlayer.CurrentLocation.SpotId;
-
-                newLocation = currentLocation + totalMove;
-
-                if (newLocation > 39)
-                {
-                    newLocation -= 40;
-                    currentPlayer.Money += 200;
-                }
-
-                currentPlayer.CurrentLocation = game.GetSpotById(newLocation);*/
 
                 // Find player's new location and set current location property of player
                 game.MovePlayerLocation(currentPlayer, totalMove);
@@ -209,7 +188,7 @@ namespace Monopoly
                 currentPlayer.OnChanceCard = false; // "reset"
                 currentPlayer.OnComCard = false; // "reset"
 
-                /*
+                
                 if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
                 {
                     string formTitle = ""; // This will be the title of the pop up form
@@ -246,7 +225,7 @@ namespace Monopoly
                         miscCardForm.ShowDialog(); // Show the card form
                     }
                 }
-                */
+                
 
                 // Check to see if rent needs to be paid and pay it if so
                 game.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
@@ -269,6 +248,7 @@ namespace Monopoly
                 // Check to see if player landed on "Go to Jail"
                 game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
 
+                /*
                 //Chance and Community Chest cards
                 if (game.CheckChance(currentPlayer, currentPlayer.CurrentLocation) || game.CheckCommunityChest(currentPlayer, currentPlayer.CurrentLocation))
                 {
@@ -280,7 +260,7 @@ namespace Monopoly
                         BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
                         buyProp.ShowDialog();
                     }
-                }
+                }*/
 
                 // Move pawn picture
                 FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
@@ -403,11 +383,25 @@ namespace Monopoly
                 }
             }
 
-            currentPlayer = game.NextPlayer(currentPlayer);
-
-            while (currentPlayer.IsActive == false)
+            if (die1 == die2)
             {
-                currentPlayer = game.NextPlayer(currentPlayer);
+                DoubleCounter++;
+                if (DoubleCounter >= 3)
+                {
+                    game.SendToJail(currentPlayer);
+                }
+                else
+                {
+                    BtnNextTurn.Enabled = false;
+                    btnRoll.Enabled = true;
+                    btnRoll.Focus();
+                }
+            }
+            else
+            {
+                BtnNextTurn.Enabled = true;
+                BtnNextTurn.Focus();
+                btnRoll.Enabled = false;
             }
 
             SetNextPlayer(currentPlayer);
@@ -861,9 +855,10 @@ namespace Monopoly
                 panel.Controls.Add(pictureBoxes[int.Parse(panel.Tag.ToString())]);
                 flpCurrentPlayerProps.Controls.Add(panel);
             }
+
             SetCurrentPlayerImage(player);
             lblPlayerTurn.Text = player.PlayerName + "'s Turn";
-            lblCurrentBalance.Text = player.Money.ToString("c0");
+            lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
         }
 
         private void SetCurrentPlayerImage(Player player)
@@ -925,6 +920,24 @@ namespace Monopoly
             {
                 upgrade.ShowDialog();
                 currentPlayer = game.Players[currentPlayer.PlayerId];
+            }
+
+            SetNextPlayer(currentPlayer);
+        }
+
+        private void BtnNextTurn_Click(object sender, EventArgs e)
+        {
+            btnRoll.Enabled = true;
+            BtnNextTurn.Enabled = false;
+            btnRoll.Focus();
+
+            DoubleCounter = 0;
+
+            currentPlayer = game.NextPlayer(currentPlayer);
+
+            while (currentPlayer.IsActive == false)
+            {
+                currentPlayer = game.NextPlayer(currentPlayer);
             }
 
             SetNextPlayer(currentPlayer);

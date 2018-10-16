@@ -27,6 +27,7 @@ namespace Monopoly
 
         private void MonPopUp_Load(object sender, EventArgs e)
         {
+            this.Text = spot.SpotName;
             ColorPicBox.BackColor = spot.Color;
             SpotNameLabel.Text = spot.SpotName;
             //this.BackColor = spot.Color;

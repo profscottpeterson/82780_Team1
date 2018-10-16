@@ -94,3 +94,6 @@ C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Tra
 C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
 C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources
 C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.GenerateResource.Cache
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GetMoney.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources

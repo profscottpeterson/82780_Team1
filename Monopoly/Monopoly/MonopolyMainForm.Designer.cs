@@ -88,6 +88,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.BoardTemplateImage = new System.Windows.Forms.PictureBox();
             this.BoardBackgroundImage = new System.Windows.Forms.PictureBox();
+            this.BtnNextTurn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
@@ -141,6 +142,7 @@
             // 
             // btnRoll
             // 
+            this.btnRoll.ForeColor = System.Drawing.Color.Black;
             this.btnRoll.Location = new System.Drawing.Point(335, 506);
             this.btnRoll.Name = "btnRoll";
             this.btnRoll.Size = new System.Drawing.Size(230, 23);
@@ -161,6 +163,7 @@
             // 
             // btnTradeRequest
             // 
+            this.btnTradeRequest.ForeColor = System.Drawing.Color.Black;
             this.btnTradeRequest.Location = new System.Drawing.Point(911, 877);
             this.btnTradeRequest.Name = "btnTradeRequest";
             this.btnTradeRequest.Size = new System.Drawing.Size(114, 23);
@@ -185,6 +188,7 @@
             this.flpCurrentPlayerProps.AutoScroll = true;
             this.flpCurrentPlayerProps.BackColor = System.Drawing.Color.PeachPuff;
             this.flpCurrentPlayerProps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpCurrentPlayerProps.ForeColor = System.Drawing.Color.Black;
             this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 105);
             this.flpCurrentPlayerProps.Name = "flpCurrentPlayerProps";
             this.flpCurrentPlayerProps.Size = new System.Drawing.Size(460, 330);
@@ -209,14 +213,16 @@
             // lblCurrentBalance
             // 
             this.lblCurrentBalance.AutoSize = true;
-            this.lblCurrentBalance.Location = new System.Drawing.Point(908, 67);
+            this.lblCurrentBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBalance.Location = new System.Drawing.Point(909, 56);
             this.lblCurrentBalance.Name = "lblCurrentBalance";
-            this.lblCurrentBalance.Size = new System.Drawing.Size(90, 13);
+            this.lblCurrentBalance.Size = new System.Drawing.Size(153, 22);
             this.lblCurrentBalance.TabIndex = 55;
             this.lblCurrentBalance.Text = "lblCurrentBalance";
             // 
             // btnSell
             // 
+            this.btnSell.ForeColor = System.Drawing.Color.Black;
             this.btnSell.Location = new System.Drawing.Point(1078, 877);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(106, 23);
@@ -227,6 +233,7 @@
             // 
             // btnBuyHouseOrHotel
             // 
+            this.btnBuyHouseOrHotel.ForeColor = System.Drawing.Color.Black;
             this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(1258, 877);
             this.btnBuyHouseOrHotel.Name = "btnBuyHouseOrHotel";
             this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(114, 23);
@@ -726,11 +733,25 @@
             this.BoardBackgroundImage.TabIndex = 0;
             this.BoardBackgroundImage.TabStop = false;
             // 
+            // BtnNextTurn
+            // 
+            this.BtnNextTurn.Enabled = false;
+            this.BtnNextTurn.ForeColor = System.Drawing.Color.Black;
+            this.BtnNextTurn.Location = new System.Drawing.Point(415, 555);
+            this.BtnNextTurn.Name = "BtnNextTurn";
+            this.BtnNextTurn.Size = new System.Drawing.Size(75, 23);
+            this.BtnNextTurn.TabIndex = 58;
+            this.BtnNextTurn.Text = "Next Turn";
+            this.BtnNextTurn.UseVisualStyleBackColor = true;
+            this.BtnNextTurn.Click += new System.EventHandler(this.BtnNextTurn_Click);
+            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 902);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
+            this.ClientSize = new System.Drawing.Size(1384, 901);
+            this.Controls.Add(this.BtnNextTurn);
             this.Controls.Add(this.btnBuyHouseOrHotel);
             this.Controls.Add(this.btnSell);
             this.Controls.Add(this.lblCurrentBalance);
@@ -787,6 +808,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.BoardTemplateImage);
             this.Controls.Add(this.BoardBackgroundImage);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "MonopolyMainForm";
             this.Text = "Monopoly";
             this.Load += new System.EventHandler(this.MonopolyMainForm_Load);
@@ -904,6 +926,7 @@
         private System.Windows.Forms.Label lblCurrentBalance;
         private System.Windows.Forms.Button btnSell;
         private System.Windows.Forms.Button btnBuyHouseOrHotel;
+        private System.Windows.Forms.Button BtnNextTurn;
     }
 }
 

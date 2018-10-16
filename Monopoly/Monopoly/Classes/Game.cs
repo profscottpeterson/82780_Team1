@@ -462,7 +462,7 @@ namespace Monopoly
                                 if (s.Owner == currentPlayer)
                                 {
                                     this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 25;
-                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 100;
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.RentHotel * 100;
                                 }
                             }
                         }
@@ -473,7 +473,7 @@ namespace Monopoly
                                 if (s.Owner == currentPlayer)
                                 {
                                     this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 40;
-                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 115;
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.RentHotel * 115;
                                 }
                             }
                         }

@@ -31,12 +31,17 @@ namespace Monopoly
 
             // Construct all the chance cards
             this.ChanceCards = new List<Card>();
+            this.RandomizedChanceCards = new List<Card>();
 
             // Construct all the community chest cards
             this.CommunityChestCards = new List<Card>();
+            this.RandomizedCommunityChestCards = new List<Card>();
 
             // Creates community and chance cards
             this.CreateCards();
+
+            // Randomize community and chance cards
+            this.RandomizedCards();
 
             // Initialize the list of players
             this.Players = new List<Player>();
@@ -56,9 +61,19 @@ namespace Monopoly
         public List<Card> ChanceCards { get; }
 
         /// <summary>
+        /// Gets the list of chance cards
+        /// </summary>
+        public List<Card> RandomizedChanceCards { get; }
+
+        /// <summary>
         /// Gets the list of community chest cards
         /// </summary>
         public List<Card> CommunityChestCards { get; }
+
+        /// <summary>
+        /// Gets the list of community chest cards
+        /// </summary>
+        public List<Card> RandomizedCommunityChestCards { get; }
 
         /// <summary>
         /// Gets or sets the list of players
@@ -279,6 +294,42 @@ namespace Monopoly
             }
         }
 
+        /// Checks to see if player landed on Chance and draws a Chance Card
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        public bool CheckChance(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.Chance)
+            {
+                // Draws a Card
+                this.DrawCard(ChanceCards, currentPlayer);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// Checks to see if player landed on Chance and draws a Chance Card
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        public bool CheckCommunityChest(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.CommunityChest)
+            {
+                // Draws a Card
+                this.DrawCard(CommunityChestCards, currentPlayer);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Sends player to Jail
         /// </summary>
@@ -344,6 +395,7 @@ namespace Monopoly
         public void DrawCard(List<Card> pile, Player currentPlayer)
         {
             Card top = pile[0];
+            MessageBox.Show(top.Description);
 
             if (top.GetOutOfJailFree == true)
             {
@@ -398,8 +450,33 @@ namespace Monopoly
                     // Player pays money
                     if (top.Bank == true)
                     {
-                        // Money is paid to the bank
-                        this.Players[this.Players.IndexOf(currentPlayer)].Money -= top.Amount;
+                        if (top.Description.Contains("general repairs"))
+                        {
+                            foreach (Spot s in Board)
+                            {
+                                if (s.Owner == currentPlayer)
+                                {
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 25;
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 100;
+                                }
+                            }
+                        }
+                        else if (top.Description.Contains("street repairs"))
+                        {
+                            foreach (Spot s in Board)
+                            {
+                                if (s.Owner == currentPlayer)
+                                {
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 40;
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 115;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Money is paid to the bank
+                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= top.Amount;
+                        }
                     }
                     else
                     {
@@ -1236,6 +1313,9 @@ namespace Monopoly
             tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
             this.ChanceCards.Add(tempCard);
 
+            tempCard = new Card(17, "Make general repairs on all your property", CardType.Chance, 0, true, false);
+            ChanceCards.Add(tempCard);
+
             // Community Chest Cards
             tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0]);
             this.CommunityChestCards.Add(tempCard);
@@ -1278,6 +1358,52 @@ namespace Monopoly
 
             tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
             this.CommunityChestCards.Add(tempCard);
+
+            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false);
+            ChanceCards.Add(tempCard);
+        }
+        public void RandomizedCards()
+        {
+            // Randomize Chance
+            Card c = new Card(1, null, CardType.Chance);
+            Random rng = new Random();
+            int n = ChanceCards.Count;
+            while (n >= 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                c = ChanceCards[k];
+                RandomizedChanceCards.Add(c);
+                ChanceCards.Remove(c);
+            }
+            n = RandomizedChanceCards.Count;
+            while (n >= 1)
+            {
+                n--;
+                c = RandomizedChanceCards[n];
+                RandomizedChanceCards.Remove(c);
+                ChanceCards.Add(c);
+            }
+
+            // Randomize Community Chest
+            c = new Card(1, null, CardType.CommunityChest);
+            n = CommunityChestCards.Count;
+            while (n >= 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                c = CommunityChestCards[k];
+                RandomizedCommunityChestCards.Add(c);
+                CommunityChestCards.Remove(c);
+            }
+            n = RandomizedCommunityChestCards.Count;
+            while (n >= 1)
+            {
+                n--;
+                c = RandomizedCommunityChestCards[n];
+                RandomizedCommunityChestCards.Remove(c);
+                CommunityChestCards.Add(c);
+            }
         }
     }
 }

@@ -209,6 +209,7 @@ namespace Monopoly
                 currentPlayer.OnChanceCard = false; // "reset"
                 currentPlayer.OnComCard = false; // "reset"
 
+                /*
                 if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
                 {
                     string formTitle = ""; // This will be the title of the pop up form
@@ -245,6 +246,7 @@ namespace Monopoly
                         miscCardForm.ShowDialog(); // Show the card form
                     }
                 }
+                */
 
                 // Check to see if rent needs to be paid and pay it if so
                 game.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
@@ -267,7 +269,18 @@ namespace Monopoly
                 // Check to see if player landed on "Go to Jail"
                 game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
 
-                // TODO: Chance and Community Chest cards
+                //Chance and Community Chest cards
+                if (game.CheckChance(currentPlayer, currentPlayer.CurrentLocation) || game.CheckCommunityChest(currentPlayer, currentPlayer.CurrentLocation))
+                {
+                    // Check to see if spot landed on can be bought
+                    if (game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
+                    {
+                        ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
+
+                        BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
+                        buyProp.ShowDialog();
+                    }
+                }
 
                 // Move pawn picture
                 FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);

@@ -76,6 +76,21 @@ C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopol
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
-C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GetMoney.resources
-C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
-C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.pdb
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GameOptions.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GetMoney.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonopolyMainForm.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonPopUp.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.NonPropPopUp.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Properties.Resources.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources
+C:\Users\utecm\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.GenerateResource.Cache

@@ -263,6 +263,36 @@
   <ItemGroup>
     <None Include="Resources\dice_6.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Chance_CommunityChest\Advance to Boardwalk.png" />
+    <Content Include="Resources\Chance_CommunityChest\Advance to Go.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Advance To Illinois Ave.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Advance To St. Charles Place.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Advance Token to Nearest Railroad.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Advance Token to Nearest Utility.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Bank Error In Your Favor.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Bank Pays You Dividend of %2450.png" />
+    <Content Include="Resources\Chance_CommunityChest\Collect %2450 From Every Player.png" />
+    <Content Include="Resources\Chance_CommunityChest\Doctor%27s Fee.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Elected Chairman of Board.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\From Sale of Stock You Get %2445.png" />
+    <Content Include="Resources\Chance_CommunityChest\Get Out of Jail Free.png" />
+    <Content Include="Resources\Chance_CommunityChest\Go Back 3 Spaces.png" />
+    <Content Include="Resources\Chance_CommunityChest\Go to Jail.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Income Tax Refund.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Make General Repairs on All Property.png" />
+    <Content Include="Resources\Chance_CommunityChest\Pay Hospital.png" />
+    <Content Include="Resources\Chance_CommunityChest\Pay Poor Tax.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Pay School Tax.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Receive For Services.png" />
+    <Content Include="Resources\Chance_CommunityChest\Take A Ride On The Reading Railroad.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\TempBackImage.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Xmas Fund Matures.png" />
+    <Content Include="Resources\Chance_CommunityChest\You Are Assessed For Street Repairs.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\You Inherit %24100.jpg" />
+    <Content Include="Resources\Chance_CommunityChest\Your Building And Loan Matures.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

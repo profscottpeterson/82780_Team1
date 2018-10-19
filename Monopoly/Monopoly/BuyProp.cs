@@ -53,18 +53,46 @@ namespace Monopoly
         {
             // Copy the info from the MonPopUp to display card info
             this.InitializeComponent();
-            this.colorPicBox.BackColor = spot.Color;
+            //this.colorPicBox.BackColor = spot.Color;
             this.spotNameLabel.Text = spot.SpotName;
+            this.spotNameLabel.BackColor = spot.Color;
 
-            // this.BackColor = spot.Color;
+            // Adjust text color so it is visible against the background
+            if (spot.Color == Color.Brown || spot.Color == Color.Green || spot.Color == Color.DarkBlue || spot.Color == Color.Black)
+            {
+                this.spotNameLabel.ForeColor = Color.White;
+            }
+            else
+            {
+                this.spotNameLabel.ForeColor = Color.Black;
+            }
+            
             this.priceLabel.Text = "Price: " + spot.Price.ToString("C0");
-            this.rentLabel.Text = "Rent: " + spot.Rent.ToString("C0");
-            this.rent1Label.Text = "Rent with 1 House: " + spot.Rent1House.ToString("C0");
-            this.rent2Label.Text = "Rent with 2 Houses: " + spot.Rent2Houses.ToString("C0");
-            this.rent3Label.Text = "Rent with 3 Houses: " + spot.Rent3Houses.ToString("C0");
-            this.rent4Label.Text = "Rent with 4 Houses: " + spot.Rent4Houses.ToString("C0");
-            this.rentHotelLabel.Text = "Rent with a Hotel: " + spot.HotelCost.ToString("C0");
             this.mortgageLabel.Text = "Mortgage: " + spot.Mortgage.ToString("C0");
+
+            this.rentLabel.Text = "";
+
+            if (spot.Type == SpotType.Property)
+            {
+                this.rentLabel.Text += "Rent: " + spot.Rent.ToString("C0") + '\n';
+                this.rentLabel.Text += "Rent with 1 House: " + spot.Rent1House.ToString("C0") + '\n';
+                this.rentLabel.Text += "Rent with 2 Houses: " + spot.Rent2Houses.ToString("C0") + '\n';
+                this.rentLabel.Text += "Rent with 3 Houses: " + spot.Rent3Houses.ToString("C0") + '\n';
+                this.rentLabel.Text += "Rent with 4 Houses: " + spot.Rent4Houses.ToString("C0") + '\n';
+                this.rentLabel.Text += "Rent with a Hotel: " + spot.RentHotel.ToString("C0");
+            }
+            else if (spot.Type == SpotType.Railroad)
+            {
+                this.rentLabel.Text += "Rent: " + spot.Rent.ToString("C0") + '\n';
+                this.rentLabel.Text += "If 2 are owned: " + (spot.Rent * 2).ToString("C0") + '\n';
+                this.rentLabel.Text += "If 3 are owned: " + (spot.Rent * 4).ToString("C0") + '\n';
+                this.rentLabel.Text += "If 4 are owned: " + (spot.Rent * 8).ToString("C0");
+            }
+            else if (spot.Type == SpotType.Utility)
+            {
+                this.rentLabel.Text += "If one Utility is owned, rent is 4 times amount shown on dice." + '\n';
+                this.rentLabel.Text += "If both Utilities are owned, rent is 10 times amount shown on dice.";
+            }
 
             // Output the players balance
             this.lblYourMoney.Text = p.Money.ToString("c0");

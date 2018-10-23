@@ -756,11 +756,7 @@ namespace Monopoly
         /// <param name="player"></param>
         private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
         {
-            if (FormBool == true)
-            {
-                lblOtherPlayersHand.Text = string.Empty;
-            }
-            
+            lblOtherPlayersHand.Text = string.Empty;
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
             currentPlayerSpots = game.GetPlayersPropertyList(player);
@@ -910,10 +906,11 @@ namespace Monopoly
             {
                 SetUpPlayerHandOptions();
                 lblOtherPlayersHand.Text = player.PlayerName;
+                if (lblOtherPlayersHand.Text == currentPlayer.PlayerName)
+                {
+                    lblOtherPlayersHand.Text = string.Empty;
+                }
             }
-
-            
-            
         }
 
         private void SetUpPlayerHandOptions()

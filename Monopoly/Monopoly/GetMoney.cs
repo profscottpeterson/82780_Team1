@@ -72,6 +72,10 @@ namespace Monopoly
 
         public GetMoney(Game game, Player currentPlayer, int debt)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.Debt = debt;
             this.game = game;
@@ -186,7 +190,82 @@ namespace Monopoly
             this.btnSellHouse.Enabled = false;
         }
 
-        private void listViewProperties_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnSellHouse_Click(object sender, EventArgs e)
+        {
+            this.game.Board[this.currentSpot.SpotId].NumberOfHouses -= 1;
+            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(lblMoneyGainFromHouse.Text);
+            this.currentSpot = this.game.Board[this.currentSpot.SpotId];
+            this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
+
+            lblMoney.Text = this.currentPlayer.Money.ToString();
+
+            int remainingDebt = int.Parse(lblDebtCurrent.Text);
+
+            int newDebt = remainingDebt - int.Parse(lblMoneyGainFromHouse.Text);
+
+            if (newDebt < 0)
+            {
+                newDebt = 0;
+            }
+
+            lblDebtCurrent.Text = newDebt.ToString();
+
+            reset();
+        }
+
+        private void btnSellHotel_Click(object sender, EventArgs e)
+        {
+            this.game.Board[this.currentSpot.SpotId].HasHotel = false;
+            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(lblMoneyGainFromHotel.Text);
+            this.currentSpot = this.game.Board[this.currentSpot.SpotId];
+            this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
+
+            lblMoney.Text = this.currentPlayer.Money.ToString();
+
+            int remainingDebt = int.Parse(lblDebtCurrent.Text);
+
+            int newDebt = remainingDebt - int.Parse(lblMoneyGainFromHotel.Text);
+
+            if (newDebt < 0)
+            {
+                newDebt = 0;
+            }
+
+            lblDebtCurrent.Text = newDebt.ToString();
+
+            reset();
+        }
+
+        private void btnMortage_Click(object sender, EventArgs e)
+        {
+            this.game.Board[this.currentSpot.SpotId].IsMortgaged = true;
+            this.game.Players[this.currentPlayer.PlayerId].Money += this.currentSpot.Mortgage;
+            this.currentSpot = this.game.Board[this.currentSpot.SpotId];
+            this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
+
+            lblMoney.Text = this.currentPlayer.Money.ToString();
+
+            int remainingDebt = int.Parse(lblDebtCurrent.Text);
+
+            int newDebt = remainingDebt - this.currentSpot.Mortgage;
+
+            if (newDebt < 0)
+            {
+                newDebt = 0;
+            }
+
+            lblDebtCurrent.Text = newDebt.ToString();
+
+            reset();
+        }
+
+        private void btnForfeit_Click(object sender, EventArgs e)
+        {
+            game.Forfeit(currentPlayer);
+            this.Close();
+        }
+
+        private void listViewProperties_Click(object sender, EventArgs e)
         {
             //check if selected item isn't null
             if (listViewProperties.SelectedItems[0] != null)
@@ -206,7 +285,7 @@ namespace Monopoly
                 //Create a list of properties with the same color as the original
                 List<Spot> sameType = new List<Spot>();
 
-                foreach(Spot s in playerSpots)
+                foreach (Spot s in playerSpots)
                 {
                     if (s.Color == currentSpot.Color && s.SpotName != currentSpot.SpotName)
                     {
@@ -222,7 +301,8 @@ namespace Monopoly
                 }
                 else
                 {
-                    if (this.currentSpot.IsMortgaged == false) {
+                    if (this.currentSpot.IsMortgaged == false)
+                    {
                         this.lblNumHotel.Text = "0";
 
                         //one of the property colors with only 2 properties
@@ -334,83 +414,8 @@ namespace Monopoly
                 }
 
                 //refill the list view
-                this.FillListView(listViewProperties, playerSpots);
+                //this.FillListView(listViewProperties, playerSpots);
             }
-        }
-
-        private void btnSellHouse_Click(object sender, EventArgs e)
-        {
-            this.game.Board[this.currentSpot.SpotId].NumberOfHouses -= 1;
-            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(lblMoneyGainFromHouse.Text);
-            this.currentSpot = this.game.Board[this.currentSpot.SpotId];
-            this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
-
-            lblMoney.Text = this.currentPlayer.Money.ToString();
-
-            int remainingDebt = int.Parse(lblDebtCurrent.Text);
-
-            int newDebt = remainingDebt - int.Parse(lblMoneyGainFromHouse.Text);
-
-            if (newDebt < 0)
-            {
-                newDebt = 0;
-            }
-
-            lblDebtCurrent.Text = newDebt.ToString();
-
-            reset();
-        }
-
-        private void btnSellHotel_Click(object sender, EventArgs e)
-        {
-            this.game.Board[this.currentSpot.SpotId].HasHotel = false;
-            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(lblMoneyGainFromHotel.Text);
-            this.currentSpot = this.game.Board[this.currentSpot.SpotId];
-            this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
-
-            lblMoney.Text = this.currentPlayer.Money.ToString();
-
-            int remainingDebt = int.Parse(lblDebtCurrent.Text);
-
-            int newDebt = remainingDebt - int.Parse(lblMoneyGainFromHotel.Text);
-
-            if (newDebt < 0)
-            {
-                newDebt = 0;
-            }
-
-            lblDebtCurrent.Text = newDebt.ToString();
-
-            reset();
-        }
-
-        private void btnMortage_Click(object sender, EventArgs e)
-        {
-            this.game.Board[this.currentSpot.SpotId].IsMortgaged = true;
-            this.game.Players[this.currentPlayer.PlayerId].Money += this.currentSpot.Mortgage;
-            this.currentSpot = this.game.Board[this.currentSpot.SpotId];
-            this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
-
-            lblMoney.Text = this.currentPlayer.Money.ToString();
-
-            int remainingDebt = int.Parse(lblDebtCurrent.Text);
-
-            int newDebt = remainingDebt - this.currentSpot.Mortgage;
-
-            if (newDebt < 0)
-            {
-                newDebt = 0;
-            }
-
-            lblDebtCurrent.Text = newDebt.ToString();
-
-            reset();
-        }
-
-        private void btnForfeit_Click(object sender, EventArgs e)
-        {
-            game.Forfeit(currentPlayer);
-            this.Close();
         }
     }
 }

@@ -51,6 +51,10 @@ namespace Monopoly
         /// <param name="g">The game</param>
         public BuyProp(Spot spot, Player p, Game g)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             // Copy the info from the MonPopUp to display card info
             this.InitializeComponent();
             //this.colorPicBox.BackColor = spot.Color;

@@ -49,6 +49,10 @@ namespace Monopoly
 
         public GetMoney(Game game, Player currentPlayer)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.game = game;
             this.currentPlayer = currentPlayer;
@@ -187,6 +191,8 @@ namespace Monopoly
             //check if selected item isn't null
             if (listViewProperties.SelectedItems[0] != null)
             {
+                txtErrors.Text = "";
+
                 reset();
                 //find the current spot
                 foreach (Spot s in playerSpots)
@@ -216,86 +222,92 @@ namespace Monopoly
                 }
                 else
                 {
-                    this.lblNumHotel.Text = "0";
-                    
-                    //one of the property colors with only 2 properties
-                    if (sameType.Count == 1 && (this.currentSpot.Color == Color.Brown || this.currentSpot.Color == Color.DarkBlue))
-                    {
-                        //both properties have the same number of houses
-                        if (sameType[0].NumberOfHouses == this.currentSpot.NumberOfHouses)
-                        {
-                            // if the other property with the same color has a hotel still
-                            if (sameType[0].HasHotel)
-                            {
-                                txtErrors.Text = "Must sell hotel on other property";
-                            }
-                            else
-                            {
-                                if (this.currentSpot.NumberOfHouses > 0)
-                                {
-                                    btnSellHouse.Enabled = true;
-                                }
+                    if (this.currentSpot.IsMortgaged == false) {
+                        this.lblNumHotel.Text = "0";
 
-                                if (this.currentSpot.NumberOfHouses == 0 && sameType[0].NumberOfHouses == 0)
+                        //one of the property colors with only 2 properties
+                        if (sameType.Count == 1 && (this.currentSpot.Color == Color.Brown || this.currentSpot.Color == Color.DarkBlue))
+                        {
+                            //both properties have the same number of houses
+                            if (sameType[0].NumberOfHouses == this.currentSpot.NumberOfHouses)
+                            {
+                                // if the other property with the same color has a hotel still
+                                if (sameType[0].HasHotel)
                                 {
-                                    btnMortage.Enabled = true;
+                                    txtErrors.Text = "Must sell hotel on other property";
+                                }
+                                else
+                                {
+                                    if (this.currentSpot.NumberOfHouses > 0)
+                                    {
+                                        btnSellHouse.Enabled = true;
+                                    }
+
+                                    if (this.currentSpot.NumberOfHouses == 0 && sameType[0].NumberOfHouses == 0)
+                                    {
+                                        btnMortage.Enabled = true;
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            //if they have more houses than the other property of the same color
-                            if (this.currentSpot.NumberOfHouses > sameType[0].NumberOfHouses)
-                            {
-                                btnSellHouse.Enabled = true;
-                            }
                             else
                             {
-                                txtErrors.Text = "Another property of the same color has more houses than this one.";
-                            }
-                        }
-                    }
-                    else if (sameType.Count == 2)
-                    {
-                        //both properties have the same number of houses
-                        if (sameType[0].NumberOfHouses == this.currentSpot.NumberOfHouses && this.currentSpot.NumberOfHouses == sameType[1].NumberOfHouses)
-                        {
-                            // if the other property with the same color has a hotel still
-                            if (sameType[0].HasHotel || sameType[1].HasHotel)
-                            {
-                                txtErrors.Text = "Must sell hotel on other property";
-                            }
-                            else
-                            {
-                                if (this.currentSpot.NumberOfHouses > 0)
+                                //if they have more houses than the other property of the same color
+                                if (this.currentSpot.NumberOfHouses > sameType[0].NumberOfHouses)
                                 {
                                     btnSellHouse.Enabled = true;
                                 }
-                                if (this.currentSpot.NumberOfHouses == 0 && sameType[0].NumberOfHouses == 0 && sameType[1].NumberOfHouses == 0)
+                                else
                                 {
-                                    btnMortage.Enabled = true;
+                                    txtErrors.Text = "Another property of the same color has more houses than this one.";
+                                }
+                            }
+                        }
+                        else if (sameType.Count == 2)
+                        {
+                            //both properties have the same number of houses
+                            if (sameType[0].NumberOfHouses == this.currentSpot.NumberOfHouses && this.currentSpot.NumberOfHouses == sameType[1].NumberOfHouses)
+                            {
+                                // if the other property with the same color has a hotel still
+                                if (sameType[0].HasHotel || sameType[1].HasHotel)
+                                {
+                                    txtErrors.Text = "Must sell hotel on other property";
+                                }
+                                else
+                                {
+                                    if (this.currentSpot.NumberOfHouses > 0)
+                                    {
+                                        btnSellHouse.Enabled = true;
+                                    }
+                                    if (this.currentSpot.NumberOfHouses == 0 && sameType[0].NumberOfHouses == 0 && sameType[1].NumberOfHouses == 0)
+                                    {
+                                        btnMortage.Enabled = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //if they have more houses than the other property of the same color
+                                if (this.currentSpot.NumberOfHouses > sameType[0].NumberOfHouses || this.currentSpot.NumberOfHouses > sameType[1].NumberOfHouses)
+                                {
+                                    btnSellHouse.Enabled = true;
+                                }
+                                else
+                                {
+                                    txtErrors.Text = "Another property of the same color has more houses than this one.";
                                 }
                             }
                         }
                         else
                         {
-                            //if they have more houses than the other property of the same color
-                            if (this.currentSpot.NumberOfHouses > sameType[0].NumberOfHouses || this.currentSpot.NumberOfHouses > sameType[1].NumberOfHouses)
+                            if (!this.currentSpot.IsMortgaged)
                             {
-                                btnSellHouse.Enabled = true;
-                            }
-                            else
-                            {
-                                txtErrors.Text = "Another property of the same color has more houses than this one.";
+                                btnMortage.Enabled = true;
                             }
                         }
                     }
                     else
                     {
-                        if (!this.currentSpot.IsMortgaged)
-                        {
-                            btnMortage.Enabled = true;
-                        }                       
+                        btnMortage.Enabled = false;
                     }
                 }
 
@@ -307,6 +319,19 @@ namespace Monopoly
                 //Put on the property name
                 this.lblPropertyName.Text = this.currentSpot.SpotName;
                 this.lblPropertyName.ForeColor = this.currentSpot.Color;
+
+                if (this.lblPropertyName.ForeColor == Color.Yellow)
+                {
+                    this.lblPropertyName.ForeColor = Color.YellowGreen;
+                }
+                if (this.lblPropertyName.ForeColor == Color.LightBlue)
+                {
+                    this.lblPropertyName.ForeColor = Color.Blue;
+                }
+                if (this.lblPropertyName.ForeColor == Color.Pink)
+                {
+                    this.lblPropertyName.ForeColor = Color.DeepPink;
+                }
 
                 //refill the list view
                 this.FillListView(listViewProperties, playerSpots);

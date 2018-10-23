@@ -16,11 +16,18 @@ namespace Monopoly
 
         public MiscCardForm()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             InitializeComponent();
         }
 
         public MiscCardForm(string title, Card card)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.Text = title;
             cardTextLabel.Text = card.Description;
@@ -31,6 +38,11 @@ namespace Monopoly
         private void MiscCardForm_Load(object sender, EventArgs e)
         {
             picture = new PictureBox();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -60,6 +60,10 @@ namespace Monopoly
         /// <param name="currentPlayer">brings forth the currentPlayer</param>
         public UpgradeProperty(Game game, Player currentPlayer)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.game = game;
             this.currentPlayer = currentPlayer;
@@ -502,6 +506,19 @@ namespace Monopoly
             //Update text
             this.lblPropertyName.Text = selectedSpot.SpotName;
             this.lblPropertyName.ForeColor = selectedSpot.Color;
+            
+            if (this.lblPropertyName.ForeColor == Color.Yellow)
+            {
+                this.lblPropertyName.ForeColor = Color.YellowGreen;
+            }
+            if (this.lblPropertyName.ForeColor == Color.LightBlue)
+            {
+                this.lblPropertyName.ForeColor = Color.Blue;
+            }
+            if (this.lblPropertyName.ForeColor == Color.Pink)
+            {
+                this.lblPropertyName.ForeColor = Color.DeepPink;
+            }
 
             //add them to the listView
             FillListView(listViewProperties, eligible);

@@ -156,7 +156,7 @@
             this.btnRoll.TabIndex = 46;
             this.btnRoll.Text = "Roll";
             this.btnRoll.UseVisualStyleBackColor = true;
-            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
+            this.btnRoll.Click += new System.EventHandler(this.BtnRoll_Click);
             // 
             // lblPlayerTurn
             // 
@@ -178,7 +178,7 @@
             this.btnTradeRequest.TabIndex = 50;
             this.btnTradeRequest.Text = "Trade Request";
             this.btnTradeRequest.UseVisualStyleBackColor = true;
-            this.btnTradeRequest.Click += new System.EventHandler(this.btnTradeRequest_Click);
+            this.btnTradeRequest.Click += new System.EventHandler(this.BtnTradeRequest_Click);
             // 
             // dicePictures
             // 
@@ -238,7 +238,7 @@
             this.btnSell.TabIndex = 56;
             this.btnSell.Text = "Sell";
             this.btnSell.UseVisualStyleBackColor = true;
-            this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
+            this.btnSell.Click += new System.EventHandler(this.BtnSell_Click);
             // 
             // btnBuyHouseOrHotel
             // 
@@ -250,7 +250,7 @@
             this.btnBuyHouseOrHotel.TabIndex = 57;
             this.btnBuyHouseOrHotel.Text = "Buy House Or Hotel";
             this.btnBuyHouseOrHotel.UseVisualStyleBackColor = true;
-            this.btnBuyHouseOrHotel.Click += new System.EventHandler(this.btnBuyHouseOrHotel_Click);
+            this.btnBuyHouseOrHotel.Click += new System.EventHandler(this.BtnBuyHouseOrHotel_Click);
             // 
             // pbxCurrentPlayerPicture
             // 
@@ -767,7 +767,7 @@
             this.btnJailPay.TabIndex = 59;
             this.btnJailPay.Text = "Pay $50 to Get Out of Jail";
             this.btnJailPay.UseVisualStyleBackColor = true;
-            this.btnJailPay.Click += new System.EventHandler(this.btnJailPay_Click);
+            this.btnJailPay.Click += new System.EventHandler(this.BtnJailPay_Click);
             // 
             // btnJailFreeCard
             // 
@@ -780,7 +780,7 @@
             this.btnJailFreeCard.TabIndex = 60;
             this.btnJailFreeCard.Text = "Use Get Out of Jail Free Card";
             this.btnJailFreeCard.UseVisualStyleBackColor = true;
-            this.btnJailFreeCard.Click += new System.EventHandler(this.btnJailFreeCard_Click);
+            this.btnJailFreeCard.Click += new System.EventHandler(this.BtnJailFreeCard_Click);
             // 
             // flpPlayerHandOptions
             // 
@@ -822,9 +822,9 @@
             this.QuitGameBtn.Name = "QuitGameBtn";
             this.QuitGameBtn.Size = new System.Drawing.Size(128, 23);
             this.QuitGameBtn.TabIndex = 64;
-            this.QuitGameBtn.Text = "Quit Game";
+            this.QuitGameBtn.Text = "Quit game";
             this.QuitGameBtn.UseVisualStyleBackColor = true;
-            this.QuitGameBtn.Click += new System.EventHandler(this.QuitGameBtn_Click_1);
+            this.QuitGameBtn.Click += new System.EventHandler(this.QuitGameBtn_Click);
             // 
             // MonopolyMainForm
             // 

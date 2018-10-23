@@ -3,9 +3,6 @@
 //     Company null (not copyrighted)
 // </copyright>
 //-----------------------------------------------------------------------
-
-using Monopoly.Properties;
-
 namespace Monopoly
 {
     using System;
@@ -17,21 +14,61 @@ namespace Monopoly
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using Monopoly.Properties;
 
     /// <summary>
     /// An enum for dictating a spots type
     /// </summary>
     public enum SpotType
     {
+        /// <summary>
+        /// Spot is a property that is not a railroad or utility
+        /// </summary>
         Property,
+
+        /// <summary>
+        /// Spot is a Chance spot
+        /// </summary>
         Chance,
+
+        /// <summary>
+        /// Spot is a Community Chest spot
+        /// </summary>
         CommunityChest,
+
+        /// <summary>
+        /// Spot is Go
+        /// </summary>
         Go,
+
+        /// <summary>
+        /// Spot is Jail
+        /// </summary>
         Jail,
+
+        /// <summary>
+        /// Spot is "Go to Jail"
+        /// </summary>
         GoToJail,
+
+        /// <summary>
+        /// Spot is Luxury or Income Tax spot
+        /// </summary>
         Tax,
+
+        /// <summary>
+        /// Spot is Electric Company or Water Works property
+        /// </summary>
         Utility,
+
+        /// <summary>
+        /// Spot is a railroad
+        /// </summary>
         Railroad,
+
+        /// <summary>
+        /// Spot is free parking spot
+        /// </summary>
         FreeParking
     }
 
@@ -40,40 +77,94 @@ namespace Monopoly
     /// </summary>
     public enum CardType
     {
+        /// <summary>
+        /// Card is from Community Chest pile
+        /// </summary>
         CommunityChest,
+
+        /// <summary>
+        /// Card is from Chance pile
+        /// </summary>
         Chance
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class MonopolyMainForm : Form
-    {
-        private Player currentPlayer;
-        public Game game;
-        int P1Jail = 1;
-        int P2Jail = 1;
-        int P3Jail = 1;
-        int P4Jail = 1;
-        private int DoubleCounter = 0;
-        private RadioButton[] radioButtons;
-        private bool FormBool = false;
+    {  
+        /// <summary>
+        /// The game
+        /// </summary>
+        private Game game;
 
+        /*
+        /// <summary>
+        /// Number of turns player 1 has been in jail
+        /// </summary>
+        private int player1Jail = 1;
+
+        /// <summary>
+        /// Number of turns player 2 has been in jail
+        /// </summary>
+        private int player2Jail = 1;
+
+        /// <summary>
+        /// Number of turns player 3 has been in jail
+        /// </summary>
+        private int player3Jail = 1;
+
+        /// <summary>
+        /// Number of turns player 4 has been in jail
+        /// </summary>
+        private int player4Jail = 1;
+        */
+
+        /// <summary>
+        /// The current player
+        /// </summary>
+        private Player currentPlayer;
+
+        /// <summary>
+        /// How many doubles have been rolled in a turn
+        /// </summary>
+        private int doubleCounter = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private RadioButton[] radioButtons;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private bool formBool = false;
+
+        /// <summary>
+        /// Initializes a new instance of the MonopolyMainForm class.
+        /// </summary>
         public MonopolyMainForm()
         {
-            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            ////this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ControlBox = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            InitializeComponent();
+            this.InitializeComponent();
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
-            // Instantiate Game
-            game = new Game();
+            // Instantiate game
+            this.game = new Game();
 
             // Options to start game, player count notably
-            GameOptions options = new GameOptions(game);
+            GameOptions options = new GameOptions(this.game);
             options.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = options.ShowDialog();
 
@@ -87,52 +178,52 @@ namespace Monopoly
                 this.CenterToScreen();
 
                 // Sets the list of players to the list of players passed from the game options form
-                game.Players = options.TempPlayers;
-                currentPlayer = game.Players[0];
+                this.game.Players = options.TempPlayers;
+                this.currentPlayer = this.game.Players[0];
 
                 // Sets the players picture box to their picture box on the form
                 List<PictureBox> playerBoxes = new List<PictureBox>();
-                for (int i = 0; i < game.Players.Count; i++)
+                for (int i = 0; i < this.game.Players.Count; i++)
                 {
-                    playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i+1), true)[0]);
-                    game.Players[i].PlayerPictureBox = playerBoxes[i];
+                    playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
+                    this.game.Players[i].PlayerPictureBox = playerBoxes[i];
                 }
 
-                if (game.Players.Count == 2)
+                if (this.game.Players.Count == 2)
                 {
-                    picPlayer1.Visible = true;
-                    picPlayer2.Visible = true;
-                    picPlayer3.Visible = false;
-                    picPlayer4.Visible = false;
+                    this.picPlayer1.Visible = true;
+                    this.picPlayer2.Visible = true;
+                    this.picPlayer3.Visible = false;
+                    this.picPlayer4.Visible = false;
                 }
-                else if (game.Players.Count == 3)
+                else if (this.game.Players.Count == 3)
                 {
-                    picPlayer1.Visible = true;
-                    picPlayer2.Visible = true;
-                    picPlayer3.Visible = true;
-                    picPlayer4.Visible = false;
+                    this.picPlayer1.Visible = true;
+                    this.picPlayer2.Visible = true;
+                    this.picPlayer3.Visible = true;
+                    this.picPlayer4.Visible = false;
                 }
-                else if (game.Players.Count == 4)
+                else if (this.game.Players.Count == 4)
                 {
-                    picPlayer1.Visible = true;
-                    picPlayer2.Visible = true;
-                    picPlayer3.Visible = true;
-                    picPlayer4.Visible = true;
+                    this.picPlayer1.Visible = true;
+                    this.picPlayer2.Visible = true;
+                    this.picPlayer3.Visible = true;
+                    this.picPlayer4.Visible = true;
                 }
 
                 // Shows the players the current players image or color as well as the current player
-                SetCurrentPlayerImage(currentPlayer);
-                lblOtherPlayersHand.Text = string.Empty;
-                FormBool = true;
-                SetUpPlayerHandOptions();
-                lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
-                lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
+                this.SetCurrentPlayerImage(this.currentPlayer);
+                this.lblOtherPlayersHand.Text = string.Empty;
+                this.formBool = true;
+                this.SetUpPlayerHandOptions();
+                this.lblPlayerTurn.Text = this.currentPlayer.PlayerName + "'s Turn";
+                this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
 
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
                 for (int i = 1; i <= 40; i++)
                 {
-                    spotPictures.Add((PictureBox) Controls.Find("pictureBox" + i, true)[0]);
+                    spotPictures.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
 
                     // Sets a tag for the image 
                     spotPictures[i - 1].Tag = i - 1;
@@ -141,7 +232,7 @@ namespace Monopoly
                 // A foreach loop that runs through each picture box that is a spot
                 foreach (PictureBox p in spotPictures)
                 {
-                    Spot spot = game.Board[(int)p.Tag];
+                    Spot spot = this.game.Board[(int)p.Tag];
                     spot.SpotBox = p;
 
                     // Assigns a click event to the picture box
@@ -160,22 +251,26 @@ namespace Monopoly
                             popUp.ShowDialog();
                         }
                         */
-                        PropertyClickEvent(spot);
+                        this.PropertyClickEvent(spot);
                     };
                 }
             }
         }
 
-        private void rollChecks(Player currentPlayer)
+        /// <summary>
+        /// Checks to see what type of spot the current player landed on
+        /// and does corresponding action
+        /// </summary>
+        /// <param name="currentPlayer">The current player whose turn it is</param>
+        private void RollChecks(Player currentPlayer)
         {
             // handle chance or community cards
             currentPlayer.OnChanceCard = false; // "reset"
             currentPlayer.OnComCard = false; // "reset"
 
-
             if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
             {
-                string formTitle = ""; // This will be the title of the pop up form
+                string formTitle = string.Empty; // This will be the title of the pop up form
                 Card cardDrawn; // Card that will be shown to the player
 
                 switch (currentPlayer.CurrentLocation.Type)
@@ -183,19 +278,19 @@ namespace Monopoly
                     case SpotType.Chance:
                         currentPlayer.OnChanceCard = true;
                         formTitle = "Chance";
-                        cardDrawn = game.ChanceCards[0]; // Get "top" card
-                        game.DrawCard(game.ChanceCards, currentPlayer); // Draw card and perform actions
+                        cardDrawn = this.game.ChanceCards[0]; // Get "top" card
+                        this.game.DrawCard(this.game.ChanceCards, currentPlayer); // Draw card and perform actions
                                                                         // Set picture in picturebox
-                                                                        //cardPopup.picture.Image = new Bitmap("filename");
+                                                                        // cardPopup.picture.Image = new Bitmap("filename");
                                                                         // Other logic
                         break;
                     case SpotType.CommunityChest:
                         currentPlayer.OnComCard = true;
                         formTitle = "Community";
-                        cardDrawn = game.CommunityChestCards[0];  // Get "top" card
-                        game.DrawCard(game.CommunityChestCards, currentPlayer); // Draw card and perform actions
+                        cardDrawn = this.game.CommunityChestCards[0];  // Get "top" card
+                        this.game.DrawCard(this.game.CommunityChestCards, currentPlayer); // Draw card and perform actions
                                                                                 // Set picture in picturebox
-                                                                                //cardPopup.picture.Image = new Bitmap("filename");
+                                                                                // cardPopup.picture.Image = new Bitmap("filename");
                                                                                 // Other logic
                         break;
                     default:
@@ -210,15 +305,14 @@ namespace Monopoly
                 }
             }
 
-
             // Check to see if rent needs to be paid and pay it if so
-            game.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
+            this.game.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
 
             // Check to see if spot landed on can be bought
-            if (game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
+            if (this.game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
             {
                 ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
-                BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
+                BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, this.game);
                 if (buyProp.IsDisposed == false)
                 {
                     buyProp.StartPosition = FormStartPosition.CenterParent;
@@ -227,27 +321,13 @@ namespace Monopoly
             }
 
             // Check to see if tax needs to be paid and pay it if yes
-            game.CheckPayTax(currentPlayer, currentPlayer.CurrentLocation);
+            this.game.CheckPayTax(currentPlayer, currentPlayer.CurrentLocation);
 
             // Check to see if player landed on "Go to Jail"
-            game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
-
-            /*
-            //Chance and Community Chest cards
-            if (game.CheckChance(currentPlayer, currentPlayer.CurrentLocation) || game.CheckCommunityChest(currentPlayer, currentPlayer.CurrentLocation))
-            {
-                // Check to see if spot landed on can be bought
-                if (game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
-                {
-                    ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
-
-                    BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, game);
-                    buyProp.ShowDialog();
-                }
-            }*/
+            this.game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
 
             // Move pawn picture
-            FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
         }
 
         /// <summary>
@@ -255,7 +335,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRoll_Click(object sender, EventArgs e)
+        private void BtnRoll_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
 
@@ -268,169 +348,155 @@ namespace Monopoly
             pbxDiceLeft.Image = this.dicePictures.Images[die1 - 1];
             pbxDiceRight.Image = this.dicePictures.Images[die2 - 1];
 
-            if (currentPlayer.InJail == false) {
-
+            if (this.currentPlayer.InJail == false)
+            {
                 int totalMove = 0;
 
                 totalMove = die1 + die2;
 
                 // Find player's new location and set current location property of player
-                game.MovePlayerLocation(currentPlayer, totalMove);
+                this.game.MovePlayerLocation(this.currentPlayer, totalMove);
 
                 // Move pawn picture
-                FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+                this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
 
-                this.rollChecks(currentPlayer);
+                this.RollChecks(this.currentPlayer);
 
                 if (die1 == die2)
                 {
-                    DoubleCounter++;
-                    if (DoubleCounter >= 3)
+                    this.doubleCounter++;
+                    if (this.doubleCounter >= 3)
                     {
-                        game.SendToJail(currentPlayer);
+                        this.game.SendToJail(this.currentPlayer);
                     }
                     else
                     {
-                        BtnNextTurn.Enabled = false;
-                        btnRoll.Enabled = true;
-                        btnRoll.Focus();
+                        this.BtnNextTurn.Enabled = false;
+                        this.btnRoll.Enabled = true;
+                        this.btnRoll.Focus();
                     }
                 }
                 else
                 {
-                    BtnNextTurn.Enabled = true;
-                    BtnNextTurn.Focus();
-                    btnRoll.Enabled = false;
+                    this.BtnNextTurn.Enabled = true;
+                    this.BtnNextTurn.Focus();
+                    this.btnRoll.Enabled = false;
                 }
             }
             else
             {
-                Point p = new Point();
-
                 if (die1 == die2)
                 {
-                    currentPlayer.InJail = false;
+                    this.currentPlayer.InJail = false;
 
-                    if (currentPlayer.PlayerId == 0)
+                    /*
+                    if (this.currentPlayer.PlayerId == 0)
                     {
-                        P1Jail = 1;
-
-                        int oldLocation = currentPlayer.CurrentLocation.SpotId;
-                        int total = die1 + die2;
-                        game.MovePlayerLocation(currentPlayer, total);
-                        this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+                        this.player1Jail = 1;                       
                     }
-                    else if (currentPlayer.PlayerId == 1)
+                    else if (this.currentPlayer.PlayerId == 1)
                     {
-                        P2Jail = 1;
-
-                        int oldLocation = currentPlayer.CurrentLocation.SpotId;
-                        int total = die1 + die2;
-                        game.MovePlayerLocation(currentPlayer, total);
-                        this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+                        this.player2Jail = 1;                      
                     }
-                    else if (currentPlayer.PlayerId == 2)
+                    else if (this.currentPlayer.PlayerId == 2)
                     {
-                        P3Jail = 1;
-
-                        int oldLocation = currentPlayer.CurrentLocation.SpotId;
-                        int total = die1 + die2;
-                        game.MovePlayerLocation(currentPlayer, total);
-                        this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+                        this.player3Jail = 1;                     
                     }
-                    else if (currentPlayer.PlayerId == 3)
+                    else if (this.currentPlayer.PlayerId == 3)
                     {
-                        P4Jail = 1;
-
-                        int oldLocation = currentPlayer.CurrentLocation.SpotId;
-                        int total = die1 + die2;
-                        game.MovePlayerLocation(currentPlayer, total);
-                        this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+                        this.player4Jail = 1;
                     }
+                    */
 
-                    this.rollChecks(currentPlayer);
+                    this.currentPlayer.TurnsInJail = 0;
+
+                    int total = die1 + die2;
+                    this.game.MovePlayerLocation(this.currentPlayer, total);
+                    this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
+
+                    this.RollChecks(this.currentPlayer);
                 }
                 else
                 {
-                    if (currentPlayer.PlayerId == 0)
+                    /*
+                    if (this.currentPlayer.PlayerId == 0)
                     {
-                        if (P1Jail == 3)
+                        if (this.player1Jail == 3)
                         {
-                            currentPlayer.InJail = false;
-                            P1Jail = 1;
-
-                            int oldLocation = currentPlayer.CurrentLocation.SpotId;
+                            this.currentPlayer.InJail = false;
+                            this.player1Jail = 1;
                             int total = die1 + die2;
-                            game.MovePlayerLocation(currentPlayer, total);
-                            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
-
-                            currentPlayer.Money -= 50;
-                            game.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                            this.game.MovePlayerLocation(this.currentPlayer, total);
+                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
                         }
                         else
                         {
-                            P1Jail++;
+                            this.player1Jail++;
                         }
                     }
-                    else if (currentPlayer.PlayerId == 1)
+                    else if (this.currentPlayer.PlayerId == 1)
                     {
-                        if (P2Jail == 3)
+                        if (this.player2Jail == 3)
                         {
-                            currentPlayer.InJail = false;
-                            P2Jail = 1;
-
-                            int oldLocation = currentPlayer.CurrentLocation.SpotId;
+                            this.currentPlayer.InJail = false;
+                            this.player2Jail = 1;
                             int total = die1 + die2;
-                            game.MovePlayerLocation(currentPlayer, total);
-                            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
-
-                            currentPlayer.Money -= 50;
-                            game.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                            this.game.MovePlayerLocation(this.currentPlayer, total);
+                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
                         }
                         else
                         {
-                            P2Jail++;
+                            this.player2Jail++;
                         }
                     }
-                    else if (currentPlayer.PlayerId == 2)
+                    else if (this.currentPlayer.PlayerId == 2)
                     {
-                        if (P3Jail == 3)
+                        if (this.player3Jail == 3)
                         {
-                            currentPlayer.InJail = false;
-                            P3Jail = 1;
-
-                            int oldLocation = currentPlayer.CurrentLocation.SpotId;
+                            this.currentPlayer.InJail = false;
+                            this.player3Jail = 1;
                             int total = die1 + die2;
-                            game.MovePlayerLocation(currentPlayer, total);
-                            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
-
-                            currentPlayer.Money -= 50;
-                            game.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                            this.game.MovePlayerLocation(this.currentPlayer, total);
+                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
                         }
                         else
                         {
-                            P3Jail++;
+                            this.player3Jail++;
                         }
                     }
-                    else if (currentPlayer.PlayerId == 3)
+                    else if (this.currentPlayer.PlayerId == 3)
                     {
-                        if (P4Jail == 3)
+                        if (this.player4Jail == 3)
                         {
-                            currentPlayer.InJail = false;
-                            P4Jail = 1;
-
-                            int oldLocation = currentPlayer.CurrentLocation.SpotId;
+                            this.currentPlayer.InJail = false;
+                            this.player4Jail = 1;
                             int total = die1 + die2;
-                            game.MovePlayerLocation(currentPlayer, total);
-                            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
-
-                            currentPlayer.Money -= 50;
-                            game.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                            this.game.MovePlayerLocation(this.currentPlayer, total);
+                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
                         }
                         else
                         {
-                            P4Jail++;
+                            this.player4Jail++;
                         }
+                    }
+                    */
+
+                    ////this.currentPlayer.Money -= 50;
+                    ////this.game.CheckIfPlayerHasEnoughMoney(this.currentPlayer);
+
+                    this.btnJailPay.Enabled = true;
+
+                    this.currentPlayer.TurnsInJail++;
+
+                    if (this.currentPlayer.TurnsInJail == 3)
+                    {
+                        this.currentPlayer.Money -= 50;
+                        this.game.CheckIfPlayerHasEnoughMoney(this.currentPlayer);
+                        this.currentPlayer.InJail = false;
+                        this.currentPlayer.TurnsInJail = 0;
+                        int total = die1 + die2;
+                        this.game.MovePlayerLocation(this.currentPlayer, total);
+                        this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
                     }
                 }
 
@@ -439,12 +505,16 @@ namespace Monopoly
                 this.BtnNextTurn.Focus();
             }
 
-            btnJailFreeCard.Enabled = false;
-            btnJailPay.Enabled = false;
-            FormBool = false;
-            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
+            this.btnJailFreeCard.Enabled = false;
+            this.btnJailPay.Enabled = false;
+            this.formBool = false;
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
+        /// <summary>
+        /// Finds the pawn's new location
+        /// </summary>
+        /// <param name="newLocation">The new spot on the board the pawn is moving to</param>
         private void FindNewPawnLocations(int newLocation)
         {
             // Bottom Row
@@ -455,297 +525,298 @@ namespace Monopoly
                 p.Y = 800;
                 p.X = 765 - (newLocation * 70);
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.X = p.X + 45;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.Y = p.Y + 45;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = p.X + 45;
                     p.Y = p.Y + 45;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // Left column
             else if (newLocation > 10 && newLocation < 20)
             {
+                // Left column
                 Point p = new Point();
 
                 p.Y = 765 - ((newLocation - 10) * 70);
                 p.X = 75;
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.Y = p.Y + 45;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.X = p.X - 45;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = p.X - 45;
                     p.Y = p.Y + 45;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
-            }
-            // Top row
+            }  
             else if (newLocation > 20 && newLocation < 30)
             {
+                // Top row
                 Point p = new Point();
 
                 p.Y = 75;
                 p.X = 135 + ((newLocation - 21) * 70);
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.X = p.X + 45;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.Y = p.Y - 45;
                     p.X = p.X + 45;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.Y = p.Y - 45;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // Right Column
             else if (newLocation > 30 && newLocation < 40)
             {
+                // Right Column
                 Point p = new Point();
 
                 p.Y = 135 + ((newLocation - 31) * 70);
                 p.X = 800;
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.Y = p.Y + 45;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.Y = p.Y + 45;
                     p.X = p.X + 45;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = p.X + 45;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // Land on go
             else if (newLocation == 0)
             {
+                // Land on go
                 Point p = new Point();
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.X = 790;
                     p.Y = 790;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.X = 840;
                     p.Y = 790;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.X = 790;
                     p.Y = 840;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = 840;
                     p.Y = 840;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // Visiting Jail
-            else if (newLocation == 10 && currentPlayer.InJail == false)
+            else if (newLocation == 10 && this.currentPlayer.InJail == false)
             {
+                // Visiting Jail
                 Point p = new Point();
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.X = 28;
                     p.Y = 774;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.X = 28;
                     p.Y = 814;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.X = 60;
                     p.Y = 846;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = 99;
                     p.Y = 846;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // If they are on the jail space but are in jail this will put them in jail
-            else if (newLocation == 10 && currentPlayer.InJail)
+            else if (newLocation == 10 && this.currentPlayer.InJail)
             {
+                // If they are on the jail space but are in jail this will put them in jail
                 Point p = new Point();
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.X = 72;
                     p.Y = 771;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.X = 100;
                     p.Y = 771;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.X = 72;
                     p.Y = 802;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = 100;
                     p.Y = 802;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // Free Parking
             else if (newLocation == 20)
             {
+                // Free Parking
                 Point p = new Point();
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.X = 45;
                     p.Y = 45;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.X = 90;
                     p.Y = 45;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.X = 45;
                     p.Y = 90;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = 90;
                     p.Y = 90;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
-            // Go to Jail
             else if (newLocation == 30)
             {
-                currentPlayer.InJail = true;
-                currentPlayer.CurrentLocation = game.GetSpotByName("Jail");
+                // Go to Jail
+                this.game.SendToJail(this.currentPlayer);
+                //// this.currentPlayer.InJail = true;
+                //// this.currentPlayer.CurrentLocation = this.game.GetSpotByName("Jail");
 
                 Point p = new Point();
 
-                if (currentPlayer.PlayerId == 0)
+                if (this.currentPlayer.PlayerId == 0)
                 {
                     p.X = 72;
                     p.Y = 771;
 
-                    picPlayer1.Location = p;
+                    this.picPlayer1.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 1)
+                else if (this.currentPlayer.PlayerId == 1)
                 {
                     p.X = 100;
                     p.Y = 771;
 
-                    picPlayer2.Location = p;
+                    this.picPlayer2.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 2)
+                else if (this.currentPlayer.PlayerId == 2)
                 {
                     p.X = 72;
                     p.Y = 802;
 
-                    picPlayer3.Location = p;
+                    this.picPlayer3.Location = p;
                 }
-                else if (currentPlayer.PlayerId == 3)
+                else if (this.currentPlayer.PlayerId == 3)
                 {
                     p.X = 100;
                     p.Y = 802;
 
-                    picPlayer4.Location = p;
+                    this.picPlayer4.Location = p;
                 }
             }
         }
@@ -753,17 +824,18 @@ namespace Monopoly
         /// <summary>
         /// The method used for setting up the next player's information on the form
         /// </summary>
-        /// <param name="player"></param>
+        /// <param name="player">The current player</param>
+        /// <param name="panelToUse">The panel to use</param>
         private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
         {
-            if (FormBool == true)
+            if (this.formBool == true)
             {
-                lblOtherPlayersHand.Text = string.Empty;
+                this.lblOtherPlayersHand.Text = string.Empty;
             }
             
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
-            currentPlayerSpots = game.GetPlayersPropertyList(player);
+            currentPlayerSpots = this.game.GetPlayersPropertyList(player);
             PictureBox[] pictureBoxes = new PictureBox[currentPlayerSpots.Count];
             Panel[] playerPropertyPanels = new Panel[currentPlayerSpots.Count];
             Label[] playerPropertyLabels = new Label[currentPlayerSpots.Count];
@@ -778,7 +850,7 @@ namespace Monopoly
 
                 foreach (PictureBox pb in pictureBoxes)
                 {
-                    Point point = new Point(5,30);
+                    Point point = new Point(5, 30);
                     pb.Width = 70;
                     pb.Height = 115;
                     pb.Location = point;
@@ -793,7 +865,7 @@ namespace Monopoly
 
                 foreach (Label lbl in playerPropertyLabels)
                 {
-                    lbl.MaximumSize = new Size(80,40);
+                    lbl.MaximumSize = new Size(80, 40);
                     lbl.AutoSize = true;
                     lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                 }
@@ -816,8 +888,7 @@ namespace Monopoly
                             if (s.SpotName == "Electric Company")
                             {
                                 tempImage = usableSpotPictures.Images[0];
-                                p.Image = tempImage;
-                                
+                                p.Image = tempImage;   
                             }
                             else
                             {
@@ -828,51 +899,43 @@ namespace Monopoly
                         else
                         {
                             tempImage = usableSpotPictures.Images[1];
-                            p.Image = tempImage;
-                            
+                            p.Image = tempImage;   
                         }
                     }
                     else if (s.Color == Color.DarkBlue)
                     {
                         tempImage = usableSpotPictures.Images[3];
-                        p.Image = tempImage;
-                        
+                        p.Image = tempImage;   
                     }
                     else if (s.Color == Color.Green)
                     {
                         tempImage = usableSpotPictures.Images[4];
-                        p.Image = tempImage;
-                        
+                        p.Image = tempImage;   
                     }
                     else if (s.Color == Color.LightBlue)
                     {
                         tempImage = usableSpotPictures.Images[5];
-                        p.Image = tempImage;
-                        
+                        p.Image = tempImage;   
                     }
                     else if (s.Color == Color.Brown)
                     {
                         tempImage = usableSpotPictures.Images[6];
                         p.Image = tempImage;
-                        
                     }
                     else if (s.Color == Color.Orange)
                     {
                         tempImage = usableSpotPictures.Images[7];
                         p.Image = tempImage;
-                        
                     }
                     else if (s.Color == Color.Pink)
                     {
                         tempImage = usableSpotPictures.Images[8];
                         p.Image = tempImage;
-                        
                     }
                     else if (s.Color == Color.Red)
                     {
                         tempImage = usableSpotPictures.Images[9];
                         p.Image = tempImage;
-                        
                     }
                     else if (s.Color == Color.Yellow)
                     {
@@ -889,7 +952,7 @@ namespace Monopoly
 
             foreach (PictureBox pbx in pictureBoxes)
             {
-                pbx.Click += delegate { PropertyClickEvent(currentPlayerSpots[Int32.Parse(pbx.Tag.ToString())]); };
+                pbx.Click += delegate { this.PropertyClickEvent(currentPlayerSpots[int.Parse(pbx.Tag.ToString())]); };
             }
 
             foreach (Panel panel in playerPropertyPanels)
@@ -899,56 +962,56 @@ namespace Monopoly
                 panelToUse.Controls.Add(panel);
             }
 
-            if (FormBool == false)
+            if (this.formBool == false)
             {
-                SetCurrentPlayerImage(player);
-                lblPlayerTurn.Text = player.PlayerName + "'s Turn";
-                lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
-                FormBool = true;
+                this.SetCurrentPlayerImage(player);
+                this.lblPlayerTurn.Text = player.PlayerName + "'s Turn";
+                this.lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
+                this.formBool = true;
             }
             else
             {
-                SetUpPlayerHandOptions();
-                lblOtherPlayersHand.Text = player.PlayerName;
-            }
-
-            
-            
+                this.SetUpPlayerHandOptions();
+                this.lblOtherPlayersHand.Text = player.PlayerName;
+            } 
         }
 
+        /// <summary>
+        /// Sets up options for seeing other players' hands
+        /// </summary>
         private void SetUpPlayerHandOptions()
         {
             
             flpPlayerHandOptions.Controls.Clear();
-            int ActivePlayerCount = game.Players.Count;
-            bool[] PlayerStatus = new bool[ActivePlayerCount];
+            int activePlayerCount = this.game.Players.Count;
+            bool[] playerStatus = new bool[activePlayerCount];
             
-            if (ActivePlayerCount - 1 > 0)
+            if (activePlayerCount - 1 > 0)
             {
-                radioButtons = new RadioButton[ActivePlayerCount];
-                for (int x = 0; x < game.Players.Count; x++)
+                this.radioButtons = new RadioButton[activePlayerCount];
+                for (int x = 0; x < this.game.Players.Count; x++)
                 {
-                    PlayerStatus[x] = game.Players[x].IsActive;
-                    radioButtons[x] = new RadioButton();
-                    if (game.Players[x].IsActive == true)
+                    playerStatus[x] = this.game.Players[x].IsActive;
+                    this.radioButtons[x] = new RadioButton();
+                    if (this.game.Players[x].IsActive == true)
                     {
-                        radioButtons[x].Text = game.Players[x].PlayerName;
-                        radioButtons[x].Tag = game.Players[x].PlayerId;
+                        this.radioButtons[x].Text = this.game.Players[x].PlayerName;
+                        this.radioButtons[x].Tag = this.game.Players[x].PlayerId;
                     }
                 }
 
-                for (int x = 0; x < ActivePlayerCount; x++)
+                for (int x = 0; x < activePlayerCount; x++)
                 {
-                    RadioButton r = radioButtons[x];
-                    if (PlayerStatus[x] == true)
+                    RadioButton r = this.radioButtons[x];
+                    if (playerStatus[x] == true)
                     {
-                        if (r.Text != currentPlayer.PlayerName)
+                        if (r.Text != this.currentPlayer.PlayerName)
                         {
-                            if (r.Text != "")
+                            if (r.Text != string.Empty)
                             {
                                 r.CheckedChanged += delegate
                                 {
-                                    SetNextPlayer(game.Players[int.Parse(r.Tag.ToString())], flpOtherPlayerHand);
+                                    this.SetNextPlayer(this.game.Players[int.Parse(r.Tag.ToString())], this.flpOtherPlayerHand);
                                 };
                                 flpPlayerHandOptions.Controls.Add(r);
                             }
@@ -962,11 +1025,11 @@ namespace Monopoly
         {
             if (player.PlayerPictureBox.Image != null)
             {
-                pbxCurrentPlayerPicture.Image = player.PlayerPictureBox.Image;
+                this.pbxCurrentPlayerPicture.Image = player.PlayerPictureBox.Image;
             }
             else
             {
-                pbxCurrentPlayerPicture.BackColor = player.PlayerPictureBox.BackColor;
+                this.pbxCurrentPlayerPicture.BackColor = player.PlayerPictureBox.BackColor;
             }
         }
 
@@ -981,172 +1044,179 @@ namespace Monopoly
 
             if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
             {
-                NonPropPopUp popUp = new NonPropPopUp(spot, game);
+                NonPropPopUp popUp = new NonPropPopUp(spot, this.game);
                 popUp.StartPosition = FormStartPosition.CenterParent;
                 popUp.ShowDialog();
             }
         }
 
-        private void btnTradeRequest_Click(object sender, EventArgs e)
+        private void BtnTradeRequest_Click(object sender, EventArgs e)
         {
-            Trade tradeForm = new Trade(currentPlayer, game);
+            Trade tradeForm = new Trade(this.currentPlayer, this.game);
             tradeForm.StartPosition = FormStartPosition.CenterParent;
             tradeForm.ShowDialog();
-            
 
-            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
-        private void btnSell_Click(object sender, EventArgs e)
+        private void BtnSell_Click(object sender, EventArgs e)
         {
             GetMoney money = new GetMoney(this.game, this.currentPlayer);
 
             money.ShowDialog();
-            while(currentPlayer.IsActive == false)
+            while (this.currentPlayer.IsActive == false)
             {
-                currentPlayer = game.NextPlayer(currentPlayer);
-                FormBool = false;
+                this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
+                this.formBool = false;
             }
-            flpOtherPlayerHand.Controls.Clear();
-            lblOtherPlayersHand.Text = String.Empty;
-            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
-            SetUpPlayerHandOptions();
+
+            this.flpOtherPlayerHand.Controls.Clear();
+            this.lblOtherPlayersHand.Text = string.Empty;
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetUpPlayerHandOptions();
         }
 
-        private void btnBuyHouseOrHotel_Click(object sender, EventArgs e)
+        private void BtnBuyHouseOrHotel_Click(object sender, EventArgs e)
         {
-            UpgradeProperty upgrade = new UpgradeProperty(game, currentPlayer);
+            UpgradeProperty upgrade = new UpgradeProperty(this.game, this.currentPlayer);
             if (upgrade.IsDisposed == false)
             {
                 upgrade.ShowDialog();
-                currentPlayer = game.Players[currentPlayer.PlayerId];
+                this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
             }
 
-            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
         private void BtnNextTurn_Click(object sender, EventArgs e)
         {
-            btnRoll.Enabled = true;
-            BtnNextTurn.Enabled = false;
-            btnRoll.Focus();
-            DoubleCounter = 0;
-            FormBool = false;
-            currentPlayer = game.NextPlayer(currentPlayer);
-            flpCurrentPlayerProps.Controls.Clear();
-            flpOtherPlayerHand.Controls.Clear();
-            lblOtherPlayersHand.Text = String.Empty;
-            flpPlayerHandOptions.Controls.Clear();
-            
-            
+            this.btnRoll.Enabled = true;
+            this.BtnNextTurn.Enabled = false;
+            this.btnRoll.Focus();
+            this.doubleCounter = 0;
+            this.formBool = false;
+            this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
+            this.flpCurrentPlayerProps.Controls.Clear();
+            this.flpOtherPlayerHand.Controls.Clear();
+            this.lblOtherPlayersHand.Text = string.Empty;
+            this.flpPlayerHandOptions.Controls.Clear();
 
-            while (currentPlayer.IsActive == false)
+            while (this.currentPlayer.IsActive == false)
             {
-                currentPlayer = game.NextPlayer(currentPlayer);
+                this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
             }
-            SetUpPlayerHandOptions();
 
-            if (currentPlayer.InJail)
+            this.SetUpPlayerHandOptions();
+
+            if (this.currentPlayer.InJail)
             {
-                if (currentPlayer.GetOutOfJailFreeCards.Count >= 1)
+                if (this.currentPlayer.GetOutOfJailFreeCards.Count >= 1)
                 {
-                    btnJailFreeCard.Enabled = true;
+                    this.btnJailFreeCard.Enabled = true;
                 }
                 else
                 {
-                    btnJailFreeCard.Enabled = false;
+                    this.btnJailFreeCard.Enabled = false;
                 }
                 
-                btnJailPay.Enabled = true;
+                this.btnJailPay.Enabled = true;
             }
             else
             {
-                btnJailPay.Enabled = false;
-                btnJailFreeCard.Enabled = false;
+                this.btnJailPay.Enabled = false;
+                this.btnJailFreeCard.Enabled = false;
             }
 
-            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
-        private void btnJailPay_Click(object sender, EventArgs e)
+        private void BtnJailPay_Click(object sender, EventArgs e)
         {
-            //take players money
+            // take players money
             this.currentPlayer.Money -= 50;
+            this.lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
 
-            //Break them out of jail
+            // Break them out of jail
             this.currentPlayer.InJail = false;
 
-            //set currentPlayers new location now out of jail
+            // set currentPlayers new location now out of jail
             this.FindNewPawnLocations(10);
 
-            //Check how many turns they've been in jail.
-            //if they have been in jail for 3 turns then paid
-            //make them roll and move
-            btnRoll.Enabled = false;
-            btnJailFreeCard.Enabled = false;
-            btnJailPay.Enabled = false;
-            BtnNextTurn.Enabled = true;
+            // Check how many turns they've been in jail.
+            // if they have been in jail for 3 turns then paid
+            // make them roll and move
+            this.btnRoll.Enabled = false;
+            this.btnJailFreeCard.Enabled = false;
+            this.btnJailPay.Enabled = false;
+            this.BtnNextTurn.Enabled = true;
 
-            //Reset their jail turn counter
-            if (currentPlayer.PlayerId == 0)
+            /*
+            // Reset their jail turn counter
+            if (this.currentPlayer.PlayerId == 0)
             {
-                P1Jail = 1;
+                this.player1Jail = 1;
             }
-            else if (currentPlayer.PlayerId == 1)
+            else if (this.currentPlayer.PlayerId == 1)
             {
-                P2Jail = 1;
+                this.player2Jail = 1;
             }
-            else if (currentPlayer.PlayerId == 2)
+            else if (this.currentPlayer.PlayerId == 2)
             {
-                P3Jail = 1;
+                this.player3Jail = 1;
             }
-            else if (currentPlayer.PlayerId == 3)
+            else if (this.currentPlayer.PlayerId == 3)
             {
-                P4Jail = 1;
+                this.player4Jail = 1;
             }
+            */
+
+            this.currentPlayer.TurnsInJail = 0;
         }
 
-        private void btnJailFreeCard_Click(object sender, EventArgs e)
+        private void BtnJailFreeCard_Click(object sender, EventArgs e)
         {
-            //use the players card
-            this.currentPlayer.GetOutOfJailFreeCards.RemoveAt(0);
+            // use the players card
+            ////this.currentPlayer.GetOutOfJailFreeCards.RemoveAt(0);
 
-            //set players jail bool to false
-            this.currentPlayer.InJail = false;
+            // set players jail bool to false
+            /////this.currentPlayer.InJail = false;
 
-            //set currentPlayers new location now out of jail
+            // Remove card from player, set player's in jail boolean to false, and 
+            // add card back into corresponding deck
+            this.game.PlayGetOutOfJailFreeCard(this.currentPlayer);
+
+            // set currentPlayers new location now out of jail
             this.FindNewPawnLocations(10);
 
-            //disable and enable correct buttons
+            // disable and enable correct buttons
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
             this.btnRoll.Enabled = false;
             this.BtnNextTurn.Enabled = true;
 
-            if (currentPlayer.PlayerId == 0)
+            /*
+            if (this.currentPlayer.PlayerId == 0)
             {
-                P1Jail = 1;
+                this.player1Jail = 1;
             }
-            else if (currentPlayer.PlayerId == 1)
+            else if (this.currentPlayer.PlayerId == 1)
             {
-                P2Jail = 1;
+                this.player2Jail = 1;
             }
-            else if (currentPlayer.PlayerId == 2)
+            else if (this.currentPlayer.PlayerId == 2)
             {
-                P3Jail = 1;
+                this.player3Jail = 1;
             }
-            else if (currentPlayer.PlayerId == 3)
+            else if (this.currentPlayer.PlayerId == 3)
             {
-                P4Jail = 1;
+                this.player4Jail = 1;
             }
+            */
+    
+            this.currentPlayer.TurnsInJail = 0;
         }
 
         private void QuitGameBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void QuitGameBtn_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }

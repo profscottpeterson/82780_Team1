@@ -981,7 +981,7 @@ namespace Monopoly
 
             if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
             {
-                NonPropPopUp popUp = new NonPropPopUp(spot);
+                NonPropPopUp popUp = new NonPropPopUp(spot, game);
                 popUp.StartPosition = FormStartPosition.CenterParent;
                 popUp.ShowDialog();
             }

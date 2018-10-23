@@ -730,28 +730,42 @@ namespace Monopoly
         /// <returns>Returns an integer value</returns>
         public int FindCurrentRentOfRailroad(Spot railroad)
         {
-            // Find the current owner of the railroad
-            Player owner = railroad.Owner;
-
             // Find rent if just one railroad is owned
             int rent = railroad.Rent;
 
+            // Find the number of railroads the owner of the current railroad owns
+            int numberOwned = NumberRailroadsOwned(railroad);
+
+            // Find the rent based off of how many railroads owned
+            rent = (int)(rent * Math.Pow(2, numberOwned));
+
+            return rent;
+        }
+
+        /// <summary>
+        /// Returns how many railroads are owned by the owner of the given railroad
+        /// </summary>
+        /// <param name="railroad">Railroad spot used for comparison</param>
+        /// <returns>How many railroads are owned by the owner of the given railroad</returns>
+        public int NumberRailroadsOwned(Spot railroad)
+        {
+            int numberOwned = 0;
+
             // Double check to make sure railroad has an owner
-            if (owner != null)
+            if (railroad.Owner != null)
             {
                 // Loop through the spots on the board
                 foreach (Spot spot in this.Board)
                 {
-                    // If the spot is a railroad and it is not the given railroad and the owner is the same as the given railroad's
-                    if (spot.Type == SpotType.Railroad && spot != railroad && spot.Owner == owner)
+                    // If the spot is a railroad and the owner is the same as the given railroad's
+                    if (spot.Type == SpotType.Railroad && spot.Owner == railroad.Owner)
                     {
-                        // double the rent
-                        rent *= 2;
+                        numberOwned++;
                     }
                 }
             }
 
-            return rent;
+            return numberOwned;
         }
 
         /// <summary>
@@ -768,16 +782,8 @@ namespace Monopoly
             // Declare and initialize a number that the rent is multiplied by depending on utilities owned
             int multiplyFactor = 4;
 
-            // Loop through the board
-            foreach (Spot spot in this.Board)
-            {
-                // If the spot is a utility and is not the given utility and has the same owner as the given utility
-                if (spot.Type == SpotType.Utility && spot != utility && utility.Owner == spot.Owner)
-                {
-                    // Set both owned to true
-                    bothOwned = true;
-                }
-            }
+            // check to see if the owner of the utility owns both utilities
+            bothOwned = BothUtilitiesOwned(utility);
 
             // If owner of given utility owns both utilities
             if (bothOwned)
@@ -802,6 +808,32 @@ namespace Monopoly
             rent *= multiplyFactor;
 
             return rent;
+        }
+
+        /// <summary>
+        /// Checks to see if the owner of the current utility owns both utilities
+        /// </summary>
+        /// <param name="utility">Utility spot to compare owner of</param>
+        /// <returns>A boolean indicating whether the owner of the passed in utility owns both utilities</returns>
+        public bool BothUtilitiesOwned(Spot utility)
+        {
+            // if the utility has an owner
+            if (utility.Owner != null)
+            {
+                // Loop through the board
+                foreach (Spot spot in this.Board)
+                {
+                    // If the spot is a utility and is not the given utility and has the same owner as the given utility
+                    if (spot.Type == SpotType.Utility && spot != utility && utility.Owner == spot.Owner)
+                    {
+                        // both utilities are owned by same owner
+                        return true;
+                    }
+                }
+            }
+
+            // both utilities are not owned by the same owner
+            return false;
         }
 
         /// <summary>

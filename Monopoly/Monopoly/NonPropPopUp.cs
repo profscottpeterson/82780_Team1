@@ -12,15 +12,17 @@ namespace Monopoly
 {
     public partial class NonPropPopUp : Form
     {
-        private Spot spot; 
+        private Spot spot;
+        private Game game;
 
-        public NonPropPopUp(Spot spot)
+        public NonPropPopUp(Spot spot, Game game)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
             this.spot = spot;
+            this.game = game;
             InitializeComponent();
         }
 
@@ -34,8 +36,25 @@ namespace Monopoly
 
             if (this.spot.Type == SpotType.Utility)
             {
-                this.AmtOwedLabel.Text =
-                    "If one Utility is owned, rent is 4 times amount shown on dice. \n If both Utilities are owned, rent is 10 times amount shown on dice.";
+                this.AmtOwedLabel.Text = "If one Utility is owned, rent is 4 times amount shown on dice." + '\n';
+                this.AmtOwedLabel.Text += "If both Utilities are owned, rent is 10 times amount shown on dice.";
+
+                if (!this.spot.IsAvailable)
+                {
+                    this.NumberOwnedLabel.Text = "Number of Utilities Owned by Owner: ";
+                    if (this.game.BothUtilitiesOwned(this.spot))
+                    {
+                        this.NumberOwnedLabel.Text += "2";
+                    }
+                    else
+                    {
+                        this.NumberOwnedLabel.Text += "1";
+                    }
+                }
+                else
+                {
+                    this.NumberOwnedLabel.Text = "-";
+                }
             }
             else
             {
@@ -46,6 +65,15 @@ namespace Monopoly
                 text += "If 4 are owned: " + (this.spot.Rent * 8).ToString("C0");
                 this.AmtOwedLabel.Text = text;
                 this.AmtOwedLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+                if (!this.spot.IsAvailable)
+                {
+                    this.NumberOwnedLabel.Text = "Number of Railroads Owned by Owner: " + this.game.NumberRailroadsOwned(this.spot);
+                }
+                else
+                {
+                    this.NumberOwnedLabel.Text = "-";
+                }
             }
 
             // If property is owned, display owner name

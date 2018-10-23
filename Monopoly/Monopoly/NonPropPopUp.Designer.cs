@@ -35,6 +35,7 @@
             this.OwnerLabel = new System.Windows.Forms.Label();
             this.IsMortgagedLabel = new System.Windows.Forms.Label();
             this.BtnClose = new System.Windows.Forms.Button();
+            this.NumberOwnedLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // NameLabel
@@ -106,7 +107,7 @@
             // 
             // BtnClose
             // 
-            this.BtnClose.Location = new System.Drawing.Point(108, 262);
+            this.BtnClose.Location = new System.Drawing.Point(106, 285);
             this.BtnClose.Name = "BtnClose";
             this.BtnClose.Size = new System.Drawing.Size(100, 30);
             this.BtnClose.TabIndex = 20;
@@ -114,12 +115,24 @@
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // NumberOwnedLabel
+            // 
+            this.NumberOwnedLabel.BackColor = System.Drawing.Color.White;
+            this.NumberOwnedLabel.Location = new System.Drawing.Point(13, 251);
+            this.NumberOwnedLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.NumberOwnedLabel.Name = "NumberOwnedLabel";
+            this.NumberOwnedLabel.Size = new System.Drawing.Size(291, 30);
+            this.NumberOwnedLabel.TabIndex = 21;
+            this.NumberOwnedLabel.Text = "NumberOwned";
+            this.NumberOwnedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // NonPropPopUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(313, 302);
+            this.ClientSize = new System.Drawing.Size(313, 325);
+            this.Controls.Add(this.NumberOwnedLabel);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.OwnerLabel);
             this.Controls.Add(this.IsMortgagedLabel);
@@ -127,7 +140,7 @@
             this.Controls.Add(this.AmtOwedLabel);
             this.Controls.Add(this.PriceLabel);
             this.Controls.Add(this.NameLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NonPropPopUp";
             this.Text = "NonPropPopUp";
             this.Load += new System.EventHandler(this.NonPropPopUp_Load);
@@ -144,5 +157,6 @@
         private System.Windows.Forms.Label OwnerLabel;
         private System.Windows.Forms.Label IsMortgagedLabel;
         private System.Windows.Forms.Button BtnClose;
+        private System.Windows.Forms.Label NumberOwnedLabel;
     }
 }

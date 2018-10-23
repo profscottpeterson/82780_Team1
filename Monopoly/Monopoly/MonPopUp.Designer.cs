@@ -44,6 +44,7 @@
             this.IsMortgagedLabel = new System.Windows.Forms.Label();
             this.OwnerLabel = new System.Windows.Forms.Label();
             this.BtnClose = new System.Windows.Forms.Button();
+            this.BuildingsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SpotNameLabel
@@ -200,7 +201,7 @@
             // 
             // BtnClose
             // 
-            this.BtnClose.Location = new System.Drawing.Point(130, 379);
+            this.BtnClose.Location = new System.Drawing.Point(130, 404);
             this.BtnClose.Name = "BtnClose";
             this.BtnClose.Size = new System.Drawing.Size(100, 30);
             this.BtnClose.TabIndex = 18;
@@ -208,12 +209,23 @@
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // BuildingsLabel
+            // 
+            this.BuildingsLabel.Location = new System.Drawing.Point(21, 366);
+            this.BuildingsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.BuildingsLabel.Name = "BuildingsLabel";
+            this.BuildingsLabel.Size = new System.Drawing.Size(325, 30);
+            this.BuildingsLabel.TabIndex = 19;
+            this.BuildingsLabel.Text = "Buildings";
+            this.BuildingsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MonPopUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(374, 421);
+            this.ClientSize = new System.Drawing.Size(374, 446);
+            this.Controls.Add(this.BuildingsLabel);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.OwnerLabel);
             this.Controls.Add(this.IsMortgagedLabel);
@@ -230,7 +242,7 @@
             this.Controls.Add(this.MortgageLabel);
             this.Controls.Add(this.Rent2Label);
             this.Controls.Add(this.RentLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MonPopUp";
             this.Text = "MonPopUp";
             this.Load += new System.EventHandler(this.MonPopUp_Load);
@@ -256,5 +268,6 @@
         private System.Windows.Forms.Label IsMortgagedLabel;
         private System.Windows.Forms.Label OwnerLabel;
         private System.Windows.Forms.Button BtnClose;
+        private System.Windows.Forms.Label BuildingsLabel;
     }
 }

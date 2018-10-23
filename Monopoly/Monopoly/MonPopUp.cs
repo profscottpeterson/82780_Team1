@@ -82,6 +82,20 @@ namespace Monopoly
                 this.IsMortgagedLabel.Text = "Property is not currently mortgaged.";
             }
 
+            // Display what buildings the property has
+            if (this.spot.HasHotel)
+            {
+                this.BuildingsLabel.Text = "This property has a hotel.";
+            }
+            else if (this.spot.NumberOfHouses > 0)
+            {
+                this.BuildingsLabel.Text = "Number of Houses: " + this.spot.NumberOfHouses;
+            }
+            else
+            {
+                this.BuildingsLabel.Text = "No houses/hotels on this property.";
+            }
+
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

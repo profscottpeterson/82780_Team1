@@ -33,6 +33,7 @@ namespace Monopoly
             this.Money = 1500;
 
             this.IsActive = true;
+            this.TurnsInJail = 0;
         }
 
         /// <summary>
@@ -53,6 +54,7 @@ namespace Monopoly
             this.Money = 1500;
 
             this.IsActive = true;
+            this.TurnsInJail = 0;
         }
 
         /// <summary>
@@ -95,6 +97,11 @@ namespace Monopoly
         /// Gets or sets a value indicating whether the current player is in jail
         /// </summary>
         public bool InJail { get; set; }
+
+        /// <summary>
+        /// The number of turns a player has been in jail
+        /// </summary>
+        public int TurnsInJail { get; set; }
 
         /// <summary>
         /// Gets or sets the list containing the "get out of jail free" cards a player may have 

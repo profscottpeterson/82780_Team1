@@ -95,6 +95,7 @@
             this.flpOtherPlayerHand = new System.Windows.Forms.FlowLayoutPanel();
             this.lblOtherPlayersHand = new System.Windows.Forms.Label();
             this.QuitGameBtn = new System.Windows.Forms.Button();
+            this.BtnRestartGame = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
@@ -172,9 +173,9 @@
             // 
             this.btnTradeRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTradeRequest.ForeColor = System.Drawing.Color.Black;
-            this.btnTradeRequest.Location = new System.Drawing.Point(908, 871);
+            this.btnTradeRequest.Location = new System.Drawing.Point(911, 872);
             this.btnTradeRequest.Name = "btnTradeRequest";
-            this.btnTradeRequest.Size = new System.Drawing.Size(128, 28);
+            this.btnTradeRequest.Size = new System.Drawing.Size(147, 28);
             this.btnTradeRequest.TabIndex = 50;
             this.btnTradeRequest.Text = "Trade Request";
             this.btnTradeRequest.UseVisualStyleBackColor = true;
@@ -232,9 +233,9 @@
             // 
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSell.ForeColor = System.Drawing.Color.Black;
-            this.btnSell.Location = new System.Drawing.Point(1078, 871);
+            this.btnSell.Location = new System.Drawing.Point(1068, 872);
             this.btnSell.Name = "btnSell";
-            this.btnSell.Size = new System.Drawing.Size(128, 28);
+            this.btnSell.Size = new System.Drawing.Size(147, 28);
             this.btnSell.TabIndex = 56;
             this.btnSell.Text = "Sell";
             this.btnSell.UseVisualStyleBackColor = true;
@@ -244,9 +245,9 @@
             // 
             this.btnBuyHouseOrHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuyHouseOrHotel.ForeColor = System.Drawing.Color.Black;
-            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(1248, 871);
+            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(1224, 872);
             this.btnBuyHouseOrHotel.Name = "btnBuyHouseOrHotel";
-            this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(128, 28);
+            this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(147, 28);
             this.btnBuyHouseOrHotel.TabIndex = 57;
             this.btnBuyHouseOrHotel.Text = "Buy House Or Hotel";
             this.btnBuyHouseOrHotel.UseVisualStyleBackColor = true;
@@ -816,15 +817,27 @@
             // 
             // QuitGameBtn
             // 
-            this.QuitGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitGameBtn.ForeColor = System.Drawing.Color.Black;
-            this.QuitGameBtn.Location = new System.Drawing.Point(1248, 926);
+            this.QuitGameBtn.Location = new System.Drawing.Point(1143, 906);
             this.QuitGameBtn.Name = "QuitGameBtn";
-            this.QuitGameBtn.Size = new System.Drawing.Size(128, 23);
+            this.QuitGameBtn.Size = new System.Drawing.Size(228, 50);
             this.QuitGameBtn.TabIndex = 64;
-            this.QuitGameBtn.Text = "Quit game";
+            this.QuitGameBtn.Text = "Quit Game";
             this.QuitGameBtn.UseVisualStyleBackColor = true;
             this.QuitGameBtn.Click += new System.EventHandler(this.QuitGameBtn_Click);
+            // 
+            // BtnRestartGame
+            // 
+            this.BtnRestartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRestartGame.ForeColor = System.Drawing.Color.Black;
+            this.BtnRestartGame.Location = new System.Drawing.Point(911, 906);
+            this.BtnRestartGame.Name = "BtnRestartGame";
+            this.BtnRestartGame.Size = new System.Drawing.Size(228, 50);
+            this.BtnRestartGame.TabIndex = 65;
+            this.BtnRestartGame.Text = "Restart Game";
+            this.BtnRestartGame.UseVisualStyleBackColor = true;
+            this.BtnRestartGame.Click += new System.EventHandler(this.BtnRestartGame_Click);
             // 
             // MonopolyMainForm
             // 
@@ -832,6 +845,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
             this.ClientSize = new System.Drawing.Size(1384, 968);
+            this.Controls.Add(this.BtnRestartGame);
             this.Controls.Add(this.QuitGameBtn);
             this.Controls.Add(this.lblOtherPlayersHand);
             this.Controls.Add(this.flpOtherPlayerHand);
@@ -1020,6 +1034,7 @@
         private System.Windows.Forms.FlowLayoutPanel flpOtherPlayerHand;
         private System.Windows.Forms.Label lblOtherPlayersHand;
         private System.Windows.Forms.Button QuitGameBtn;
+        private System.Windows.Forms.Button BtnRestartGame;
     }
 }
 

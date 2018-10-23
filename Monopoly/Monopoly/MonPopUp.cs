@@ -59,7 +59,7 @@ namespace Monopoly
             this.Rent3AmoutLabel.Text = this.spot.Rent3Houses.ToString("C0");
             this.Rent4Label.Text = "Rent with 4 Houses: ";
             this.Rent4AmountLabel.Text = this.spot.Rent4Houses.ToString("C0");
-            this.RentHotelLabel.Text = "Rent with a Hotel: " + this.spot.HotelCost.ToString("C0");
+            this.RentHotelLabel.Text = "Rent with a Hotel: " + this.spot.RentHotel.ToString("C0");
             this.MortgageLabel.Text = "Mortgage: " + this.spot.Mortgage.ToString("C0");
 
             // If property is owned, display owner name

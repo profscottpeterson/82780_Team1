@@ -17,20 +17,6 @@ namespace Monopoly
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (this.components != null))
-            {
-                this.components.Dispose();
-            }
-
-            base.Dispose(disposing);
-        }
-
-        /// <summary>
         /// The combo box for the number of players
         /// </summary>
         private System.Windows.Forms.ComboBox cmboNumPlayers;
@@ -129,6 +115,20 @@ namespace Monopoly
         /// Button for exiting the game
         /// </summary>
         private System.Windows.Forms.Button btnQuit;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (this.components != null))
+            {
+                this.components.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
 
         #region Windows Form Designer generated code
 

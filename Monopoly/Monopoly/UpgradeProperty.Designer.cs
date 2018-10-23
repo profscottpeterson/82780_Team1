@@ -65,7 +65,7 @@
             this.listViewProperties.TabIndex = 24;
             this.listViewProperties.UseCompatibleStateImageBehavior = false;
             this.listViewProperties.View = System.Windows.Forms.View.Details;
-            this.listViewProperties.SelectedIndexChanged += new System.EventHandler(this.listViewProperties_SelectedIndexChanged);
+            this.listViewProperties.Click += new System.EventHandler(this.listViewProperties_Click);
             // 
             // lblPropEligible
             // 

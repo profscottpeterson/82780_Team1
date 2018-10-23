@@ -98,32 +98,15 @@ namespace Monopoly
         /// </summary>
         private Game game;
 
-        /*
-        /// <summary>
-        /// Number of turns player 1 has been in jail
-        /// </summary>
-        private int player1Jail = 1;
-
-        /// <summary>
-        /// Number of turns player 2 has been in jail
-        /// </summary>
-        private int player2Jail = 1;
-
-        /// <summary>
-        /// Number of turns player 3 has been in jail
-        /// </summary>
-        private int player3Jail = 1;
-
-        /// <summary>
-        /// Number of turns player 4 has been in jail
-        /// </summary>
-        private int player4Jail = 1;
-        */
-
         /// <summary>
         /// The current player
         /// </summary>
         private Player currentPlayer;
+
+        /// <summary>
+        /// The array of radio buttons for the player options
+        /// </summary>
+        private RadioButton[] radioButtons;
 
         /// <summary>
         /// How many doubles have been rolled in a turn
@@ -131,12 +114,7 @@ namespace Monopoly
         private int doubleCounter = 0;
 
         /// <summary>
-        /// 
-        /// </summary>
-        private RadioButton[] radioButtons;
-
-        /// <summary>
-        /// 
+        /// Determines which player to display using the set up player method
         /// </summary>
         private bool formBool = false;
 
@@ -236,23 +214,7 @@ namespace Monopoly
                     spot.SpotBox = p;
 
                     // Assigns a click event to the picture box
-                    p.Click += delegate
-                    {
-                        /*
-                        if (spot.Type == SpotType.Property)
-                        {
-                            MonPopUp popUp = new MonPopUp(spot);
-                            popUp.ShowDialog();
-                        }
-
-                        if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
-                        {
-                            NonPropPopUp popUp = new NonPropPopUp(spot);
-                            popUp.ShowDialog();
-                        }
-                        */
-                        this.PropertyClickEvent(spot);
-                    };
+                    p.Click += delegate {this.PropertyClickEvent(spot);};
                 }
             }
         }
@@ -388,28 +350,7 @@ namespace Monopoly
                 if (die1 == die2)
                 {
                     this.currentPlayer.InJail = false;
-
-                    /*
-                    if (this.currentPlayer.PlayerId == 0)
-                    {
-                        this.player1Jail = 1;                       
-                    }
-                    else if (this.currentPlayer.PlayerId == 1)
-                    {
-                        this.player2Jail = 1;                      
-                    }
-                    else if (this.currentPlayer.PlayerId == 2)
-                    {
-                        this.player3Jail = 1;                     
-                    }
-                    else if (this.currentPlayer.PlayerId == 3)
-                    {
-                        this.player4Jail = 1;
-                    }
-                    */
-
                     this.currentPlayer.TurnsInJail = 0;
-
                     int total = die1 + die2;
                     this.game.MovePlayerLocation(this.currentPlayer, total);
                     this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
@@ -418,72 +359,6 @@ namespace Monopoly
                 }
                 else
                 {
-                    /*
-                    if (this.currentPlayer.PlayerId == 0)
-                    {
-                        if (this.player1Jail == 3)
-                        {
-                            this.currentPlayer.InJail = false;
-                            this.player1Jail = 1;
-                            int total = die1 + die2;
-                            this.game.MovePlayerLocation(this.currentPlayer, total);
-                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
-                        }
-                        else
-                        {
-                            this.player1Jail++;
-                        }
-                    }
-                    else if (this.currentPlayer.PlayerId == 1)
-                    {
-                        if (this.player2Jail == 3)
-                        {
-                            this.currentPlayer.InJail = false;
-                            this.player2Jail = 1;
-                            int total = die1 + die2;
-                            this.game.MovePlayerLocation(this.currentPlayer, total);
-                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
-                        }
-                        else
-                        {
-                            this.player2Jail++;
-                        }
-                    }
-                    else if (this.currentPlayer.PlayerId == 2)
-                    {
-                        if (this.player3Jail == 3)
-                        {
-                            this.currentPlayer.InJail = false;
-                            this.player3Jail = 1;
-                            int total = die1 + die2;
-                            this.game.MovePlayerLocation(this.currentPlayer, total);
-                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
-                        }
-                        else
-                        {
-                            this.player3Jail++;
-                        }
-                    }
-                    else if (this.currentPlayer.PlayerId == 3)
-                    {
-                        if (this.player4Jail == 3)
-                        {
-                            this.currentPlayer.InJail = false;
-                            this.player4Jail = 1;
-                            int total = die1 + die2;
-                            this.game.MovePlayerLocation(this.currentPlayer, total);
-                            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
-                        }
-                        else
-                        {
-                            this.player4Jail++;
-                        }
-                    }
-                    */
-
-                    ////this.currentPlayer.Money -= 50;
-                    ////this.game.CheckIfPlayerHasEnoughMoney(this.currentPlayer);
-
                     this.btnJailPay.Enabled = true;
 
                     this.currentPlayer.TurnsInJail++;
@@ -507,7 +382,8 @@ namespace Monopoly
 
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
-            this.formBool = false;
+            // this.formBool = false;
+            this.flpOtherPlayerHand.Controls.Clear();
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
@@ -996,6 +872,7 @@ namespace Monopoly
                     if (this.game.Players[x].IsActive == true)
                     {
                         this.radioButtons[x].Text = this.game.Players[x].PlayerName;
+                        this.radioButtons[x].Font = new Font("Microsoft Sans Serif", 13);
                         this.radioButtons[x].Tag = this.game.Players[x].PlayerId;
                     }
                 }
@@ -1149,27 +1026,6 @@ namespace Monopoly
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
             this.BtnNextTurn.Enabled = true;
-
-            /*
-            // Reset their jail turn counter
-            if (this.currentPlayer.PlayerId == 0)
-            {
-                this.player1Jail = 1;
-            }
-            else if (this.currentPlayer.PlayerId == 1)
-            {
-                this.player2Jail = 1;
-            }
-            else if (this.currentPlayer.PlayerId == 2)
-            {
-                this.player3Jail = 1;
-            }
-            else if (this.currentPlayer.PlayerId == 3)
-            {
-                this.player4Jail = 1;
-            }
-            */
-
             this.currentPlayer.TurnsInJail = 0;
         }
 
@@ -1193,32 +1049,17 @@ namespace Monopoly
             this.btnJailPay.Enabled = false;
             this.btnRoll.Enabled = false;
             this.BtnNextTurn.Enabled = true;
-
-            /*
-            if (this.currentPlayer.PlayerId == 0)
-            {
-                this.player1Jail = 1;
-            }
-            else if (this.currentPlayer.PlayerId == 1)
-            {
-                this.player2Jail = 1;
-            }
-            else if (this.currentPlayer.PlayerId == 2)
-            {
-                this.player3Jail = 1;
-            }
-            else if (this.currentPlayer.PlayerId == 3)
-            {
-                this.player4Jail = 1;
-            }
-            */
-    
             this.currentPlayer.TurnsInJail = 0;
         }
 
         private void QuitGameBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnRestartGame_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

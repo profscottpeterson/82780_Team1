@@ -299,12 +299,13 @@ namespace Monopoly
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
         /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot is a chance spot</returns>
         public bool CheckChance(Player currentPlayer, Spot currentLocation)
         {
             if (currentLocation.Type == SpotType.Chance)
             {
                 // Draws a Card
-                this.DrawCard(ChanceCards, currentPlayer);
+                this.DrawCard(this.ChanceCards, currentPlayer);
                 return true;
             }
             else
@@ -318,12 +319,13 @@ namespace Monopoly
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
         /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot is a community chest spot</returns>
         public bool CheckCommunityChest(Player currentPlayer, Spot currentLocation)
         {
             if (currentLocation.Type == SpotType.CommunityChest)
             {
                 // Draws a Card
-                this.DrawCard(CommunityChestCards, currentPlayer);
+                this.DrawCard(this.CommunityChestCards, currentPlayer);
                 return true;
             }
             else
@@ -457,7 +459,7 @@ namespace Monopoly
                     {
                         if (top.Description.Contains("general repairs"))
                         {
-                            foreach (Spot s in Board)
+                            foreach (Spot s in this.Board)
                             {
                                 if (s.Owner == currentPlayer)
                                 {
@@ -468,7 +470,7 @@ namespace Monopoly
                         }
                         else if (top.Description.Contains("street repairs"))
                         {
-                            foreach (Spot s in Board)
+                            foreach (Spot s in this.Board)
                             {
                                 if (s.Owner == currentPlayer)
                                 {
@@ -503,6 +505,9 @@ namespace Monopoly
                             }
                         }
                     }
+
+                    // Move card to bottom of pile
+                    this.MoveCardToBottomOfPile(top);
                 }
             }
             else
@@ -734,7 +739,7 @@ namespace Monopoly
             int rent = railroad.Rent;
 
             // Find the number of railroads the owner of the current railroad owns
-            int numberOwned = NumberRailroadsOwned(railroad);
+            int numberOwned = this.NumberRailroadsOwned(railroad);
 
             // Find the rent based off of how many railroads owned
             rent = (int)(rent * Math.Pow(2, numberOwned));
@@ -783,7 +788,7 @@ namespace Monopoly
             int multiplyFactor = 4;
 
             // check to see if the owner of the utility owns both utilities
-            bothOwned = BothUtilitiesOwned(utility);
+            bothOwned = this.BothUtilitiesOwned(utility);
 
             // If owner of given utility owns both utilities
             if (bothOwned)
@@ -1073,142 +1078,52 @@ namespace Monopoly
             return houseOkay;
         }
 
-        /*
-        public List<Color> CheckIfEligibleForHotel(List<Spot> prop)
-        {
-            // create a list of colors to hold which colors are eligible for houses 
-            List<Color> hotelOkay = new List<Color>();
-
-            // Create counters for every color
-            int numBrown = 0; // out of 2
-            int numLightBlue = 0; // out of 3
-            int numPink = 0; // out of 3
-            int numOrange = 0; // out of 3
-            int numRed = 0; // out of 3
-            int numYellow = 0; // out of 3
-            int numGreen = 0; // out of 3
-            int numDarkBlue = 0; // out of 2
-
-            //Check through the list and add each color to the respective counter
-            foreach (Spot s in prop)
-            {
-                if (s.NumberOfHouses >= 4)
-                {
-                    if (s.Color == Color.Brown)
-                    {
-                        numBrown++;
-                    }
-                    else if (s.Color == Color.LightBlue)
-                    {
-                        numLightBlue++;
-                    }
-                    else if (s.Color == Color.Pink)
-                    {
-                        numPink++;
-                    }
-                    else if (s.Color == Color.Orange)
-                    {
-                        numOrange++;
-                    }
-                    else if (s.Color == Color.Red)
-                    {
-                        numRed++;
-                    }
-                    else if (s.Color == Color.Yellow)
-                    {
-                        numYellow++;
-                    }
-                    else if (s.Color == Color.Green)
-                    {
-                        numGreen++;
-                    }
-                    else if (s.Color == Color.DarkBlue)
-                    {
-                        numDarkBlue++;
-                    }
-                }
-            }
-
-            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
-            if (numBrown == 2)
-            {
-                hotelOkay.Add(Color.Brown);
-            }
-            else if (numLightBlue == 3)
-            {
-                hotelOkay.Add(Color.LightBlue);
-            }
-            else if (numPink == 3)
-            {
-                hotelOkay.Add(Color.Pink);
-            }
-            else if (numOrange == 3)
-            {
-                hotelOkay.Add(Color.Orange);
-            }
-            else if (numRed == 3)
-            {
-                hotelOkay.Add(Color.Red);
-            }
-            else if (numYellow == 3)
-            {
-                hotelOkay.Add(Color.Yellow);
-            }
-            else if (numGreen == 3)
-            {
-                hotelOkay.Add(Color.Green);
-            }
-            else if (numDarkBlue == 2)
-            {
-                hotelOkay.Add(Color.DarkBlue);
-            }
-
-            //return the list
-            return hotelOkay;
-        }
-        */
-
+        /// <summary>
+        /// Randomizes the cards in a deck
+        /// </summary>
         public void RandomizedCards()
         {
             // Randomize Chance
             Card c = new Card(1, null, CardType.Chance);
             Random rng = new Random();
-            int n = ChanceCards.Count;
+            int n = this.ChanceCards.Count;
             while (n >= 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                c = ChanceCards[k];
-                RandomizedChanceCards.Add(c);
-                ChanceCards.Remove(c);
+                c = this.ChanceCards[k];
+                this.RandomizedChanceCards.Add(c);
+                this.ChanceCards.Remove(c);
             }
-            n = RandomizedChanceCards.Count;
+
+            n = this.RandomizedChanceCards.Count;
             while (n >= 1)
             {
                 n--;
-                c = RandomizedChanceCards[n];
-                RandomizedChanceCards.Remove(c);
-                ChanceCards.Add(c);
+                c = this.RandomizedChanceCards[n];
+                this.RandomizedChanceCards.Remove(c);
+                this.ChanceCards.Add(c);
             }
 
             // Randomize Community Chest
             c = new Card(1, null, CardType.CommunityChest);
-            n = CommunityChestCards.Count;
+            n = this.CommunityChestCards.Count;
             while (n >= 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                c = CommunityChestCards[k];
-                RandomizedCommunityChestCards.Add(c);
-                CommunityChestCards.Remove(c);
+                c = this.CommunityChestCards[k];
+                this.RandomizedCommunityChestCards.Add(c);
+                this.CommunityChestCards.Remove(c);
             }
-            n = RandomizedCommunityChestCards.Count;
+
+            n = this.RandomizedCommunityChestCards.Count;
             while (n >= 1)
             {
                 n--;
-                c = RandomizedCommunityChestCards[n];
-                RandomizedCommunityChestCards.Remove(c);
-                CommunityChestCards.Add(c);
+                c = this.RandomizedCommunityChestCards[n];
+                this.RandomizedCommunityChestCards.Remove(c);
+                this.CommunityChestCards.Add(c);
             }
         }
 
@@ -1400,7 +1315,7 @@ namespace Monopoly
             this.ChanceCards.Add(tempCard);
 
             tempCard = new Card(17, "Make general repairs on all your property", CardType.Chance, 0, true, false);
-            ChanceCards.Add(tempCard);
+            this.ChanceCards.Add(tempCard);
 
             // Community Chest Cards
             tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0]);
@@ -1446,7 +1361,7 @@ namespace Monopoly
             this.CommunityChestCards.Add(tempCard);
 
             tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false);
-            ChanceCards.Add(tempCard);
+            this.ChanceCards.Add(tempCard);
         }
     }
 }

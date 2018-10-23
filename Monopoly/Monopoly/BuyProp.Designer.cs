@@ -11,7 +11,6 @@ namespace Monopoly
     /// </summary>
     public partial class BuyProp
     {
-
         /// <summary>
         /// Price for card
         /// </summary>

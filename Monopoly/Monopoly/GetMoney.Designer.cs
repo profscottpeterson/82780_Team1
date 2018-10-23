@@ -65,7 +65,7 @@
             this.listViewProperties.TabIndex = 24;
             this.listViewProperties.UseCompatibleStateImageBehavior = false;
             this.listViewProperties.View = System.Windows.Forms.View.Details;
-            this.listViewProperties.Click += new System.EventHandler(this.listViewProperties_Click);
+            this.listViewProperties.Click += new System.EventHandler(this.ListViewProperties_Click);
             // 
             // btnSubmit
             // 
@@ -75,7 +75,7 @@
             this.btnSubmit.TabIndex = 25;
             this.btnSubmit.Text = "Close";
             this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            this.btnSubmit.Click += new System.EventHandler(this.BtnSubmit_Click);
             // 
             // lblDebt
             // 
@@ -147,7 +147,7 @@
             this.btnSellHouse.TabIndex = 34;
             this.btnSellHouse.Text = "Sell House";
             this.btnSellHouse.UseVisualStyleBackColor = true;
-            this.btnSellHouse.Click += new System.EventHandler(this.btnSellHouse_Click);
+            this.btnSellHouse.Click += new System.EventHandler(this.BtnSellHouse_Click);
             // 
             // btnSellHotel
             // 
@@ -159,7 +159,7 @@
             this.btnSellHotel.TabIndex = 40;
             this.btnSellHotel.Text = "Sell Hotel";
             this.btnSellHotel.UseVisualStyleBackColor = true;
-            this.btnSellHotel.Click += new System.EventHandler(this.btnSellHotel_Click);
+            this.btnSellHotel.Click += new System.EventHandler(this.BtnSellHotel_Click);
             // 
             // lblNumHotel
             // 
@@ -191,7 +191,7 @@
             this.btnMortage.TabIndex = 43;
             this.btnMortage.Text = "Mortgage Property";
             this.btnMortage.UseVisualStyleBackColor = true;
-            this.btnMortage.Click += new System.EventHandler(this.btnMortage_Click);
+            this.btnMortage.Click += new System.EventHandler(this.BtnMortgage_Click);
             // 
             // lblMortgage
             // 
@@ -311,7 +311,7 @@
             this.btnForfeit.TabIndex = 54;
             this.btnForfeit.Text = "Forfeit";
             this.btnForfeit.UseVisualStyleBackColor = true;
-            this.btnForfeit.Click += new System.EventHandler(this.btnForfeit_Click);
+            this.btnForfeit.Click += new System.EventHandler(this.BtnForfeit_Click);
             // 
             // GetMoney
             // 

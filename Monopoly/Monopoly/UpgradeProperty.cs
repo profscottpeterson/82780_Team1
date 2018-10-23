@@ -260,7 +260,27 @@ namespace Monopoly
             this.reset();
         }
 
-        private void listViewProperties_SelectedIndexChanged(object sender, EventArgs e)
+        public void reset()
+        {
+            lblPropertyName.ForeColor = Color.Black;
+            lblPropertyName.Text = "Choose another property";
+            btnAddHotel.Enabled = false;
+            btnAddHouse.Enabled = false;
+            btnAddHouseToAll.Enabled = false;
+            btnAddHotelToAll.Enabled = false;
+            btnUnmortgage.Enabled = false;
+        }
+
+        private void btnUnmortgage_Click(object sender, EventArgs e)
+        {
+            this.game.Board[selectedSpot.SpotId].IsMortgaged = false;
+            this.game.Players[currentPlayer.PlayerId].Money = this.game.Players[currentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
+            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
+
+            this.reset();           
+        }
+
+        private void listViewProperties_Click(object sender, EventArgs e)
         {
             //Get the item selected in the list box right now
             int index = this.listViewProperties.SelectedIndices[0];
@@ -489,7 +509,7 @@ namespace Monopoly
             }
             else if (selectedSpot.IsMortgaged)
             {
-                if (currentPlayer.Money >= (int) (selectedSpot.Mortgage * 1.1))
+                if (currentPlayer.Money >= (int)(selectedSpot.Mortgage * 1.1))
                 {
                     btnUnmortgage.Enabled = true;
                 }
@@ -506,7 +526,7 @@ namespace Monopoly
             //Update text
             this.lblPropertyName.Text = selectedSpot.SpotName;
             this.lblPropertyName.ForeColor = selectedSpot.Color;
-            
+
             if (this.lblPropertyName.ForeColor == Color.Yellow)
             {
                 this.lblPropertyName.ForeColor = Color.YellowGreen;
@@ -521,27 +541,7 @@ namespace Monopoly
             }
 
             //add them to the listView
-            FillListView(listViewProperties, eligible);
-        }
-
-        public void reset()
-        {
-            lblPropertyName.ForeColor = Color.Black;
-            lblPropertyName.Text = "Choose another property";
-            btnAddHotel.Enabled = false;
-            btnAddHouse.Enabled = false;
-            btnAddHouseToAll.Enabled = false;
-            btnAddHotelToAll.Enabled = false;
-            btnUnmortgage.Enabled = false;
-        }
-
-        private void btnUnmortgage_Click(object sender, EventArgs e)
-        {
-            this.game.Board[selectedSpot.SpotId].IsMortgaged = false;
-            this.game.Players[currentPlayer.PlayerId].Money = this.game.Players[currentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
-            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
-
-            this.reset();           
+            //FillListView(listViewProperties, eligible);
         }
     }
 }

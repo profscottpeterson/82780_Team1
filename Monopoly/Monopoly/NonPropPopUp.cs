@@ -16,6 +16,10 @@ namespace Monopoly
 
         public NonPropPopUp(Spot spot)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             this.spot = spot;
             InitializeComponent();
         }

@@ -22,6 +22,10 @@ namespace Monopoly
 
         public TradeConfirm(Game g, Player main, Player target, List<Spot> mainList, List<Spot> targetList, int moneyChange)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.game = g;
             this.main = main;

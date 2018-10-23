@@ -49,6 +49,10 @@ namespace Monopoly
 
         public GetMoney(Game game, Player currentPlayer)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.game = game;
             this.currentPlayer = currentPlayer;

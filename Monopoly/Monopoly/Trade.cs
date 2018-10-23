@@ -28,6 +28,10 @@ namespace Monopoly
 
         public Trade(Player p, Game g)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             currentPlayer = p;
             game = g;

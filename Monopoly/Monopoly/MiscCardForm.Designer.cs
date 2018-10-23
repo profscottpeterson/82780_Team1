@@ -30,6 +30,7 @@
         {
             this.cardPictureBox = new System.Windows.Forms.PictureBox();
             this.cardTextLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,11 +50,22 @@
             this.cardTextLabel.Size = new System.Drawing.Size(0, 13);
             this.cardTextLabel.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(350, 226);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Close";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MiscCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 232);
+            this.ClientSize = new System.Drawing.Size(437, 256);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.cardTextLabel);
             this.Controls.Add(this.cardPictureBox);
             this.Name = "MiscCardForm";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.PictureBox cardPictureBox;
         private System.Windows.Forms.Label cardTextLabel;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -57,6 +57,11 @@ namespace Monopoly
 
         public MonopolyMainForm()
         {
+            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
         }
         
@@ -67,7 +72,7 @@ namespace Monopoly
 
             // Options to start game, player count notably
             GameOptions options = new GameOptions(game);
-            options.StartPosition = FormStartPosition.CenterParent;
+            options.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = options.ShowDialog();
 
             if (result == DialogResult.Cancel)
@@ -77,6 +82,8 @@ namespace Monopoly
 
             if (result == DialogResult.OK)
             {
+                this.CenterToScreen();
+
                 // Sets the list of players to the list of players passed from the game options form
                 game.Players = options.TempPlayers;
                 currentPlayer = game.Players[0];
@@ -941,6 +948,11 @@ namespace Monopoly
             }
 
             SetNextPlayer(currentPlayer);
+        }
+
+        private void QuitGameBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

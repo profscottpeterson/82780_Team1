@@ -105,10 +105,9 @@ namespace Monopoly
             // priceLabel
             // 
             this.priceLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.priceLabel.Location = new System.Drawing.Point(16, 52);
-            this.priceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.priceLabel.Location = new System.Drawing.Point(12, 42);
             this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(334, 21);
+            this.priceLabel.Size = new System.Drawing.Size(250, 17);
             this.priceLabel.TabIndex = 19;
             this.priceLabel.Text = "Price";
             this.priceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,10 +115,9 @@ namespace Monopoly
             // mortgageLabel
             // 
             this.mortgageLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.mortgageLabel.Location = new System.Drawing.Point(11, 75);
-            this.mortgageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mortgageLabel.Location = new System.Drawing.Point(8, 61);
             this.mortgageLabel.Name = "mortgageLabel";
-            this.mortgageLabel.Size = new System.Drawing.Size(339, 21);
+            this.mortgageLabel.Size = new System.Drawing.Size(254, 17);
             this.mortgageLabel.TabIndex = 16;
             this.mortgageLabel.Text = "Mortgage";
             this.mortgageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,10 +125,9 @@ namespace Monopoly
             // rentLabel
             // 
             this.rentLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.rentLabel.Location = new System.Drawing.Point(16, 100);
-            this.rentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.rentLabel.Location = new System.Drawing.Point(12, 81);
             this.rentLabel.Name = "rentLabel";
-            this.rentLabel.Size = new System.Drawing.Size(331, 107);
+            this.rentLabel.Size = new System.Drawing.Size(248, 87);
             this.rentLabel.TabIndex = 14;
             this.rentLabel.Text = "Rent";
             this.rentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -140,9 +137,8 @@ namespace Monopoly
             this.spotNameLabel.BackColor = System.Drawing.Color.White;
             this.spotNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spotNameLabel.Location = new System.Drawing.Point(-1, -2);
-            this.spotNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.spotNameLabel.Name = "spotNameLabel";
-            this.spotNameLabel.Size = new System.Drawing.Size(372, 49);
+            this.spotNameLabel.Size = new System.Drawing.Size(279, 40);
             this.spotNameLabel.TabIndex = 13;
             this.spotNameLabel.Text = "Name";
             this.spotNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -155,20 +151,18 @@ namespace Monopoly
             this.pnlQuestion.Controls.Add(this.btnYes);
             this.pnlQuestion.Controls.Add(this.btnNo);
             this.pnlQuestion.Controls.Add(this.lblQuestion);
-            this.pnlQuestion.Location = new System.Drawing.Point(13, 217);
-            this.pnlQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlQuestion.Location = new System.Drawing.Point(10, 176);
             this.pnlQuestion.Name = "pnlQuestion";
-            this.pnlQuestion.Size = new System.Drawing.Size(334, 192);
+            this.pnlQuestion.Size = new System.Drawing.Size(251, 156);
             this.pnlQuestion.TabIndex = 23;
             // 
             // lblYourMoney
             // 
             this.lblYourMoney.AutoSize = true;
             this.lblYourMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYourMoney.Location = new System.Drawing.Point(160, 89);
-            this.lblYourMoney.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblYourMoney.Location = new System.Drawing.Point(120, 72);
             this.lblYourMoney.Name = "lblYourMoney";
-            this.lblYourMoney.Size = new System.Drawing.Size(72, 25);
+            this.lblYourMoney.Size = new System.Drawing.Size(56, 20);
             this.lblYourMoney.TabIndex = 27;
             this.lblYourMoney.Text = "Money";
             // 
@@ -176,19 +170,17 @@ namespace Monopoly
             // 
             this.lblYourMoneyText.AutoSize = true;
             this.lblYourMoneyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYourMoneyText.Location = new System.Drawing.Point(16, 89);
-            this.lblYourMoneyText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblYourMoneyText.Location = new System.Drawing.Point(12, 72);
             this.lblYourMoneyText.Name = "lblYourMoneyText";
-            this.lblYourMoneyText.Size = new System.Drawing.Size(129, 25);
+            this.lblYourMoneyText.Size = new System.Drawing.Size(102, 20);
             this.lblYourMoneyText.TabIndex = 26;
             this.lblYourMoneyText.Text = "Your Money: ";
             // 
             // btnYes
             // 
-            this.btnYes.Location = new System.Drawing.Point(21, 142);
-            this.btnYes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnYes.Location = new System.Drawing.Point(16, 115);
             this.btnYes.Name = "btnYes";
-            this.btnYes.Size = new System.Drawing.Size(100, 28);
+            this.btnYes.Size = new System.Drawing.Size(75, 23);
             this.btnYes.TabIndex = 24;
             this.btnYes.Text = "Yes";
             this.btnYes.UseVisualStyleBackColor = true;
@@ -196,10 +188,9 @@ namespace Monopoly
             // 
             // btnNo
             // 
-            this.btnNo.Location = new System.Drawing.Point(212, 142);
-            this.btnNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNo.Location = new System.Drawing.Point(159, 115);
             this.btnNo.Name = "btnNo";
-            this.btnNo.Size = new System.Drawing.Size(100, 28);
+            this.btnNo.Size = new System.Drawing.Size(75, 23);
             this.btnNo.TabIndex = 25;
             this.btnNo.Text = "No";
             this.btnNo.UseVisualStyleBackColor = true;
@@ -209,30 +200,27 @@ namespace Monopoly
             // 
             this.lblQuestion.AutoSize = true;
             this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestion.Location = new System.Drawing.Point(16, 14);
-            this.lblQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQuestion.Location = new System.Drawing.Point(12, 11);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(252, 50);
+            this.lblQuestion.Size = new System.Drawing.Size(202, 40);
             this.lblQuestion.TabIndex = 0;
             this.lblQuestion.Text = "Would you like to purchase \r\nthis property?";
             // 
             // BuyProp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 423);
+            this.ClientSize = new System.Drawing.Size(273, 344);
             this.Controls.Add(this.pnlQuestion);
             this.Controls.Add(this.priceLabel);
             this.Controls.Add(this.mortgageLabel);
             this.Controls.Add(this.rentLabel);
             this.Controls.Add(this.spotNameLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "BuyProp";
             this.Text = "BuyProp";
             this.pnlQuestion.ResumeLayout(false);
             this.pnlQuestion.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

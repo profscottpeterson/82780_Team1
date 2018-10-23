@@ -40,6 +40,10 @@ namespace Monopoly
         /// <param name="game">The game.</param>
         public GameOptions(Game game)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             this.InitializeComponent();
             this.game = game;
             this.TempPlayers = new List<Player>();

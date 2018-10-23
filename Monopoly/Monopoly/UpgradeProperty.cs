@@ -60,6 +60,10 @@ namespace Monopoly
         /// <param name="currentPlayer">brings forth the currentPlayer</param>
         public UpgradeProperty(Game game, Player currentPlayer)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
             this.game = game;
             this.currentPlayer = currentPlayer;

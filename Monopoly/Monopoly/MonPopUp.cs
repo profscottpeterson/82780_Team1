@@ -15,11 +15,19 @@ namespace Monopoly
         private Spot spot;
         public MonPopUp()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             InitializeComponent();
         }
 
         public MonPopUp(Spot s)
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             this.spot = s;
             InitializeComponent();
 

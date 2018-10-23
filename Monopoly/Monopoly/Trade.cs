@@ -65,6 +65,13 @@ namespace Monopoly
 
             // Change current players name
             lblRequesterName.Text = currentPlayer.PlayerName;
+
+            //Set initial jail card settings
+            lblRequesterBeforeJailCard.Text = currentPlayer.GetOutOfJailFreeCards.Count.ToString();
+            lblRequesterAfterJailCard.Text = currentPlayer.GetOutOfJailFreeCards.Count.ToString();
+            lblTotalJailCard.Text = "/ " + currentPlayer.GetOutOfJailFreeCards.Count.ToString();
+            btnIncreaseJailCard.Enabled = false;
+            btnLowerJailCard.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -75,7 +82,7 @@ namespace Monopoly
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // int.Parse SHOULD ALWAYS be ok here because I validate it originally.
-            TradeConfirm confirm = new TradeConfirm(game, currentPlayer, chosenPlayer, requesterOffer, targetOffer, int.Parse(lastConfirmed));
+            TradeConfirm confirm = new TradeConfirm(game, currentPlayer, chosenPlayer, requesterOffer, targetOffer, int.Parse(lastConfirmed), int.Parse(txtJailCard.Text));
             confirm.ShowDialog();
 
             if (confirm.reason == "Yes")
@@ -169,6 +176,15 @@ namespace Monopoly
 
                     // Reset the offer list if a new player is selected
                     targetOffer = new List<Spot>();
+
+                    if (chosenPlayer.GetOutOfJailFreeCards.Count > 0)
+                    {
+                        btnIncreaseJailCard.Enabled = true;
+                    }
+                    if (0 < currentPlayer.GetOutOfJailFreeCards.Count)
+                    {
+                        btnLowerJailCard.Enabled = true;
+                    }
                 }
             }
         }
@@ -364,6 +380,64 @@ namespace Monopoly
                         }
                     }
                 }
+            }
+        }
+
+        private void btnIncreaseJailCard_Click(object sender, EventArgs e)
+        {
+            int currentSelection = int.Parse(txtJailCard.Text);
+            int newSelection = currentSelection -= 1;
+
+            lblRequesteeAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count - newSelection).ToString();
+            lblRequesterAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count + newSelection).ToString();
+
+            txtJailCard.Text = newSelection.ToString();
+
+            if (chosenPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            {
+                btnIncreaseJailCard.Enabled = true;
+            }
+            else
+            {
+                this.btnIncreaseJailCard.Enabled = false;
+            }
+
+            if (currentPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            {
+                btnLowerJailCard.Enabled = true;
+            }
+            else
+            {
+                this.btnLowerJailCard.Enabled = false;
+            }
+        }
+
+        private void btnLowerJailCard_Click(object sender, EventArgs e)
+        {
+            int currentSelection = int.Parse(txtJailCard.Text);
+            int newSelection = currentSelection -= 1;
+
+            lblRequesteeAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count - newSelection).ToString();
+            lblRequesterAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count + newSelection).ToString();
+
+            txtJailCard.Text = newSelection.ToString();
+
+            if (chosenPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            {
+                btnIncreaseJailCard.Enabled = true;
+            }
+            else
+            {
+                this.btnIncreaseJailCard.Enabled = false;
+            }
+
+            if (currentPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            {
+                btnLowerJailCard.Enabled = true;
+            }
+            else
+            {
+                this.btnLowerJailCard.Enabled = false;
             }
         }
     }

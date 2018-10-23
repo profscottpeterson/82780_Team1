@@ -19,8 +19,9 @@ namespace Monopoly
         private List<Spot> targetList = new List<Spot>();
         private int moneyChange = 0;
         public string reason = "";
+        private int jailCardChange = 0;
 
-        public TradeConfirm(Game g, Player main, Player target, List<Spot> mainList, List<Spot> targetList, int moneyChange)
+        public TradeConfirm(Game g, Player main, Player target, List<Spot> mainList, List<Spot> targetList, int moneyChange, int jailCardChange)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -33,6 +34,7 @@ namespace Monopoly
             this.mainList = mainList;
             this.targetList = targetList;
             this.moneyChange = moneyChange;
+            this.jailCardChange = jailCardChange;
         }
 
         private void btnNo_Click(object sender, EventArgs e)
@@ -63,6 +65,41 @@ namespace Monopoly
             // Also set the target money to be updated
             game.Players[main.PlayerId].Money = main.Money + moneyChange;
 
+            if (jailCardChange == 2)
+            {
+                Card temp1 = game.Players[target.PlayerId].GetOutOfJailFreeCards[0];
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+                Card temp2 = game.Players[target.PlayerId].GetOutOfJailFreeCards[1];
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.Add(temp2);
+            }
+            else if (jailCardChange == 1)
+            {
+                Card temp1 = game.Players[target.PlayerId].GetOutOfJailFreeCards[0];
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+            }
+            else if (jailCardChange == -1)
+            {
+                Card temp1 = game.Players[main.PlayerId].GetOutOfJailFreeCards[0];
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+            }
+            else if (jailCardChange == -2)
+            {
+                Card temp1 = game.Players[main.PlayerId].GetOutOfJailFreeCards[0];
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+                Card temp2 = game.Players[main.PlayerId].GetOutOfJailFreeCards[1];
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.Add(temp2);
+            }
+
             // Set the reason to Yes
             this.reason = "Yes";
 
@@ -84,15 +121,20 @@ namespace Monopoly
                 lstRequesteeOffering.Items.Add(s.SpotName);
             }
 
-            // Display the changes to the money //
+            // Display the changes to the money and jail card changes//
 
             // Requester
             lblRequesterOriginTotal.Text = main.Money.ToString();
             lblRequesterMoneyNew.Text = (main.Money + moneyChange).ToString();
+            lblRequesterBeforeJailCard.Text = main.GetOutOfJailFreeCards.Count.ToString();
+            lblRequesterAfterJailCard.Text = (main.GetOutOfJailFreeCards.Count + jailCardChange).ToString();
+
 
             // Target
             lblRequesteeOriginTotal.Text = target.Money.ToString();
             lblRequesteeMoneyNew.Text = (target.Money - moneyChange).ToString();
+            lblRequesteeBeforeJailCard.Text = target.GetOutOfJailFreeCards.Count.ToString();
+            lblRequesteeAfterJailCard.Text = (target.GetOutOfJailFreeCards.Count - jailCardChange).ToString();
         }
     }
 }

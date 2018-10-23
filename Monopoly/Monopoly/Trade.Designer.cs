@@ -37,7 +37,6 @@
             this.lblRequesterMoney = new System.Windows.Forms.Label();
             this.lblRequesteeMoney = new System.Windows.Forms.Label();
             this.lblNotice1 = new System.Windows.Forms.Label();
-            this.lblNotice2 = new System.Windows.Forms.Label();
             this.grpRequesterOffering = new System.Windows.Forms.GroupBox();
             this.lblRequesterMoneyNew = new System.Windows.Forms.Label();
             this.lblArrow1 = new System.Windows.Forms.Label();
@@ -57,6 +56,22 @@
             this.lblRequesterTotal = new System.Windows.Forms.Label();
             this.lstRequesteeProperties = new System.Windows.Forms.ListView();
             this.lstRequesterProperties = new System.Windows.Forms.ListView();
+            this.lblJailText = new System.Windows.Forms.Label();
+            this.lblJailFreeText2 = new System.Windows.Forms.Label();
+            this.lblTotalJailCard = new System.Windows.Forms.Label();
+            this.lblNotice2 = new System.Windows.Forms.Label();
+            this.lblJailCardGive = new System.Windows.Forms.Label();
+            this.txtJailCard = new System.Windows.Forms.TextBox();
+            this.lblRequesteeJailCardTotal = new System.Windows.Forms.Label();
+            this.lblRequesteeJailCard = new System.Windows.Forms.Label();
+            this.lblRequesterAfterJailCard = new System.Windows.Forms.Label();
+            this.lblJailRequesterArrow = new System.Windows.Forms.Label();
+            this.lblRequesterBeforeJailCard = new System.Windows.Forms.Label();
+            this.btnLowerJailCard = new System.Windows.Forms.Button();
+            this.btnIncreaseJailCard = new System.Windows.Forms.Button();
+            this.lblRequesteeBeforeJailCard = new System.Windows.Forms.Label();
+            this.lblRequesteeArrowJailCard = new System.Windows.Forms.Label();
+            this.lblRequesteeAfterJailCard = new System.Windows.Forms.Label();
             this.grpRequesterOffering.SuspendLayout();
             this.grpRequesteeOffering.SuspendLayout();
             this.SuspendLayout();
@@ -151,25 +166,20 @@
             this.lblNotice1.TabIndex = 14;
             this.lblNotice1.Text = "Making the number negative symbolizes\r\ngiving money to the other player.";
             // 
-            // lblNotice2
-            // 
-            this.lblNotice2.AutoSize = true;
-            this.lblNotice2.Location = new System.Drawing.Point(259, 233);
-            this.lblNotice2.Name = "lblNotice2";
-            this.lblNotice2.Size = new System.Drawing.Size(195, 26);
-            this.lblNotice2.TabIndex = 15;
-            this.lblNotice2.Text = "Making the number negative symbolizes\r\ngiving money to the other player.";
-            // 
             // grpRequesterOffering
             // 
+            this.grpRequesterOffering.Controls.Add(this.lblRequesterBeforeJailCard);
+            this.grpRequesterOffering.Controls.Add(this.lblJailRequesterArrow);
+            this.grpRequesterOffering.Controls.Add(this.lblRequesterAfterJailCard);
+            this.grpRequesterOffering.Controls.Add(this.lblJailText);
             this.grpRequesterOffering.Controls.Add(this.lblRequesterMoneyNew);
             this.grpRequesterOffering.Controls.Add(this.lblArrow1);
             this.grpRequesterOffering.Controls.Add(this.lblRequesterMoneyOffering);
             this.grpRequesterOffering.Controls.Add(this.lstRequesterOffering);
             this.grpRequesterOffering.Controls.Add(this.txtRequesterMoneyOffering);
-            this.grpRequesterOffering.Location = new System.Drawing.Point(17, 279);
+            this.grpRequesterOffering.Location = new System.Drawing.Point(17, 351);
             this.grpRequesterOffering.Name = "grpRequesterOffering";
-            this.grpRequesterOffering.Size = new System.Drawing.Size(200, 159);
+            this.grpRequesterOffering.Size = new System.Drawing.Size(200, 196);
             this.grpRequesterOffering.TabIndex = 16;
             this.grpRequesterOffering.TabStop = false;
             this.grpRequesterOffering.Text = "Offering";
@@ -226,14 +236,18 @@
             // 
             // grpRequesteeOffering
             // 
+            this.grpRequesteeOffering.Controls.Add(this.lblRequesteeBeforeJailCard);
+            this.grpRequesteeOffering.Controls.Add(this.lblJailFreeText2);
+            this.grpRequesteeOffering.Controls.Add(this.lblRequesteeArrowJailCard);
+            this.grpRequesteeOffering.Controls.Add(this.lblRequesteeAfterJailCard);
             this.grpRequesteeOffering.Controls.Add(this.lblRequesteeMoneyNew);
             this.grpRequesteeOffering.Controls.Add(this.lblArrow2);
             this.grpRequesteeOffering.Controls.Add(this.lblRequsteeMoneyOffering);
             this.grpRequesteeOffering.Controls.Add(this.txtRequesteeMoneyOffering);
             this.grpRequesteeOffering.Controls.Add(this.lstRequesteeOffering);
-            this.grpRequesteeOffering.Location = new System.Drawing.Point(262, 279);
+            this.grpRequesteeOffering.Location = new System.Drawing.Point(262, 351);
             this.grpRequesteeOffering.Name = "grpRequesteeOffering";
-            this.grpRequesteeOffering.Size = new System.Drawing.Size(200, 159);
+            this.grpRequesteeOffering.Size = new System.Drawing.Size(200, 196);
             this.grpRequesteeOffering.TabIndex = 0;
             this.grpRequesteeOffering.TabStop = false;
             this.grpRequesteeOffering.Text = "Offering";
@@ -290,7 +304,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(16, 485);
+            this.btnClose.Location = new System.Drawing.Point(17, 582);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(446, 23);
             this.btnClose.TabIndex = 17;
@@ -301,7 +315,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Enabled = false;
-            this.btnSubmit.Location = new System.Drawing.Point(16, 456);
+            this.btnSubmit.Location = new System.Drawing.Point(17, 553);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(444, 23);
             this.btnSubmit.TabIndex = 18;
@@ -344,7 +358,7 @@
             // 
             this.lstRequesteeProperties.Enabled = false;
             this.lstRequesteeProperties.Location = new System.Drawing.Point(262, 100);
-            this.lstRequesteeProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstRequesteeProperties.Margin = new System.Windows.Forms.Padding(2);
             this.lstRequesteeProperties.MultiSelect = false;
             this.lstRequesteeProperties.Name = "lstRequesteeProperties";
             this.lstRequesteeProperties.Size = new System.Drawing.Size(198, 95);
@@ -357,7 +371,7 @@
             // 
             this.lstRequesterProperties.Enabled = false;
             this.lstRequesterProperties.Location = new System.Drawing.Point(17, 100);
-            this.lstRequesterProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstRequesterProperties.Margin = new System.Windows.Forms.Padding(2);
             this.lstRequesterProperties.MultiSelect = false;
             this.lstRequesterProperties.Name = "lstRequesterProperties";
             this.lstRequesterProperties.Size = new System.Drawing.Size(198, 95);
@@ -366,11 +380,180 @@
             this.lstRequesterProperties.View = System.Windows.Forms.View.Details;
             this.lstRequesterProperties.DoubleClick += new System.EventHandler(this.lstRequesterProperties_DoubleClick);
             // 
+            // lblJailText
+            // 
+            this.lblJailText.AutoSize = true;
+            this.lblJailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJailText.Location = new System.Drawing.Point(8, 161);
+            this.lblJailText.Name = "lblJailText";
+            this.lblJailText.Size = new System.Drawing.Size(111, 20);
+            this.lblJailText.TabIndex = 26;
+            this.lblJailText.Text = "Jail Free Card:";
+            // 
+            // lblJailFreeText2
+            // 
+            this.lblJailFreeText2.AutoSize = true;
+            this.lblJailFreeText2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJailFreeText2.Location = new System.Drawing.Point(7, 161);
+            this.lblJailFreeText2.Name = "lblJailFreeText2";
+            this.lblJailFreeText2.Size = new System.Drawing.Size(111, 20);
+            this.lblJailFreeText2.TabIndex = 27;
+            this.lblJailFreeText2.Text = "Jail Free Card:";
+            // 
+            // lblTotalJailCard
+            // 
+            this.lblTotalJailCard.AutoSize = true;
+            this.lblTotalJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalJailCard.Location = new System.Drawing.Point(147, 272);
+            this.lblTotalJailCard.Name = "lblTotalJailCard";
+            this.lblTotalJailCard.Size = new System.Drawing.Size(52, 20);
+            this.lblTotalJailCard.TabIndex = 27;
+            this.lblTotalJailCard.Text = "/ Total";
+            // 
+            // lblNotice2
+            // 
+            this.lblNotice2.AutoSize = true;
+            this.lblNotice2.Location = new System.Drawing.Point(15, 302);
+            this.lblNotice2.Name = "lblNotice2";
+            this.lblNotice2.Size = new System.Drawing.Size(205, 39);
+            this.lblNotice2.TabIndex = 26;
+            this.lblNotice2.Text = "Making the number negative symbolizes\r\ngiving a \"Get Out of Jail Free\" card to th" +
+    "e \r\nother player.";
+            // 
+            // lblJailCardGive
+            // 
+            this.lblJailCardGive.AutoSize = true;
+            this.lblJailCardGive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJailCardGive.Location = new System.Drawing.Point(13, 272);
+            this.lblJailCardGive.Name = "lblJailCardGive";
+            this.lblJailCardGive.Size = new System.Drawing.Size(60, 20);
+            this.lblJailCardGive.TabIndex = 25;
+            this.lblJailCardGive.Text = "Money:";
+            // 
+            // txtJailCard
+            // 
+            this.txtJailCard.Enabled = false;
+            this.txtJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJailCard.Location = new System.Drawing.Point(102, 269);
+            this.txtJailCard.Name = "txtJailCard";
+            this.txtJailCard.ReadOnly = true;
+            this.txtJailCard.Size = new System.Drawing.Size(21, 26);
+            this.txtJailCard.TabIndex = 24;
+            this.txtJailCard.Text = "0";
+            // 
+            // lblRequesteeJailCardTotal
+            // 
+            this.lblRequesteeJailCardTotal.AutoSize = true;
+            this.lblRequesteeJailCardTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeJailCardTotal.Location = new System.Drawing.Point(328, 272);
+            this.lblRequesteeJailCardTotal.Name = "lblRequesteeJailCardTotal";
+            this.lblRequesteeJailCardTotal.Size = new System.Drawing.Size(44, 20);
+            this.lblRequesteeJailCardTotal.TabIndex = 29;
+            this.lblRequesteeJailCardTotal.Text = "Total";
+            // 
+            // lblRequesteeJailCard
+            // 
+            this.lblRequesteeJailCard.AutoSize = true;
+            this.lblRequesteeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeJailCard.Location = new System.Drawing.Point(262, 272);
+            this.lblRequesteeJailCard.Name = "lblRequesteeJailCard";
+            this.lblRequesteeJailCard.Size = new System.Drawing.Size(60, 20);
+            this.lblRequesteeJailCard.TabIndex = 28;
+            this.lblRequesteeJailCard.Text = "Money:";
+            // 
+            // lblRequesterAfterJailCard
+            // 
+            this.lblRequesterAfterJailCard.AutoSize = true;
+            this.lblRequesterAfterJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesterAfterJailCard.Location = new System.Drawing.Point(175, 161);
+            this.lblRequesterAfterJailCard.Name = "lblRequesterAfterJailCard";
+            this.lblRequesterAfterJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesterAfterJailCard.TabIndex = 27;
+            this.lblRequesterAfterJailCard.Text = "0";
+            // 
+            // lblJailRequesterArrow
+            // 
+            this.lblJailRequesterArrow.AutoSize = true;
+            this.lblJailRequesterArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJailRequesterArrow.Location = new System.Drawing.Point(149, 161);
+            this.lblJailRequesterArrow.Name = "lblJailRequesterArrow";
+            this.lblJailRequesterArrow.Size = new System.Drawing.Size(23, 20);
+            this.lblJailRequesterArrow.TabIndex = 28;
+            this.lblJailRequesterArrow.Text = "->";
+            // 
+            // lblRequesterBeforeJailCard
+            // 
+            this.lblRequesterBeforeJailCard.AutoSize = true;
+            this.lblRequesterBeforeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesterBeforeJailCard.Location = new System.Drawing.Point(120, 161);
+            this.lblRequesterBeforeJailCard.Name = "lblRequesterBeforeJailCard";
+            this.lblRequesterBeforeJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesterBeforeJailCard.TabIndex = 29;
+            this.lblRequesterBeforeJailCard.Text = "0";
+            // 
+            // btnLowerJailCard
+            // 
+            this.btnLowerJailCard.Location = new System.Drawing.Point(78, 269);
+            this.btnLowerJailCard.Name = "btnLowerJailCard";
+            this.btnLowerJailCard.Size = new System.Drawing.Size(18, 26);
+            this.btnLowerJailCard.TabIndex = 30;
+            this.btnLowerJailCard.Text = "-";
+            this.btnLowerJailCard.UseVisualStyleBackColor = true;
+            this.btnLowerJailCard.Click += new System.EventHandler(this.btnLowerJailCard_Click);
+            // 
+            // btnIncreaseJailCard
+            // 
+            this.btnIncreaseJailCard.Location = new System.Drawing.Point(129, 269);
+            this.btnIncreaseJailCard.Name = "btnIncreaseJailCard";
+            this.btnIncreaseJailCard.Size = new System.Drawing.Size(18, 26);
+            this.btnIncreaseJailCard.TabIndex = 31;
+            this.btnIncreaseJailCard.Text = "+";
+            this.btnIncreaseJailCard.UseVisualStyleBackColor = true;
+            this.btnIncreaseJailCard.Click += new System.EventHandler(this.btnIncreaseJailCard_Click);
+            // 
+            // lblRequesteeBeforeJailCard
+            // 
+            this.lblRequesteeBeforeJailCard.AutoSize = true;
+            this.lblRequesteeBeforeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeBeforeJailCard.Location = new System.Drawing.Point(122, 161);
+            this.lblRequesteeBeforeJailCard.Name = "lblRequesteeBeforeJailCard";
+            this.lblRequesteeBeforeJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesteeBeforeJailCard.TabIndex = 32;
+            this.lblRequesteeBeforeJailCard.Text = "0";
+            // 
+            // lblRequesteeArrowJailCard
+            // 
+            this.lblRequesteeArrowJailCard.AutoSize = true;
+            this.lblRequesteeArrowJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeArrowJailCard.Location = new System.Drawing.Point(151, 161);
+            this.lblRequesteeArrowJailCard.Name = "lblRequesteeArrowJailCard";
+            this.lblRequesteeArrowJailCard.Size = new System.Drawing.Size(23, 20);
+            this.lblRequesteeArrowJailCard.TabIndex = 31;
+            this.lblRequesteeArrowJailCard.Text = "->";
+            // 
+            // lblRequesteeAfterJailCard
+            // 
+            this.lblRequesteeAfterJailCard.AutoSize = true;
+            this.lblRequesteeAfterJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeAfterJailCard.Location = new System.Drawing.Point(177, 161);
+            this.lblRequesteeAfterJailCard.Name = "lblRequesteeAfterJailCard";
+            this.lblRequesteeAfterJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesteeAfterJailCard.TabIndex = 30;
+            this.lblRequesteeAfterJailCard.Text = "0";
+            // 
             // Trade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 522);
+            this.ClientSize = new System.Drawing.Size(473, 615);
+            this.Controls.Add(this.btnIncreaseJailCard);
+            this.Controls.Add(this.btnLowerJailCard);
+            this.Controls.Add(this.lblRequesteeJailCardTotal);
+            this.Controls.Add(this.lblRequesteeJailCard);
+            this.Controls.Add(this.lblTotalJailCard);
+            this.Controls.Add(this.lblNotice2);
+            this.Controls.Add(this.lblJailCardGive);
+            this.Controls.Add(this.txtJailCard);
             this.Controls.Add(this.lstRequesterProperties);
             this.Controls.Add(this.lstRequesteeProperties);
             this.Controls.Add(this.lblRequesterTotal);
@@ -380,7 +563,6 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.grpRequesteeOffering);
             this.Controls.Add(this.grpRequesterOffering);
-            this.Controls.Add(this.lblNotice2);
             this.Controls.Add(this.lblNotice1);
             this.Controls.Add(this.lblRequesteeMoney);
             this.Controls.Add(this.lblRequesterMoney);
@@ -413,7 +595,6 @@
         private System.Windows.Forms.Label lblRequesterMoney;
         private System.Windows.Forms.Label lblRequesteeMoney;
         private System.Windows.Forms.Label lblNotice1;
-        private System.Windows.Forms.Label lblNotice2;
         private System.Windows.Forms.GroupBox grpRequesterOffering;
         private System.Windows.Forms.Label lblRequesterMoneyOffering;
         private System.Windows.Forms.ListBox lstRequesterOffering;
@@ -433,5 +614,21 @@
         private System.Windows.Forms.Label lblArrow2;
         private System.Windows.Forms.ListView lstRequesteeProperties;
         private System.Windows.Forms.ListView lstRequesterProperties;
+        private System.Windows.Forms.Label lblRequesterBeforeJailCard;
+        private System.Windows.Forms.Label lblJailRequesterArrow;
+        private System.Windows.Forms.Label lblRequesterAfterJailCard;
+        private System.Windows.Forms.Label lblJailText;
+        private System.Windows.Forms.Label lblRequesteeBeforeJailCard;
+        private System.Windows.Forms.Label lblJailFreeText2;
+        private System.Windows.Forms.Label lblRequesteeArrowJailCard;
+        private System.Windows.Forms.Label lblRequesteeAfterJailCard;
+        private System.Windows.Forms.Label lblTotalJailCard;
+        private System.Windows.Forms.Label lblNotice2;
+        private System.Windows.Forms.Label lblJailCardGive;
+        private System.Windows.Forms.TextBox txtJailCard;
+        private System.Windows.Forms.Label lblRequesteeJailCardTotal;
+        private System.Windows.Forms.Label lblRequesteeJailCard;
+        private System.Windows.Forms.Button btnLowerJailCard;
+        private System.Windows.Forms.Button btnIncreaseJailCard;
     }
 }

@@ -1145,5 +1145,10 @@ namespace Monopoly
         {
             this.Close();
         }
+
+        private void QuitGameBtn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

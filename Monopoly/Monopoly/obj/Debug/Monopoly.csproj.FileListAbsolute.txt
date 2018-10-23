@@ -82,3 +82,22 @@ C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Ge
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe.config
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.pdb
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.BuyProp.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GameOptions.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.GetMoney.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MiscCardForm.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonopolyMainForm.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonPopUp.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.NonPropPopUp.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Properties.Resources.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.Trade.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.TradeConfirm.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.UpgradeProperty.resources
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.GenerateResource.cache
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csproj.CoreCompileInputs.cache
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.exe
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
+C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache

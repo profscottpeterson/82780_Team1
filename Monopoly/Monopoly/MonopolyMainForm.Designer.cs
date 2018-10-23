@@ -94,6 +94,7 @@
             this.flpPlayerHandOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.flpOtherPlayerHand = new System.Windows.Forms.FlowLayoutPanel();
             this.lblOtherPlayersHand = new System.Windows.Forms.Label();
+            this.QuitGameBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
@@ -813,12 +814,25 @@
             this.lblOtherPlayersHand.TabIndex = 63;
             this.lblOtherPlayersHand.Text = "(null)";
             // 
+            // QuitGameBtn
+            // 
+            this.QuitGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitGameBtn.ForeColor = System.Drawing.Color.Black;
+            this.QuitGameBtn.Location = new System.Drawing.Point(1248, 926);
+            this.QuitGameBtn.Name = "QuitGameBtn";
+            this.QuitGameBtn.Size = new System.Drawing.Size(128, 23);
+            this.QuitGameBtn.TabIndex = 64;
+            this.QuitGameBtn.Text = "Quit Game";
+            this.QuitGameBtn.UseVisualStyleBackColor = true;
+            this.QuitGameBtn.Click += new System.EventHandler(this.QuitGameBtn_Click_1);
+            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
-            this.ClientSize = new System.Drawing.Size(1384, 896);
+            this.ClientSize = new System.Drawing.Size(1384, 968);
+            this.Controls.Add(this.QuitGameBtn);
             this.Controls.Add(this.lblOtherPlayersHand);
             this.Controls.Add(this.flpOtherPlayerHand);
             this.Controls.Add(this.flpPlayerHandOptions);
@@ -1005,6 +1019,7 @@
         private System.Windows.Forms.FlowLayoutPanel flpPlayerHandOptions;
         private System.Windows.Forms.FlowLayoutPanel flpOtherPlayerHand;
         private System.Windows.Forms.Label lblOtherPlayersHand;
+        private System.Windows.Forms.Button QuitGameBtn;
     }
 }
 

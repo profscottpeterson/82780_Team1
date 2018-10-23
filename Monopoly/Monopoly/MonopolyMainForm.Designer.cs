@@ -91,6 +91,9 @@
             this.BtnNextTurn = new System.Windows.Forms.Button();
             this.btnJailPay = new System.Windows.Forms.Button();
             this.btnJailFreeCard = new System.Windows.Forms.Button();
+            this.flpPlayerHandOptions = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpOtherPlayerHand = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblOtherPlayersHand = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
@@ -146,7 +149,7 @@
             // 
             this.btnRoll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRoll.ForeColor = System.Drawing.Color.Black;
-            this.btnRoll.Location = new System.Drawing.Point(335, 506);
+            this.btnRoll.Location = new System.Drawing.Point(335, 450);
             this.btnRoll.Name = "btnRoll";
             this.btnRoll.Size = new System.Drawing.Size(230, 28);
             this.btnRoll.TabIndex = 46;
@@ -260,7 +263,7 @@
             // 
             this.pbxDiceRight.BackColor = System.Drawing.Color.Transparent;
             this.pbxDiceRight.Image = global::Monopoly.Properties.Resources.dice_1;
-            this.pbxDiceRight.Location = new System.Drawing.Point(485, 415);
+            this.pbxDiceRight.Location = new System.Drawing.Point(485, 359);
             this.pbxDiceRight.Name = "pbxDiceRight";
             this.pbxDiceRight.Size = new System.Drawing.Size(80, 80);
             this.pbxDiceRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -271,7 +274,7 @@
             // 
             this.pbxDiceLeft.BackColor = System.Drawing.Color.Transparent;
             this.pbxDiceLeft.Image = global::Monopoly.Properties.Resources.dice_1;
-            this.pbxDiceLeft.Location = new System.Drawing.Point(335, 415);
+            this.pbxDiceLeft.Location = new System.Drawing.Point(335, 359);
             this.pbxDiceLeft.Name = "pbxDiceLeft";
             this.pbxDiceLeft.Size = new System.Drawing.Size(80, 80);
             this.pbxDiceLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -744,7 +747,7 @@
             this.BtnNextTurn.Enabled = false;
             this.BtnNextTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNextTurn.ForeColor = System.Drawing.Color.Black;
-            this.BtnNextTurn.Location = new System.Drawing.Point(335, 555);
+            this.BtnNextTurn.Location = new System.Drawing.Point(335, 499);
             this.BtnNextTurn.Name = "BtnNextTurn";
             this.BtnNextTurn.Size = new System.Drawing.Size(230, 28);
             this.BtnNextTurn.TabIndex = 58;
@@ -757,7 +760,7 @@
             this.btnJailPay.Enabled = false;
             this.btnJailPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJailPay.ForeColor = System.Drawing.Color.Black;
-            this.btnJailPay.Location = new System.Drawing.Point(335, 605);
+            this.btnJailPay.Location = new System.Drawing.Point(335, 548);
             this.btnJailPay.Name = "btnJailPay";
             this.btnJailPay.Size = new System.Drawing.Size(230, 28);
             this.btnJailPay.TabIndex = 59;
@@ -770,7 +773,7 @@
             this.btnJailFreeCard.Enabled = false;
             this.btnJailFreeCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJailFreeCard.ForeColor = System.Drawing.Color.Black;
-            this.btnJailFreeCard.Location = new System.Drawing.Point(335, 654);
+            this.btnJailFreeCard.Location = new System.Drawing.Point(335, 597);
             this.btnJailFreeCard.Name = "btnJailFreeCard";
             this.btnJailFreeCard.Size = new System.Drawing.Size(230, 28);
             this.btnJailFreeCard.TabIndex = 60;
@@ -778,12 +781,47 @@
             this.btnJailFreeCard.UseVisualStyleBackColor = true;
             this.btnJailFreeCard.Click += new System.EventHandler(this.btnJailFreeCard_Click);
             // 
+            // flpPlayerHandOptions
+            // 
+            this.flpPlayerHandOptions.AutoScroll = true;
+            this.flpPlayerHandOptions.BackColor = System.Drawing.Color.PeachPuff;
+            this.flpPlayerHandOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpPlayerHandOptions.ForeColor = System.Drawing.Color.Black;
+            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 441);
+            this.flpPlayerHandOptions.Name = "flpPlayerHandOptions";
+            this.flpPlayerHandOptions.Size = new System.Drawing.Size(460, 44);
+            this.flpPlayerHandOptions.TabIndex = 61;
+            // 
+            // flpOtherPlayerHand
+            // 
+            this.flpOtherPlayerHand.AutoScroll = true;
+            this.flpOtherPlayerHand.BackColor = System.Drawing.Color.PeachPuff;
+            this.flpOtherPlayerHand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpOtherPlayerHand.ForeColor = System.Drawing.Color.Black;
+            this.flpOtherPlayerHand.Location = new System.Drawing.Point(911, 528);
+            this.flpOtherPlayerHand.Name = "flpOtherPlayerHand";
+            this.flpOtherPlayerHand.Size = new System.Drawing.Size(460, 330);
+            this.flpOtherPlayerHand.TabIndex = 62;
+            // 
+            // lblOtherPlayersHand
+            // 
+            this.lblOtherPlayersHand.AutoSize = true;
+            this.lblOtherPlayersHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 498);
+            this.lblOtherPlayersHand.Name = "lblOtherPlayersHand";
+            this.lblOtherPlayersHand.Size = new System.Drawing.Size(60, 26);
+            this.lblOtherPlayersHand.TabIndex = 63;
+            this.lblOtherPlayersHand.Text = "(null)";
+            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
             this.ClientSize = new System.Drawing.Size(1384, 896);
+            this.Controls.Add(this.lblOtherPlayersHand);
+            this.Controls.Add(this.flpOtherPlayerHand);
+            this.Controls.Add(this.flpPlayerHandOptions);
             this.Controls.Add(this.btnJailFreeCard);
             this.Controls.Add(this.btnJailPay);
             this.Controls.Add(this.BtnNextTurn);
@@ -964,6 +1002,9 @@
         private System.Windows.Forms.Button BtnNextTurn;
         private System.Windows.Forms.Button btnJailPay;
         private System.Windows.Forms.Button btnJailFreeCard;
+        private System.Windows.Forms.FlowLayoutPanel flpPlayerHandOptions;
+        private System.Windows.Forms.FlowLayoutPanel flpOtherPlayerHand;
+        private System.Windows.Forms.Label lblOtherPlayersHand;
     }
 }
 

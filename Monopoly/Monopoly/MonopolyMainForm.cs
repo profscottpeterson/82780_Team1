@@ -54,6 +54,8 @@ namespace Monopoly
         int P3Jail = 1;
         int P4Jail = 1;
         private int DoubleCounter = 0;
+        private RadioButton[] radioButtons;
+        private bool FormBool = false;
 
         public MonopolyMainForm()
         {
@@ -113,6 +115,9 @@ namespace Monopoly
 
                 // Shows the players the current players image or color as well as the current player
                 SetCurrentPlayerImage(currentPlayer);
+                lblOtherPlayersHand.Text = string.Empty;
+                FormBool = true;
+                SetUpPlayerHandOptions();
                 lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
                 lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
 
@@ -429,8 +434,8 @@ namespace Monopoly
 
             btnJailFreeCard.Enabled = false;
             btnJailPay.Enabled = false;
-
-            SetNextPlayer(currentPlayer);
+            FormBool = false;
+            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
         }
 
         private void FindNewPawnLocations(int newLocation)
@@ -742,9 +747,14 @@ namespace Monopoly
         /// The method used for setting up the next player's information on the form
         /// </summary>
         /// <param name="player"></param>
-        private void SetNextPlayer(Player player)
+        private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
         {
-            flpCurrentPlayerProps.Controls.Clear();
+            if (FormBool == true)
+            {
+                lblOtherPlayersHand.Text = string.Empty;
+            }
+            
+            panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
             currentPlayerSpots = game.GetPlayersPropertyList(player);
             PictureBox[] pictureBoxes = new PictureBox[currentPlayerSpots.Count];
@@ -879,12 +889,66 @@ namespace Monopoly
             {
                 panel.Controls.Add(playerPropertyLabels[int.Parse(panel.Tag.ToString())]);
                 panel.Controls.Add(pictureBoxes[int.Parse(panel.Tag.ToString())]);
-                flpCurrentPlayerProps.Controls.Add(panel);
+                panelToUse.Controls.Add(panel);
             }
 
-            SetCurrentPlayerImage(player);
-            lblPlayerTurn.Text = player.PlayerName + "'s Turn";
-            lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
+            if (FormBool == false)
+            {
+                SetCurrentPlayerImage(player);
+                lblPlayerTurn.Text = player.PlayerName + "'s Turn";
+                lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
+                FormBool = true;
+            }
+            else
+            {
+                SetUpPlayerHandOptions();
+                lblOtherPlayersHand.Text = player.PlayerName;
+            }
+
+            
+            
+        }
+
+        private void SetUpPlayerHandOptions()
+        {
+            
+            flpPlayerHandOptions.Controls.Clear();
+            int ActivePlayerCount = game.Players.Count;
+            bool[] PlayerStatus = new bool[ActivePlayerCount];
+            
+            if (ActivePlayerCount - 1 > 0)
+            {
+                radioButtons = new RadioButton[ActivePlayerCount];
+                for (int x = 0; x < game.Players.Count; x++)
+                {
+                    PlayerStatus[x] = game.Players[x].IsActive;
+                    radioButtons[x] = new RadioButton();
+                    if (game.Players[x].IsActive == true)
+                    {
+                        radioButtons[x].Text = game.Players[x].PlayerName;
+                        radioButtons[x].Tag = game.Players[x].PlayerId;
+                    }
+                }
+
+                for (int x = 0; x < ActivePlayerCount; x++)
+                {
+                    RadioButton r = radioButtons[x];
+                    if (PlayerStatus[x] == true)
+                    {
+                        if (r.Text != currentPlayer.PlayerName)
+                        {
+                            if (r.Text != "")
+                            {
+                                r.CheckedChanged += delegate
+                                {
+                                    SetNextPlayer(game.Players[int.Parse(r.Tag.ToString())], flpOtherPlayerHand);
+                                };
+                                flpPlayerHandOptions.Controls.Add(r);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void SetCurrentPlayerImage(Player player)
@@ -923,7 +987,7 @@ namespace Monopoly
             tradeForm.ShowDialog();
             
 
-            SetNextPlayer(currentPlayer);
+            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
         }
 
         private void btnSell_Click(object sender, EventArgs e)
@@ -934,9 +998,12 @@ namespace Monopoly
             while(currentPlayer.IsActive == false)
             {
                 currentPlayer = game.NextPlayer(currentPlayer);
+                FormBool = false;
             }
-
-            SetNextPlayer(currentPlayer);
+            flpOtherPlayerHand.Controls.Clear();
+            lblOtherPlayersHand.Text = String.Empty;
+            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
+            SetUpPlayerHandOptions();
         }
 
         private void btnBuyHouseOrHotel_Click(object sender, EventArgs e)
@@ -948,7 +1015,7 @@ namespace Monopoly
                 currentPlayer = game.Players[currentPlayer.PlayerId];
             }
 
-            SetNextPlayer(currentPlayer);
+            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
         }
 
         private void BtnNextTurn_Click(object sender, EventArgs e)
@@ -956,15 +1023,21 @@ namespace Monopoly
             btnRoll.Enabled = true;
             BtnNextTurn.Enabled = false;
             btnRoll.Focus();
-
             DoubleCounter = 0;
-
+            FormBool = false;
             currentPlayer = game.NextPlayer(currentPlayer);
+            flpCurrentPlayerProps.Controls.Clear();
+            flpOtherPlayerHand.Controls.Clear();
+            lblOtherPlayersHand.Text = String.Empty;
+            flpPlayerHandOptions.Controls.Clear();
+            
+            
 
             while (currentPlayer.IsActive == false)
             {
                 currentPlayer = game.NextPlayer(currentPlayer);
             }
+            SetUpPlayerHandOptions();
 
             if (currentPlayer.InJail)
             {
@@ -985,7 +1058,7 @@ namespace Monopoly
                 btnJailFreeCard.Enabled = false;
             }
 
-            SetNextPlayer(currentPlayer);
+            SetNextPlayer(currentPlayer, flpCurrentPlayerProps);
         }
 
         private void btnJailPay_Click(object sender, EventArgs e)

@@ -31,6 +31,15 @@ namespace Monopoly
             InitializeComponent();
             this.Text = title;
             cardTextLabel.Text = card.Description;
+            cardPictureBox.Image = card.CardImage;
+            if (card.Type == CardType.Chance)
+            {
+                this.BackColor = Color.Orange;
+            }
+            else
+            {
+                this.BackColor = Color.Yellow;
+            }
         }
 
         public PictureBox picture { get; set; }
@@ -43,6 +52,11 @@ namespace Monopoly
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

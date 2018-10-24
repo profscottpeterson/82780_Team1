@@ -36,25 +36,30 @@
             // 
             // cardPictureBox
             // 
-            this.cardPictureBox.Location = new System.Drawing.Point(12, 12);
+            this.cardPictureBox.Location = new System.Drawing.Point(182, 70);
+            this.cardPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.cardPictureBox.Name = "cardPictureBox";
-            this.cardPictureBox.Size = new System.Drawing.Size(413, 208);
+            this.cardPictureBox.Size = new System.Drawing.Size(218, 170);
+            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.cardPictureBox.TabIndex = 0;
             this.cardPictureBox.TabStop = false;
             // 
             // cardTextLabel
             // 
-            this.cardTextLabel.AutoSize = true;
-            this.cardTextLabel.Location = new System.Drawing.Point(195, 103);
+            this.cardTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardTextLabel.Location = new System.Drawing.Point(26, 22);
+            this.cardTextLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cardTextLabel.Name = "cardTextLabel";
-            this.cardTextLabel.Size = new System.Drawing.Size(0, 13);
+            this.cardTextLabel.Size = new System.Drawing.Size(531, 23);
             this.cardTextLabel.TabIndex = 1;
+            this.cardTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(350, 226);
+            this.button1.Location = new System.Drawing.Point(467, 278);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 2;
             this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,18 +67,18 @@
             // 
             // MiscCardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 256);
+            this.ClientSize = new System.Drawing.Size(583, 315);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cardTextLabel);
             this.Controls.Add(this.cardPictureBox);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MiscCardForm";
             this.Text = "MiscCardForm";
             this.Load += new System.EventHandler(this.MiscCardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

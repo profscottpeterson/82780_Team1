@@ -289,7 +289,7 @@ namespace Monopoly
             this.game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
 
             // Move pawn picture
-            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId);
+            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId, currentPlayer);
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Monopoly
                 this.game.MovePlayerLocation(this.currentPlayer, totalMove);
 
                 // Move pawn picture
-                this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
+                this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
 
                 this.RollChecks(this.currentPlayer);
 
@@ -353,7 +353,7 @@ namespace Monopoly
                     this.currentPlayer.TurnsInJail = 0;
                     int total = die1 + die2;
                     this.game.MovePlayerLocation(this.currentPlayer, total);
-                    this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
+                    this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
 
                     this.RollChecks(this.currentPlayer);
                 }
@@ -371,7 +371,7 @@ namespace Monopoly
                         this.currentPlayer.TurnsInJail = 0;
                         int total = die1 + die2;
                         this.game.MovePlayerLocation(this.currentPlayer, total);
-                        this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId);
+                        this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
                     }
                 }
 
@@ -391,308 +391,312 @@ namespace Monopoly
         /// Finds the pawn's new location
         /// </summary>
         /// <param name="newLocation">The new spot on the board the pawn is moving to</param>
-        private void FindNewPawnLocations(int newLocation)
+        /// <param name="player">The owner of the pawn</param>
+        private void FindNewPawnLocations(int newLocation, Player player)
         {
-            // Bottom Row
-            if (newLocation > 0 && newLocation < 10)
+            if (player != null)
             {
-                Point p = new Point();
-
-                p.Y = 800;
-                p.X = 765 - (newLocation * 70);
-
-                if (this.currentPlayer.PlayerId == 0)
+                // Bottom Row
+                if (newLocation > 0 && newLocation < 10)
                 {
-                    this.picPlayer1.Location = p;
+                    Point p = new Point();
+
+                    p.Y = 800;
+                    p.X = 765 - (newLocation * 70);
+
+                    if (player.PlayerId == 0)
+                    {
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.X = p.X + 45;
+
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.Y = p.Y + 45;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = p.X + 45;
+                        p.Y = p.Y + 45;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-                else if (this.currentPlayer.PlayerId == 1)
+                else if (newLocation > 10 && newLocation < 20)
                 {
-                    p.X = p.X + 45;
+                    // Left column
+                    Point p = new Point();
 
-                    this.picPlayer2.Location = p;
+                    p.Y = 765 - ((newLocation - 10) * 70);
+                    p.X = 75;
+
+                    if (player.PlayerId == 0)
+                    {
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.Y = p.Y + 45;
+
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.X = p.X - 45;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = p.X - 45;
+                        p.Y = p.Y + 45;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-                else if (this.currentPlayer.PlayerId == 2)
+                else if (newLocation > 20 && newLocation < 30)
                 {
-                    p.Y = p.Y + 45;
+                    // Top row
+                    Point p = new Point();
 
-                    this.picPlayer3.Location = p;
+                    p.Y = 75;
+                    p.X = 135 + ((newLocation - 21) * 70);
+
+                    if (player.PlayerId == 0)
+                    {
+                        p.X = p.X + 45;
+
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.Y = p.Y - 45;
+                        p.X = p.X + 45;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.Y = p.Y - 45;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-                else if (this.currentPlayer.PlayerId == 3)
+                else if (newLocation > 30 && newLocation < 40)
                 {
-                    p.X = p.X + 45;
-                    p.Y = p.Y + 45;
+                    // Right Column
+                    Point p = new Point();
 
-                    this.picPlayer4.Location = p;
+                    p.Y = 135 + ((newLocation - 31) * 70);
+                    p.X = 800;
+
+                    if (player.PlayerId == 0)
+                    {
+                        p.Y = p.Y + 45;
+
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.Y = p.Y + 45;
+                        p.X = p.X + 45;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = p.X + 45;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-            }
-            else if (newLocation > 10 && newLocation < 20)
-            {
-                // Left column
-                Point p = new Point();
-
-                p.Y = 765 - ((newLocation - 10) * 70);
-                p.X = 75;
-
-                if (this.currentPlayer.PlayerId == 0)
+                else if (newLocation == 0)
                 {
-                    this.picPlayer1.Location = p;
+                    // Land on go
+                    Point p = new Point();
+
+                    if (player.PlayerId == 0)
+                    {
+                        p.X = 790;
+                        p.Y = 790;
+
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.X = 840;
+                        p.Y = 790;
+
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.X = 790;
+                        p.Y = 840;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = 840;
+                        p.Y = 840;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-                else if (this.currentPlayer.PlayerId == 1)
+                else if (newLocation == 10 && player.InJail == false)
                 {
-                    p.Y = p.Y + 45;
+                    // Visiting Jail
+                    Point p = new Point();
 
-                    this.picPlayer2.Location = p;
+                    if (player.PlayerId == 0)
+                    {
+                        p.X = 28;
+                        p.Y = 774;
+
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.X = 28;
+                        p.Y = 814;
+
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.X = 60;
+                        p.Y = 846;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = 99;
+                        p.Y = 846;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-                else if (this.currentPlayer.PlayerId == 2)
+                else if (newLocation == 10 && player.InJail)
                 {
-                    p.X = p.X - 45;
+                    // If they are on the jail space but are in jail this will put them in jail
+                    Point p = new Point();
 
-                    this.picPlayer3.Location = p;
+                    if (player.PlayerId == 0)
+                    {
+                        p.X = 72;
+                        p.Y = 771;
+
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.X = 100;
+                        p.Y = 771;
+
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.X = 72;
+                        p.Y = 802;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = 100;
+                        p.Y = 802;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-                else if (this.currentPlayer.PlayerId == 3)
+                else if (newLocation == 20)
                 {
-                    p.X = p.X - 45;
-                    p.Y = p.Y + 45;
+                    // Free Parking
+                    Point p = new Point();
 
-                    this.picPlayer4.Location = p;
+                    if (player.PlayerId == 0)
+                    {
+                        p.X = 45;
+                        p.Y = 45;
+
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.X = 90;
+                        p.Y = 45;
+
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.X = 45;
+                        p.Y = 90;
+
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = 90;
+                        p.Y = 90;
+
+                        this.picPlayer4.Location = p;
+                    }
                 }
-            }  
-            else if (newLocation > 20 && newLocation < 30)
-            {
-                // Top row
-                Point p = new Point();
-
-                p.Y = 75;
-                p.X = 135 + ((newLocation - 21) * 70);
-
-                if (this.currentPlayer.PlayerId == 0)
+                else if (newLocation == 30)
                 {
-                    p.X = p.X + 45;
+                    // Go to Jail
+                    this.game.SendToJail(this.currentPlayer);
+                    //// this.currentPlayer.InJail = true;
+                    //// this.currentPlayer.CurrentLocation = this.game.GetSpotByName("Jail");
 
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.Y = p.Y - 45;
-                    p.X = p.X + 45;
+                    Point p = new Point();
 
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.Y = p.Y - 45;
+                    if (player.PlayerId == 0)
+                    {
+                        p.X = 72;
+                        p.Y = 771;
 
-                    this.picPlayer4.Location = p;
-                }
-            }
-            else if (newLocation > 30 && newLocation < 40)
-            {
-                // Right Column
-                Point p = new Point();
+                        this.picPlayer1.Location = p;
+                    }
+                    else if (player.PlayerId == 1)
+                    {
+                        p.X = 100;
+                        p.Y = 771;
 
-                p.Y = 135 + ((newLocation - 31) * 70);
-                p.X = 800;
+                        this.picPlayer2.Location = p;
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        p.X = 72;
+                        p.Y = 802;
 
-                if (this.currentPlayer.PlayerId == 0)
-                {
-                    p.Y = p.Y + 45;
+                        this.picPlayer3.Location = p;
+                    }
+                    else if (player.PlayerId == 3)
+                    {
+                        p.X = 100;
+                        p.Y = 802;
 
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.Y = p.Y + 45;
-                    p.X = p.X + 45;
-
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.X = p.X + 45;
-
-                    this.picPlayer4.Location = p;
-                }
-            }
-            else if (newLocation == 0)
-            {
-                // Land on go
-                Point p = new Point();
-
-                if (this.currentPlayer.PlayerId == 0)
-                {
-                    p.X = 790;
-                    p.Y = 790;
-
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    p.X = 840;
-                    p.Y = 790;
-
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.X = 790;
-                    p.Y = 840;
-
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.X = 840;
-                    p.Y = 840;
-
-                    this.picPlayer4.Location = p;
-                }
-            }
-            else if (newLocation == 10 && this.currentPlayer.InJail == false)
-            {
-                // Visiting Jail
-                Point p = new Point();
-
-                if (this.currentPlayer.PlayerId == 0)
-                {
-                    p.X = 28;
-                    p.Y = 774;
-
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    p.X = 28;
-                    p.Y = 814;
-
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.X = 60;
-                    p.Y = 846;
-
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.X = 99;
-                    p.Y = 846;
-
-                    this.picPlayer4.Location = p;
-                }
-            }
-            else if (newLocation == 10 && this.currentPlayer.InJail)
-            {
-                // If they are on the jail space but are in jail this will put them in jail
-                Point p = new Point();
-
-                if (this.currentPlayer.PlayerId == 0)
-                {
-                    p.X = 72;
-                    p.Y = 771;
-
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    p.X = 100;
-                    p.Y = 771;
-
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.X = 72;
-                    p.Y = 802;
-
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.X = 100;
-                    p.Y = 802;
-
-                    this.picPlayer4.Location = p;
-                }
-            }
-            else if (newLocation == 20)
-            {
-                // Free Parking
-                Point p = new Point();
-
-                if (this.currentPlayer.PlayerId == 0)
-                {
-                    p.X = 45;
-                    p.Y = 45;
-
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    p.X = 90;
-                    p.Y = 45;
-
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.X = 45;
-                    p.Y = 90;
-
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.X = 90;
-                    p.Y = 90;
-
-                    this.picPlayer4.Location = p;
-                }
-            }
-            else if (newLocation == 30)
-            {
-                // Go to Jail
-                this.game.SendToJail(this.currentPlayer);
-                //// this.currentPlayer.InJail = true;
-                //// this.currentPlayer.CurrentLocation = this.game.GetSpotByName("Jail");
-
-                Point p = new Point();
-
-                if (this.currentPlayer.PlayerId == 0)
-                {
-                    p.X = 72;
-                    p.Y = 771;
-
-                    this.picPlayer1.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 1)
-                {
-                    p.X = 100;
-                    p.Y = 771;
-
-                    this.picPlayer2.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 2)
-                {
-                    p.X = 72;
-                    p.Y = 802;
-
-                    this.picPlayer3.Location = p;
-                }
-                else if (this.currentPlayer.PlayerId == 3)
-                {
-                    p.X = 100;
-                    p.Y = 802;
-
-                    this.picPlayer4.Location = p;
+                        this.picPlayer4.Location = p;
+                    }
                 }
             }
         }
@@ -1017,7 +1021,7 @@ namespace Monopoly
             this.currentPlayer.InJail = false;
 
             // set currentPlayers new location now out of jail
-            this.FindNewPawnLocations(10);
+            this.FindNewPawnLocations(10, this.currentPlayer);
 
             // Check how many turns they've been in jail.
             // if they have been in jail for 3 turns then paid
@@ -1042,7 +1046,7 @@ namespace Monopoly
             this.game.PlayGetOutOfJailFreeCard(this.currentPlayer);
 
             // set currentPlayers new location now out of jail
-            this.FindNewPawnLocations(10);
+            this.FindNewPawnLocations(10, this.currentPlayer);
 
             // disable and enable correct buttons
             this.btnJailFreeCard.Enabled = false;
@@ -1057,9 +1061,32 @@ namespace Monopoly
             this.Close();
         }
 
+        /// <summary>
+        /// Restarts a game
+        /// </summary>
+        /// <param name="sender">The object</param>
+        /// <param name="e">The event</param>
         private void BtnRestartGame_Click(object sender, EventArgs e)
         {
+            // Call load event to start a new game with game options form
+            this.MonopolyMainForm_Load(this, e);
 
+            // Enable and disable central buttons
+            this.btnRoll.Enabled = true;
+            this.btnRoll.Focus();
+            this.BtnNextTurn.Enabled = false;
+            this.btnJailPay.Enabled = false;
+            this.btnJailFreeCard.Enabled = false;
+
+            // Set up the current player's information on the form
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+
+            // Loop through the list of players
+            foreach (Player player in this.game.Players)
+            {
+                // Move their pawn picture back to Go
+                this.FindNewPawnLocations(player.CurrentLocation.SpotId, player);
+            }
         }
     }
 }

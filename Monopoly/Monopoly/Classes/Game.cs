@@ -299,12 +299,13 @@ namespace Monopoly
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
         /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot is a chance spot</returns>
         public bool CheckChance(Player currentPlayer, Spot currentLocation)
         {
             if (currentLocation.Type == SpotType.Chance)
             {
                 // Draws a Card
-                this.DrawCard(ChanceCards, currentPlayer);
+                this.DrawCard(this.ChanceCards, currentPlayer);
                 return true;
             }
             else
@@ -318,12 +319,13 @@ namespace Monopoly
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
         /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot is a community chest spot</returns>
         public bool CheckCommunityChest(Player currentPlayer, Spot currentLocation)
         {
             if (currentLocation.Type == SpotType.CommunityChest)
             {
                 // Draws a Card
-                this.DrawCard(CommunityChestCards, currentPlayer);
+                this.DrawCard(this.CommunityChestCards, currentPlayer);
                 return true;
             }
             else
@@ -457,7 +459,7 @@ namespace Monopoly
                     {
                         if (top.Description.Contains("general repairs"))
                         {
-                            foreach (Spot s in Board)
+                            foreach (Spot s in this.Board)
                             {
                                 if (s.Owner == currentPlayer)
                                 {
@@ -468,7 +470,7 @@ namespace Monopoly
                         }
                         else if (top.Description.Contains("street repairs"))
                         {
-                            foreach (Spot s in Board)
+                            foreach (Spot s in this.Board)
                             {
                                 if (s.Owner == currentPlayer)
                                 {
@@ -503,6 +505,9 @@ namespace Monopoly
                             }
                         }
                     }
+
+                    // Move card to bottom of pile
+                    this.MoveCardToBottomOfPile(top);
                 }
             }
             else
@@ -734,7 +739,7 @@ namespace Monopoly
             int rent = railroad.Rent;
 
             // Find the number of railroads the owner of the current railroad owns
-            int numberOwned = NumberRailroadsOwned(railroad);
+            int numberOwned = this.NumberRailroadsOwned(railroad);
 
             // Find the rent based off of how many railroads owned
             rent = (int)(rent * Math.Pow(2, numberOwned));
@@ -783,7 +788,7 @@ namespace Monopoly
             int multiplyFactor = 4;
 
             // check to see if the owner of the utility owns both utilities
-            bothOwned = BothUtilitiesOwned(utility);
+            bothOwned = this.BothUtilitiesOwned(utility);
 
             // If owner of given utility owns both utilities
             if (bothOwned)
@@ -1073,142 +1078,52 @@ namespace Monopoly
             return houseOkay;
         }
 
-        /*
-        public List<Color> CheckIfEligibleForHotel(List<Spot> prop)
-        {
-            // create a list of colors to hold which colors are eligible for houses 
-            List<Color> hotelOkay = new List<Color>();
-
-            // Create counters for every color
-            int numBrown = 0; // out of 2
-            int numLightBlue = 0; // out of 3
-            int numPink = 0; // out of 3
-            int numOrange = 0; // out of 3
-            int numRed = 0; // out of 3
-            int numYellow = 0; // out of 3
-            int numGreen = 0; // out of 3
-            int numDarkBlue = 0; // out of 2
-
-            //Check through the list and add each color to the respective counter
-            foreach (Spot s in prop)
-            {
-                if (s.NumberOfHouses >= 4)
-                {
-                    if (s.Color == Color.Brown)
-                    {
-                        numBrown++;
-                    }
-                    else if (s.Color == Color.LightBlue)
-                    {
-                        numLightBlue++;
-                    }
-                    else if (s.Color == Color.Pink)
-                    {
-                        numPink++;
-                    }
-                    else if (s.Color == Color.Orange)
-                    {
-                        numOrange++;
-                    }
-                    else if (s.Color == Color.Red)
-                    {
-                        numRed++;
-                    }
-                    else if (s.Color == Color.Yellow)
-                    {
-                        numYellow++;
-                    }
-                    else if (s.Color == Color.Green)
-                    {
-                        numGreen++;
-                    }
-                    else if (s.Color == Color.DarkBlue)
-                    {
-                        numDarkBlue++;
-                    }
-                }
-            }
-
-            //Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
-            if (numBrown == 2)
-            {
-                hotelOkay.Add(Color.Brown);
-            }
-            else if (numLightBlue == 3)
-            {
-                hotelOkay.Add(Color.LightBlue);
-            }
-            else if (numPink == 3)
-            {
-                hotelOkay.Add(Color.Pink);
-            }
-            else if (numOrange == 3)
-            {
-                hotelOkay.Add(Color.Orange);
-            }
-            else if (numRed == 3)
-            {
-                hotelOkay.Add(Color.Red);
-            }
-            else if (numYellow == 3)
-            {
-                hotelOkay.Add(Color.Yellow);
-            }
-            else if (numGreen == 3)
-            {
-                hotelOkay.Add(Color.Green);
-            }
-            else if (numDarkBlue == 2)
-            {
-                hotelOkay.Add(Color.DarkBlue);
-            }
-
-            //return the list
-            return hotelOkay;
-        }
-        */
-
+        /// <summary>
+        /// Randomizes the cards in a deck
+        /// </summary>
         public void RandomizedCards()
         {
             // Randomize Chance
-            Card c = new Card(1, null, CardType.Chance, null);
+            Card c = new Card(1, null, CardType.Chance);
             Random rng = new Random();
-            int n = ChanceCards.Count;
+            int n = this.ChanceCards.Count;
             while (n >= 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                c = ChanceCards[k];
-                RandomizedChanceCards.Add(c);
-                ChanceCards.Remove(c);
+                c = this.ChanceCards[k];
+                this.RandomizedChanceCards.Add(c);
+                this.ChanceCards.Remove(c);
             }
-            n = RandomizedChanceCards.Count;
+
+            n = this.RandomizedChanceCards.Count;
             while (n >= 1)
             {
                 n--;
-                c = RandomizedChanceCards[n];
-                RandomizedChanceCards.Remove(c);
-                ChanceCards.Add(c);
+                c = this.RandomizedChanceCards[n];
+                this.RandomizedChanceCards.Remove(c);
+                this.ChanceCards.Add(c);
             }
 
             // Randomize Community Chest
-            c = new Card(1, null, CardType.CommunityChest, null);
-            n = CommunityChestCards.Count;
+            c = new Card(1, null, CardType.CommunityChest);
+            n = this.CommunityChestCards.Count;
             while (n >= 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                c = CommunityChestCards[k];
-                RandomizedCommunityChestCards.Add(c);
-                CommunityChestCards.Remove(c);
+                c = this.CommunityChestCards[k];
+                this.RandomizedCommunityChestCards.Add(c);
+                this.CommunityChestCards.Remove(c);
             }
-            n = RandomizedCommunityChestCards.Count;
+
+            n = this.RandomizedCommunityChestCards.Count;
             while (n >= 1)
             {
                 n--;
-                c = RandomizedCommunityChestCards[n];
-                RandomizedCommunityChestCards.Remove(c);
-                CommunityChestCards.Add(c);
+                c = this.RandomizedCommunityChestCards[n];
+                this.RandomizedCommunityChestCards.Remove(c);
+                this.CommunityChestCards.Add(c);
             }
         }
 
@@ -1347,106 +1262,106 @@ namespace Monopoly
         /// </summary>
         public void CreateCards()
         {
-            // Creates an instace of the main form to access the Image lists
-            MonopolyMainForm ImageForm = new MonopolyMainForm();
-
             // Chance Cards
-            Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0], ImageForm.ChanceImages.Images[0]);
+            Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23], ImageForm.ChanceImages.Images[1]);
+            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11], ImageForm.ChanceImages.Images[2]);
+            tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null, ImageForm.ChanceImages.Images[3]);
+            tempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null, ImageForm.ChanceImages.Images[4]);
+            tempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null, ImageForm.ChanceImages.Images[4]);
+            tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false, ImageForm.ChanceImages.Images[5]);
+            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(7, "Get out of Jail Free", CardType.Chance, ImageForm.ChanceImages.Images[6]);
+            tempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null, ImageForm.ChanceImages.Images[7]);
+            tempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10], ImageForm.ChanceImages.Images[8]);
+            tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance, ImageForm.ChanceImages.Images[9]);
+            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true, ImageForm.ChanceImages.Images[10]);
+            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5], ImageForm.ChanceImages.Images[11]);
+            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39], ImageForm.ChanceImages.Images[12]);
+            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false, ImageForm.ChanceImages.Images[13]);
+            tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(15, "Your building and loan matures", CardType.Chance, 150, true, true, ImageForm.ChanceImages.Images[14]);
+            tempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true, ImageForm.ChanceImages.Images[15]);
+            tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
+            this.ChanceCards.Add(tempCard);
+
+            tempCard = new Card(17, "Make general repairs on all your property", CardType.Chance, 0, true, false);
             this.ChanceCards.Add(tempCard);
 
             // Community Chest Cards
-            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0], ImageForm.CommunityChestImages.Images[0]);
+            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false, ImageForm.CommunityChestImages.Images[1]);
+            tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest, ImageForm.CommunityChestImages.Images[2]);
+            tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10], ImageForm.CommunityChestImages.Images[3]);
+            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true, ImageForm.CommunityChestImages.Images[4]);
+            tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[5]);
+            tempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true, ImageForm.CommunityChestImages.Images[6]);
+            tempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true, ImageForm.CommunityChestImages.Images[7]);
+            tempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[8]);
+            tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false, ImageForm.CommunityChestImages.Images[9]);
+            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false, ImageForm.CommunityChestImages.Images[10]);
+            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true, ImageForm.CommunityChestImages.Images[11]);
+            tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true, ImageForm.CommunityChestImages.Images[12]);
+            tempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[13]);
+            tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false, ImageForm.CommunityChestImages.Images[14]);
-            ChanceCards.Add(tempCard);
+            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false);
+            this.ChanceCards.Add(tempCard);
         }
     }
 }

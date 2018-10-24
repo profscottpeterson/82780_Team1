@@ -99,7 +99,7 @@ namespace Monopoly
         public bool InJail { get; set; }
 
         /// <summary>
-        /// The number of turns a player has been in jail
+        /// Gets or sets The number of turns a player has been in jail
         /// </summary>
         public int TurnsInJail { get; set; }
 

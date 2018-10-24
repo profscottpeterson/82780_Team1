@@ -57,7 +57,6 @@ namespace Monopoly
 
             // Copy the info from the MonPopUp to display card info
             this.InitializeComponent();
-            //this.colorPicBox.BackColor = spot.Color;
             this.spotNameLabel.Text = spot.SpotName;
             this.spotNameLabel.BackColor = spot.Color;
 
@@ -74,7 +73,7 @@ namespace Monopoly
             this.priceLabel.Text = "Price: " + spot.Price.ToString("C0");
             this.mortgageLabel.Text = "Mortgage: " + spot.Mortgage.ToString("C0");
 
-            this.rentLabel.Text = "";
+            this.rentLabel.Text = string.Empty;
 
             if (spot.Type == SpotType.Property)
             {

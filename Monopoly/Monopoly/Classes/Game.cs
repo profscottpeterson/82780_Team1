@@ -1084,7 +1084,7 @@ namespace Monopoly
         public void RandomizedCards()
         {
             // Randomize Chance
-            Card c = new Card(1, null, CardType.Chance);
+            Card c = new Card(1, null, CardType.Chance, null);
             Random rng = new Random();
             int n = this.ChanceCards.Count;
             while (n >= 1)
@@ -1106,7 +1106,7 @@ namespace Monopoly
             }
 
             // Randomize Community Chest
-            c = new Card(1, null, CardType.CommunityChest);
+            c = new Card(1, null, CardType.CommunityChest,null);
             n = this.CommunityChestCards.Count;
             while (n >= 1)
             {
@@ -1262,105 +1262,105 @@ namespace Monopoly
         /// </summary>
         public void CreateCards()
         {
+            // Instance of the main form to get the image lists
+            MonopolyMainForm ImageForm = new MonopolyMainForm();
+
             // Chance Cards
-            Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0]);
+            Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0], ImageForm.ChanceImages.Images[0]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23]);
+            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23], ImageForm.ChanceImages.Images[1]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11]);
+            tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11], ImageForm.ChanceImages.Images[2]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null);
+            tempCard = new Card(3, "Advance token to nearest Utility", CardType.Chance, null, ImageForm.ChanceImages.Images[3]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null);
+            tempCard = new Card(4, "Advance token to the nearest Railroad", CardType.Chance, null, ImageForm.ChanceImages.Images[4]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null);
+            tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null, ImageForm.ChanceImages.Images[4]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false);
+            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false, ImageForm.ChanceImages.Images[5]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(7, "Get out of Jail Free", CardType.Chance);
+            tempCard = new Card(7, "Get out of Jail Free", CardType.Chance, ImageForm.ChanceImages.Images[6]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null);
+            tempCard = new Card(8, "Go Back Three Spaces", CardType.Chance, null, ImageForm.ChanceImages.Images[7]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10]);
+            tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10], ImageForm.ChanceImages.Images[8]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance);
+            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance, ImageForm.ChanceImages.Images[9]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true);
+            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true, ImageForm.ChanceImages.Images[10]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5]);
+            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5], ImageForm.ChanceImages.Images[11]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39]);
+            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39], ImageForm.ChanceImages.Images[12]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false);
+            tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false, ImageForm.ChanceImages.Images[13]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(15, "Your building {and} loan matures", CardType.Chance, 150, true, true);
+            tempCard = new Card(15, "Your building and loan matures", CardType.Chance, 150, true, true, ImageForm.ChanceImages.Images[14]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true);
-            this.ChanceCards.Add(tempCard);
-
-            tempCard = new Card(17, "Make general repairs on all your property", CardType.Chance, 0, true, false);
+            tempCard = new Card(16, "You have won a crossword competition", CardType.Chance, 100, true, true, ImageForm.ChanceImages.Images[15]);
             this.ChanceCards.Add(tempCard);
 
             // Community Chest Cards
-            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0]);
+            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0], ImageForm.CommunityChestImages.Images[0]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false);
+            tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false, ImageForm.CommunityChestImages.Images[1]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest);
+            tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest, ImageForm.CommunityChestImages.Images[2]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10]);
+            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10], ImageForm.CommunityChestImages.Images[3]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true);
+            tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true, ImageForm.CommunityChestImages.Images[4]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true);
+            tempCard = new Card(5, "Holiday Fund matures", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[5]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true);
+            tempCard = new Card(6, "Income tax refund", CardType.CommunityChest, 20, true, true, ImageForm.CommunityChestImages.Images[6]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true);
+            tempCard = new Card(7, "It is your birthday", CardType.CommunityChest, 10, false, true, ImageForm.CommunityChestImages.Images[7]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true);
+            tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[8]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false);
+            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false, ImageForm.CommunityChestImages.Images[9]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false);
+            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false, ImageForm.CommunityChestImages.Images[10]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true);
+            tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true, ImageForm.CommunityChestImages.Images[11]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true);
+            tempCard = new Card(12, "You have won second prize in a beauty contest", CardType.CommunityChest, 10, true, true, ImageForm.CommunityChestImages.Images[12]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true);
+            tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[13]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false);
+            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false, ImageForm.CommunityChestImages.Images[14]);
             this.ChanceCards.Add(tempCard);
         }
     }

@@ -25,7 +25,7 @@ namespace Monopoly
         /// <param name="id">The card's id</param>
         /// <param name="description">What the card says</param>
         /// <param name="type">Is the card a Chance or Community Chest Card</param>
-        public Card(int id, string description, CardType type)
+        public Card(int id, string description, CardType type, Image cardImage)
         {
             this.Id = id;
             this.Description = description;
@@ -35,7 +35,7 @@ namespace Monopoly
             this.Collect = false;
             this.NewLocation = null;
             this.GetOutOfJailFree = true;
-            //this.CardImage = cardImage;
+            this.CardImage = cardImage;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Monopoly
         /// <param name="amount">Amount of money to be collected or paid</param>
         /// <param name="bank">A boolean indicating whether the bank or other players are involved in the flow of money</param>
         /// <param name="collect">A boolean indicating whether the money is being collected or paid</param>
-        public Card(int id, string description, CardType type, int amount, bool bank, bool collect)
+        public Card(int id, string description, CardType type, int amount, bool bank, bool collect, Image cardImage)
         {
             this.Id = id;
             this.Description = description;
@@ -57,7 +57,7 @@ namespace Monopoly
             this.Bank = bank;
             this.Collect = collect;
             this.NewLocation = null;
-            //this.CardImage = cardImage;
+            this.CardImage = cardImage;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Monopoly
         /// <param name="description">What the card says</param>
         /// <param name="type">Is the card a Chance or Community Chest Card</param>
         /// <param name="newLocation">The location on the board the card says to move to (use null if not known)</param>
-        public Card(int id, string description, CardType type, Spot newLocation)
+        public Card(int id, string description, CardType type, Spot newLocation, Image cardImage)
         {
             this.Id = id;
             this.Description = description;
@@ -77,7 +77,7 @@ namespace Monopoly
             this.Bank = true;
             this.Collect = false;
             this.NewLocation = newLocation;
-            //this.CardImage = cardImage;
+            this.CardImage = cardImage;
         }
 
         /// <summary>

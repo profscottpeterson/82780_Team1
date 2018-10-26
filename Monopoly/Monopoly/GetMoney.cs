@@ -206,6 +206,7 @@ namespace Monopoly
             }
             else
             {
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }

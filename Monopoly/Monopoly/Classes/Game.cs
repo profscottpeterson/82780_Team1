@@ -48,6 +48,8 @@ namespace Monopoly
 
             // Only house rules change this - in official rules, free parking is just a safe space
             this.FreeParkingTotal = 0;
+
+            this.RestartGame = false;
         }
 
         /// <summary>
@@ -84,6 +86,8 @@ namespace Monopoly
         /// Gets or sets the amount of money that Free Parking has
         /// </summary>
         public int FreeParkingTotal { get; set; }
+
+        public bool RestartGame { get; set; }
 
         /// <summary>
         /// Gets the list of properties a given player owns
@@ -142,6 +146,76 @@ namespace Monopoly
 
             // No spot of given type was found
             return null;
+        }
+
+        /// <summary>
+        /// Checks to see what type of spot the current player landed on
+        /// and does corresponding action
+        /// </summary>
+        /// <param name="currentPlayer">The current player whose turn it is</param>
+        public void RollChecks(Player currentPlayer)
+        {
+            // handle chance or community cards
+            currentPlayer.OnChanceCard = false; // "reset"
+            currentPlayer.OnComCard = false; // "reset"
+
+            if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
+            {
+                string formTitle = string.Empty; // This will be the title of the pop up form
+                Card cardDrawn; // Card that will be shown to the player
+
+                switch (currentPlayer.CurrentLocation.Type)
+                {
+                    case SpotType.Chance:
+                        currentPlayer.OnChanceCard = true;
+                        formTitle = "Chance";
+                        cardDrawn = this.ChanceCards[0]; // Get "top" card
+                        this.DrawCard(this.ChanceCards, currentPlayer); // Draw card and perform actions
+                                                                                  // Set picture in picturebox
+                                                                                  // cardPopup.picture.Image = new Bitmap("filename");
+                                                                                  // Other logic
+                        break;
+                    case SpotType.CommunityChest:
+                        currentPlayer.OnComCard = true;
+                        formTitle = "Community";
+                        cardDrawn = this.CommunityChestCards[0];  // Get "top" card
+                        this.DrawCard(this.CommunityChestCards, currentPlayer); // Draw card and perform actions
+                                                                                          // Set picture in picturebox
+                                                                                          // cardPopup.picture.Image = new Bitmap("filename");
+                                                                                          // Other logic
+                        break;
+                    default:
+                        cardDrawn = null;
+                        break;
+                }
+
+                if (cardDrawn != null)
+                {
+                    MiscCardForm miscCardForm = new MiscCardForm(formTitle, cardDrawn); // instantiate form
+                    miscCardForm.ShowDialog(); // Show the card form
+                }
+            }
+
+            // Check to see if rent needs to be paid and pay it if so
+            this.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
+
+            // Check to see if spot landed on can be bought
+            if (ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
+            {
+                ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
+                BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, this);
+                if (buyProp.IsDisposed == false)
+                {
+                    buyProp.StartPosition = FormStartPosition.CenterParent;
+                    buyProp.ShowDialog();
+                }
+            }
+
+            // Check to see if tax needs to be paid and pay it if yes
+            this.CheckPayTax(currentPlayer, currentPlayer.CurrentLocation);
+
+            // Check to see if player landed on "Go to Jail"
+            this.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
         }
 
         /// <summary>
@@ -459,23 +533,23 @@ namespace Monopoly
                     {
                         if (top.Description.Contains("general repairs"))
                         {
-                            foreach (Spot s in this.Board)
+                            foreach (Spot s in this.GetPlayersPropertyList(currentPlayer))
                             {
-                                if (s.Owner == currentPlayer)
+                                this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 25;
+                                if (s.HasHotel)
                                 {
-                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 25;
-                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.RentHotel * 100;
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= 100;
                                 }
                             }
                         }
                         else if (top.Description.Contains("street repairs"))
                         {
-                            foreach (Spot s in this.Board)
+                            foreach (Spot s in this.GetPlayersPropertyList(currentPlayer))
                             {
-                                if (s.Owner == currentPlayer)
+                                this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 40;
+                                if (s.HasHotel)
                                 {
-                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 40;
-                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.RentHotel * 115;
+                                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= 115;
                                 }
                             }
                         }
@@ -484,6 +558,9 @@ namespace Monopoly
                             // Money is paid to the bank
                             this.Players[this.Players.IndexOf(currentPlayer)].Money -= top.Amount;
                         }
+
+                        // Check if current player cannot afford to pay other players
+                        this.CheckIfPlayerHasEnoughMoney(currentPlayer);
                     }
                     else
                     {
@@ -528,13 +605,8 @@ namespace Monopoly
                     else
                     {
                         // Card is go back 3 spaces
-                        int index = this.Board.IndexOf(top.NewLocation);
-                        index -= 3;
-                        if (index < 0)
-                        {
-                            index = this.Board.Count + index - 1;
-                        }
-
+                        int index = this.Board.IndexOf(currentPlayer.CurrentLocation);
+                        index = (index - 3 + this.Board.Count) % this.Board.Count;
                         top.NewLocation = this.Board[index];
                     }
                 }
@@ -935,7 +1007,9 @@ namespace Monopoly
                 //// TODO: change this to show a form with options on what the player can do
                 // MessageBox.Show(player.PlayerName + " needs more money to pay.");
             }
-            else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
+            else 
+            
+            if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
             {
                 // Player is bankrupt
                 MessageBox.Show(player.PlayerName + " is bankrupt!");
@@ -974,6 +1048,27 @@ namespace Monopoly
             // this.Players.Remove(player);
             player.IsActive = false;
             player.PlayerPictureBox.Visible = false;
+
+            if (this.ActivePlayers() == 1)
+            {
+                foreach (Player p in this.Players)
+                {
+                    if (p.IsActive)
+                    {
+                        DialogResult result = MessageBox.Show("Do you want to play again?", p.PlayerName + " has won!", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            this.RestartGame = true;
+                        }
+                        else
+                        {
+                            Application.Exit();
+                        }
+
+                        return;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -1284,7 +1379,7 @@ namespace Monopoly
             tempCard = new Card(5, "Advance token to the nearest Railroad", CardType.Chance, null, ImageForm.ChanceImages.Images[4]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, false, ImageForm.ChanceImages.Images[5]);
+            tempCard = new Card(6, "Bank pays you dividend of $50", CardType.Chance, 50, true, true, ImageForm.ChanceImages.Images[5]);
             this.ChanceCards.Add(tempCard);
 
             tempCard = new Card(7, "Get out of Jail Free", CardType.Chance, ImageForm.ChanceImages.Images[6]);
@@ -1299,7 +1394,7 @@ namespace Monopoly
             tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance, ImageForm.ChanceImages.Images[9]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, true, ImageForm.ChanceImages.Images[10]);
+            tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, false, ImageForm.ChanceImages.Images[10]);
             this.ChanceCards.Add(tempCard);
 
             tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5], ImageForm.ChanceImages.Images[11]);
@@ -1360,8 +1455,8 @@ namespace Monopoly
             tempCard = new Card(13, "You inherit $100", CardType.CommunityChest, 100, true, true, ImageForm.CommunityChestImages.Images[13]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 0, true, false, ImageForm.CommunityChestImages.Images[14]);
-            this.ChanceCards.Add(tempCard);
+            tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 40, true, false, ImageForm.CommunityChestImages.Images[14]);
+            this.CommunityChestCards.Add(tempCard);
         }
     }
 }

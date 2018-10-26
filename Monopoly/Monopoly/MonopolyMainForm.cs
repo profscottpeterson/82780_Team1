@@ -138,6 +138,42 @@ namespace Monopoly
         /// <param name="e"></param>
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
+            // Call StartGame method and get dialog result from GameOptions form
+            DialogResult result = this.StartGame();
+
+            // If start was pressed on GameOptions form,
+            // dynamically add picture boxes and their click events
+            // (Should only be done once and on form load)
+            if(result == DialogResult.OK)
+            {
+                // Finds each spot on the board and adds them to a list
+                List<PictureBox> spotPictures = new List<PictureBox>();
+                for (int i = 1; i <= 40; i++)
+                {
+                    spotPictures.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
+
+                    // Sets a tag for the image 
+                    spotPictures[i - 1].Tag = i - 1;
+                }
+
+                // A foreach loop that runs through each picture box that is a spot
+                foreach (PictureBox p in spotPictures)
+                {
+                    // Set the picture box of the spot
+                    this.game.Board[(int)p.Tag].SpotBox = p;
+
+                    // Assigns a click event to the picture box
+                    p.Click += delegate { this.PropertyClickEvent(this.game.Board[(int)p.Tag]); };
+                }
+            }
+        }
+
+        /// <summary>
+        /// Starts a new game
+        /// </summary>
+        /// <returns>The dialog result from the Game options form</returns>
+        private DialogResult StartGame()
+        {
             // Instantiate game
             this.game = new Game();
 
@@ -146,11 +182,13 @@ namespace Monopoly
             options.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = options.ShowDialog();
 
+            // User choose quit button
             if (result == DialogResult.Cancel)
             {
                 Application.Exit();
             }
 
+            // User choose start button
             if (result == DialogResult.OK)
             {
                 this.CenterToScreen();
@@ -163,7 +201,7 @@ namespace Monopoly
                 List<PictureBox> playerBoxes = new List<PictureBox>();
                 for (int i = 0; i < this.game.Players.Count; i++)
                 {
-                    playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
+                    playerBoxes.Add((PictureBox) Controls.Find("picPlayer" + (i + 1), true)[0]);
                     this.game.Players[i].PlayerPictureBox = playerBoxes[i];
                 }
 
@@ -196,100 +234,9 @@ namespace Monopoly
                 this.SetUpPlayerHandOptions();
                 this.lblPlayerTurn.Text = this.currentPlayer.PlayerName + "'s Turn";
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
-
-                // Finds each spot on the board and adds them to a list
-                List<PictureBox> spotPictures = new List<PictureBox>();
-                for (int i = 1; i <= 40; i++)
-                {
-                    spotPictures.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
-
-                    // Sets a tag for the image 
-                    spotPictures[i - 1].Tag = i - 1;
-                }
-
-                // A foreach loop that runs through each picture box that is a spot
-                foreach (PictureBox p in spotPictures)
-                {
-                    Spot spot = this.game.Board[(int)p.Tag];
-                    spot.SpotBox = p;
-
-                    // Assigns a click event to the picture box
-                    p.Click += delegate {this.PropertyClickEvent(spot);};
-                }
-            }
-        }
-
-        /// <summary>
-        /// Checks to see what type of spot the current player landed on
-        /// and does corresponding action
-        /// </summary>
-        /// <param name="currentPlayer">The current player whose turn it is</param>
-        private void RollChecks(Player currentPlayer)
-        {
-            // handle chance or community cards
-            currentPlayer.OnChanceCard = false; // "reset"
-            currentPlayer.OnComCard = false; // "reset"
-
-            if (currentPlayer.CurrentLocation.Type == SpotType.Chance || currentPlayer.CurrentLocation.Type == SpotType.CommunityChest)
-            {
-                string formTitle = string.Empty; // This will be the title of the pop up form
-                Card cardDrawn; // Card that will be shown to the player
-
-                switch (currentPlayer.CurrentLocation.Type)
-                {
-                    case SpotType.Chance:
-                        currentPlayer.OnChanceCard = true;
-                        formTitle = "Chance";
-                        cardDrawn = this.game.ChanceCards[0]; // Get "top" card
-                        this.game.DrawCard(this.game.ChanceCards, currentPlayer); // Draw card and perform actions
-                                                                        // Set picture in picturebox
-                                                                        // cardPopup.picture.Image = new Bitmap("filename");
-                                                                        // Other logic
-                        break;
-                    case SpotType.CommunityChest:
-                        currentPlayer.OnComCard = true;
-                        formTitle = "Community";
-                        cardDrawn = this.game.CommunityChestCards[0];  // Get "top" card
-                        this.game.DrawCard(this.game.CommunityChestCards, currentPlayer); // Draw card and perform actions
-                                                                                // Set picture in picturebox
-                                                                                // cardPopup.picture.Image = new Bitmap("filename");
-                                                                                // Other logic
-                        break;
-                    default:
-                        cardDrawn = null;
-                        break;
-                }
-
-                if (cardDrawn != null)
-                {
-                    MiscCardForm miscCardForm = new MiscCardForm(formTitle, cardDrawn); // instantiate form
-                    miscCardForm.ShowDialog(); // Show the card form
-                }
             }
 
-            // Check to see if rent needs to be paid and pay it if so
-            this.game.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
-
-            // Check to see if spot landed on can be bought
-            if (this.game.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
-            {
-                ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
-                BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, this.game);
-                if (buyProp.IsDisposed == false)
-                {
-                    buyProp.StartPosition = FormStartPosition.CenterParent;
-                    buyProp.ShowDialog();
-                }
-            }
-
-            // Check to see if tax needs to be paid and pay it if yes
-            this.game.CheckPayTax(currentPlayer, currentPlayer.CurrentLocation);
-
-            // Check to see if player landed on "Go to Jail"
-            this.game.CheckGoToJail(currentPlayer, currentPlayer.CurrentLocation);
-
-            // Move pawn picture
-            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId, currentPlayer);
+            return result;
         }
 
         /// <summary>
@@ -322,7 +269,10 @@ namespace Monopoly
                 // Move pawn picture
                 this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
 
-                this.RollChecks(this.currentPlayer);
+                // So balance is updated when Go is passed
+                this.lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
+
+                this.game.RollChecks(this.currentPlayer);
 
                 if (die1 == die2)
                 {
@@ -355,7 +305,7 @@ namespace Monopoly
                     this.game.MovePlayerLocation(this.currentPlayer, total);
                     this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
 
-                    this.RollChecks(this.currentPlayer);
+                    this.game.RollChecks(this.currentPlayer);
                 }
                 else
                 {
@@ -371,7 +321,6 @@ namespace Monopoly
                         this.currentPlayer.TurnsInJail = 0;
                         int total = die1 + die2;
                         this.game.MovePlayerLocation(this.currentPlayer, total);
-                        this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
                     }
                 }
 
@@ -380,11 +329,19 @@ namespace Monopoly
                 this.BtnNextTurn.Focus();
             }
 
+            // Move pawn picture
+            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId, currentPlayer);
+
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
             // this.formBool = false;
             this.flpOtherPlayerHand.Controls.Clear();
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+
+            if (this.game.RestartGame)
+            {
+                this.RestartGame();
+            }
         }
 
         /// <summary>
@@ -708,6 +665,7 @@ namespace Monopoly
         /// <param name="panelToUse">The panel to use</param>
         private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
         {
+            this.lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
             lblOtherPlayersHand.Text = string.Empty;
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
@@ -955,6 +913,19 @@ namespace Monopoly
             this.lblOtherPlayersHand.Text = string.Empty;
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
             this.SetUpPlayerHandOptions();
+
+            // If a player foreited
+            if (money.DialogResult == DialogResult.Cancel)
+            {
+                this.BtnNextTurn.Enabled = false;
+                this.btnRoll.Enabled = true;
+                this.btnRoll.Focus();
+            }
+
+            if (this.game.RestartGame)
+            {
+                this.RestartGame();
+            }
         }
 
         private void BtnBuyHouseOrHotel_Click(object sender, EventArgs e)
@@ -1062,14 +1033,22 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// Restarts a game
+        /// Restarts a game when button is clicked
         /// </summary>
         /// <param name="sender">The object</param>
         /// <param name="e">The event</param>
         private void BtnRestartGame_Click(object sender, EventArgs e)
         {
-            // Call load event to start a new game with game options form
-            this.MonopolyMainForm_Load(this, e);
+            RestartGame();
+        }
+
+        /// <summary>
+        /// Restarts a game
+        /// </summary>
+        private void RestartGame()
+        {
+            // Call StartGame to start a new game with game options form
+            this.StartGame();
 
             // Enable and disable central buttons
             this.btnRoll.Enabled = true;

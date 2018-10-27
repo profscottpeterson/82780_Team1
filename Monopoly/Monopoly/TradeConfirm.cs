@@ -12,11 +12,11 @@ namespace Monopoly
 {
     public partial class TradeConfirm : Form
     {
-        private Game game = new Game();
-        private Player main = new Player();
-        private Player target = new Player();
-        private List<Spot> mainList = new List<Spot>();
-        private List<Spot> targetList = new List<Spot>();
+        private Game game;
+        private Player main;
+        private Player target;
+        private List<Spot> mainList;
+        private List<Spot> targetList;
         private int moneyChange = 0;
         public string reason = "";
         private int jailCardChange = 0;

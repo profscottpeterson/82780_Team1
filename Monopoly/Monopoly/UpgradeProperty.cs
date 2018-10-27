@@ -16,12 +16,12 @@ namespace Monopoly
         /// <summary>
         /// Holds the game
         /// </summary>
-        public Game game = new Game();
+        public Game game;
 
         /// <summary>
         /// Holds the currentPlayer
         /// </summary>
-        public Player currentPlayer = new Player();
+        public Player currentPlayer;
 
         /// <summary>
         /// holds the list of spots that the currentPlayer has

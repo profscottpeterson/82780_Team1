@@ -89,7 +89,7 @@ namespace Monopoly
     }
 
     /// <summary>
-    /// 
+    /// The MonopolyMainForm class.
     /// </summary>
     public partial class MonopolyMainForm : Form
     {  
@@ -132,10 +132,10 @@ namespace Monopoly
         }
         
         /// <summary>
-        /// 
+        /// Starts a new game and adds a click event to the picture boxes
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The main form</param>
+        /// <param name="e">The load event</param>
         private void MonopolyMainForm_Load(object sender, EventArgs e)
         {
             // Call StartGame method and get dialog result from GameOptions form
@@ -144,7 +144,7 @@ namespace Monopoly
             // If start was pressed on GameOptions form,
             // dynamically add picture boxes and their click events
             // (Should only be done once and on form load)
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
@@ -175,7 +175,7 @@ namespace Monopoly
         private DialogResult StartGame()
         {
             // Instantiate game
-            this.game = new Game();
+            this.game = new Game(this.ChanceImages, this.CommunityChestImages);
 
             // Options to start game, player count notably
             GameOptions options = new GameOptions(this.game);
@@ -201,10 +201,11 @@ namespace Monopoly
                 List<PictureBox> playerBoxes = new List<PictureBox>();
                 for (int i = 0; i < this.game.Players.Count; i++)
                 {
-                    playerBoxes.Add((PictureBox) Controls.Find("picPlayer" + (i + 1), true)[0]);
+                    playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
                     this.game.Players[i].PlayerPictureBox = playerBoxes[i];
                 }
 
+                // Show a number of player pawns that corresponds to the number of players
                 if (this.game.Players.Count == 2)
                 {
                     this.picPlayer1.Visible = true;
@@ -240,10 +241,31 @@ namespace Monopoly
         }
 
         /// <summary>
+        /// Shows a form containing a property's information when that property is clicked on
+        /// </summary>
+        /// <param name="spot">Property clicked on</param>
+        private void PropertyClickEvent(Spot spot)
+        {
+            if (spot.Type == SpotType.Property)
+            {
+                MonPopUp popUp = new MonPopUp(spot);
+                popUp.StartPosition = FormStartPosition.CenterParent;
+                popUp.ShowDialog();
+            }
+
+            if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
+            {
+                NonPropPopUp popUp = new NonPropPopUp(spot, this.game);
+                popUp.StartPosition = FormStartPosition.CenterParent;
+                popUp.ShowDialog();
+            }
+        }
+
+        /// <summary>
         /// The click event for rolling the two dice on the form
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The Roll button</param>
+        /// <param name="e">The click event</param>
         private void BtnRoll_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
@@ -251,9 +273,11 @@ namespace Monopoly
             int die1 = 0;
             int die2 = 0;
 
+            // Get two random numbers for dice values
             die1 = rand.Next(1, 7);
             die2 = rand.Next(1, 7);
 
+            // Have dice images match random numbers that were generated
             pbxDiceLeft.Image = this.dicePictures.Images[die1 - 1];
             pbxDiceRight.Image = this.dicePictures.Images[die2 - 1];
 
@@ -270,7 +294,7 @@ namespace Monopoly
                 this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
 
                 // So balance is updated when Go is passed
-                this.lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
+                this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
 
                 this.game.RollChecks(this.currentPlayer);
 
@@ -330,11 +354,11 @@ namespace Monopoly
             }
 
             // Move pawn picture
-            this.FindNewPawnLocations(currentPlayer.CurrentLocation.SpotId, currentPlayer);
+            this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
 
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
-            // this.formBool = false;
+            //// this.formBool = false;
             this.flpOtherPlayerHand.Controls.Clear();
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
 
@@ -665,7 +689,7 @@ namespace Monopoly
         /// <param name="panelToUse">The panel to use</param>
         private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
         {
-            this.lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
+            this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
             lblOtherPlayersHand.Text = string.Empty;
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
@@ -805,11 +829,11 @@ namespace Monopoly
             }
             else
             {
-                SetUpPlayerHandOptions();
-                lblOtherPlayersHand.Text = player.PlayerName;
-                if (lblOtherPlayersHand.Text == currentPlayer.PlayerName)
+                this.SetUpPlayerHandOptions();
+                this.lblOtherPlayersHand.Text = player.PlayerName;
+                if (this.lblOtherPlayersHand.Text == this.currentPlayer.PlayerName)
                 {
-                    lblOtherPlayersHand.Text = string.Empty;
+                    this.lblOtherPlayersHand.Text = string.Empty;
                 }
             }
         }
@@ -818,9 +842,8 @@ namespace Monopoly
         /// Sets up options for seeing other players' hands
         /// </summary>
         private void SetUpPlayerHandOptions()
-        {
-            
-            flpPlayerHandOptions.Controls.Clear();
+        {           
+            this.flpPlayerHandOptions.Controls.Clear();
             int activePlayerCount = this.game.Players.Count;
             bool[] playerStatus = new bool[activePlayerCount];
             
@@ -860,6 +883,10 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// Sets the current player's image
+        /// </summary>
+        /// <param name="player">The current player</param>
         private void SetCurrentPlayerImage(Player player)
         {
             if (player.PlayerPictureBox.Image != null)
@@ -872,23 +899,11 @@ namespace Monopoly
             }
         }
 
-        private void PropertyClickEvent(Spot spot)
-        {
-            if (spot.Type == SpotType.Property)
-            {
-                MonPopUp popUp = new MonPopUp(spot);
-                popUp.StartPosition = FormStartPosition.CenterParent;
-                popUp.ShowDialog();
-            }
-
-            if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
-            {
-                NonPropPopUp popUp = new NonPropPopUp(spot, this.game);
-                popUp.StartPosition = FormStartPosition.CenterParent;
-                popUp.ShowDialog();
-            }
-        }
-
+        /// <summary>
+        /// Brings up Trade from when button is clicked
+        /// </summary>
+        /// <param name="sender">The Trade button</param>
+        /// <param name="e">The click event</param>
         private void BtnTradeRequest_Click(object sender, EventArgs e)
         {
             Trade tradeForm = new Trade(this.currentPlayer, this.game);
@@ -898,6 +913,11 @@ namespace Monopoly
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
+        /// <summary>
+        /// Bring up Sell form when user clicks button
+        /// </summary>
+        /// <param name="sender">The Sell button</param>
+        /// <param name="e">The click event</param>
         private void BtnSell_Click(object sender, EventArgs e)
         {
             GetMoney money = new GetMoney(this.game, this.currentPlayer);
@@ -928,6 +948,11 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// Bring up Upgrade Property form when button is clicked
+        /// </summary>
+        /// <param name="sender">The Buy House Or Hotel button</param>
+        /// <param name="e">The click event</param>
         private void BtnBuyHouseOrHotel_Click(object sender, EventArgs e)
         {
             UpgradeProperty upgrade = new UpgradeProperty(this.game, this.currentPlayer);
@@ -940,6 +965,11 @@ namespace Monopoly
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
+        /// <summary>
+        /// Set up board for the next player and set the current player to the next player
+        /// </summary>
+        /// <param name="sender">The Next Turn button</param>
+        /// <param name="e">The click event</param>
         private void BtnNextTurn_Click(object sender, EventArgs e)
         {
             this.btnRoll.Enabled = true;
@@ -982,11 +1012,16 @@ namespace Monopoly
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
         }
 
+        /// <summary>
+        /// Have player pay to get out of jail when button is clicked
+        /// </summary>
+        /// <param name="sender">The Jail Pay button</param>
+        /// <param name="e">The click event</param>
         private void BtnJailPay_Click(object sender, EventArgs e)
         {
             // take players money
             this.currentPlayer.Money -= 50;
-            this.lblCurrentBalance.Text = "Current Balance: " + '\n' + currentPlayer.Money.ToString("c0");
+            this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
 
             // Break them out of jail
             this.currentPlayer.InJail = false;
@@ -1004,6 +1039,11 @@ namespace Monopoly
             this.currentPlayer.TurnsInJail = 0;
         }
 
+        /// <summary>
+        /// Has player use "Get Out of Jail Free" card to get out of Jail when button is clicked
+        /// </summary>
+        /// <param name="sender">The Jail Free Card button</param>
+        /// <param name="e">The click event</param>
         private void BtnJailFreeCard_Click(object sender, EventArgs e)
         {
             // use the players card
@@ -1027,6 +1067,11 @@ namespace Monopoly
             this.currentPlayer.TurnsInJail = 0;
         }
 
+        /// <summary>
+        /// Ends game when button is clicked
+        /// </summary>
+        /// <param name="sender">The Quit Game button</param>
+        /// <param name="e">The click event</param>
         private void QuitGameBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -1035,11 +1080,11 @@ namespace Monopoly
         /// <summary>
         /// Restarts a game when button is clicked
         /// </summary>
-        /// <param name="sender">The object</param>
-        /// <param name="e">The event</param>
+        /// <param name="sender">The Restart Game button</param>
+        /// <param name="e">The click event</param>
         private void BtnRestartGame_Click(object sender, EventArgs e)
         {
-            RestartGame();
+            this.RestartGame();
         }
 
         /// <summary>

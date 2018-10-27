@@ -14,7 +14,7 @@ namespace Monopoly
     {
         private Player currentPlayer = new Player();
         private Player chosenPlayer = new Player();
-        private Game game = new Game();
+        private Game game;
         private List<Player> players;
         private string lastConfirmed = "0";
 

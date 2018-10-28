@@ -67,10 +67,10 @@ namespace Monopoly
 
             if (jailCardChange == 2)
             {
-                Card temp1 = game.Players[target.PlayerId].GetOutOfJailFreeCards[0];
-                game.Players[target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
                 Card temp2 = game.Players[target.PlayerId].GetOutOfJailFreeCards[1];
                 game.Players[target.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+                Card temp1 = game.Players[target.PlayerId].GetOutOfJailFreeCards[0];
+                game.Players[target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
 
                 game.Players[main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
                 game.Players[main.PlayerId].GetOutOfJailFreeCards.Add(temp2);
@@ -91,10 +91,10 @@ namespace Monopoly
             }
             else if (jailCardChange == -2)
             {
-                Card temp1 = game.Players[main.PlayerId].GetOutOfJailFreeCards[0];
-                game.Players[main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
                 Card temp2 = game.Players[main.PlayerId].GetOutOfJailFreeCards[1];
                 game.Players[main.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+                Card temp1 = game.Players[main.PlayerId].GetOutOfJailFreeCards[0];
+                game.Players[main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
 
                 game.Players[target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
                 game.Players[target.PlayerId].GetOutOfJailFreeCards.Add(temp2);

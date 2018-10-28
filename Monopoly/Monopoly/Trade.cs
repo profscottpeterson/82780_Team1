@@ -185,6 +185,10 @@ namespace Monopoly
                     {
                         btnLowerJailCard.Enabled = true;
                     }
+
+                    lblRequesteeJailCardTotal.Text = chosenPlayer.GetOutOfJailFreeCards.Count.ToString();
+                    lblRequesteeBeforeJailCard.Text = chosenPlayer.GetOutOfJailFreeCards.Count.ToString();
+                    txtMessage.Visible = false;
                 }
             }
         }
@@ -386,14 +390,14 @@ namespace Monopoly
         private void btnIncreaseJailCard_Click(object sender, EventArgs e)
         {
             int currentSelection = int.Parse(txtJailCard.Text);
-            int newSelection = currentSelection -= 1;
+            int newSelection = currentSelection += 1;
 
             lblRequesteeAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count - newSelection).ToString();
-            lblRequesterAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count + newSelection).ToString();
+            lblRequesterAfterJailCard.Text = (currentPlayer.GetOutOfJailFreeCards.Count + newSelection).ToString();
 
             txtJailCard.Text = newSelection.ToString();
 
-            if (chosenPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            if (chosenPlayer.GetOutOfJailFreeCards.Count - newSelection > 0)
             {
                 btnIncreaseJailCard.Enabled = true;
             }
@@ -402,7 +406,7 @@ namespace Monopoly
                 this.btnIncreaseJailCard.Enabled = false;
             }
 
-            if (currentPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            if (currentPlayer.GetOutOfJailFreeCards.Count + newSelection > 0)
             {
                 btnLowerJailCard.Enabled = true;
             }
@@ -418,11 +422,11 @@ namespace Monopoly
             int newSelection = currentSelection -= 1;
 
             lblRequesteeAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count - newSelection).ToString();
-            lblRequesterAfterJailCard.Text = (chosenPlayer.GetOutOfJailFreeCards.Count + newSelection).ToString();
+            lblRequesterAfterJailCard.Text = (currentPlayer.GetOutOfJailFreeCards.Count + newSelection).ToString();
 
             txtJailCard.Text = newSelection.ToString();
 
-            if (chosenPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            if (chosenPlayer.GetOutOfJailFreeCards.Count - newSelection > 0)
             {
                 btnIncreaseJailCard.Enabled = true;
             }
@@ -431,7 +435,7 @@ namespace Monopoly
                 this.btnIncreaseJailCard.Enabled = false;
             }
 
-            if (currentPlayer.GetOutOfJailFreeCards.Count > newSelection)
+            if (currentPlayer.GetOutOfJailFreeCards.Count + newSelection > 0)
             {
                 btnLowerJailCard.Enabled = true;
             }

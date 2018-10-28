@@ -294,6 +294,31 @@ namespace Monopoly
                             rent = this.FindRentOfUtility(currentLocation);
                         }
 
+                        //if the current location is a property with houses
+                        if (currentLocation.Type == SpotType.Property)
+                        {
+                            if (currentLocation.HasHotel)
+                            {
+                                rent = currentLocation.RentHotel;
+                            }
+                            else if (currentLocation.NumberOfHouses == 4)
+                            {
+                                rent = currentLocation.Rent4Houses;
+                            }
+                            else if (currentLocation.NumberOfHouses == 3)
+                            {
+                                rent = currentLocation.Rent3Houses;
+                            }
+                            else if (currentLocation.NumberOfHouses == 2)
+                            {
+                                rent = currentLocation.Rent2Houses;
+                            }
+                            else if (currentLocation.NumberOfHouses == 1)
+                            {
+                                rent = currentLocation.Rent1House;
+                            }
+                        }
+
                         // Give the owner the rent
                         this.Players[this.Players.IndexOf(owner)].Money += rent;
 
@@ -817,7 +842,22 @@ namespace Monopoly
             int numberOwned = this.NumberRailroadsOwned(railroad);
 
             // Find the rent based off of how many railroads owned
-            rent = (int)(rent * Math.Pow(2, numberOwned));
+            if (numberOwned == 1)
+            {
+                rent = 25;
+            }
+            else if (numberOwned == 2)
+            {
+                rent = 50;
+            }
+            else if (numberOwned == 3)
+            {
+                rent = 100;
+            }
+            else if (numberOwned == 4)
+            {
+                rent = 200;
+            }
 
             return rent;
         }
@@ -968,8 +1008,11 @@ namespace Monopoly
             // Loop through the player's list of properties
             foreach (var p in propertyList)
             {
-                // Add the property's mortgage value to total
-                total += p.Mortgage;
+                // Add the property's mortgage value to total TODO CHECK
+                if (!p.IsMortgaged)
+                {
+                    total += p.Mortgage;
+                }
 
                 // Check for hotel or houses
                 if (p.HasHotel)

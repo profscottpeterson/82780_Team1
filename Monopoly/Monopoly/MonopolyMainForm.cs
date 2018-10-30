@@ -752,59 +752,59 @@ namespace Monopoly
                         {
                             if (s.SpotName == "Electric Company")
                             {
-                                tempImage = usableSpotPictures.Images[0];
+                                tempImage = this.usableSpotPictures.Images[0];
                                 p.Image = tempImage;   
                             }
                             else
                             {
-                                tempImage = usableSpotPictures.Images[2];
+                                tempImage = this.usableSpotPictures.Images[2];
                                 p.Image = tempImage;
                             }
                         }
                         else
                         {
-                            tempImage = usableSpotPictures.Images[1];
+                            tempImage = this.usableSpotPictures.Images[1];
                             p.Image = tempImage;   
                         }
                     }
                     else if (s.Color == Color.DarkBlue)
                     {
-                        tempImage = usableSpotPictures.Images[3];
+                        tempImage = this.usableSpotPictures.Images[3];
                         p.Image = tempImage;   
                     }
                     else if (s.Color == Color.Green)
                     {
-                        tempImage = usableSpotPictures.Images[4];
+                        tempImage = this.usableSpotPictures.Images[4];
                         p.Image = tempImage;   
                     }
                     else if (s.Color == Color.LightBlue)
                     {
-                        tempImage = usableSpotPictures.Images[5];
+                        tempImage = this.usableSpotPictures.Images[5];
                         p.Image = tempImage;   
                     }
-                    else if (s.Color == Color.Brown)
+                    else if (s.Color == Color.Purple)
                     {
-                        tempImage = usableSpotPictures.Images[6];
+                        tempImage = this.usableSpotPictures.Images[6];
                         p.Image = tempImage;
                     }
-                    else if (s.Color == Color.Orange)
+                    else if (s.Color == Color.DarkOrange)
                     {
-                        tempImage = usableSpotPictures.Images[7];
+                        tempImage = this.usableSpotPictures.Images[7];
                         p.Image = tempImage;
                     }
-                    else if (s.Color == Color.Pink)
+                    else if (s.Color == Color.MediumVioletRed)
                     {
-                        tempImage = usableSpotPictures.Images[8];
+                        tempImage = this.usableSpotPictures.Images[8];
                         p.Image = tempImage;
                     }
                     else if (s.Color == Color.Red)
                     {
-                        tempImage = usableSpotPictures.Images[9];
+                        tempImage = this.usableSpotPictures.Images[9];
                         p.Image = tempImage;
                     }
                     else if (s.Color == Color.Yellow)
                     {
-                        tempImage = usableSpotPictures.Images[10];
+                        tempImage = this.usableSpotPictures.Images[10];
                         p.Image = tempImage;
                     }
 
@@ -855,252 +855,123 @@ namespace Monopoly
             while (this.Controls["Upgrade"] != null)
             {
                 this.Controls.Remove((PictureBox)Controls.Find("Upgrade", true)[0]);
+                this.Controls.Remove((PictureBox)Controls.Find("Border", true)[0]);
             }
 
             foreach (Spot s in this.game.Board)
             {
                 if (s.Type == SpotType.Property)
                 {
-                    if (s.SpotId > 0 && s.SpotId < 10)
+                    if (s.HasHotel == true)
                     {
-                        if (s.HasHotel == true)
+                        PictureBox temp = new PictureBox();
+
+                        foreach (PictureBox pic in this.spotPicture)
                         {
-                            PictureBox temp = new PictureBox();
-
-                            foreach (PictureBox pic in this.spotPicture)
+                            if (int.Parse(pic.Tag.ToString()) == s.SpotId)
                             {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
+                                temp = pic;
                             }
+                        }
 
-                            PictureBox hotel = new PictureBox();
-                            hotel.Name = "Upgrade";
-                            hotel.Size = new Size(25, 25);
-                            
-                            hotel.BackColor = Color.Black;
+                        PictureBox border = new PictureBox();
+                        border.Name = "Border";
+                        border.Size = new Size(25, 25);
+                        border.BackColor = Color.White;
 
-                            Point p = temp.Location;
+                        PictureBox hotel = new PictureBox();
+                        hotel.Name = "Upgrade";
+                        hotel.Size = new Size(23, 23);
 
+                        hotel.BackColor = Color.Firebrick;
+                        ////hotel.BackColor = Color.Black;
+
+                        Point p = temp.Location;
+
+                        if (s.SpotId > 0 && s.SpotId < 10)
+                        {
                             p.X = p.X + 22;
-
-                            hotel.Location = p;
-                            this.Controls.Add(hotel);
-                            hotel.BringToFront();
                         }
-                        else
+                        else if (s.SpotId > 10 && s.SpotId < 20)
                         {
-                            PictureBox temp = new PictureBox();
-
-                            foreach(PictureBox pic in this.spotPicture)
-                            {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
-                            }
-
-                            for (int i = 0; i < s.NumberOfHouses; i++)
-                            {
-                                PictureBox hotel = new PictureBox();
-                                hotel.Name = "Upgrade";
-                                hotel.Size = new Size(14, 14);
-
-                                hotel.BackColor = Color.Green;
-
-                                Point p = temp.Location;
-
-                                p.X = (p.X + 17 * i) + 2 * i;
-
-                                hotel.Location = p;
-                                hotel.BorderStyle = BorderStyle.FixedSingle;
-                                this.Controls.Add(hotel);
-                                hotel.BringToFront();
-                            }
-                        }
-                    }
-                    else if (s.SpotId > 10 && s.SpotId < 20)
-                    {
-                        if (s.HasHotel == true)
-                        {
-                            PictureBox temp = new PictureBox();
-
-                            foreach (PictureBox pic in this.spotPicture)
-                            {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
-                            }
-
-                            PictureBox hotel = new PictureBox();
-                            hotel.Name = "Upgrade";
-                            hotel.Size = new Size(25, 25);
-
-                            hotel.BackColor = Color.Black;
-
-                            Point p = temp.Location;
-
                             p.X = p.X + 90;
                             p.Y = p.Y + 22;
-
-                            hotel.Location = p;
-                            this.Controls.Add(hotel);
-                            hotel.BringToFront();
                         }
-                        else
+                        else if (s.SpotId > 20 && s.SpotId < 30)
                         {
-                            PictureBox temp = new PictureBox();
-
-                            foreach (PictureBox pic in this.spotPicture)
-                            {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
-                            }
-
-                            for (int i = 0; i < s.NumberOfHouses; i++)
-                            {
-                                PictureBox hotel = new PictureBox();
-                                hotel.Name = "Upgrade";
-                                hotel.Size = new Size(14, 14);
-
-                                hotel.BackColor = Color.Green;
-
-                                Point p = temp.Location;
-
-                                p.X = p.X + 101;
-                                p.Y = (p.Y + 17 * i) + 2 * i;
-
-                                hotel.Location = p;
-                                hotel.BorderStyle = BorderStyle.FixedSingle;
-                                this.Controls.Add(hotel);
-                                hotel.BringToFront();
-                            }
+                            p.X = p.X + 22;
+                            p.Y = p.Y + 90;
                         }
+                        else if (s.SpotId > 30 && s.SpotId < 40)
+                        {
+                            p.Y = p.Y + 22;
+                        }
+
+                        border.Location = p;
+                        p.X += 1;
+                        p.Y += 1;
+                        hotel.Location = p;
+                        this.Controls.Add(border);
+                        this.Controls.Add(hotel);
+                        border.BringToFront();
+                        hotel.BringToFront();
                     }
-                    else if (s.SpotId > 20 && s.SpotId < 30)
+                    else
                     {
-                        if (s.HasHotel == true)
-                        {
-                            PictureBox temp = new PictureBox();
+                        PictureBox temp = new PictureBox();
 
-                            foreach (PictureBox pic in this.spotPicture)
+                        foreach(PictureBox pic in this.spotPicture)
+                        {
+                            if (int.Parse(pic.Tag.ToString()) == s.SpotId)
                             {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
+                                temp = pic;
                             }
+                        }
+
+                        for (int i = 0; i < s.NumberOfHouses; i++)
+                        {
+                            PictureBox border = new PictureBox();
+                            border.Name = "Border";
+                            border.Size = new Size(14, 14);
+                            border.BackColor = Color.White;
 
                             PictureBox hotel = new PictureBox();
                             hotel.Name = "Upgrade";
-                            hotel.Size = new Size(25, 25);
+                            hotel.Size = new Size(12, 12);
 
-                            hotel.BackColor = Color.Black;
+                            hotel.BackColor = Color.Green;
 
                             Point p = temp.Location;
-
-                            p.X = p.X + 22;
-                            p.Y = p.Y + 90;
-
-                            hotel.Location = p;
-                            this.Controls.Add(hotel);
-                            hotel.BringToFront();
-                        }
-                        else
-                        {
-                            PictureBox temp = new PictureBox();
-
-                            foreach (PictureBox pic in this.spotPicture)
+                            
+                            if (s.SpotId > 0 && s.SpotId < 10)
                             {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
+                                p.X = (p.X + 17 * i) + 2 * i;
                             }
-
-                            for (int i = 0; i < s.NumberOfHouses; i++)
+                            else if (s.SpotId > 10 && s.SpotId < 20)
                             {
-                                PictureBox hotel = new PictureBox();
-                                hotel.Name = "Upgrade";
-                                hotel.Size = new Size(14, 14);
-
-                                hotel.BackColor = Color.Green;
-
-                                Point p = temp.Location;
-
+                                p.X = p.X + 101;
+                                p.Y = (p.Y + 17 * i) + 2 * i;
+                            }
+                            else if (s.SpotId > 20 && s.SpotId < 30)
+                            {
                                 p.X = p.X + 56;
                                 p.X = (p.X - 17 * i) - 2 * i;
                                 p.Y = p.Y + 101;
-
-                                hotel.Location = p;
-                                hotel.BorderStyle = BorderStyle.FixedSingle;
-                                this.Controls.Add(hotel);
-                                hotel.BringToFront();
                             }
-                        }
-                    }
-                    else if (s.SpotId > 30 && s.SpotId < 40)
-                    {
-                        if (s.HasHotel == true)
-                        {
-                            PictureBox temp = new PictureBox();
-
-                            foreach (PictureBox pic in this.spotPicture)
+                            else if (s.SpotId > 30 && s.SpotId < 40)
                             {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
-                            }
-
-                            PictureBox hotel = new PictureBox();
-                            hotel.Name = "Upgrade";
-                            hotel.Size = new Size(25, 25);
-
-                            hotel.BackColor = Color.Black;
-
-                            Point p = temp.Location;
-
-                            p.Y = p.Y + 22;
-
-                            hotel.Location = p;
-                            this.Controls.Add(hotel);
-                            hotel.BringToFront();
-                        }
-                        else
-                        {
-                            PictureBox temp = new PictureBox();
-
-                            foreach (PictureBox pic in this.spotPicture)
-                            {
-                                if (int.Parse(pic.Tag.ToString()) == s.SpotId)
-                                {
-                                    temp = pic;
-                                }
-                            }
-
-                            for (int i = 0; i < s.NumberOfHouses; i++)
-                            {
-                                PictureBox hotel = new PictureBox();
-                                hotel.Name = "Upgrade";
-                                hotel.Size = new Size(14, 14);
-
-                                hotel.BackColor = Color.Green;
-
-                                Point p = temp.Location;
-
                                 p.Y = p.Y + 56;
                                 p.Y = (p.Y - 17 * i) - 2 * i;
-
-                                hotel.Location = p;
-                                hotel.BorderStyle = BorderStyle.FixedSingle;
-                                this.Controls.Add(hotel);
-                                hotel.BringToFront();
                             }
+
+                            border.Location = p;
+                            p.X += 1;
+                            p.Y += 1;
+                            hotel.Location = p;
+                            this.Controls.Add(border);
+                            this.Controls.Add(hotel);
+                            border.BringToFront();
+                            hotel.BringToFront();
                         }
                     }
                 }

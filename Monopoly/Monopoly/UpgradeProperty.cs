@@ -175,17 +175,9 @@ namespace Monopoly
                     {
                         item.ForeColor = Color.DodgerBlue;
                     }
-                    else if (spot.Color == Color.Pink)
-                    {
-                        item.ForeColor = Color.DeepPink;
-                    }
                     else if (spot.Color == Color.Yellow)
                     {
                         item.ForeColor = Color.FromArgb(255, 220, 220, 0);
-                    }
-                    else if (spot.Color == Color.Orange)
-                    {
-                        item.ForeColor = Color.DarkOrange;
                     }
                 }
             }
@@ -534,10 +526,6 @@ namespace Monopoly
             if (this.lblPropertyName.ForeColor == Color.LightBlue)
             {
                 this.lblPropertyName.ForeColor = Color.Blue;
-            }
-            if (this.lblPropertyName.ForeColor == Color.Pink)
-            {
-                this.lblPropertyName.ForeColor = Color.DeepPink;
             }
 
             //add them to the listView

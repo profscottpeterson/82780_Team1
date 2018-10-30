@@ -245,17 +245,9 @@ namespace Monopoly
                     {
                         item.ForeColor = Color.DodgerBlue;
                     }
-                    else if (spot.Color == Color.Pink)
-                    {
-                        item.ForeColor = Color.DeepPink;
-                    }
                     else if (spot.Color == Color.Yellow)
                     {
                         item.ForeColor = Color.FromArgb(255, 220, 220, 0);
-                    }
-                    else if (spot.Color == Color.Orange)
-                    {
-                        item.ForeColor = Color.DarkOrange;
                     }
                 }
             }

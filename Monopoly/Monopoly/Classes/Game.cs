@@ -1131,7 +1131,7 @@ namespace Monopoly
             // Check through the list and add each color to the respective counter
             foreach (Spot s in prop)
             {
-                if (s.Color == Color.Brown)
+                if (s.Color == Color.Purple)
                 {
                     numBrown++;
                 }
@@ -1139,11 +1139,11 @@ namespace Monopoly
                 {
                     numLightBlue++;
                 }
-                else if (s.Color == Color.Pink)
+                else if (s.Color == Color.MediumVioletRed)
                 {
                     numPink++;
                 }
-                else if (s.Color == Color.Orange)
+                else if (s.Color == Color.DarkOrange)
                 {
                     numOrange++;
                 }
@@ -1168,7 +1168,7 @@ namespace Monopoly
             // Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
             if (numBrown == 2)
             {
-                houseOkay.Add(Color.Brown);
+                houseOkay.Add(Color.Purple);
             }
 
             if (numLightBlue == 3)
@@ -1178,12 +1178,12 @@ namespace Monopoly
 
             if (numPink == 3)
             {
-                houseOkay.Add(Color.Pink);
+                houseOkay.Add(Color.MediumVioletRed);
             }
 
             if (numOrange == 3)
             {
-                houseOkay.Add(Color.Orange);
+                houseOkay.Add(Color.DarkOrange);
             }
 
             if (numRed == 3)
@@ -1268,13 +1268,13 @@ namespace Monopoly
             Spot temp = new Spot(0, "Go", SpotType.Go);
             this.Board.Add(temp);
 
-            temp = new Spot(1, "Mediterranean Avenue", Color.Brown, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
+            temp = new Spot(1, "Mediterranean Avenue", Color.Purple, 60, 2, 10, 30, 90, 160, 250, 30, 50, 50);
             this.Board.Add(temp);
 
             temp = new Spot(2, "Community Chest #1", SpotType.CommunityChest);
             this.Board.Add(temp);
 
-            temp = new Spot(3, "Baltic Avenue", Color.Brown, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
+            temp = new Spot(3, "Baltic Avenue", Color.Purple, 60, 4, 20, 60, 180, 320, 450, 30, 50, 50);
             this.Board.Add(temp);
 
             temp = new Spot(4, "Income Tax", 200);
@@ -1299,31 +1299,31 @@ namespace Monopoly
             temp = new Spot(10, "Jail", SpotType.Jail);
             this.Board.Add(temp);
 
-            temp = new Spot(11, "St. Charles Place", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
+            temp = new Spot(11, "St. Charles Place", Color.MediumVioletRed, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
             this.Board.Add(temp);
 
             temp = new Spot(12, "Electric Company", SpotType.Utility, 150, 75);
             this.Board.Add(temp);
 
-            temp = new Spot(13, "States Avenue", Color.Pink, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
+            temp = new Spot(13, "States Avenue", Color.MediumVioletRed, 140, 10, 50, 150, 450, 625, 750, 70, 100, 100);
             this.Board.Add(temp);
 
-            temp = new Spot(14, "Virginia Avenue", Color.Pink, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
+            temp = new Spot(14, "Virginia Avenue", Color.MediumVioletRed, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
             this.Board.Add(temp);
 
             temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
             this.Board.Add(temp);
 
-            temp = new Spot(16, "St. James Place", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
+            temp = new Spot(16, "St. James Place", Color.DarkOrange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
             this.Board.Add(temp);
 
             temp = new Spot(17, "Community Chest #2", SpotType.CommunityChest);
             this.Board.Add(temp);
 
-            temp = new Spot(18, "Tennessee Avenue", Color.Orange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
+            temp = new Spot(18, "Tennessee Avenue", Color.DarkOrange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
             this.Board.Add(temp);
 
-            temp = new Spot(19, "New York Avenue", Color.Orange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
+            temp = new Spot(19, "New York Avenue", Color.DarkOrange, 200, 16, 80, 220, 600, 800, 1000, 100, 100, 100);
             this.Board.Add(temp);
 
             // Third Row

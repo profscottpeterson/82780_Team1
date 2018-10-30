@@ -61,7 +61,7 @@ namespace Monopoly
             this.spotNameLabel.BackColor = spot.Color;
 
             // Adjust text color so it is visible against the background
-            if (spot.Color == Color.Brown || spot.Color == Color.Green || spot.Color == Color.DarkBlue || spot.Color == Color.Black)
+            if (spot.Color == Color.Purple || spot.Color == Color.Green || spot.Color == Color.DarkBlue || spot.Color == Color.Black || spot.Color == Color.Red || spot.Color == Color.MediumVioletRed)
             {
                 this.spotNameLabel.ForeColor = Color.White;
             }

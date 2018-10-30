@@ -40,7 +40,7 @@ namespace Monopoly
             this.SpotNameLabel.BackColor = this.spot.Color;
 
             // Adjust text color so it is visible against the background
-            if (this.spot.Color == Color.Brown || this.spot.Color == Color.Green || this.spot.Color == Color.DarkBlue)
+            if (this.spot.Color == Color.Purple || this.spot.Color == Color.Green || this.spot.Color == Color.DarkBlue || this.spot.Color == Color.Red || this.spot.Color == Color.MediumVioletRed)
             {
                 this.SpotNameLabel.ForeColor = Color.White;
             }

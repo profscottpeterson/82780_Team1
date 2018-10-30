@@ -1279,6 +1279,12 @@ namespace Monopoly
             }
 
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+
+            if (currentPlayer.IsAi == true)
+            {
+                BtnRoll_Click(sender,e);
+                BtnNextTurn_Click(sender, e);
+            }
         }
 
         /// <summary>

@@ -194,7 +194,7 @@ namespace Monopoly
 
                 if (cardDrawn != null)
                 {
-                    MiscCardForm miscCardForm = new MiscCardForm(formTitle, cardDrawn); // instantiate form
+                    MiscCardForm miscCardForm = new MiscCardForm(formTitle, cardDrawn, currentPlayer); // instantiate form
                     miscCardForm.ShowDialog(); // Show the card form
                 }
             }
@@ -291,7 +291,7 @@ namespace Monopoly
                         {
                             // Find the rent based on how many utilities the owner of the current location owns
                             // and the dice roll (random number)
-                            rent = this.FindRentOfUtility(currentLocation);
+                            rent = this.FindRentOfUtility(currentLocation, currentPlayer);
                         }
 
                         //if the current location is a property with houses
@@ -894,7 +894,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="utility">The utility to check the rent of</param>
         /// <returns>Returns an integer value</returns>
-        public int FindRentOfUtility(Spot utility)
+        public int FindRentOfUtility(Spot utility, Player p)
         {
             // Declare and initialize a boolean for whether owner of given utility owns both utilities
             bool bothOwned = false;
@@ -919,10 +919,13 @@ namespace Monopoly
             // For some reason, this is always the value of die 1
             int rent = random.Next(6) + 1;
 
-            // Message box informing player of die roll and rent to be paid
-            MessageBox.Show(
-                       "You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
-                       "Utility Rent");
+            if (p.IsAi == false)
+            {
+                // Message box informing player of die roll and rent to be paid
+                MessageBox.Show(
+                    "You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
+                    "Utility Rent");
+            }
 
             // Increase rent by multiptyFactor
             rent *= multiplyFactor;

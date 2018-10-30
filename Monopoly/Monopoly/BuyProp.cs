@@ -113,6 +113,19 @@ namespace Monopoly
 
             // Use the same version of game.
             this.game = g;
+
+            if (p.IsAi == true)
+            {
+                if (p.Money >= spot.Price)
+                {
+                    BtnYes_Click(p, EventArgs.Empty);
+                }
+                else
+                {
+                    BtnNo_Click(p, EventArgs.Empty);
+                }
+            }
+
         }
 
         /// <summary>

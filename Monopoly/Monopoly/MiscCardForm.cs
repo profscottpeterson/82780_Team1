@@ -14,6 +14,8 @@ namespace Monopoly
     {
         // private Card _card;
 
+        private Player p;
+
         public MiscCardForm()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -22,11 +24,12 @@ namespace Monopoly
             InitializeComponent();
         }
 
-        public MiscCardForm(string title, Card card)
+        public MiscCardForm(string title, Card card, Player p)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.p = p;
 
             InitializeComponent();
             this.Text = title;
@@ -40,6 +43,8 @@ namespace Monopoly
             {
                 this.BackColor = Color.Yellow;
             }
+
+
         }
 
         public PictureBox picture { get; set; }
@@ -47,6 +52,10 @@ namespace Monopoly
         private void MiscCardForm_Load(object sender, EventArgs e)
         {
             picture = new PictureBox();
+            if (p.IsAi == true)
+            {
+                button1_Click(p, EventArgs.Empty);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

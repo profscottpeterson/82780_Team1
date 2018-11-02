@@ -294,17 +294,6 @@ namespace Monopoly
 
                 totalMove = die1 + die2;
 
-                // Find player's new location and set current location property of player
-                this.game.MovePlayerLocation(this.currentPlayer, totalMove);
-
-                // Move pawn picture
-                this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
-
-                // So balance is updated when Go is passed
-                this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
-
-                this.game.RollChecks(this.currentPlayer);
-
                 if (die1 == die2)
                 {
                     this.doubleCounter++;
@@ -317,6 +306,17 @@ namespace Monopoly
                         this.BtnNextTurn.Enabled = false;
                         this.btnRoll.Enabled = true;
                         this.btnRoll.Focus();
+
+                        // Find player's new location and set current location property of player
+                        this.game.MovePlayerLocation(this.currentPlayer, totalMove);
+
+                        // Move pawn picture
+                        this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
+
+                        // So balance is updated when Go is passed
+                        this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
+
+                        this.game.RollChecks(this.currentPlayer);
                     }
                 }
                 else
@@ -324,6 +324,17 @@ namespace Monopoly
                     this.BtnNextTurn.Enabled = true;
                     this.BtnNextTurn.Focus();
                     this.btnRoll.Enabled = false;
+
+                    // Find player's new location and set current location property of player
+                    this.game.MovePlayerLocation(this.currentPlayer, totalMove);
+
+                    // Move pawn picture
+                    this.FindNewPawnLocations(this.currentPlayer.CurrentLocation.SpotId, this.currentPlayer);
+
+                    // So balance is updated when Go is passed
+                    this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
+
+                    this.game.RollChecks(this.currentPlayer);
                 }
             }
             else

@@ -158,6 +158,7 @@ namespace Monopoly
             this.chkAI4 = new System.Windows.Forms.CheckBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
+            this.lblMonopoly = new System.Windows.Forms.Label();
             this.panelPlayer1.SuspendLayout();
             this.panelPlayer2.SuspendLayout();
             this.panelPlayer3.SuspendLayout();
@@ -172,7 +173,7 @@ namespace Monopoly
             "2",
             "3",
             "4"});
-            this.cmboNumPlayers.Location = new System.Drawing.Point(114, 6);
+            this.cmboNumPlayers.Location = new System.Drawing.Point(128, 94);
             this.cmboNumPlayers.Name = "cmboNumPlayers";
             this.cmboNumPlayers.Size = new System.Drawing.Size(121, 21);
             this.cmboNumPlayers.TabIndex = 0;
@@ -183,7 +184,7 @@ namespace Monopoly
             this.panelPlayer1.Controls.Add(this.lblPlayerName1);
             this.panelPlayer1.Controls.Add(this.txtPlayer1Name);
             this.panelPlayer1.Controls.Add(this.chkAI1);
-            this.panelPlayer1.Location = new System.Drawing.Point(26, 33);
+            this.panelPlayer1.Location = new System.Drawing.Point(40, 121);
             this.panelPlayer1.Name = "panelPlayer1";
             this.panelPlayer1.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer1.TabIndex = 1;
@@ -212,14 +213,14 @@ namespace Monopoly
             this.chkAI1.Location = new System.Drawing.Point(127, 33);
             this.chkAI1.Name = "chkAI1";
             this.chkAI1.Size = new System.Drawing.Size(36, 17);
-            this.chkAI1.TabIndex = 0;
+            this.chkAI1.TabIndex = 2;
             this.chkAI1.Text = "AI";
             this.chkAI1.UseVisualStyleBackColor = true;
             // 
             // lblNumPlayer
             // 
             this.lblNumPlayer.AutoSize = true;
-            this.lblNumPlayer.Location = new System.Drawing.Point(12, 9);
+            this.lblNumPlayer.Location = new System.Drawing.Point(26, 97);
             this.lblNumPlayer.Name = "lblNumPlayer";
             this.lblNumPlayer.Size = new System.Drawing.Size(96, 13);
             this.lblNumPlayer.TabIndex = 2;
@@ -230,7 +231,7 @@ namespace Monopoly
             this.panelPlayer2.Controls.Add(this.lblPlayerName2);
             this.panelPlayer2.Controls.Add(this.txtPlayerName2);
             this.panelPlayer2.Controls.Add(this.chkAI2);
-            this.panelPlayer2.Location = new System.Drawing.Point(26, 97);
+            this.panelPlayer2.Location = new System.Drawing.Point(40, 185);
             this.panelPlayer2.Name = "panelPlayer2";
             this.panelPlayer2.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer2.TabIndex = 2;
@@ -250,7 +251,7 @@ namespace Monopoly
             this.txtPlayerName2.Location = new System.Drawing.Point(97, 7);
             this.txtPlayerName2.Name = "txtPlayerName2";
             this.txtPlayerName2.Size = new System.Drawing.Size(100, 20);
-            this.txtPlayerName2.TabIndex = 1;
+            this.txtPlayerName2.TabIndex = 3;
             this.txtPlayerName2.Tag = "Player 2";
             // 
             // chkAI2
@@ -259,7 +260,7 @@ namespace Monopoly
             this.chkAI2.Location = new System.Drawing.Point(127, 33);
             this.chkAI2.Name = "chkAI2";
             this.chkAI2.Size = new System.Drawing.Size(36, 17);
-            this.chkAI2.TabIndex = 0;
+            this.chkAI2.TabIndex = 4;
             this.chkAI2.Text = "AI";
             this.chkAI2.UseVisualStyleBackColor = true;
             // 
@@ -268,7 +269,7 @@ namespace Monopoly
             this.panelPlayer3.Controls.Add(this.lblPlayerName3);
             this.panelPlayer3.Controls.Add(this.txtPlayerName3);
             this.panelPlayer3.Controls.Add(this.chkAI3);
-            this.panelPlayer3.Location = new System.Drawing.Point(26, 162);
+            this.panelPlayer3.Location = new System.Drawing.Point(40, 250);
             this.panelPlayer3.Name = "panelPlayer3";
             this.panelPlayer3.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer3.TabIndex = 3;
@@ -288,7 +289,7 @@ namespace Monopoly
             this.txtPlayerName3.Location = new System.Drawing.Point(97, 7);
             this.txtPlayerName3.Name = "txtPlayerName3";
             this.txtPlayerName3.Size = new System.Drawing.Size(100, 20);
-            this.txtPlayerName3.TabIndex = 1;
+            this.txtPlayerName3.TabIndex = 5;
             this.txtPlayerName3.Tag = "Player 3";
             // 
             // chkAI3
@@ -297,7 +298,7 @@ namespace Monopoly
             this.chkAI3.Location = new System.Drawing.Point(127, 33);
             this.chkAI3.Name = "chkAI3";
             this.chkAI3.Size = new System.Drawing.Size(36, 17);
-            this.chkAI3.TabIndex = 0;
+            this.chkAI3.TabIndex = 6;
             this.chkAI3.Text = "AI";
             this.chkAI3.UseVisualStyleBackColor = true;
             // 
@@ -306,7 +307,7 @@ namespace Monopoly
             this.panelPlayer4.Controls.Add(this.lblPlayerName4);
             this.panelPlayer4.Controls.Add(this.txtPlayerName4);
             this.panelPlayer4.Controls.Add(this.chkAI4);
-            this.panelPlayer4.Location = new System.Drawing.Point(26, 226);
+            this.panelPlayer4.Location = new System.Drawing.Point(40, 314);
             this.panelPlayer4.Name = "panelPlayer4";
             this.panelPlayer4.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer4.TabIndex = 4;
@@ -326,7 +327,7 @@ namespace Monopoly
             this.txtPlayerName4.Location = new System.Drawing.Point(97, 7);
             this.txtPlayerName4.Name = "txtPlayerName4";
             this.txtPlayerName4.Size = new System.Drawing.Size(100, 20);
-            this.txtPlayerName4.TabIndex = 1;
+            this.txtPlayerName4.TabIndex = 7;
             this.txtPlayerName4.Tag = "Player 4";
             // 
             // chkAI4
@@ -335,36 +336,50 @@ namespace Monopoly
             this.chkAI4.Location = new System.Drawing.Point(127, 33);
             this.chkAI4.Name = "chkAI4";
             this.chkAI4.Size = new System.Drawing.Size(36, 17);
-            this.chkAI4.TabIndex = 0;
+            this.chkAI4.TabIndex = 8;
             this.chkAI4.Text = "AI";
             this.chkAI4.UseVisualStyleBackColor = true;
             // 
             // btnStart
             // 
             this.btnStart.Enabled = false;
-            this.btnStart.Location = new System.Drawing.Point(26, 290);
+            this.btnStart.Location = new System.Drawing.Point(40, 378);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(91, 23);
-            this.btnStart.TabIndex = 5;
+            this.btnStart.TabIndex = 9;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(144, 290);
+            this.btnQuit.Location = new System.Drawing.Point(158, 378);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(91, 23);
             this.btnQuit.TabIndex = 6;
+            this.btnQuit.TabStop = false;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
+            // 
+            // lblMonopoly
+            // 
+            this.lblMonopoly.AutoSize = true;
+            this.lblMonopoly.BackColor = System.Drawing.Color.Red;
+            this.lblMonopoly.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonopoly.ForeColor = System.Drawing.Color.FloralWhite;
+            this.lblMonopoly.Location = new System.Drawing.Point(39, 20);
+            this.lblMonopoly.Name = "lblMonopoly";
+            this.lblMonopoly.Size = new System.Drawing.Size(210, 51);
+            this.lblMonopoly.TabIndex = 7;
+            this.lblMonopoly.Text = "Monopoly";
             // 
             // GameOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 328);
+            this.ClientSize = new System.Drawing.Size(284, 423);
+            this.Controls.Add(this.lblMonopoly);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panelPlayer4);
@@ -389,5 +404,7 @@ namespace Monopoly
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblMonopoly;
     }
 }

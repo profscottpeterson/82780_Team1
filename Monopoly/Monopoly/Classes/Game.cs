@@ -3,7 +3,6 @@
 //     Company null (not copyrighted)
 // </copyright>
 //-----------------------------------------------------------------------
-
 namespace Monopoly
 {
     using System;
@@ -317,16 +316,60 @@ namespace Monopoly
                             {
                                 rent = currentLocation.Rent1House;
                             }
+                            else if (this.CheckIfEligibleForHouse(this.GetPlayersPropertyList(owner)).Contains(currentLocation.Color))
+                            {
+                                // If owner owns all of the color current location is, double the rent on unimproved property
+                                rent *= 2;
+                            } 
                         }
 
-                        // Give the owner the rent
-                        this.Players[this.Players.IndexOf(owner)].Money += rent;
+                        if (this.TotalNetWorth(currentPlayer) < rent)
+                        {
+                            // Give the owner everything
+                            this.Players[this.Players.IndexOf(owner)].Money += this.TotalNetWorth(currentPlayer);
 
-                        // Have current player pay rent
-                        this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+                            // Only bother handing over properties if there are more than 2 players - otherwise the game is almost over
+                            if (this.ActivePlayers() > 2)
+                            {
+                                // Hand over all properties
+                                foreach (Spot property in this.GetPlayersPropertyList(currentPlayer))
+                                {
+                                    this.Board[property.SpotId].Owner = owner;
+                                    if (this.Board[property.SpotId].IsMortgaged)
+                                    {
+                                        // Pay interest on mortgaged property
+                                        this.Players[this.Players.IndexOf(owner)].Money -=
+                                            (int) (this.Board[property.SpotId].Price * 0.1);
 
-                        // Check if current player could not afford rent
-                        this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                                        // Ask owner of current location if they would like to unmortgage received mortgaged property
+                                        DialogResult result = MessageBox.Show(
+                                            property.SpotName + " is mortgaged. Do you want to unmortgage it now? If you choose later, interest will be paid twice.",
+                                            "Receive Property - " + owner.PlayerName, MessageBoxButtons.YesNo);
+                                        if (result == DialogResult.Yes)
+                                        {
+                                            // Unmortgage property
+                                            this.Board[property.SpotId].IsMortgaged = false;
+                                            this.Players[this.Players.IndexOf(owner)].Money -= this.Board[property.SpotId].Mortgage;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Have current player give up everything to pay rent
+                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= this.TotalNetWorth(currentPlayer);
+                            this.Forfeit(currentPlayer);
+                        }
+                        else
+                        {
+                            // Give the owner the rent
+                            this.Players[this.Players.IndexOf(owner)].Money += rent;
+
+                            // Have current player pay rent
+                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= rent;
+
+                            // Check if current player could not afford rent
+                            this.CheckIfPlayerHasEnoughMoney(currentPlayer);
+                        } 
                     }
                 }
             }
@@ -969,8 +1012,12 @@ namespace Monopoly
             // Find the index of the current player in the Players list
             int index = currentPlayer.PlayerId;
 
-            // Increase the index by one and mod it by the number of players
-            index = (index + 1) % this.Players.Count;
+            do
+            {
+                // Increase the index by one and mod it by the number of players
+                index = (index + 1) % this.Players.Count;
+            } while (!this.Players[index].IsActive);
+            
 
             // Return the player with the calculated index
             return this.Players[index];
@@ -1081,10 +1128,12 @@ namespace Monopoly
                 }
             }
 
-            // Remove player from player list
-            // this.Players.Remove(player);
+            // Set player to inactive
             player.IsActive = false;
             player.PlayerPictureBox.Visible = false;
+
+            // Get the next player
+            this.NextPlayer(player);
 
             if (this.ActivePlayers() == 1)
             {

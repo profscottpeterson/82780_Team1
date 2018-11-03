@@ -294,7 +294,7 @@ namespace Monopoly
 
                 totalMove = die1 + die2;
 
-                if (die1 == die2)
+                if (die1 == die2 && currentPlayer.IsActive)
                 {
                     this.doubleCounter++;
                     if (this.doubleCounter >= 3)
@@ -1074,11 +1074,10 @@ namespace Monopoly
             GetMoney money = new GetMoney(this.game, this.currentPlayer);
 
             money.ShowDialog();
-            while (this.currentPlayer.IsActive == false)
-            {
-                this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
-                this.formBool = false;
-            }
+
+            this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
+            this.formBool = false;
+
 
             this.flpOtherPlayerHand.Controls.Clear();
             this.lblOtherPlayersHand.Text = string.Empty;
@@ -1133,11 +1132,6 @@ namespace Monopoly
             this.flpOtherPlayerHand.Controls.Clear();
             this.lblOtherPlayersHand.Text = string.Empty;
             this.flpPlayerHandOptions.Controls.Clear();
-
-            while (this.currentPlayer.IsActive == false)
-            {
-                this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
-            }
 
             this.SetUpPlayerHandOptions();
 

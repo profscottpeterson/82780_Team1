@@ -104,6 +104,11 @@ namespace Monopoly
         private Player currentPlayer;
 
         /// <summary>
+        /// The checked player
+        /// </summary>
+        private Player checkedPlayer = null;
+
+        /// <summary>
         /// The current player
         /// </summary>
         private List<PictureBox> spotPicture = new List<PictureBox>();
@@ -993,7 +998,7 @@ namespace Monopoly
         /// Sets up options for seeing other players' hands
         /// </summary>
         private void SetUpPlayerHandOptions()
-        {           
+        {       
             this.flpPlayerHandOptions.Controls.Clear();
             int activePlayerCount = this.game.Players.Count;
             bool[] playerStatus = new bool[activePlayerCount];
@@ -1025,6 +1030,8 @@ namespace Monopoly
                                 r.CheckedChanged += delegate
                                 {
                                     this.SetNextPlayer(this.game.Players[int.Parse(r.Tag.ToString())], this.flpOtherPlayerHand);
+
+                                    checkedPlayer = this.game.Players[int.Parse(r.Tag.ToString())];
                                 };
                                 flpPlayerHandOptions.Controls.Add(r);
                             }
@@ -1059,9 +1066,15 @@ namespace Monopoly
         {
             Trade tradeForm = new Trade(this.currentPlayer, this.game);
             tradeForm.StartPosition = FormStartPosition.CenterParent;
-            tradeForm.ShowDialog();
+            tradeForm.ShowDialog();          
 
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+
+            if (checkedPlayer != null)
+            {
+                this.SetNextPlayer(checkedPlayer, this.flpOtherPlayerHand);
+            }
+            checkedPlayer = null;
         }
 
         /// <summary>

@@ -57,6 +57,7 @@ namespace Monopoly
             this.Bank = bank;
             this.Collect = collect;
             this.NewLocation = null;
+            this.GetOutOfJailFree = false;
             this.CardImage = cardImage;
         }
 
@@ -77,6 +78,7 @@ namespace Monopoly
             this.Bank = true;
             this.Collect = false;
             this.NewLocation = newLocation;
+            this.GetOutOfJailFree = false;
             this.CardImage = cardImage;
         }
 

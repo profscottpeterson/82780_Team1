@@ -325,8 +325,11 @@ namespace Monopoly
 
                         if (this.TotalNetWorth(currentPlayer) < rent)
                         {
-                            // Give the owner everything
-                            this.Players[this.Players.IndexOf(owner)].Money += this.TotalNetWorth(currentPlayer);
+                            MessageBox.Show("You do not have enough net worth to pay rent!", currentPlayer.PlayerName + " is bankrupt!");
+
+                            // Get the value of the unmortgaged properties so they are not double counted in value 
+                            // (mortgaged properties are not included in the total net worth)
+                            int valueOfUnmortgagedProperties = 0;
 
                             // Only bother handing over properties if there are more than 2 players - otherwise the game is almost over
                             if (this.ActivePlayers() > 2)
@@ -342,9 +345,10 @@ namespace Monopoly
                                             (int) (this.Board[property.SpotId].Price * 0.1);
 
                                         // Ask owner of current location if they would like to unmortgage received mortgaged property
-                                        DialogResult result = MessageBox.Show(
-                                            property.SpotName + " is mortgaged. Do you want to unmortgage it now? If you choose later, interest will be paid twice.",
-                                            "Receive Property - " + owner.PlayerName, MessageBoxButtons.YesNo);
+                                        string message = property.SpotName + " is mortgaged. Do you want to unmortgage it now?\n";
+                                        message += "If you choose later, interest will be paid twice.\n";
+                                        message += owner.PlayerName + "'s current balance is " + owner.Money.ToString("c0") + " and the mortgage value of the property is "+ property.Mortgage.ToString("c0") +".";
+                                        DialogResult result = MessageBox.Show(message, "Receive Property - " + owner.PlayerName, MessageBoxButtons.YesNo);
                                         if (result == DialogResult.Yes)
                                         {
                                             // Unmortgage property
@@ -352,11 +356,18 @@ namespace Monopoly
                                             this.Players[this.Players.IndexOf(owner)].Money -= this.Board[property.SpotId].Mortgage;
                                         }
                                     }
+                                    else
+                                    {
+                                        valueOfUnmortgagedProperties += property.Mortgage;
+                                    }
                                 }
                             }
 
+                            // Give the owner everything
+                            this.Players[this.Players.IndexOf(owner)].Money += (this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties);
+
                             // Have current player give up everything to pay rent
-                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= this.TotalNetWorth(currentPlayer);
+                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= (this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties);
                             this.Forfeit(currentPlayer);
                         }
                         else
@@ -1329,7 +1340,7 @@ namespace Monopoly
             temp = new Spot(4, "Income Tax", 200);
             this.Board.Add(temp);
 
-            temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 100);
+            temp = new Spot(5, "Reading Railroad", SpotType.Railroad, 200, 25);
             this.Board.Add(temp);
 
             temp = new Spot(6, "Oriental Avenue", Color.LightBlue, 100, 6, 30, 90, 270, 400, 550, 50, 50, 50);
@@ -1360,7 +1371,7 @@ namespace Monopoly
             temp = new Spot(14, "Virginia Avenue", Color.MediumVioletRed, 160, 12, 60, 180, 500, 700, 900, 80, 100, 100);
             this.Board.Add(temp);
 
-            temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 100);
+            temp = new Spot(15, "Pennsylvania Railroad", SpotType.Railroad, 200, 25);
             this.Board.Add(temp);
 
             temp = new Spot(16, "St. James Place", Color.DarkOrange, 180, 14, 70, 200, 550, 750, 950, 90, 100, 100);
@@ -1391,7 +1402,7 @@ namespace Monopoly
             temp = new Spot(24, "Illinois Avenue", Color.Red, 240, 20, 100, 300, 750, 925, 1100, 120, 150, 150);
             this.Board.Add(temp);
 
-            temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 100);
+            temp = new Spot(25, "B. & O. Railroad", SpotType.Railroad, 200, 25);
             this.Board.Add(temp);
 
             temp = new Spot(26, "Atlantic Avenue", Color.Yellow, 260, 22, 110, 330, 800, 975, 1150, 130, 150, 150);
@@ -1422,7 +1433,7 @@ namespace Monopoly
             temp = new Spot(34, "Pennsylvania Avenue", Color.Green, 320, 28, 150, 450, 1000, 1200, 1400, 160, 200, 200);
             this.Board.Add(temp);
 
-            temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 100);
+            temp = new Spot(35, "Short Line", SpotType.Railroad, 200, 25);
             this.Board.Add(temp);
 
             temp = new Spot(36, "Chance #3", SpotType.Chance);

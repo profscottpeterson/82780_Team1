@@ -135,19 +135,6 @@ namespace Monopoly
                 // Set the player name of tempPlayer
                 tempPlayer.PlayerName = name;
 
-                // If the checkbox is checked
-                if (chkAI1.Checked)
-                {
-                    // Set tempPlayer's boolean IsAi to true
-                    tempPlayer.IsAi = true;
-                }
-                else
-                {
-                    // The checkbox was not checked
-                    // Set tempPlayer's boolean IsAi to false
-                    tempPlayer.IsAi = false;
-                }
-
                 this.TempPlayers.Add(tempPlayer);
             }
 

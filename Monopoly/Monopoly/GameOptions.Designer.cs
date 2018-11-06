@@ -42,11 +42,6 @@ namespace Monopoly
         private System.Windows.Forms.TextBox txtPlayer1Name;
 
         /// <summary>
-        /// A check box for determining if the player is an ai
-        /// </summary>
-        private System.Windows.Forms.CheckBox chkAI1;
-
-        /// <summary>
         /// Player 2 option panel
         /// </summary>
         private System.Windows.Forms.Panel panelPlayer2;
@@ -142,7 +137,6 @@ namespace Monopoly
             this.panelPlayer1 = new System.Windows.Forms.Panel();
             this.lblPlayerName1 = new System.Windows.Forms.Label();
             this.txtPlayer1Name = new System.Windows.Forms.TextBox();
-            this.chkAI1 = new System.Windows.Forms.CheckBox();
             this.lblNumPlayer = new System.Windows.Forms.Label();
             this.panelPlayer2 = new System.Windows.Forms.Panel();
             this.lblPlayerName2 = new System.Windows.Forms.Label();
@@ -183,7 +177,6 @@ namespace Monopoly
             // 
             this.panelPlayer1.Controls.Add(this.lblPlayerName1);
             this.panelPlayer1.Controls.Add(this.txtPlayer1Name);
-            this.panelPlayer1.Controls.Add(this.chkAI1);
             this.panelPlayer1.Location = new System.Drawing.Point(40, 121);
             this.panelPlayer1.Name = "panelPlayer1";
             this.panelPlayer1.Size = new System.Drawing.Size(209, 58);
@@ -206,16 +199,6 @@ namespace Monopoly
             this.txtPlayer1Name.Size = new System.Drawing.Size(100, 20);
             this.txtPlayer1Name.TabIndex = 1;
             this.txtPlayer1Name.Tag = "Player 1";
-            // 
-            // chkAI1
-            // 
-            this.chkAI1.AutoSize = true;
-            this.chkAI1.Location = new System.Drawing.Point(127, 33);
-            this.chkAI1.Name = "chkAI1";
-            this.chkAI1.Size = new System.Drawing.Size(36, 17);
-            this.chkAI1.TabIndex = 2;
-            this.chkAI1.Text = "AI";
-            this.chkAI1.UseVisualStyleBackColor = true;
             // 
             // lblNumPlayer
             // 

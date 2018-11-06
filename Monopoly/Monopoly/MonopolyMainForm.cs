@@ -156,6 +156,11 @@ namespace Monopoly
             // (Should only be done once and on form load)
             if (result == DialogResult.OK)
             {
+                // Sets the forms height to 1000 pixels
+                this.Height = 1000;
+                this.Location = new Point(0,50);
+                
+
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
                 for (int i = 1; i <= 40; i++)

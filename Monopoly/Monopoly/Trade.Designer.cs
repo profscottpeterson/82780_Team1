@@ -544,12 +544,12 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Enabled = false;
             this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(289, 9);
+            this.txtMessage.Location = new System.Drawing.Point(262, 9);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(85, 80);
+            this.txtMessage.ReadOnly = true;
+            this.txtMessage.Size = new System.Drawing.Size(112, 80);
             this.txtMessage.TabIndex = 32;
             this.txtMessage.Text = "Choose  ->\r\na player to \r\ntrade with";
             this.txtMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

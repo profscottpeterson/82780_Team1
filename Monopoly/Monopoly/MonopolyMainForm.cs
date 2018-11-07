@@ -219,8 +219,24 @@ namespace Monopoly
                 for (int i = 0; i < this.game.Players.Count; i++)
                 {
                     playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
-                    this.game.Players[i].PlayerPictureBox = playerBoxes[i];
+                    
+                    if (this.game.Players[i].PlayerPictureBox.Image == null)
+                    {
+                        //playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
+                        this.game.Players[i].PlayerPictureBox = playerBoxes[i];
+                    }
+                    else
+                    {
+                       // playerBoxes.Add(this.game.Players[i].PlayerPictureBox);
+                        playerBoxes[i].BackColor = Color.Empty;
+                        playerBoxes[i].Image = this.game.Players[i].PlayerPictureBox.Image;
+                    }
+                    
                 }
+
+                // picPlayer1.Image = playerBoxes[1];
+
+
 
                 // Show a number of player pawns that corresponds to the number of players
                 if (this.game.Players.Count == 2)
@@ -252,6 +268,7 @@ namespace Monopoly
                 this.SetUpPlayerHandOptions();
                 this.lblPlayerTurn.Text = this.currentPlayer.PlayerName + "'s Turn";
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
+                this.lblGetOutOfJailLabel.Text = "You have " + this.currentPlayer.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
             }
 
             return result;
@@ -718,6 +735,7 @@ namespace Monopoly
         private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
         {
             this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
+            this.lblGetOutOfJailLabel.Text = "You have " + player.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
             lblOtherPlayersHand.Text = string.Empty;
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
@@ -1054,10 +1072,12 @@ namespace Monopoly
         {
             if (player.PlayerPictureBox.Image != null)
             {
+                this.pbxCurrentPlayerPicture.BackColor = Color.Transparent;
                 this.pbxCurrentPlayerPicture.Image = player.PlayerPictureBox.Image;
             }
             else
             {
+                this.pbxCurrentPlayerPicture.Image = null;
                 this.pbxCurrentPlayerPicture.BackColor = player.PlayerPictureBox.BackColor;
             }
         }
@@ -1079,7 +1099,6 @@ namespace Monopoly
             {
                 this.SetNextPlayer(checkedPlayer, this.flpOtherPlayerHand);
             }
-            checkedPlayer = null;
         }
 
         /// <summary>

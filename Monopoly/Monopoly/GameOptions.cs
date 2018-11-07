@@ -35,6 +35,11 @@ namespace Monopoly
         private Game game;
 
         /// <summary>
+        /// A list of pictures that holds the pictures.
+        /// </summary>
+        private Image[] playerImages = new Image[4];
+
+        /// <summary>
         /// Initializes a new instance of the GameOptions class.
         /// </summary>
         /// <param name="game">The game.</param>
@@ -237,6 +242,7 @@ namespace Monopoly
                 // Set each player id to its position in the list
                 this.TempPlayers[i].CurrentLocation = this.game.GetSpotByName("Go");
                 this.TempPlayers[i].PlayerId = i;
+                this.TempPlayers[i].PlayerPictureBox.Image = playerImages[i];
             }
 
             // Set the DialogResult to OK so it does not default to Cancel
@@ -244,6 +250,41 @@ namespace Monopoly
 
             // Close the form
             this.Close();
+        }
+
+        private void btnChooseImage1_Click(object sender, EventArgs e)
+        {
+            this.ChooseImage(0);
+        }
+
+        private void btnChooseImage2_Click(object sender, EventArgs e)
+        {
+            this.ChooseImage(1);
+        }
+
+        private void btnChooseImage3_Click(object sender, EventArgs e)
+        {
+            this.ChooseImage(2);
+        }
+
+        private void btnChooseImage4_Click(object sender, EventArgs e)
+        {
+            this.ChooseImage(3);
+        }
+
+        public void ChooseImage(int playerId)
+        {
+            // if user clicked ok on open file dialog
+            if (ofChooseGIfs.ShowDialog() == DialogResult.OK)
+            {
+                // Get the path of the specified file
+                string filepath = ofChooseGIfs.FileName;
+
+                this.playerImages[playerId] = Image.FromFile(filepath); 
+
+            }
+
+            
         }
     }
 }

@@ -100,11 +100,70 @@ namespace Monopoly
                 game.Players[target.PlayerId].GetOutOfJailFreeCards.Add(temp2);
             }
 
-            // Set the reason to Yes
-            this.reason = "Yes";
+            if (target.IsAi == true)
+            {
+                int targetMoney = 0;
+                int mainMoney = 0;
 
-            // close the form
-            this.Close();
+                if (moneyChange > 0)
+                {
+                    mainMoney += moneyChange;
+                }
+                else
+                {
+                    targetMoney += moneyChange;
+                }
+
+                foreach (Spot s in targetList)
+                {
+                    if (s.IsMortgaged == true)
+                    {
+                        targetMoney += s.Price / 2;
+                    }
+                    else
+                    {
+                        targetMoney += s.Price;
+                    }
+                    
+                }
+
+                foreach (Spot s in mainList)
+                {
+                    if (s.IsMortgaged == true)
+                    {
+                        mainMoney += s.Price / 2;
+                    }
+                    else
+                    {
+                        mainMoney += s.Price;
+                    }
+                }
+
+                if (targetMoney > mainMoney)
+                {
+                    // Set the reason to Yes
+                    this.reason = "No";
+
+                    // close the form
+                    this.Close();
+                }
+                else
+                {
+                    // Set the reason to Yes
+                    this.reason = "Yes";
+
+                    // close the form
+                    this.Close();
+                }
+            }
+            else
+            {
+                // Set the reason to Yes
+                this.reason = "Yes";
+
+                // close the form
+                this.Close();
+            }
         }
 
         private void TradeConfirm_Load(object sender, EventArgs e)

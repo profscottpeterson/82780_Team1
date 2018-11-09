@@ -3,6 +3,7 @@
 //     Company null (not copyrighted)
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace Monopoly
 {
     using System;
@@ -158,8 +159,7 @@ namespace Monopoly
             {
                 // Sets the forms height to 1000 pixels
                 this.Height = 1000;
-                this.Location = new Point(0,50);
-                
+                this.Location = new Point(0, 50);
 
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
@@ -181,7 +181,7 @@ namespace Monopoly
                     p.Click += delegate { this.PropertyClickEvent(this.game.Board[(int)p.Tag]); };
                 }
 
-                spotPicture = spotPictures;
+                this.spotPicture = spotPictures;
             }
         }
 
@@ -222,7 +222,7 @@ namespace Monopoly
                     
                     if (this.game.Players[i].PlayerPictureBox.Image == null)
                     {
-                        //playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
+                        // playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
                         this.game.Players[i].PlayerPictureBox = playerBoxes[i];
                     }
                     else
@@ -231,12 +231,9 @@ namespace Monopoly
                         playerBoxes[i].BackColor = Color.Empty;
                         playerBoxes[i].Image = this.game.Players[i].PlayerPictureBox.Image;
                     }
-                    
                 }
 
                 // picPlayer1.Image = playerBoxes[1];
-
-
 
                 // Show a number of player pawns that corresponds to the number of players
                 if (this.game.Players.Count == 2)
@@ -321,7 +318,7 @@ namespace Monopoly
 
                 totalMove = die1 + die2;
 
-                if (die1 == die2 && currentPlayer.IsActive)
+                if (die1 == die2 && this.currentPlayer.IsActive)
                 {
                     this.doubleCounter++;
                     if (this.doubleCounter >= 3)
@@ -959,7 +956,7 @@ namespace Monopoly
                     {
                         PictureBox temp = new PictureBox();
 
-                        foreach(PictureBox pic in this.spotPicture)
+                        foreach (PictureBox pic in this.spotPicture)
                         {
                             if (int.Parse(pic.Tag.ToString()) == s.SpotId)
                             {
@@ -984,23 +981,23 @@ namespace Monopoly
                             
                             if (s.SpotId > 0 && s.SpotId < 10)
                             {
-                                p.X = (p.X + 17 * i) + 2 * i;
+                                p.X = (p.X + (17 * i)) + (2 * i);
                             }
                             else if (s.SpotId > 10 && s.SpotId < 20)
                             {
                                 p.X = p.X + 101;
-                                p.Y = (p.Y + 17 * i) + 2 * i;
+                                p.Y = (p.Y + (17 * i)) + (2 * i);
                             }
                             else if (s.SpotId > 20 && s.SpotId < 30)
                             {
                                 p.X = p.X + 56;
-                                p.X = (p.X - 17 * i) - 2 * i;
+                                p.X = (p.X - (17 * i)) - (2 * i);
                                 p.Y = p.Y + 101;
                             }
                             else if (s.SpotId > 30 && s.SpotId < 40)
                             {
                                 p.Y = p.Y + 56;
-                                p.Y = (p.Y - 17 * i) - 2 * i;
+                                p.Y = (p.Y - (17 * i)) - (2 * i);
                             }
 
                             border.Location = p;
@@ -1054,9 +1051,9 @@ namespace Monopoly
                                 {
                                     this.SetNextPlayer(this.game.Players[int.Parse(r.Tag.ToString())], this.flpOtherPlayerHand);
 
-                                    checkedPlayer = this.game.Players[int.Parse(r.Tag.ToString())];
+                                    this.checkedPlayer = this.game.Players[int.Parse(r.Tag.ToString())];
                                 };
-                                flpPlayerHandOptions.Controls.Add(r);
+                                this.flpPlayerHandOptions.Controls.Add(r);
                             }
                         }
                     }
@@ -1095,9 +1092,9 @@ namespace Monopoly
 
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
 
-            if (checkedPlayer != null)
+            if (this.checkedPlayer != null)
             {
-                this.SetNextPlayer(checkedPlayer, this.flpOtherPlayerHand);
+                this.SetNextPlayer(this.checkedPlayer, this.flpOtherPlayerHand);
             }
         }
 
@@ -1114,7 +1111,6 @@ namespace Monopoly
 
             this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
             this.formBool = false;
-
 
             this.flpOtherPlayerHand.Controls.Clear();
             this.lblOtherPlayersHand.Text = string.Empty;
@@ -1193,10 +1189,10 @@ namespace Monopoly
 
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
 
-            if (currentPlayer.IsAi == true)
+            if (this.currentPlayer.IsAi == true)
             {
-                BtnRoll_Click(sender,e);
-                BtnNextTurn_Click(sender, e);
+                this.BtnRoll_Click(sender, e);
+                this.BtnNextTurn_Click(sender, e);
             }
         }
 
@@ -1305,9 +1301,14 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// button to give the player a small loan of 1000 dollars
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs</param>
         private void btnSmallLoan_Click(object sender, EventArgs e)
         {
-            currentPlayer.Money += 1000;
+            this.currentPlayer.Money += 1000;
         }
     }
 }

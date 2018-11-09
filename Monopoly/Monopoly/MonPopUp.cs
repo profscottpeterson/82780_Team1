@@ -1,27 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MonPopUp.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The MonPopUp class extends the form class
+    /// </summary>
     public partial class MonPopUp : Form
     {
+        /// <summary>
+        /// The current spot to display
+        /// </summary>
         private Spot spot;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonPopUp"/> class.
+        /// </summary>
         public MonPopUp()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonPopUp"/> class.
+        /// </summary>
+        /// <param name="s">Spot to display</param>
         public MonPopUp(Spot s)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -29,10 +49,14 @@ namespace Monopoly
             this.MinimizeBox = false;
 
             this.spot = s;
-            InitializeComponent();
-
+            this.InitializeComponent();
         }
 
+        /// <summary>
+        /// The load event for the MonPopUp class
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs</param>
         private void MonPopUp_Load(object sender, EventArgs e)
         {
             this.Text = this.spot.SpotName;
@@ -65,7 +89,7 @@ namespace Monopoly
             // If property is owned, display owner name
             if (!this.spot.IsAvailable && this.spot.Owner != null)
             {
-                this.OwnerLabel.Text = "Property's owner: " + spot.Owner.PlayerName;
+                this.OwnerLabel.Text = "Property's owner: " + this.spot.Owner.PlayerName;
             }
             else
             {
@@ -95,9 +119,13 @@ namespace Monopoly
             {
                 this.BuildingsLabel.Text = "No houses/hotels on this property.";
             }
-
         }
 
+        /// <summary>
+        /// The button to close the form
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs</param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();

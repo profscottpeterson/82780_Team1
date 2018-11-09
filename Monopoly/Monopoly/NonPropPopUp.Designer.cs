@@ -1,5 +1,14 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="NonPropPopUp.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
+    /// <summary>
+    /// The NonPropPopUp class
+    /// </summary>
     partial class NonPropPopUp
     {
         /// <summary>

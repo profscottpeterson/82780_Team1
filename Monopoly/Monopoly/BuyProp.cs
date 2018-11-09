@@ -118,14 +118,13 @@ namespace Monopoly
             {
                 if (p.Money >= spot.Price)
                 {
-                    BtnYes_Click(p, EventArgs.Empty);
+                    this.BtnYes_Click(p, EventArgs.Empty);
                 }
                 else
                 {
-                    BtnNo_Click(p, EventArgs.Empty);
+                    this.BtnNo_Click(p, EventArgs.Empty);
                 }
             }
-
         }
 
         /// <summary>

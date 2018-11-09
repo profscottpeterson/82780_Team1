@@ -1,5 +1,14 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="GetMoney.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
+    /// <summary>
+    /// The GetMoney class
+    /// </summary>
     partial class GetMoney
     {
         /// <summary>

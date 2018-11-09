@@ -1,16 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="UpgradeProperty.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Runtime.Remoting.Metadata.W3cXsd2001;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The UpgradeProperty class extends the Form class
+    /// </summary>
     public partial class UpgradeProperty : Form
     {
         /// <summary>
@@ -54,7 +63,7 @@ namespace Monopoly
         public List<Spot> eligible = new List<Spot>();
 
         /// <summary>
-        /// Creates a new instance of the UpgradeProperty class
+        /// Initializes a new instance of the <see cref="UpgradeProperty"/> class
         /// </summary>
         /// <param name="game">brings forth the current game</param>
         /// <param name="currentPlayer">brings forth the currentPlayer</param>
@@ -64,22 +73,23 @@ namespace Monopoly
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            InitializeComponent();
+            this.InitializeComponent();
             this.game = game;
             this.currentPlayer = currentPlayer;
-            //fill the list with the list of spots that the currentPlayer has
-            playerSpots = game.GetPlayersPropertyList(currentPlayer);
 
-            lblMoneyTotal.Text = currentPlayer.Money.ToString();
-            lblPlayerName.Text = currentPlayer.PlayerName;
+            // fill the list with the list of spots that the currentPlayer has
+            this.playerSpots = this.game.GetPlayersPropertyList(currentPlayer);
+
+            this.lblMoneyTotal.Text = currentPlayer.Money.ToString();
+            this.lblPlayerName.Text = currentPlayer.PlayerName;
 
             List<Spot> spotsEligible = new List<Spot>();
 
-            List<Color> colorsEligible = game.CheckIfEligibleForHouse(playerSpots);
+            List<Color> colorsEligible = this.game.CheckIfEligibleForHouse(this.playerSpots);
 
             List<Spot> mortgage = new List<Spot>();
 
-            foreach (Spot s in playerSpots)
+            foreach (Spot s in this.playerSpots)
             {
                 if (s.IsMortgaged == true)
                 {
@@ -89,8 +99,8 @@ namespace Monopoly
 
             if (colorsEligible.Count > 0 || mortgage.Count > 0)
             {
-                //Get every spot that matches a color in the list
-                foreach (Spot s in playerSpots)
+                // Get every spot that matches a color in the list
+                foreach (Spot s in this.playerSpots)
                 {
                     foreach (Color c in colorsEligible)
                     {
@@ -106,10 +116,10 @@ namespace Monopoly
                     }
                 }
 
-                //add them to the listView
-                FillListView(listViewProperties, spotsEligible);
+                // add them to the listView
+                this.FillListView(this.listViewProperties, spotsEligible);
 
-                //fill public slot
+                // fill public slot
                 this.eligible = spotsEligible;
             }
             else
@@ -117,6 +127,20 @@ namespace Monopoly
                 MessageBox.Show("No Properties Eligible For Upgrade.");
                 this.Close();
             }
+        }
+
+        /// <summary>
+        /// Reset the form buttons to not be enabled unless certain conditions are met
+        /// </summary>
+        public void reset()
+        {
+            lblPropertyName.ForeColor = Color.Black;
+            lblPropertyName.Text = "Choose another property";
+            btnAddHotel.Enabled = false;
+            btnAddHouse.Enabled = false;
+            btnAddHouseToAll.Enabled = false;
+            btnAddHotelToAll.Enabled = false;
+            btnUnmortgage.Enabled = false;
         }
 
         /// <summary>
@@ -162,7 +186,7 @@ namespace Monopoly
             foreach (ListViewItem item in listView.Items)
             {
                 // Get the spot that corresponds with the spot name
-                Spot spot = game.GetSpotByName(item.Text);
+                Spot spot = this.game.GetSpotByName(item.Text);
 
                 // If a spot was found with that name
                 if (spot != null)
@@ -193,95 +217,113 @@ namespace Monopoly
             this.Close();
         }
 
+        /// <summary>
+        /// Add a house to the selected property
+        /// </summary>
+        /// <param name="sender">button that send the click event</param>
+        /// <param name="e">event args</param>
         private void btnAddHouse_Click(object sender, EventArgs e)
         {
-            game.Board[selectedSpot.SpotId].NumberOfHouses++;
+            this.game.Board[this.selectedSpot.SpotId].NumberOfHouses++;
             this.currentPlayer.Money = this.currentPlayer.Money - this.selectedSpot.HouseCost;
-            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
 
             this.reset();
         }
 
+        /// <summary>
+        /// add a hotel to the selected property
+        /// </summary>
+        /// <param name="sender">button that send the click event</param>
+        /// <param name="e">event args</param>
         private void btnAddHotel_Click(object sender, EventArgs e)
         {
-            game.Board[selectedSpot.SpotId].HasHotel = true;
+            this.game.Board[this.selectedSpot.SpotId].HasHotel = true;
             this.currentPlayer.Money = this.currentPlayer.Money - this.selectedSpot.HotelCost;
-            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
 
             this.reset();
         }
 
+        /// <summary>
+        /// add house to all properties of a specific color
+        /// </summary>
+        /// <param name="sender">button that send the click event</param>
+        /// <param name="e">event args</param>
         private void btnAddHouseToAll_Click(object sender, EventArgs e)
         {
-            if (sameType.Count == 2)
+            if (this.sameType.Count == 2)
             {
-                game.Board[sameType[0].SpotId].NumberOfHouses++;
-                game.Board[sameType[1].SpotId].NumberOfHouses++;
-                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HouseCost*2);
+                this.game.Board[this.sameType[0].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[1].SpotId].NumberOfHouses++;
+                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HouseCost * 2);
             }
             else
             {
-                game.Board[sameType[0].SpotId].NumberOfHouses++;
-                game.Board[sameType[1].SpotId].NumberOfHouses++;
-                game.Board[sameType[2].SpotId].NumberOfHouses++;
-                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HouseCost*3);
-                
+                this.game.Board[this.sameType[0].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[1].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[2].SpotId].NumberOfHouses++;
+                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HouseCost * 3);
             }
 
-            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
             this.reset();
         }
 
+        /// <summary>
+        /// add hotel to all properties of a specific color
+        /// </summary>
+        /// <param name="sender">button that send the click event</param>
+        /// <param name="e">event args</param>
         private void btnAddHotelToAll_Click(object sender, EventArgs e)
         {
-            if (sameType.Count == 2)
+            if (this.sameType.Count == 2)
             {
-                game.Board[sameType[0].SpotId].HasHotel = true;
-                game.Board[sameType[1].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[0].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[1].SpotId].HasHotel = true;
                 this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HotelCost * 2);
             }
             else
             {
-                game.Board[sameType[0].SpotId].HasHotel = true;
-                game.Board[sameType[1].SpotId].HasHotel = true;
-                game.Board[sameType[2].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[0].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[1].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[2].SpotId].HasHotel = true;
                 this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HotelCost * 3);
             }
 
-            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
             this.reset();
         }
 
-        public void reset()
-        {
-            lblPropertyName.ForeColor = Color.Black;
-            lblPropertyName.Text = "Choose another property";
-            btnAddHotel.Enabled = false;
-            btnAddHouse.Enabled = false;
-            btnAddHouseToAll.Enabled = false;
-            btnAddHotelToAll.Enabled = false;
-            btnUnmortgage.Enabled = false;
-        }
-
+        /// <summary>
+        /// unmortgage the selected property
+        /// </summary>
+        /// <param name="sender">button that send the click event</param>
+        /// <param name="e">event args</param>
         private void btnUnmortgage_Click(object sender, EventArgs e)
         {
-            this.game.Board[selectedSpot.SpotId].IsMortgaged = false;
-            this.game.Players[currentPlayer.PlayerId].Money = this.game.Players[currentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
-            this.lblMoneyTotal.Text = game.Players[currentPlayer.PlayerId].Money.ToString();
+            this.game.Board[this.selectedSpot.SpotId].IsMortgaged = false;
+            this.game.Players[this.currentPlayer.PlayerId].Money = this.game.Players[this.currentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
 
             this.reset();           
         }
 
+        /// <summary>
+        /// When the listview is clicked
+        /// </summary>
+        /// <param name="sender">button that send the click event</param>
+        /// <param name="e">event args</param>
         private void listViewProperties_Click(object sender, EventArgs e)
         {
-            //Get the item selected in the list box right now
+            // Get the item selected in the list box right now
             int index = this.listViewProperties.SelectedIndices[0];
 
-            //Get the name stored in the listview
+            // Get the name stored in the listview
             string name = this.listViewProperties.Items[index].SubItems[0].Text;
 
-            //Search for the spot
-            foreach (Spot s in playerSpots)
+            // Search for the spot
+            foreach (Spot s in this.playerSpots)
             {
                 if (s.SpotName == name)
                 {
@@ -289,11 +331,11 @@ namespace Monopoly
                 }
             }
 
-            //List that holds the spots of the same type
+            // List that holds the spots of the same type
             this.sameType.Clear();
 
-            //Get a list of spots that share the same color
-            foreach (Spot s in playerSpots)
+            // Get a list of spots that share the same color
+            foreach (Spot s in this.playerSpots)
             {
                 if (s.Color == this.selectedSpot.Color && s.SpotName != this.selectedSpot.SpotName)
                 {
@@ -307,229 +349,231 @@ namespace Monopoly
             btnAddHouseToAll.Enabled = false;
             btnAddHotelToAll.Enabled = false;
             btnUnmortgage.Enabled = false;
-            txtMessage.Text = String.Empty;
+            txtMessage.Text = string.Empty;
 
-            //Activate buttons as they are possible
+            // Activate buttons as they are possible
             if (this.sameType.Count == 1)
             {
-                if (!selectedSpot.IsMortgaged)
+                if (!this.selectedSpot.IsMortgaged)
                 {
-                    if (!sameType[0].IsMortgaged)
+                    if (!this.sameType[0].IsMortgaged)
                     {
-                        if (selectedSpot.NumberOfHouses < sameType[0].NumberOfHouses)
+                        if (this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses)
                         {
-                            if (selectedSpot.HouseCost <= currentPlayer.Money)
+                            if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
                             {
-                                btnAddHouse.Enabled = true;
+                                this.btnAddHouse.Enabled = true;
                             }
                             else
                             {
-                                txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
+                                this.txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
                             }
                         }
-                        else if (selectedSpot.NumberOfHouses == sameType[0].NumberOfHouses)
+                        else if (this.selectedSpot.NumberOfHouses == this.sameType[0].NumberOfHouses)
                         {
-                            if (selectedSpot.NumberOfHouses == 4 && sameType[0].NumberOfHouses == 4)
+                            if (this.selectedSpot.NumberOfHouses == 4 && this.sameType[0].NumberOfHouses == 4)
                             {
-                                if (selectedSpot.HasHotel)
+                                if (this.selectedSpot.HasHotel)
                                 {
-
                                 }
-                                else if (sameType[0].HasHotel)
+                                else if (this.sameType[0].HasHotel)
                                 {
-                                    if (currentPlayer.Money >= selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        btnAddHotel.Enabled = true;
+                                        this.btnAddHotel.Enabled = true;
                                     }
                                     else
                                     {
-                                        txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                        this.txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
                                     }
                                 }
                                 else
                                 {
-                                    if (currentPlayer.Money >= selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        btnAddHotel.Enabled = true;
+                                        this.btnAddHotel.Enabled = true;
                                     }
                                     else
                                     {
-                                        txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                        this.txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
                                     }
-                                    if (currentPlayer.Money >= (selectedSpot.HotelCost * 2))
+
+                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 2))
                                     {
-                                        btnAddHotelToAll.Enabled = true;
+                                        this.btnAddHotelToAll.Enabled = true;
                                     }
                                     else
                                     {
-                                        txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
+                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
                                     }
                                 }
                             }
                             else
                             {
-                                if (selectedSpot.HouseCost <= currentPlayer.Money)
+                                if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
                                 {
-                                    btnAddHouse.Enabled = true;
+                                    this.btnAddHouse.Enabled = true;
                                 }
                                 else
                                 {
-                                    txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
+                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
                                 }
-                                if (currentPlayer.Money >= (selectedSpot.HouseCost * 2))
+
+                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 2))
                                 {
-                                    btnAddHouseToAll.Enabled = true;
+                                    this.btnAddHouseToAll.Enabled = true;
                                 }
                                 else
                                 {
-                                    txtMessage.Text = txtMessage.Text + " Not enough money to put a house on all properties of this color.";
+                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on all properties of this color.";
                                 }
                             }
                         }
                         else
                         {
-                            txtMessage.Text = txtMessage.Text + " This property has either more houses or a hotel than the other properties of the same color.";
+                            this.txtMessage.Text = this.txtMessage.Text + " This property has either more houses or a hotel than the other properties of the same color.";
                         }
                     }
                 }
                 else
                 {
-                    if (currentPlayer.Money >= (selectedSpot.Mortgage * 1.1))
+                    if (this.currentPlayer.Money >= (this.selectedSpot.Mortgage * 1.1))
                     {
-                        btnUnmortgage.Enabled = true;
+                        this.btnUnmortgage.Enabled = true;
                     }
                     else
                     {
-                        txtMessage.Text = txtMessage.Text + "You do not have enough money to un-mortgage this property";
+                        this.txtMessage.Text = this.txtMessage.Text + "You do not have enough money to un-mortgage this property";
                     }
                 }
             }
             else if (this.sameType.Count == 2)
             {
-                if (!selectedSpot.IsMortgaged)
+                if (!this.selectedSpot.IsMortgaged)
                 {
-                    if (!sameType[0].IsMortgaged && !sameType[1].IsMortgaged)
+                    if (!this.sameType[0].IsMortgaged && !this.sameType[1].IsMortgaged)
                     {
-                        if ((selectedSpot.NumberOfHouses < sameType[0].NumberOfHouses) || (selectedSpot.NumberOfHouses < sameType[1].NumberOfHouses))
+                        if ((this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses) || (this.selectedSpot.NumberOfHouses < this.sameType[1].NumberOfHouses))
                         {
-                            if (currentPlayer.Money >= selectedSpot.HouseCost)
+                            if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
                             {
-                                btnAddHouse.Enabled = true;
+                                this.btnAddHouse.Enabled = true;
                             }
                             else
                             {
-                                txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
+                                this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
                             }
                         }
-                        else if ((selectedSpot.NumberOfHouses == sameType[0].NumberOfHouses) && (selectedSpot.NumberOfHouses == sameType[1].NumberOfHouses))
+                        else if ((this.selectedSpot.NumberOfHouses == this.sameType[0].NumberOfHouses) && (this.selectedSpot.NumberOfHouses == this.sameType[1].NumberOfHouses))
                         {
-                            if (selectedSpot.NumberOfHouses == 4 && sameType[0].NumberOfHouses == 4 && sameType[1].NumberOfHouses == 4)
+                            if (this.selectedSpot.NumberOfHouses == 4 && this.sameType[0].NumberOfHouses == 4 && this.sameType[1].NumberOfHouses == 4)
                             {
-                                if (selectedSpot.HasHotel)
+                                if (this.selectedSpot.HasHotel)
                                 {
-
                                 }
-                                else if (sameType[0].HasHotel || sameType[1].HasHotel)
+                                else if (this.sameType[0].HasHotel || this.sameType[1].HasHotel)
                                 {
-                                    if (currentPlayer.Money >= selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        btnAddHotel.Enabled = true;
+                                        this.btnAddHotel.Enabled = true;
                                     }
                                     else
                                     {
-                                        txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on this property.";
                                     }
                                 }
                                 else
                                 {
-                                    if (currentPlayer.Money >= selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        btnAddHotel.Enabled = true;
+                                        this.btnAddHotel.Enabled = true;
                                     }
                                     else
                                     {
-                                        txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on this property.";
                                     }
-                                    if (currentPlayer.Money >= (selectedSpot.HotelCost * 3))
+
+                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 3))
                                     {
-                                        btnAddHotelToAll.Enabled = true;
-                                        txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
+                                        this.btnAddHotelToAll.Enabled = true;
+                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
                                     }
                                 }
                             }
                             else
                             {
-                                if (currentPlayer.Money >= selectedSpot.HouseCost)
+                                if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
                                 {
-                                    btnAddHouse.Enabled = true;
+                                    this.btnAddHouse.Enabled = true;
                                 }
                                 else
                                 {
-                                    txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
+                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
                                 }
-                                if (currentPlayer.Money >= (selectedSpot.HouseCost * 3))
+
+                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 3))
                                 {
-                                    btnAddHouseToAll.Enabled = true;
+                                    this.btnAddHouseToAll.Enabled = true;
                                 }
                                 else
                                 {
-                                    txtMessage.Text = txtMessage.Text + " Not enough money to put a house on all of the properties of this color.";
+                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on all of the properties of this color.";
                                 }
                             }
                         }
                         else
                         {
-                            txtMessage.Text = "This property has either more houses or a hotel than the other properties of the same color.";
+                            this.txtMessage.Text = "This property has either more houses or a hotel than the other properties of the same color.";
                         }
                     }
                     else
                     {
-                        txtMessage.Text = "Other properties of this color are mortgaged - nothing can be upgraded on any of these properties.";
+                        this.txtMessage.Text = "Other properties of this color are mortgaged - nothing can be upgraded on any of these properties.";
                     }
                 }
                 else
                 {
-                    if (currentPlayer.Money >= (int)(selectedSpot.Mortgage * 1.1))
+                    if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
                     {
-                        btnUnmortgage.Enabled = true;
+                        this.btnUnmortgage.Enabled = true;
                     }
                     else
                     {
-                        txtMessage.Text = txtMessage.Text + "You do not have enough money to un-mortgage this property";
+                        this.txtMessage.Text = this.txtMessage.Text + "You do not have enough money to un-mortgage this property";
                     }
                 }
             }
-            else if (selectedSpot.IsMortgaged)
+            else if (this.selectedSpot.IsMortgaged)
             {
-                if (currentPlayer.Money >= (int)(selectedSpot.Mortgage * 1.1))
+                if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
                 {
-                    btnUnmortgage.Enabled = true;
+                    this.btnUnmortgage.Enabled = true;
                 }
                 else
                 {
-                    txtMessage.Text = "You do not have enough money to un-mortgage this property";
+                    this.txtMessage.Text = "You do not have enough money to un-mortgage this property";
                 }
-
             }
 
-            //Add the selected spot to the list of spots for that color
-            this.sameType.Add(selectedSpot);
+            // Add the selected spot to the list of spots for that color
+            this.sameType.Add(this.selectedSpot);
 
-            //Update text
-            this.lblPropertyName.Text = selectedSpot.SpotName;
-            this.lblPropertyName.ForeColor = selectedSpot.Color;
+            // Update text
+            this.lblPropertyName.Text = this.selectedSpot.SpotName;
+            this.lblPropertyName.ForeColor = this.selectedSpot.Color;
 
             if (this.lblPropertyName.ForeColor == Color.Yellow)
             {
                 this.lblPropertyName.ForeColor = Color.YellowGreen;
             }
+
             if (this.lblPropertyName.ForeColor == Color.LightBlue)
             {
                 this.lblPropertyName.ForeColor = Color.Blue;
             }
 
-            //add them to the listView
-            //FillListView(listViewProperties, eligible);
+            // add them to the listView
+            // FillListView(listViewProperties, eligible);
         }
     }
 }

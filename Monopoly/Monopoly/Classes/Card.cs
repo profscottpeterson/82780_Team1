@@ -8,10 +8,10 @@ namespace Monopoly
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using System.Drawing;
 
     /// <summary>
     /// The class for a card
@@ -25,6 +25,7 @@ namespace Monopoly
         /// <param name="id">The card's id</param>
         /// <param name="description">What the card says</param>
         /// <param name="type">Is the card a Chance or Community Chest Card</param>
+        /// <param name="cardImage">Is the image on the card</param>
         public Card(int id, string description, CardType type, Image cardImage)
         {
             this.Id = id;
@@ -48,6 +49,7 @@ namespace Monopoly
         /// <param name="amount">Amount of money to be collected or paid</param>
         /// <param name="bank">A boolean indicating whether the bank or other players are involved in the flow of money</param>
         /// <param name="collect">A boolean indicating whether the money is being collected or paid</param>
+        /// <param name="cardImage">The image for the corresponding card</param>
         public Card(int id, string description, CardType type, int amount, bool bank, bool collect, Image cardImage)
         {
             this.Id = id;
@@ -69,6 +71,7 @@ namespace Monopoly
         /// <param name="description">What the card says</param>
         /// <param name="type">Is the card a Chance or Community Chest Card</param>
         /// <param name="newLocation">The location on the board the card says to move to (use null if not known)</param>
+        /// <param name="cardImage">The image for the corresponding card</param>
         public Card(int id, string description, CardType type, Spot newLocation, Image cardImage)
         {
             this.Id = id;

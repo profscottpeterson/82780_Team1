@@ -1,6 +1,15 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="UpgradeProperty.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
-    partial class UpgradeProperty
+    /// <summary>
+    /// The UpgradeProperty class
+    /// </summary>
+    public partial class UpgradeProperty
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +26,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -237,20 +247,79 @@
 
         #endregion
 
+        /// <summary>
+        /// Button to close the form.
+        /// </summary>
         private System.Windows.Forms.Button btnClose;
+
+        /// <summary>
+        /// List of properties
+        /// </summary>
         private System.Windows.Forms.ListView listViewProperties;
+
+        /// <summary>
+        /// label for the eligible property
+        /// </summary>
         private System.Windows.Forms.Label lblPropEligible;
+
+        /// <summary>
+        /// button to add a house to every property of a certain color
+        /// </summary>
         private System.Windows.Forms.Button btnAddHouseToAll;
+
+        /// <summary>
+        /// button to add a house to a property
+        /// </summary>
         private System.Windows.Forms.Button btnAddHouse;
+
+        /// <summary>
+        /// button to add a hotel to a property
+        /// </summary>
         private System.Windows.Forms.Button btnAddHotel;
+
+        /// <summary>
+        /// button to add a hotel to every property of a certain color
+        /// </summary>
         private System.Windows.Forms.Button btnAddHotelToAll;
+
+        /// <summary>
+        /// Error messages
+        /// </summary>
         private System.Windows.Forms.TextBox txtMessage;
+
+        /// <summary>
+        /// player's money
+        /// </summary>
         private System.Windows.Forms.Label lblMoney;
+
+        /// <summary>
+        /// Player's total money
+        /// </summary>
         private System.Windows.Forms.Label lblMoneyTotal;
+
+        /// <summary>
+        /// Player's Name
+        /// </summary>
         private System.Windows.Forms.Label lblPlayerName;
+
+        /// <summary>
+        /// Player's info
+        /// </summary>
         private System.Windows.Forms.Label lblPlayerText;
+
+        /// <summary>
+        /// Property name
+        /// </summary>
         private System.Windows.Forms.Label lblPropertyName;
+
+        /// <summary>
+        /// Property info
+        /// </summary>
         private System.Windows.Forms.Label lblPropertyDesc;
+
+        /// <summary>
+        /// button to unmortgage a property
+        /// </summary>
         private System.Windows.Forms.Button btnUnmortgage;
     }
 }

@@ -441,11 +441,34 @@ namespace Monopoly
 
         #endregion
 
+        /// <summary>
+        /// Monopoly Label
+        /// </summary>
         private System.Windows.Forms.Label lblMonopoly;
+
+        /// <summary>
+        /// Button to choose the image for the first player
+        /// </summary>
         private System.Windows.Forms.Button btnChooseImage1;
+
+        /// <summary>
+        /// Button to choose the image for the second player
+        /// </summary>
         private System.Windows.Forms.Button btnChooseImage2;
+
+        /// <summary>
+        /// Button to choose the image for the third player
+        /// </summary>
         private System.Windows.Forms.Button btnChooseImage3;
+
+        /// <summary>
+        /// Button to choose the image for the fourth player
+        /// </summary>
         private System.Windows.Forms.Button btnChooseImage4;
+
+        /// <summary>
+        /// Dialog box to allow the user to select an image for their player
+        /// </summary>
         private System.Windows.Forms.OpenFileDialog ofChooseGIfs;
     }
 }

@@ -60,6 +60,22 @@ namespace Monopoly
         public List<Player> TempPlayers { get; set; }
 
         /// <summary>
+        /// The method to choose an image for a player
+        /// </summary>
+        /// <param name="playerId">The player to set the picture of</param>
+        public void ChooseImage(int playerId)
+        {
+            // if user clicked ok on open file dialog
+            if (ofChooseGIfs.ShowDialog() == DialogResult.OK)
+            {
+                // Get the path of the specified file
+                string filepath = ofChooseGIfs.FileName;
+
+                this.playerImages[playerId] = Image.FromFile(filepath);
+            }
+        }
+
+        /// <summary>
         /// The method for whenever a different player is selected
         /// </summary>
         /// <param name="sender">The object</param>
@@ -143,7 +159,7 @@ namespace Monopoly
                 this.TempPlayers.Add(tempPlayer);
             }
 
-            if (panelPlayer2.Visible)
+            if (this.panelPlayer2.Visible)
             {
                 tempPlayer = new Player();
                 string name = this.txtPlayerName2.Text;
@@ -159,7 +175,7 @@ namespace Monopoly
                 tempPlayer.PlayerName = name;
 
                 // If the checkbox is checked
-                if (chkAI2.Checked)
+                if (this.chkAI2.Checked)
                 {
                     // Set tempPlayer's boolean IsAi to true
                     tempPlayer.IsAi = true;
@@ -174,10 +190,10 @@ namespace Monopoly
                 this.TempPlayers.Add(tempPlayer);
             }
 
-            if (panelPlayer3.Visible)
+            if (this.panelPlayer3.Visible)
             {
                 tempPlayer = new Player();
-                string name = txtPlayerName3.Text;
+                string name = this.txtPlayerName3.Text;
 
                 // If the textbox was empty
                 if (name == string.Empty)
@@ -190,7 +206,7 @@ namespace Monopoly
                 tempPlayer.PlayerName = name;
 
                 // If the checkbox is checked
-                if (chkAI3.Checked)
+                if (this.chkAI3.Checked)
                 {
                     // Set tempPlayer's boolean IsAi to true
                     tempPlayer.IsAi = true;
@@ -205,10 +221,10 @@ namespace Monopoly
                 this.TempPlayers.Add(tempPlayer);
             }
 
-            if (panelPlayer4.Visible)
+            if (this.panelPlayer4.Visible)
             {
                 tempPlayer = new Player();
-                string name = txtPlayerName4.Text;
+                string name = this.txtPlayerName4.Text;
 
                 // If the textbox was empty
                 if (name == string.Empty)
@@ -221,7 +237,7 @@ namespace Monopoly
                 tempPlayer.PlayerName = name;
 
                 // If the checkbox is checked
-                if (chkAI4.Checked)
+                if (this.chkAI4.Checked)
                 {
                     // Set tempPlayer's boolean IsAi to true
                     tempPlayer.IsAi = true;
@@ -242,7 +258,7 @@ namespace Monopoly
                 // Set each player id to its position in the list
                 this.TempPlayers[i].CurrentLocation = this.game.GetSpotByName("Go");
                 this.TempPlayers[i].PlayerId = i;
-                this.TempPlayers[i].PlayerPictureBox.Image = playerImages[i];
+                this.TempPlayers[i].PlayerPictureBox.Image = this.playerImages[i];
             }
 
             // Set the DialogResult to OK so it does not default to Cancel
@@ -252,39 +268,44 @@ namespace Monopoly
             this.Close();
         }
 
+        /// <summary>
+        /// The image choosing button for the first player
+        /// </summary>
+        /// <param name="sender">The sender control</param>
+        /// <param name="e">The eventArgs for the click event</param>
         private void btnChooseImage1_Click(object sender, EventArgs e)
         {
             this.ChooseImage(0);
         }
 
+        /// <summary>
+        /// The image choosing button for the second player
+        /// </summary>
+        /// <param name="sender">The sender control</param>
+        /// <param name="e">The eventArgs for the click event</param>
         private void btnChooseImage2_Click(object sender, EventArgs e)
         {
             this.ChooseImage(1);
         }
 
+        /// <summary>
+        /// The image choosing button for the third player
+        /// </summary>
+        /// <param name="sender">The sender control</param>
+        /// <param name="e">The eventArgs for the click event</param>
         private void btnChooseImage3_Click(object sender, EventArgs e)
         {
             this.ChooseImage(2);
         }
 
+        /// <summary>
+        /// The image choosing button for the fourth player
+        /// </summary>
+        /// <param name="sender">The sender control</param>
+        /// <param name="e">The eventArgs for the click event</param>
         private void btnChooseImage4_Click(object sender, EventArgs e)
         {
             this.ChooseImage(3);
-        }
-
-        public void ChooseImage(int playerId)
-        {
-            // if user clicked ok on open file dialog
-            if (ofChooseGIfs.ShowDialog() == DialogResult.OK)
-            {
-                // Get the path of the specified file
-                string filepath = ofChooseGIfs.FileName;
-
-                this.playerImages[playerId] = Image.FromFile(filepath); 
-
-            }
-
-            
         }
     }
 }

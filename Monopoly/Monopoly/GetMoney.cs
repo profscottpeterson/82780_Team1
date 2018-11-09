@@ -237,7 +237,7 @@ namespace Monopoly
 
             int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
 
-            int newDebt = remainingDebt - int.Parse(lblMoneyGainFromHouse.Text);
+            int newDebt = remainingDebt - int.Parse(this.lblMoneyGainFromHouse.Text);
 
             if (newDebt < 0)
             {
@@ -257,15 +257,15 @@ namespace Monopoly
         private void BtnSellHotel_Click(object sender, EventArgs e)
         {
             this.game.Board[this.currentSpot.SpotId].HasHotel = false;
-            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(lblMoneyGainFromHotel.Text);
+            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(this.lblMoneyGainFromHotel.Text);
             this.currentSpot = this.game.Board[this.currentSpot.SpotId];
             this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
 
-            lblMoney.Text = this.currentPlayer.Money.ToString();
+            this.lblMoney.Text = this.currentPlayer.Money.ToString();
 
-            int remainingDebt = int.Parse(lblDebtCurrent.Text);
+            int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
 
-            int newDebt = remainingDebt - int.Parse(lblMoneyGainFromHotel.Text);
+            int newDebt = remainingDebt - int.Parse(this.lblMoneyGainFromHotel.Text);
 
             if (newDebt < 0)
             {
@@ -291,7 +291,7 @@ namespace Monopoly
 
             this.lblMoney.Text = this.currentPlayer.Money.ToString();
 
-            int remainingDebt = int.Parse(lblDebtCurrent.Text);
+            int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
 
             int newDebt = remainingDebt - this.currentSpot.Mortgage;
 
@@ -324,16 +324,16 @@ namespace Monopoly
         private void ListViewProperties_Click(object sender, EventArgs e)
         {
             // check if selected item isn't null
-            if (listViewProperties.SelectedItems[0] != null)
+            if (this.listViewProperties.SelectedItems[0] != null)
             {
-                txtErrors.Text = string.Empty;
+                this.txtErrors.Text = string.Empty;
 
                 this.Reset();
 
                 // find the current spot
                 foreach (Spot s in this.playerSpots)
                 {
-                    if (s.SpotName == listViewProperties.SelectedItems[0].Text)
+                    if (s.SpotName == this.listViewProperties.SelectedItems[0].Text)
                     {
                         this.currentSpot = s;
                     }
@@ -377,12 +377,12 @@ namespace Monopoly
                                 {
                                     if (this.currentSpot.NumberOfHouses > 0)
                                     {
-                                        btnSellHouse.Enabled = true;
+                                        this.btnSellHouse.Enabled = true;
                                     }
 
                                     if (this.currentSpot.NumberOfHouses == 0 && sameType[0].NumberOfHouses == 0)
                                     {
-                                        btnMortage.Enabled = true;
+                                        this.btnMortage.Enabled = true;
                                     }
                                 }
                             }
@@ -391,11 +391,11 @@ namespace Monopoly
                                 // if they have more houses than the other property of the same color
                                 if (this.currentSpot.NumberOfHouses > sameType[0].NumberOfHouses)
                                 {
-                                    btnSellHouse.Enabled = true;
+                                    this.btnSellHouse.Enabled = true;
                                 }
                                 else
                                 {
-                                    txtErrors.Text = "Another property of the same color has more houses than this one.";
+                                    this.txtErrors.Text = "Another property of the same color has more houses than this one.";
                                 }
                             }
                         }
@@ -413,12 +413,12 @@ namespace Monopoly
                                 {
                                     if (this.currentSpot.NumberOfHouses > 0)
                                     {
-                                        btnSellHouse.Enabled = true;
+                                        this.btnSellHouse.Enabled = true;
                                     }
 
                                     if (this.currentSpot.NumberOfHouses == 0 && sameType[0].NumberOfHouses == 0 && sameType[1].NumberOfHouses == 0)
                                     {
-                                        btnMortage.Enabled = true;
+                                        this.btnMortage.Enabled = true;
                                     }
                                 }
                             }
@@ -427,11 +427,11 @@ namespace Monopoly
                                 // if they have more houses than the other property of the same color
                                 if (this.currentSpot.NumberOfHouses > sameType[0].NumberOfHouses || this.currentSpot.NumberOfHouses > sameType[1].NumberOfHouses)
                                 {
-                                    btnSellHouse.Enabled = true;
+                                    this.btnSellHouse.Enabled = true;
                                 }
                                 else
                                 {
-                                    txtErrors.Text = "Another property of the same color has more houses than this one.";
+                                    this.txtErrors.Text = "Another property of the same color has more houses than this one.";
                                 }
                             }
                         }
@@ -439,20 +439,20 @@ namespace Monopoly
                         {
                             if (!this.currentSpot.IsMortgaged)
                             {
-                                btnMortage.Enabled = true;
+                                this.btnMortage.Enabled = true;
                             }
                         }
                     }
                     else
                     {
-                        btnMortage.Enabled = false;
+                        this.btnMortage.Enabled = false;
                     }
                 }
 
-                lblNumHouse.Text = this.currentSpot.NumberOfHouses.ToString();
-                lblMoneyGainFromHotel.Text = "+" + (this.currentSpot.HotelCost / 2).ToString();
-                lblMoneyGainFromHouse.Text = "+" + (this.currentSpot.HouseCost / 2).ToString();
-                lblMortgageGain.Text = this.currentSpot.Mortgage.ToString();
+                this.lblNumHouse.Text = this.currentSpot.NumberOfHouses.ToString();
+                this.lblMoneyGainFromHotel.Text = "+" + (this.currentSpot.HotelCost / 2).ToString();
+                this.lblMoneyGainFromHouse.Text = "+" + (this.currentSpot.HouseCost / 2).ToString();
+                this.lblMortgageGain.Text = this.currentSpot.Mortgage.ToString();
 
                 // Put on the property name
                 this.lblPropertyName.Text = this.currentSpot.SpotName;

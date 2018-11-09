@@ -1,30 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MiscCardForm.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Timers;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The MiscCardForm extends the form class
+    /// </summary>
     public partial class MiscCardForm : Form
     {
         // private Card _card;
 
+        /// <summary>
+        /// The current player that is receiving the action of the misc card
+        /// </summary>
         private Player p;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MiscCardForm"/> class.
+        /// </summary>
         public MiscCardForm()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MiscCardForm"/> class.
+        /// </summary>
+        /// <param name="title">The title of the card</param>
+        /// <param name="card">The name of the card</param>
+        /// <param name="p">The player who is recieving the effect of the card</param>
         public MiscCardForm(string title, Card card, Player p)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -32,7 +53,7 @@ namespace Monopoly
             this.MinimizeBox = false;
             this.p = p;
 
-            InitializeComponent();
+            this.InitializeComponent();
             this.Text = title;
             cardTextLabel.Text = card.Description;
             cardPictureBox.Image = card.CardImage;
@@ -86,20 +107,33 @@ namespace Monopoly
                     this.DescriptionLabel.Text = "If you pass Go, collect $200.";
                 }
             }
-
         }
 
+        /// <summary>
+        /// Gets or sets the properties of picture
+        /// </summary>
         public PictureBox picture { get; set; }
 
+        /// <summary>
+        /// The form load event for the MiscCardForm
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArguments e</param>
         private void MiscCardForm_Load(object sender, EventArgs e)
         {
-            picture = new PictureBox();
-            if (p.IsAi == true)
+            this.picture = new PictureBox();
+
+            if (this.p.IsAi == true)
             {
-                BtnClose_Click(p, EventArgs.Empty);
+                this.BtnClose_Click(this.p, EventArgs.Empty);
             }
         }
 
+        /// <summary>
+        /// btnClose click event
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs for the click event</param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();

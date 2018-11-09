@@ -1,5 +1,14 @@
-﻿namespace Monopoly
+﻿//-----------------------------------------------------------------------
+// <copyright file="MiscCardForm.Designer.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace Monopoly
 {
+    /// <summary>
+    /// The MiscCardForm class
+    /// </summary>
     partial class MiscCardForm
     {
         /// <summary>

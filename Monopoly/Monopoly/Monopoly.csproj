@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="BuyProp.Designer.cs">
       <DependentUpon>BuyProp.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Classes\Card.cs" />
     <Compile Include="Classes\Game.cs" />
@@ -61,36 +62,42 @@
     </Compile>
     <Compile Include="GameOptions.Designer.cs">
       <DependentUpon>GameOptions.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="GetMoney.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GetMoney.Designer.cs">
       <DependentUpon>GetMoney.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="MiscCardForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MiscCardForm.Designer.cs">
       <DependentUpon>MiscCardForm.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="MonopolyMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MonopolyMainForm.Designer.cs">
       <DependentUpon>MonopolyMainForm.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="MonPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MonPopUp.Designer.cs">
       <DependentUpon>MonPopUp.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="NonPropPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NonPropPopUp.Designer.cs">
       <DependentUpon>NonPropPopUp.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,18 +106,21 @@
     </Compile>
     <Compile Include="Trade.Designer.cs">
       <DependentUpon>Trade.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="TradeConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TradeConfirm.Designer.cs">
       <DependentUpon>TradeConfirm.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="UpgradeProperty.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UpgradeProperty.Designer.cs">
       <DependentUpon>UpgradeProperty.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <EmbeddedResource Include="BuyProp.resx">
       <DependentUpon>BuyProp.cs</DependentUpon>

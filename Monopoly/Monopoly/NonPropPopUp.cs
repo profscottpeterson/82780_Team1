@@ -1,20 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="NonPropPopUp.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The NonPropPopUp class extends the Form class
+    /// </summary>
     public partial class NonPropPopUp : Form
     {
+        /// <summary>
+        /// The spot to display
+        /// </summary>
         private Spot spot;
+
+        /// <summary>
+        /// The current instance of the game class
+        /// </summary>
         private Game game;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NonPropPopUp"/> class.
+        /// </summary>
+        /// <param name="spot">The spot to be displayed</param>
+        /// <param name="game">instance of the game class</param>
         public NonPropPopUp(Spot spot, Game game)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -23,15 +44,21 @@ namespace Monopoly
 
             this.spot = spot;
             this.game = game;
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
+        /// <summary>
+        /// The load event for the NonPropPopUp class
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs</param>
         private void NonPropPopUp_Load(object sender, EventArgs e)
         {
             this.Text = this.spot.SpotName;
             this.NameLabel.Text = this.spot.SpotName;
             this.PriceLabel.Text = "Price: " + this.spot.Price.ToString("C0");
-            //AmtOwedLabel.Text = "Rent: " + spot.Rent.ToString("C0");
+
+            // AmtOwedLabel.Text = "Rent: " + spot.Rent.ToString("C0");
             this.MortgageLabel.Text = "Mortgage: " + this.spot.Mortgage.ToString("C0");
 
             if (this.spot.Type == SpotType.Utility)
@@ -58,7 +85,7 @@ namespace Monopoly
             }
             else
             {
-                string text = "";
+                string text = string.Empty;
                 text += "Rent: " + this.spot.Rent.ToString("C0") + '\n';
                 text += "If 2 are owned: " + (this.spot.Rent * 2).ToString("C0") + '\n';
                 text += "If 3 are owned: " + (this.spot.Rent * 4).ToString("C0") + '\n';
@@ -97,6 +124,11 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// The button to close the form
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs</param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();

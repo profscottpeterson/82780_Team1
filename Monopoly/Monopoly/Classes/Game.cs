@@ -22,6 +22,8 @@ namespace Monopoly
         /// <summary>
         /// Initializes a new instance of the Game class.
         /// </summary>
+        /// <param name="chanceImages">The imagelist for the change cards</param>
+        /// <param name="communityChestImages">The imagelist for the community cards</param>
         public Game(ImageList chanceImages, ImageList communityChestImages)
         {
             // Construct all the properties  
@@ -293,7 +295,7 @@ namespace Monopoly
                             rent = this.FindRentOfUtility(currentLocation, currentPlayer);
                         }
 
-                        //if the current location is a property with houses
+                        // if the current location is a property with houses
                         if (currentLocation.Type == SpotType.Property)
                         {
                             if (currentLocation.HasHotel)
@@ -342,12 +344,12 @@ namespace Monopoly
                                     {
                                         // Pay interest on mortgaged property
                                         this.Players[this.Players.IndexOf(owner)].Money -=
-                                            (int) (this.Board[property.SpotId].Price * 0.1);
+                                            (int)(this.Board[property.SpotId].Price * 0.1);
 
                                         // Ask owner of current location if they would like to unmortgage received mortgaged property
                                         string message = property.SpotName + " is mortgaged. Do you want to unmortgage it now?\n";
                                         message += "If you choose later, interest will be paid twice.\n";
-                                        message += owner.PlayerName + "'s current balance is " + owner.Money.ToString("c0") + " and the mortgage value of the property is "+ property.Mortgage.ToString("c0") +".";
+                                        message += owner.PlayerName + "'s current balance is " + owner.Money.ToString("c0") + " and the mortgage value of the property is " + property.Mortgage.ToString("c0") + ".";
                                         DialogResult result = MessageBox.Show(message, "Receive Property - " + owner.PlayerName, MessageBoxButtons.YesNo);
                                         if (result == DialogResult.Yes)
                                         {
@@ -364,10 +366,10 @@ namespace Monopoly
                             }
 
                             // Give the owner everything
-                            this.Players[this.Players.IndexOf(owner)].Money += (this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties);
+                            this.Players[this.Players.IndexOf(owner)].Money += this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties;
 
                             // Have current player give up everything to pay rent
-                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= (this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties);
+                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties;
                             this.Forfeit(currentPlayer);
                         }
                         else
@@ -947,6 +949,7 @@ namespace Monopoly
         /// given utility owns and the number on the dice rolled (random number generated)
         /// </summary>
         /// <param name="utility">The utility to check the rent of</param>
+        /// <param name="p">Player to pay the calculated rent</param>
         /// <returns>Returns an integer value</returns>
         public int FindRentOfUtility(Spot utility, Player p)
         {
@@ -1027,9 +1030,9 @@ namespace Monopoly
             {
                 // Increase the index by one and mod it by the number of players
                 index = (index + 1) % this.Players.Count;
-            } while (!this.Players[index].IsActive);
+            }
+            while (!this.Players[index].IsActive);
             
-
             // Return the player with the calculated index
             return this.Players[index];
         }
@@ -1452,6 +1455,8 @@ namespace Monopoly
         /// <summary>
         /// The method used to create the chance and community chest cards
         /// </summary>
+        /// <param name="chanceImages">ImageList of change cards</param>
+        /// <param name="communityChestImages">ImageList of community chest cards</param>
         public void CreateCards(ImageList chanceImages, ImageList communityChestImages)
         {
             // Chance Cards

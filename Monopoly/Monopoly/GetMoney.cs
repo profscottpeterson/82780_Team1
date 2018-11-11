@@ -130,11 +130,14 @@ namespace Monopoly
             if (listView.Columns.Count == 0)
             {
                 listView.Columns.Add("Property Name", 100);
-                listView.Columns.Add("Mortgage", 75);
+                listView.Columns.Add("Mortgage", 60);
+                listView.Columns.Add("Is Mortgaged", 75);
+                listView.Columns.Add("Houses", 50);
+                listView.Columns.Add("Hotel", 50);
             }
 
             // Array to hold to contents of each row of the list view
-            string[] rowContents = new string[2];
+            string[] rowContents = new string[5];
 
             // Loop through each spot in list of spots given
             foreach (Spot s in spots)
@@ -144,6 +147,15 @@ namespace Monopoly
 
                 // Put the price in the second column
                 rowContents[1] = s.Mortgage.ToString("c0");
+
+                // Put whether the property is mortgaged in the third column
+                rowContents[2] = s.IsMortgaged.ToString();
+
+                // Put the number of houses a property has in the fourth column
+                rowContents[3] = s.NumberOfHouses.ToString();
+
+                // Put whether a property has a hotel has in the fifth column
+                rowContents[4] = s.HasHotel.ToString();
 
                 // Create a list view item that is a row made up of the spot name and price
                 var row = new ListViewItem(rowContents);
@@ -229,7 +241,7 @@ namespace Monopoly
         private void BtnSellHouse_Click(object sender, EventArgs e)
         {
             this.game.Board[this.currentSpot.SpotId].NumberOfHouses -= 1;
-            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(this.lblMoneyGainFromHouse.Text);
+            this.game.Players[this.currentPlayer.PlayerId].Money += this.currentSpot.HouseCost / 2;
             this.currentSpot = this.game.Board[this.currentSpot.SpotId];
             this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
 
@@ -237,12 +249,14 @@ namespace Monopoly
 
             int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
 
-            int newDebt = remainingDebt - int.Parse(this.lblMoneyGainFromHouse.Text);
+            int newDebt = remainingDebt - this.currentSpot.HouseCost / 2;
 
             if (newDebt < 0)
             {
                 newDebt = 0;
             }
+
+            this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
 
             this.lblDebtCurrent.Text = newDebt.ToString();
 
@@ -257,7 +271,7 @@ namespace Monopoly
         private void BtnSellHotel_Click(object sender, EventArgs e)
         {
             this.game.Board[this.currentSpot.SpotId].HasHotel = false;
-            this.game.Players[this.currentPlayer.PlayerId].Money += int.Parse(this.lblMoneyGainFromHotel.Text);
+            this.game.Players[this.currentPlayer.PlayerId].Money += this.currentSpot.HotelCost / 2;
             this.currentSpot = this.game.Board[this.currentSpot.SpotId];
             this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
 
@@ -265,12 +279,14 @@ namespace Monopoly
 
             int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
 
-            int newDebt = remainingDebt - int.Parse(this.lblMoneyGainFromHotel.Text);
+            int newDebt = remainingDebt - this.currentSpot.HotelCost / 2;
 
             if (newDebt < 0)
             {
                 newDebt = 0;
             }
+
+            this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
 
             this.lblDebtCurrent.Text = newDebt.ToString();
 
@@ -299,6 +315,8 @@ namespace Monopoly
             {
                 newDebt = 0;
             }
+
+            this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
 
             this.lblDebtCurrent.Text = newDebt.ToString();
 
@@ -353,14 +371,12 @@ namespace Monopoly
                 // fill the labels with information
                 if (this.currentSpot.HasHotel)
                 {
-                    this.lblNumHotel.Text = "1";
                     this.btnSellHotel.Enabled = true;
                 }
                 else
                 {
                     if (this.currentSpot.IsMortgaged == false)
                     {
-                        this.lblNumHotel.Text = "0";
 
                         // one of the property colors with only 2 properties
                         if (sameType.Count == 1 && (this.currentSpot.Color == Color.Brown || this.currentSpot.Color == Color.DarkBlue))
@@ -448,11 +464,9 @@ namespace Monopoly
                         this.btnMortage.Enabled = false;
                     }
                 }
-
-                this.lblNumHouse.Text = this.currentSpot.NumberOfHouses.ToString();
-                this.lblMoneyGainFromHotel.Text = "+" + (this.currentSpot.HotelCost / 2).ToString();
-                this.lblMoneyGainFromHouse.Text = "+" + (this.currentSpot.HouseCost / 2).ToString();
-                this.lblMortgageGain.Text = this.currentSpot.Mortgage.ToString();
+                
+                this.lblMoneyGainFromHotel.Text = "+" + (this.currentSpot.HotelCost / 2).ToString("c0");
+                this.lblMoneyGainFromHouse.Text = "+" + (this.currentSpot.HouseCost / 2).ToString("c0");
 
                 // Put on the property name
                 this.lblPropertyName.Text = this.currentSpot.SpotName;
@@ -466,11 +480,6 @@ namespace Monopoly
                 if (this.lblPropertyName.ForeColor == Color.LightBlue)
                 {
                     this.lblPropertyName.ForeColor = Color.Blue;
-                }
-
-                if (this.lblPropertyName.ForeColor == Color.Pink)
-                {
-                    this.lblPropertyName.ForeColor = Color.DeepPink;
                 }
             }
         }

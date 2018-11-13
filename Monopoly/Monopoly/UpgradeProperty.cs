@@ -25,7 +25,7 @@ namespace Monopoly
         /// <summary>
         /// Gets or sets the game
         /// </summary>
-        public Game Game;
+        public Game game;
 
         /// <summary>
         /// Gets or sets the currentPlayer
@@ -74,7 +74,7 @@ namespace Monopoly
             this.MinimizeBox = false;
 
             this.InitializeComponent();
-            this.Game = game;
+            this.game = game;
             this.CurrentPlayer = currentPlayer;
 
             // fill the list with the list of spots that the currentPlayer has
@@ -226,7 +226,7 @@ namespace Monopoly
             foreach (ListViewItem item in listView.Items)
             {
                 // Get the spot that corresponds with the spot name
-                Spot spot = this.Game.GetSpotByName(item.Text);
+                Spot spot = this.game.GetSpotByName(item.Text);
 
                 // If a spot was found with that name
                 if (spot != null)
@@ -264,9 +264,9 @@ namespace Monopoly
         /// <param name="e">event args</param>
         private void BtnAddHouse_Click(object sender, EventArgs e)
         {
-            this.Game.Board[this.selectedSpot.SpotId].NumberOfHouses++;
+            this.game.Board[this.selectedSpot.SpotId].NumberOfHouses++;
             this.CurrentPlayer.Money = this.CurrentPlayer.Money - this.selectedSpot.HouseCost;
-            this.lblMoneyTotal.Text = this.Game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
 
             this.Reset();
         }
@@ -278,9 +278,9 @@ namespace Monopoly
         /// <param name="e">event args</param>
         private void BtnAddHotel_Click(object sender, EventArgs e)
         {
-            this.Game.Board[this.selectedSpot.SpotId].HasHotel = true;
+            this.game.Board[this.selectedSpot.SpotId].HasHotel = true;
             this.CurrentPlayer.Money = this.CurrentPlayer.Money - this.selectedSpot.HotelCost;
-            this.lblMoneyTotal.Text = this.Game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
 
             this.Reset();
         }
@@ -294,19 +294,19 @@ namespace Monopoly
         {
             if (this.sameType.Count == 2)
             {
-                this.Game.Board[this.sameType[0].SpotId].NumberOfHouses++;
-                this.Game.Board[this.sameType[1].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[0].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[1].SpotId].NumberOfHouses++;
                 this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HouseCost * 2);
             }
             else
             {
-                this.Game.Board[this.sameType[0].SpotId].NumberOfHouses++;
-                this.Game.Board[this.sameType[1].SpotId].NumberOfHouses++;
-                this.Game.Board[this.sameType[2].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[0].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[1].SpotId].NumberOfHouses++;
+                this.game.Board[this.sameType[2].SpotId].NumberOfHouses++;
                 this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HouseCost * 3);
             }
 
-            this.lblMoneyTotal.Text = this.Game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
             this.Reset();
         }
 
@@ -319,19 +319,19 @@ namespace Monopoly
         {
             if (this.sameType.Count == 2)
             {
-                this.Game.Board[this.sameType[0].SpotId].HasHotel = true;
-                this.Game.Board[this.sameType[1].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[0].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[1].SpotId].HasHotel = true;
                 this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HotelCost * 2);
             }
             else
             {
-                this.Game.Board[this.sameType[0].SpotId].HasHotel = true;
-                this.Game.Board[this.sameType[1].SpotId].HasHotel = true;
-                this.Game.Board[this.sameType[2].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[0].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[1].SpotId].HasHotel = true;
+                this.game.Board[this.sameType[2].SpotId].HasHotel = true;
                 this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HotelCost * 3);
             }
 
-            this.lblMoneyTotal.Text = this.Game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
             this.Reset();
         }
 
@@ -342,9 +342,9 @@ namespace Monopoly
         /// <param name="e">event args</param>
         private void BtnUnmortgage_Click(object sender, EventArgs e)
         {
-            this.Game.Board[this.selectedSpot.SpotId].IsMortgaged = false;
-            this.Game.Players[this.CurrentPlayer.PlayerId].Money = this.Game.Players[this.CurrentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
-            this.lblMoneyTotal.Text = this.Game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.game.Board[this.selectedSpot.SpotId].IsMortgaged = false;
+            this.game.Players[this.CurrentPlayer.PlayerId].Money = this.game.Players[this.CurrentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
+            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
 
             this.Reset();           
         }

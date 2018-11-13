@@ -94,65 +94,6 @@ namespace Monopoly
         public bool RestartGame { get; set; }
 
         /// <summary>
-        /// Gets the list of properties a given player owns
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <returns>The list of properties the given player owns</returns>
-        public List<Spot> GetPlayersPropertyList(Player currentPlayer)
-        {
-            // Declare and initialize a list of Spots
-            List<Spot> playersPropertyList = new List<Spot>();
-
-            // Loop through all the spots on the board
-            foreach (Spot spot in this.Board)
-            {
-                // if the spot's owner is the given player
-                if (spot.Owner == currentPlayer)
-                {
-                    // add that spot to the list
-                    playersPropertyList.Add(spot);
-                }
-            }
-
-            // return the list
-            return playersPropertyList;
-        }
-
-        /// <summary>
-        /// Finds the nearest spot to the spot given that matches the spot type given
-        /// </summary>
-        /// <param name="currentLocation">The player's current location</param>
-        /// <param name="type">The type of spot to look for like property or railroad or utility</param>
-        /// <returns>The nearest spot of given type</returns>
-        public Spot FindNearestSpotOfGivenType(Spot currentLocation, SpotType type)
-        {
-            // Loop through the spots on the board starting at the one after the current one the player is on to the last spot on the board
-            for (int i = currentLocation.SpotId + 1; i < this.Board.Count; i++)
-            {
-                // If the type of the current spot equals the type given as a parameter
-                if (this.Board[i].Type == type)
-                {
-                    // return that spot
-                    return this.Board[i];
-                }
-            }
-
-            // Loop through the spots on the board starting at Go until the spot right before the spot the current player is on
-            for (int i = 0; i < currentLocation.SpotId; i++)
-            {
-                // If the type of the current spot equals the type given as a parameter
-                if (this.Board[i].Type == type)
-                {
-                    // return that spot
-                    return this.Board[i];
-                }
-            }
-
-            // No spot of given type was found
-            return null;
-        }
-
-        /// <summary>
         /// Checks to see what type of spot the current player landed on
         /// and does corresponding action
         /// </summary>
@@ -284,7 +225,7 @@ namespace Monopoly
                         if (currentLocation.Type == SpotType.Railroad)
                         {
                             // Find the rent based on how many railroads the owner of the current location owns
-                            rent = this.FindCurrentRentOfRailroad(currentLocation);
+                            rent = currentLocation.FindCurrentRentOfRailroad(this.Board);
                         }
 
                         // If the current location is a utility
@@ -292,40 +233,16 @@ namespace Monopoly
                         {
                             // Find the rent based on how many utilities the owner of the current location owns
                             // and the dice roll (random number)
-                            rent = this.FindRentOfUtility(currentLocation, currentPlayer);
+                            rent = currentLocation.FindRentOfUtility(this.Board, currentPlayer);
                         }
 
                         // if the current location is a property with houses
                         if (currentLocation.Type == SpotType.Property)
                         {
-                            if (currentLocation.HasHotel)
-                            {
-                                rent = currentLocation.RentHotel;
-                            }
-                            else if (currentLocation.NumberOfHouses == 4)
-                            {
-                                rent = currentLocation.Rent4Houses;
-                            }
-                            else if (currentLocation.NumberOfHouses == 3)
-                            {
-                                rent = currentLocation.Rent3Houses;
-                            }
-                            else if (currentLocation.NumberOfHouses == 2)
-                            {
-                                rent = currentLocation.Rent2Houses;
-                            }
-                            else if (currentLocation.NumberOfHouses == 1)
-                            {
-                                rent = currentLocation.Rent1House;
-                            }
-                            else if (this.CheckIfEligibleForHouse(this.GetPlayersPropertyList(owner)).Contains(currentLocation.Color))
-                            {
-                                // If owner owns all of the color current location is, double the rent on unimproved property
-                                rent *= 2;
-                            } 
+                            rent = currentLocation.FindRentOfRegularProperty(this.Board);
                         }
 
-                        if (this.TotalNetWorth(currentPlayer) < rent)
+                        if (currentPlayer.TotalNetWorth(this.Board) < rent)
                         {
                             MessageBox.Show("You do not have enough net worth to pay rent!", currentPlayer.PlayerName + " is bankrupt!");
 
@@ -337,7 +254,7 @@ namespace Monopoly
                             if (this.ActivePlayers() > 2)
                             {
                                 // Hand over all properties
-                                foreach (Spot property in this.GetPlayersPropertyList(currentPlayer))
+                                foreach (Spot property in currentPlayer.GetPlayersPropertyList(this.Board))
                                 {
                                     this.Board[property.SpotId].Owner = owner;
                                     if (this.Board[property.SpotId].IsMortgaged)
@@ -366,10 +283,10 @@ namespace Monopoly
                             }
 
                             // Give the owner everything
-                            this.Players[this.Players.IndexOf(owner)].Money += this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties;
+                            this.Players[this.Players.IndexOf(owner)].Money += currentPlayer.TotalNetWorth(this.Board) - valueOfUnmortgagedProperties;
 
                             // Have current player give up everything to pay rent
-                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= this.TotalNetWorth(currentPlayer) - valueOfUnmortgagedProperties;
+                            this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentPlayer.TotalNetWorth(this.Board) - valueOfUnmortgagedProperties;
                             this.Forfeit(currentPlayer);
                         }
                         else
@@ -420,7 +337,7 @@ namespace Monopoly
             if (currentLocation.Type == SpotType.Tax)
             {
                 // TODO: or pay 10% - add form
-                int tenPercent = (int)(this.TotalNetWorth(currentPlayer) * .1);
+                int tenPercent = (int)(currentPlayer.TotalNetWorth(this.Board) * .1);
                 
                 // Choose for the player whether the 200 or 10% of their total net worth is lower
                 if (currentLocation.Rent > tenPercent)
@@ -448,61 +365,8 @@ namespace Monopoly
             if (currentLocation.Type == SpotType.GoToJail)
             {
                 // Send player to Jail
-                this.SendToJail(currentPlayer);
+                currentPlayer.SendToJail(this.GetSpotByName("Jail"));
             }
-        }
-
-        /// <summary>
-        /// Checks to see if player landed on Chance and draws a Chance Card
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <param name="currentLocation">The spot landed on</param>
-        /// <returns>A boolean indicating whether the spot is a chance spot</returns>
-        public bool CheckChance(Player currentPlayer, Spot currentLocation)
-        {
-            if (currentLocation.Type == SpotType.Chance)
-            {
-                // Draws a Card
-                this.DrawCard(this.ChanceCards, currentPlayer);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Checks to see if player landed on Chance and draws a Chance Card
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <param name="currentLocation">The spot landed on</param>
-        /// <returns>A boolean indicating whether the spot is a community chest spot</returns>
-        public bool CheckCommunityChest(Player currentPlayer, Spot currentLocation)
-        {
-            if (currentLocation.Type == SpotType.CommunityChest)
-            {
-                // Draws a Card
-                this.DrawCard(this.CommunityChestCards, currentPlayer);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Sends player to Jail
-        /// </summary>
-        /// <param name="currentPlayer">Player to be sent to Jail</param>
-        public void SendToJail(Player currentPlayer)
-        {
-            // Set current player's location to jail
-            this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = this.GetSpotByName("Jail");
-
-            // Set player's in jail boolean to true
-            this.Players[this.Players.IndexOf(currentPlayer)].InJail = true;
         }
 
         /// <summary>
@@ -528,28 +392,6 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// Finds a spot by using its id
-        /// </summary>
-        /// <param name="id">The id of the spot</param>
-        /// <returns>The spot that has the given id</returns>
-        public Spot GetSpotById(int id)
-        {
-            // Loop through the spots on the board
-            foreach (Spot spot in this.Board)
-            {
-                // If the current spot name equals the given name
-                if (spot.SpotId == id)
-                {
-                    // return that spot
-                    return spot;
-                }
-            }
-
-            // no spot with that name was found
-            return null;
-        }
-
-        /// <summary>
         /// Does the actions of the Chance and Community Chest cards
         /// </summary>
         /// <param name="pile">The card pile the card drawn is from</param>
@@ -558,7 +400,7 @@ namespace Monopoly
         {
             Card top = pile[0];
 
-            if (top.GetOutOfJailFree == true)
+            if (top.GetOutOfJailFree)
             {
                 // Card is a get out of jail free card
                 this.Players[this.Players.IndexOf(currentPlayer)].GetOutOfJailFreeCards.Add(top);
@@ -574,10 +416,10 @@ namespace Monopoly
             else if (top.Amount > 0)
             {
                 // Card involves collecting or paying money
-                if (top.Collect == true)
+                if (top.Collect)
                 {
                     // Player collects money
-                    if (top.Bank == true)
+                    if (top.Bank)
                     {
                         // Money is collected from the bank
                         this.Players[this.Players.IndexOf(currentPlayer)].Money += top.Amount;
@@ -613,11 +455,11 @@ namespace Monopoly
                 else
                 {
                     // Player pays money
-                    if (top.Bank == true)
+                    if (top.Bank)
                     {
                         if (top.Description.Contains("general repairs"))
                         {
-                            foreach (Spot s in this.GetPlayersPropertyList(currentPlayer))
+                            foreach (Spot s in currentPlayer.GetPlayersPropertyList(this.Board))
                             {
                                 this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 25;
                                 if (s.HasHotel)
@@ -628,7 +470,7 @@ namespace Monopoly
                         }
                         else if (top.Description.Contains("street repairs"))
                         {
-                            foreach (Spot s in this.GetPlayersPropertyList(currentPlayer))
+                            foreach (Spot s in currentPlayer.GetPlayersPropertyList(this.Board))
                             {
                                 this.Players[this.Players.IndexOf(currentPlayer)].Money -= s.NumberOfHouses * 40;
                                 if (s.HasHotel)
@@ -679,12 +521,12 @@ namespace Monopoly
                     if (top.Description.Contains("Railroad"))
                     {
                         // Find the nearest railroad
-                        top.NewLocation = this.FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Railroad);
+                        top.NewLocation = currentPlayer.CurrentLocation.FindNearestSpotOfGivenType(this.Board, SpotType.Railroad);
                     }
                     else if (top.Description.Contains("Utility"))
                     {
                         // Find the nearest utility
-                        top.NewLocation = this.FindNearestSpotOfGivenType(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, SpotType.Utility);
+                        top.NewLocation = currentPlayer.CurrentLocation.FindNearestSpotOfGivenType(this.Board, SpotType.Utility);
                     }
                     else
                     {
@@ -706,7 +548,7 @@ namespace Monopoly
                 else
                 {
                     // Send player to jail
-                    this.SendToJail(currentPlayer);
+                    currentPlayer.SendToJail(this.GetSpotByName("Jail"));
                 }        
 
                 // Move card to bottom of pile
@@ -781,242 +623,6 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// Returns the list of a player's properties that have hotels on them
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <returns>The list of properties with hotels on them</returns>
-        public List<Spot> GetListOfPlayersPropertiesWithHotel(Player currentPlayer)
-        {
-            // Declare and initialize a list of spots
-            List<Spot> propertiesWithHotel = new List<Spot>();
-
-            // Get the current player's property list
-            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
-
-            // Loop through the given player's list of properties
-            foreach (Spot property in propertyList)
-            {
-                // If that property has a hotel
-                if (property.HasHotel)
-                {
-                    // Add property to list
-                    propertiesWithHotel.Add(property);
-                }
-            }
-
-            // return list that was created
-            return propertiesWithHotel;
-        }
-
-        /// <summary>
-        /// Returns the list of a player's properties that have at least one house on them
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <returns>The list of properties with at least one house on them</returns>
-        public List<Spot> GetListOfPlayersPropertiesWithHouses(Player currentPlayer)
-        {
-            // Declare and initialize a list of spots
-            List<Spot> propertiesWithHouses = new List<Spot>();
-
-            // Get the current player's property list
-            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
-
-            // Loop through the given player's list of properties
-            foreach (Spot property in propertyList)
-            {
-                // If the number of houses is greater than zero
-                if (property.NumberOfHouses > 0)
-                {
-                    // Add property to list
-                    propertiesWithHouses.Add(property);
-                }
-            }
-
-            // return list that was created
-            return propertiesWithHouses;
-        }
-
-        /// <summary>
-        /// Returns the list of a player's properties that are mortgageable
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <returns>The list of properties that are mortgageable</returns>
-        public List<Spot> GetListOfPlayersMortgageableProperties(Player currentPlayer)
-        {
-            // Declare and initialize a list of spots
-            List<Spot> mortgageableProperties = new List<Spot>();
-
-            // Get the current player's property list
-            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
-
-            // Loop through the given player's list of properties
-            foreach (Spot property in propertyList)
-            {
-                // Declare a bool for whether a color group has all its properties not having houses
-                bool colorGroupHasNoHouses = true;
-
-                // If the number of houses is zero
-                if (property.NumberOfHouses == 0)
-                {
-                    // Loop through the given player's list of properties
-                    foreach (Spot p in propertyList)
-                    {
-                        // if the color of the property of the inner loop matches the color of the property of the outer loop
-                        // and the number of houses of the property of  the inner loop is greater than zero
-                        if (property.Color == p.Color && p.NumberOfHouses > 0)
-                        {
-                            // The color group does not have all its properties not having houses
-                            colorGroupHasNoHouses = false;
-                        }
-                    }
-
-                    // if the color group has all its properties not having houses
-                    if (colorGroupHasNoHouses)
-                    {
-                        // Add property to list
-                        mortgageableProperties.Add(property);
-                    }
-                }
-            }
-
-            // return list that was created
-            return mortgageableProperties;
-        }
-
-        /// <summary>
-        /// Finds out what the rent of a railroad should be based on the number of railroads 
-        /// the player that owns the given railroad owns
-        /// </summary>
-        /// <param name="railroad">The railroad to check the rent of</param>
-        /// <returns>Returns an integer value</returns>
-        public int FindCurrentRentOfRailroad(Spot railroad)
-        {
-            // Find rent if just one railroad is owned
-            int rent = railroad.Rent;
-
-            // Find the number of railroads the owner of the current railroad owns
-            int numberOwned = this.NumberRailroadsOwned(railroad);
-
-            // Find the rent based off of how many railroads owned
-            if (numberOwned == 1)
-            {
-                rent = 25;
-            }
-            else if (numberOwned == 2)
-            {
-                rent = 50;
-            }
-            else if (numberOwned == 3)
-            {
-                rent = 100;
-            }
-            else if (numberOwned == 4)
-            {
-                rent = 200;
-            }
-
-            return rent;
-        }
-
-        /// <summary>
-        /// Returns how many railroads are owned by the owner of the given railroad
-        /// </summary>
-        /// <param name="railroad">Railroad spot used for comparison</param>
-        /// <returns>How many railroads are owned by the owner of the given railroad</returns>
-        public int NumberRailroadsOwned(Spot railroad)
-        {
-            int numberOwned = 0;
-
-            // Double check to make sure railroad has an owner
-            if (railroad.Owner != null)
-            {
-                // Loop through the spots on the board
-                foreach (Spot spot in this.Board)
-                {
-                    // If the spot is a railroad and the owner is the same as the given railroad's
-                    if (spot.Type == SpotType.Railroad && spot.Owner == railroad.Owner)
-                    {
-                        numberOwned++;
-                    }
-                }
-            }
-
-            return numberOwned;
-        }
-
-        /// <summary>
-        /// Find what what the rent should be based on how many utilities the owner of the 
-        /// given utility owns and the number on the dice rolled (random number generated)
-        /// </summary>
-        /// <param name="utility">The utility to check the rent of</param>
-        /// <param name="p">Player to pay the calculated rent</param>
-        /// <returns>Returns an integer value</returns>
-        public int FindRentOfUtility(Spot utility, Player p)
-        {
-            // Declare and initialize a boolean for whether owner of given utility owns both utilities
-            bool bothOwned = false;
-
-            // Declare and initialize a number that the rent is multiplied by depending on utilities owned
-            int multiplyFactor = 4;
-
-            // check to see if the owner of the utility owns both utilities
-            bothOwned = this.BothUtilitiesOwned(utility);
-
-            // If owner of given utility owns both utilities
-            if (bothOwned)
-            {
-                // Set multiplyFactor to 10
-                multiplyFactor = 10;
-            }
-
-            // Declare and initialize a new random object
-            Random random = new Random();
-
-            // Get a random number between 1 and 6 (values of a die)
-            // For some reason, this is always the value of die 1
-            int rent = random.Next(6) + 1;
-
-            if (p.IsAi == false)
-            {
-                // Message box informing player of die roll and rent to be paid
-                MessageBox.Show(
-                    "You rolled a " + rent + ". Your rent will be " + (rent * multiplyFactor).ToString("c0") + ".",
-                    "Utility Rent");
-            }
-
-            // Increase rent by multiptyFactor
-            rent *= multiplyFactor;
-
-            return rent;
-        }
-
-        /// <summary>
-        /// Checks to see if the owner of the current utility owns both utilities
-        /// </summary>
-        /// <param name="utility">Utility spot to compare owner of</param>
-        /// <returns>A boolean indicating whether the owner of the passed in utility owns both utilities</returns>
-        public bool BothUtilitiesOwned(Spot utility)
-        {
-            // if the utility has an owner
-            if (utility.Owner != null)
-            {
-                // Loop through the board
-                foreach (Spot spot in this.Board)
-                {
-                    // If the spot is a utility and is not the given utility and has the same owner as the given utility
-                    if (spot.Type == SpotType.Utility && spot != utility && utility.Owner == spot.Owner)
-                    {
-                        // both utilities are owned by same owner
-                        return true;
-                    }
-                }
-            }
-
-            // both utilities are not owned by the same owner
-            return false;
-        }
-
-        /// <summary>
         /// Finds the next player whose turn it would be and returns them
         /// </summary>
         /// <param name="currentPlayer">The current player</param>
@@ -1038,77 +644,19 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// Method for checking if a player can purchase a property.
-        /// </summary>
-        /// <param name="currentPlayer">The current player</param>
-        /// <param name="property">The selected property</param>
-        public void PlayerBuysProperty(Player currentPlayer, Spot property)
-        {
-            if (property.IsAvailable && currentPlayer.Money >= property.Price)
-            {
-                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", string.Empty, MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    property.Owner = currentPlayer;
-                    currentPlayer.Money -= property.Price;
-                    property.IsAvailable = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Finds a player's total net worth
-        /// </summary>
-        /// <param name="currentPlayer">The player it finds the net worth of</param>
-        /// <returns>The player's net worth</returns>
-        public int TotalNetWorth(Player currentPlayer)
-        {
-            // Get the amount the player has in cash
-            int total = currentPlayer.Money;
-
-            // Get the player's list of properties
-            List<Spot> propertyList = this.GetPlayersPropertyList(currentPlayer);
-
-            // Loop through the player's list of properties
-            foreach (var p in propertyList)
-            {
-                // Add the property's mortgage value to total TODO CHECK
-                if (!p.IsMortgaged)
-                {
-                    total += p.Mortgage;
-                }
-
-                // Check for hotel or houses
-                if (p.HasHotel)
-                {
-                    // Add the cost of the hotel if it has a hotel
-                    total += p.HotelCost;
-                }
-                else if (p.NumberOfHouses > 0)
-                {
-                    // Add the cost of a house time the number of houses the property has
-                    total += p.HouseCost * p.NumberOfHouses;
-                }
-            }
-
-            // return the total value
-            return total;
-        }
-
-        /// <summary>
         /// Checks the cash and total net worth of a player to determine the players options
         /// if they cannot pay (are they bankrupt or do they have to sell something)
         /// </summary>
         /// <param name="player">The player</param>
         public void CheckIfPlayerHasEnoughMoney(Player player)
         {
-            if (player.NeedMoreMoney() && this.TotalNetWorth(player) > 0)
+            if (player.NeedMoreMoney() && player.TotalNetWorth(this.Board) > 0)
             {
                 GetMoney money = new GetMoney(this, player, player.Money * -1);
                 money.ShowDialog();
                 money.Close();
             }
-            else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
+            else if (player.NeedMoreMoney() && player.TotalNetWorth(this.Board) <= 0)
             {
                 // Player is bankrupt
                 MessageBox.Show(player.PlayerName + " is bankrupt!");
@@ -1123,7 +671,7 @@ namespace Monopoly
         public void Forfeit(Player player)
         {
             // Get the player's list of properties
-            List<Spot> properties = this.GetPlayersPropertyList(player);
+            List<Spot> properties = player.GetPlayersPropertyList(this.Board);
 
             // If the player still owns properties
             if (properties.Count > 0)
@@ -1177,13 +725,13 @@ namespace Monopoly
         /// </summary>
         /// <param name="prop">The players properties</param>
         /// <returns>A list of colors</returns>
-        public List<Color> CheckIfEligibleForHouse(List<Spot> prop)
+        public static List<Color> CheckIfEligibleForHouse(List<Spot> prop)
         {
             // create a list of colors to hold which colors are eligible for houses 
             List<Color> houseOkay = new List<Color>();
 
             // Create counters for every color
-            int numBrown = 0; // out of 2
+            int numPurple = 0; // out of 2
             int numLightBlue = 0; // out of 3
             int numPink = 0; // out of 3
             int numOrange = 0; // out of 3
@@ -1197,7 +745,7 @@ namespace Monopoly
             {
                 if (s.Color == Color.Purple)
                 {
-                    numBrown++;
+                    numPurple++;
                 }
                 else if (s.Color == Color.LightBlue)
                 {
@@ -1230,7 +778,7 @@ namespace Monopoly
             }
 
             // Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
-            if (numBrown == 2)
+            if (numPurple == 2)
             {
                 houseOkay.Add(Color.Purple);
             }
@@ -1557,6 +1105,190 @@ namespace Monopoly
 
             tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 40, true, false, communityChestImages.Images[14]);
             this.CommunityChestCards.Add(tempCard);
+        }
+
+        /// <summary>
+        /// Returns the list of a player's properties that have hotels on them
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties with hotels on them</returns>
+        public List<Spot> GetListOfPlayersPropertiesWithHotel(Player currentPlayer)
+        {
+            // Declare and initialize a list of spots
+            List<Spot> propertiesWithHotel = new List<Spot>();
+
+            // Get the current player's property list
+            List<Spot> propertyList = currentPlayer.GetPlayersPropertyList(this.Board);
+
+            // Loop through the given player's list of properties
+            foreach (Spot property in propertyList)
+            {
+                // If that property has a hotel
+                if (property.HasHotel)
+                {
+                    // Add property to list
+                    propertiesWithHotel.Add(property);
+                }
+            }
+
+            // return list that was created
+            return propertiesWithHotel;
+        }
+
+        /// <summary>
+        /// Returns the list of a player's properties that have at least one house on them
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties with at least one house on them</returns>
+        public List<Spot> GetListOfPlayersPropertiesWithHouses(Player currentPlayer)
+        {
+            // Declare and initialize a list of spots
+            List<Spot> propertiesWithHouses = new List<Spot>();
+
+            // Get the current player's property list
+            List<Spot> propertyList = currentPlayer.GetPlayersPropertyList(this.Board);
+
+            // Loop through the given player's list of properties
+            foreach (Spot property in propertyList)
+            {
+                // If the number of houses is greater than zero
+                if (property.NumberOfHouses > 0)
+                {
+                    // Add property to list
+                    propertiesWithHouses.Add(property);
+                }
+            }
+
+            // return list that was created
+            return propertiesWithHouses;
+        }
+
+        /// <summary>
+        /// Returns the list of a player's properties that are mortgageable
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <returns>The list of properties that are mortgageable</returns>
+        public List<Spot> GetListOfPlayersMortgageableProperties(Player currentPlayer)
+        {
+            // Declare and initialize a list of spots
+            List<Spot> mortgageableProperties = new List<Spot>();
+
+            // Get the current player's property list
+            List<Spot> propertyList = currentPlayer.GetPlayersPropertyList(this.Board);
+
+            // Loop through the given player's list of properties
+            foreach (Spot property in propertyList)
+            {
+                // Declare a bool for whether a color group has all its properties not having houses
+                bool colorGroupHasNoHouses = true;
+
+                // If the number of houses is zero
+                if (property.NumberOfHouses == 0)
+                {
+                    // Loop through the given player's list of properties
+                    foreach (Spot p in propertyList)
+                    {
+                        // if the color of the property of the inner loop matches the color of the property of the outer loop
+                        // and the number of houses of the property of  the inner loop is greater than zero
+                        if (property.Color == p.Color && p.NumberOfHouses > 0)
+                        {
+                            // The color group does not have all its properties not having houses
+                            colorGroupHasNoHouses = false;
+                        }
+                    }
+
+                    // if the color group has all its properties not having houses
+                    if (colorGroupHasNoHouses)
+                    {
+                        // Add property to list
+                        mortgageableProperties.Add(property);
+                    }
+                }
+            }
+
+            // return list that was created
+            return mortgageableProperties;
+        }
+
+        /// <summary>
+        /// Method for checking if a player can purchase a property.
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="property">The selected property</param>
+        public void PlayerBuysProperty(Player currentPlayer, Spot property)
+        {
+            if (property.IsAvailable && currentPlayer.Money >= property.Price)
+            {
+                DialogResult result = MessageBox.Show("Do you wish to buy " + property.SpotName + "?", string.Empty, MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    property.Owner = currentPlayer;
+                    currentPlayer.Money -= property.Price;
+                    property.IsAvailable = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if player landed on Chance and draws a Chance Card
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot is a chance spot</returns>
+        public bool CheckChance(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.Chance)
+            {
+                // Draws a Card
+                this.DrawCard(this.ChanceCards, currentPlayer);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if player landed on Chance and draws a Chance Card
+        /// </summary>
+        /// <param name="currentPlayer">The current player</param>
+        /// <param name="currentLocation">The spot landed on</param>
+        /// <returns>A boolean indicating whether the spot is a community chest spot</returns>
+        public bool CheckCommunityChest(Player currentPlayer, Spot currentLocation)
+        {
+            if (currentLocation.Type == SpotType.CommunityChest)
+            {
+                // Draws a Card
+                this.DrawCard(this.CommunityChestCards, currentPlayer);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Finds a spot by using its id
+        /// </summary>
+        /// <param name="id">The id of the spot</param>
+        /// <returns>The spot that has the given id</returns>
+        public Spot GetSpotById(int id)
+        {
+            // Loop through the spots on the board
+            foreach (Spot spot in this.Board)
+            {
+                // If the current spot name equals the given name
+                if (spot.SpotId == id)
+                {
+                    // return that spot
+                    return spot;
+                }
+            }
+
+            // no spot with that name was found
+            return null;
         }
     }
 }

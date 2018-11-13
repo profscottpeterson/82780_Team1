@@ -67,7 +67,7 @@ namespace Monopoly
             this.currentPlayer = currentPlayer;
 
             // Get the current players list of properties
-            this.playerSpots = game.GetPlayersPropertyList(this.currentPlayer);
+            this.playerSpots = currentPlayer.GetPlayersPropertyList(game.Board);
 
             this.FillListView(this.listViewProperties, this.playerSpots);
 
@@ -97,7 +97,7 @@ namespace Monopoly
             this.currentPlayer = currentPlayer;
 
             // Get the current players list of properties
-            this.playerSpots = game.GetPlayersPropertyList(this.currentPlayer);
+            this.playerSpots = currentPlayer.GetPlayersPropertyList(game.Board);
 
             if (this.currentPlayer.IsAi == false)
             {
@@ -237,17 +237,9 @@ namespace Monopoly
                     {
                         item.ForeColor = Color.DodgerBlue;
                     }
-                    else if (spot.Color == Color.Pink)
-                    {
-                        item.ForeColor = Color.DeepPink;
-                    }
                     else if (spot.Color == Color.Yellow)
                     {
                         item.ForeColor = Color.FromArgb(255, 220, 220, 0);
-                    }
-                    else if (spot.Color == Color.Orange)
-                    {
-                        item.ForeColor = Color.DarkOrange;
                     }
                 }
             }
@@ -259,7 +251,7 @@ namespace Monopoly
         /// <param name="prop">The list of properties</param>
         private void FillColors(List<Spot> prop)
         {
-            this.houseEligible = this.game.CheckIfEligibleForHouse(prop);
+            this.houseEligible = Game.CheckIfEligibleForHouse(prop);
         }
 
         /// <summary>
@@ -314,7 +306,7 @@ namespace Monopoly
                     newDebt = 0;
                 }
 
-                this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
+            this.FillListView(this.listViewProperties, currentPlayer.GetPlayersPropertyList(this.game.Board));
 
                 this.lblDebtCurrent.Text = newDebt.ToString();
 
@@ -347,7 +339,7 @@ namespace Monopoly
                     newDebt = 0;
                 }
 
-                this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
+            this.FillListView(this.listViewProperties, this.currentPlayer.GetPlayersPropertyList(this.game.Board));
 
                 this.lblDebtCurrent.Text = newDebt.ToString();
 
@@ -380,7 +372,7 @@ namespace Monopoly
                     newDebt = 0;
                 }
 
-                this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
+            this.FillListView(this.listViewProperties, this.currentPlayer.GetPlayersPropertyList(this.game.Board));
 
                 this.lblDebtCurrent.Text = newDebt.ToString();
 

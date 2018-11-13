@@ -153,7 +153,7 @@ namespace Monopoly
             // Instantiate and fill a list of the requesters spots
             this.requester = new List<Spot>();
 
-            this.requester = this.game.GetPlayersPropertyList(this.currentPlayer);
+            this.requester = this.currentPlayer.GetPlayersPropertyList(this.game.Board);
 
             this.FillListView(this.lstRequesterProperties, this.requester);
 
@@ -299,7 +299,7 @@ namespace Monopoly
                     // Instantiate and fill a list of the requestees spots
                     this.target = new List<Spot>();
 
-                    this.target = this.game.GetPlayersPropertyList(this.chosenPlayer);
+                    this.target = this.chosenPlayer.GetPlayersPropertyList(this.game.Board);
 
                     this.FillListView(this.lstRequesteeProperties, this.target);
 

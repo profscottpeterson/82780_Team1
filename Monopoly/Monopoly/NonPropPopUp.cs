@@ -69,14 +69,7 @@ namespace Monopoly
                 if (!this.spot.IsAvailable)
                 {
                     this.NumberOwnedLabel.Text = "Number of Utilities Owned by Owner: ";
-                    if (this.game.BothUtilitiesOwned(this.spot))
-                    {
-                        this.NumberOwnedLabel.Text += "2";
-                    }
-                    else
-                    {
-                        this.NumberOwnedLabel.Text += "1";
-                    }
+                    this.NumberOwnedLabel.Text += this.spot.NumberPropertyTypeOwned(this.game.Board);
                 }
                 else
                 {
@@ -95,7 +88,7 @@ namespace Monopoly
 
                 if (!this.spot.IsAvailable)
                 {
-                    this.NumberOwnedLabel.Text = "Number of Railroads Owned by Owner: " + this.game.NumberRailroadsOwned(this.spot);
+                    this.NumberOwnedLabel.Text = "Number of Railroads Owned by Owner: " + this.spot.NumberPropertyTypeOwned(this.game.Board);
                 }
                 else
                 {

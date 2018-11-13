@@ -17,7 +17,6 @@ C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.ex
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.pdb
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.exe
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\bin\Debug\Monopoly.pdb
-C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonopolyMainForm.resources
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.MonPopUp.resources
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.NonPropPopUp.resources

@@ -78,14 +78,14 @@ namespace Monopoly
             this.currentPlayer = currentPlayer;
 
             // fill the list with the list of spots that the currentPlayer has
-            this.playerSpots = this.game.GetPlayersPropertyList(currentPlayer);
+            this.playerSpots = currentPlayer.GetPlayersPropertyList(this.game.Board);
 
             this.lblMoneyTotal.Text = currentPlayer.Money.ToString();
             this.lblPlayerName.Text = currentPlayer.PlayerName;
 
             List<Spot> spotsEligible = new List<Spot>();
 
-            List<Color> colorsEligible = this.game.CheckIfEligibleForHouse(this.playerSpots);
+            List<Color> colorsEligible = Game.CheckIfEligibleForHouse(this.playerSpots);
 
             List<Spot> mortgage = new List<Spot>();
 

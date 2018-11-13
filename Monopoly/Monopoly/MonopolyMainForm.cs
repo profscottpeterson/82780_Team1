@@ -222,18 +222,14 @@ namespace Monopoly
                     
                     if (this.game.Players[i].PlayerPictureBox.Image == null)
                     {
-                        // playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
                         this.game.Players[i].PlayerPictureBox = playerBoxes[i];
                     }
                     else
                     {
-                       // playerBoxes.Add(this.game.Players[i].PlayerPictureBox);
                         playerBoxes[i].BackColor = Color.Empty;
                         playerBoxes[i].Image = this.game.Players[i].PlayerPictureBox.Image;
                     }
                 }
-
-                // picPlayer1.Image = playerBoxes[1];
 
                 // Show a number of player pawns that corresponds to the number of players
                 if (this.game.Players.Count == 2)
@@ -323,7 +319,7 @@ namespace Monopoly
                     this.doubleCounter++;
                     if (this.doubleCounter >= 3)
                     {
-                        this.game.SendToJail(this.currentPlayer);
+                        this.currentPlayer.SendToJail(this.game.GetSpotByName("Jail"));
                     }
                     else
                     {
@@ -686,9 +682,7 @@ namespace Monopoly
                 else if (newLocation == 30)
                 {
                     // Go to Jail
-                    this.game.SendToJail(this.currentPlayer);
-                    //// this.currentPlayer.InJail = true;
-                    //// this.currentPlayer.CurrentLocation = this.game.GetSpotByName("Jail");
+                    this.currentPlayer.SendToJail(this.game.GetSpotByName("Jail"));
 
                     Point p = new Point();
 
@@ -736,7 +730,7 @@ namespace Monopoly
             lblOtherPlayersHand.Text = string.Empty;
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
-            currentPlayerSpots = this.game.GetPlayersPropertyList(player);
+            currentPlayerSpots = player.GetPlayersPropertyList(this.game.Board);
             PictureBox[] pictureBoxes = new PictureBox[currentPlayerSpots.Count];
             Panel[] playerPropertyPanels = new Panel[currentPlayerSpots.Count];
             Label[] playerPropertyLabels = new Label[currentPlayerSpots.Count];
@@ -1109,7 +1103,6 @@ namespace Monopoly
 
             money.ShowDialog();
 
-            this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
             this.formBool = false;
 
             this.flpOtherPlayerHand.Controls.Clear();
@@ -1120,9 +1113,18 @@ namespace Monopoly
             // If a player foreited
             if (money.DialogResult == DialogResult.Cancel)
             {
-                this.BtnNextTurn.Enabled = false;
+                this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
                 this.btnRoll.Enabled = true;
+                this.BtnNextTurn.Enabled = false;
                 this.btnRoll.Focus();
+                this.doubleCounter = 0;
+                this.formBool = false;
+                this.flpCurrentPlayerProps.Controls.Clear();
+                this.flpOtherPlayerHand.Controls.Clear();
+                this.lblOtherPlayersHand.Text = string.Empty;
+                this.flpPlayerHandOptions.Controls.Clear();
+                this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+                this.SetUpPlayerHandOptions();
             }
 
             if (this.game.RestartGame)
@@ -1232,12 +1234,6 @@ namespace Monopoly
         /// <param name="e">The click event</param>
         private void BtnJailFreeCard_Click(object sender, EventArgs e)
         {
-            // use the players card
-            ////this.currentPlayer.GetOutOfJailFreeCards.RemoveAt(0);
-
-            // set players jail bool to false
-            /////this.currentPlayer.InJail = false;
-
             // Remove card from player, set player's in jail boolean to false, and 
             // add card back into corresponding deck
             this.game.PlayGetOutOfJailFreeCard(this.currentPlayer);

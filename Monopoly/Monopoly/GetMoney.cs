@@ -142,12 +142,14 @@ namespace Monopoly
                         }
                         else
                         {
+                            this.BtnSubmit_Click(this.currentPlayer, EventArgs.Empty);
                             break;
                         }
                     }
 
                     if (this.Debt <= 0)
                     {
+                        this.BtnSubmit_Click(this.currentPlayer, EventArgs.Empty);
                         break;
                     }
                     else
@@ -155,11 +157,6 @@ namespace Monopoly
                         this.BtnForfeit_Click(this.currentPlayer, EventArgs.Empty);
                         break;
                     }
-                }
-
-                if (this.Debt <= 0)
-                {
-                    this.BtnSubmit_Click(this.currentPlayer, EventArgs.Empty);
                 }
             }
         }

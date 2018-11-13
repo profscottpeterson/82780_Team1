@@ -1102,6 +1102,7 @@ namespace Monopoly
             GetMoney money = new GetMoney(this.game, this.currentPlayer);
 
             money.ShowDialog();
+            money.Close();
 
             this.formBool = false;
 

@@ -653,8 +653,13 @@ namespace Monopoly
             if (player.NeedMoreMoney() && player.TotalNetWorth(this.Board) > 0)
             {
                 GetMoney money = new GetMoney(this, player, player.Money * -1);
-                money.ShowDialog();
-                money.Close();
+
+                if (player.IsAi == false)
+                {
+                    money.ShowDialog();
+                    money.Close();
+                }
+            
             }
             else if (player.NeedMoreMoney() && player.TotalNetWorth(this.Board) <= 0)
             {

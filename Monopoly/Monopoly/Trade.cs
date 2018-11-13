@@ -47,7 +47,7 @@ namespace Monopoly
         private string lastConfirmed = "0";
 
         /// <summary>
-        /// all of the player initialting the list's not offered spots
+        /// all of the player initiating the list's not offered spots
         /// </summary>
         private List<Spot> requester = new List<Spot>();
 
@@ -69,7 +69,7 @@ namespace Monopoly
         /// <summary>
         /// Initializes a new instance of the <see cref="Trade"/> class.
         /// </summary>
-        /// <param name="p">The player initating the trade</param>
+        /// <param name="p">The player initiating the trade</param>
         /// <param name="g">The current game instance</param>
         public Trade(Player p, Game g)
         {
@@ -189,7 +189,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -199,13 +199,13 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void BtnSubmit_Click(object sender, EventArgs e)
         {
             // int.Parse SHOULD ALWAYS be ok here because I validate it originally.
             TradeConfirm confirm = new TradeConfirm(this.game, this.currentPlayer, this.chosenPlayer, this.requesterOffer, this.targetOffer, int.Parse(this.lastConfirmed), int.Parse(this.txtJailCard.Text));
             confirm.ShowDialog();
 
-            if (confirm.reason == "Yes")
+            if (confirm.Reason == "Yes")
             {
                 this.Close();
             }
@@ -216,7 +216,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void txtRequesterMoney_TextChanged(object sender, EventArgs e)
+        private void TxtRequesterMoney_TextChanged(object sender, EventArgs e)
         {
             // Make a variable to store what their offer is
             int moneyChange = 0;
@@ -277,7 +277,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void cmboRequestee_SelectedValueChanged(object sender, EventArgs e)
+        private void CmboRequestee_SelectedValueChanged(object sender, EventArgs e)
         {
             foreach (Player p in this.players)
             {
@@ -324,11 +324,11 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// The event to check if the user double clicked on the listview
+        /// The event to check if the user double clicked on the list view
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void lstRequesterProperties_DoubleClick(object sender, EventArgs e)
+        private void LstRequesterProperties_DoubleClick(object sender, EventArgs e)
         {
             if (this.lstRequesterProperties.SelectedItems[0] != null)
             {
@@ -360,11 +360,11 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// The event to check if the user double clicks the requesterOffering listview
+        /// The event to check if the user double clicks the requesterOffering list view
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void lstRequesterOffering_DoubleClick(object sender, EventArgs e)
+        private void LstRequesterOffering_DoubleClick(object sender, EventArgs e)
         {
             if (this.lstRequesterOffering.SelectedItem != null)
             {
@@ -397,11 +397,11 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// The event to check if the user double clics on the requesteeProperties listview
+        /// The event to check if the user double clicks on the requestee Properties list view
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void lstRequesteeProperties_DoubleClick(object sender, EventArgs e)
+        private void LstRequesteeProperties_DoubleClick(object sender, EventArgs e)
         {
             if (this.lstRequesteeProperties.SelectedItems[0] != null)
             {
@@ -433,11 +433,11 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// The event to check if the user double clicked on the requesteeOffering listview
+        /// The event to check if the user double clicked on the requestee Offering list view
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void lstRequesteeOffering_DoubleClick(object sender, EventArgs e)
+        private void LstRequesteeOffering_DoubleClick(object sender, EventArgs e)
         {
             if (this.lstRequesteeOffering.SelectedItem != null)
             {
@@ -474,7 +474,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void btnIncreaseJailCard_Click(object sender, EventArgs e)
+        private void BtnIncreaseJailCard_Click(object sender, EventArgs e)
         {
             int currentSelection = int.Parse(this.txtJailCard.Text);
             int newSelection = currentSelection += 1;
@@ -504,11 +504,11 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// The button descrease the amount of jail cards the player who initated the trade is getting by 1
+        /// The button decrease the amount of jail cards the player who initiated the trade is getting by 1
         /// </summary>
         /// <param name="sender">The sender for the event</param>
         /// <param name="e">The eventArgs for the event</param>
-        private void btnLowerJailCard_Click(object sender, EventArgs e)
+        private void BtnLowerJailCard_Click(object sender, EventArgs e)
         {
             int currentSelection = int.Parse(txtJailCard.Text);
             int newSelection = currentSelection -= 1;

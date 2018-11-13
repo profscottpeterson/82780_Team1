@@ -22,8 +22,8 @@ namespace Monopoly
         /// <summary>
         /// Initializes a new instance of the Game class.
         /// </summary>
-        /// <param name="chanceImages">The imagelist for the change cards</param>
-        /// <param name="communityChestImages">The imagelist for the community cards</param>
+        /// <param name="chanceImages">The image list for the change cards</param>
+        /// <param name="communityChestImages">The image list for the community cards</param>
         public Game(ImageList chanceImages, ImageList communityChestImages)
         {
             // Construct all the properties  
@@ -1106,6 +1106,7 @@ namespace Monopoly
             {
                 GetMoney money = new GetMoney(this, player, player.Money * -1);
                 money.ShowDialog();
+                money.Close();
             }
             else if (player.NeedMoreMoney() && this.TotalNetWorth(player) <= 0)
             {

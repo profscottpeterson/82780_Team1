@@ -414,7 +414,7 @@ namespace Monopoly
             this.btnSmallLoan.TabStop = false;
             this.btnSmallLoan.Text = "You should not see this button";
             this.btnSmallLoan.UseVisualStyleBackColor = true;
-            this.btnSmallLoan.Click += new System.EventHandler(this.btnSmallLoan_Click);
+            this.btnSmallLoan.Click += new System.EventHandler(this.BtnSmallLoan_Click);
             // 
             // pbxCurrentPlayerPicture
             // 
@@ -927,7 +927,7 @@ namespace Monopoly
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
-            this.ClientSize = new System.Drawing.Size(1384, 857);
+            this.ClientSize = new System.Drawing.Size(1384, 961);
             this.Controls.Add(this.lblGetOutOfJailLabel);
             this.Controls.Add(this.btnSmallLoan);
             this.Controls.Add(this.BtnRestartGame);

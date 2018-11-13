@@ -63,7 +63,7 @@ namespace Monopoly
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // listViewProperties
             // 
@@ -75,7 +75,7 @@ namespace Monopoly
             this.listViewProperties.TabIndex = 24;
             this.listViewProperties.UseCompatibleStateImageBehavior = false;
             this.listViewProperties.View = System.Windows.Forms.View.Details;
-            this.listViewProperties.Click += new System.EventHandler(this.listViewProperties_Click);
+            this.listViewProperties.Click += new System.EventHandler(this.ListViewProperties_Click);
             // 
             // lblPropEligible
             // 
@@ -97,7 +97,7 @@ namespace Monopoly
             this.btnAddHouseToAll.TabIndex = 26;
             this.btnAddHouseToAll.Text = "Add House To All";
             this.btnAddHouseToAll.UseVisualStyleBackColor = true;
-            this.btnAddHouseToAll.Click += new System.EventHandler(this.btnAddHouseToAll_Click);
+            this.btnAddHouseToAll.Click += new System.EventHandler(this.BtnAddHouseToAll_Click);
             // 
             // btnAddHouse
             // 
@@ -109,7 +109,7 @@ namespace Monopoly
             this.btnAddHouse.TabIndex = 27;
             this.btnAddHouse.Text = "Add House";
             this.btnAddHouse.UseVisualStyleBackColor = true;
-            this.btnAddHouse.Click += new System.EventHandler(this.btnAddHouse_Click);
+            this.btnAddHouse.Click += new System.EventHandler(this.BtnAddHouse_Click);
             // 
             // btnAddHotel
             // 
@@ -121,7 +121,7 @@ namespace Monopoly
             this.btnAddHotel.TabIndex = 28;
             this.btnAddHotel.Text = "Add Hotel";
             this.btnAddHotel.UseVisualStyleBackColor = true;
-            this.btnAddHotel.Click += new System.EventHandler(this.btnAddHotel_Click);
+            this.btnAddHotel.Click += new System.EventHandler(this.BtnAddHotel_Click);
             // 
             // btnAddHotelToAll
             // 
@@ -133,7 +133,7 @@ namespace Monopoly
             this.btnAddHotelToAll.TabIndex = 29;
             this.btnAddHotelToAll.Text = "Add Hotel To All";
             this.btnAddHotelToAll.UseVisualStyleBackColor = true;
-            this.btnAddHotelToAll.Click += new System.EventHandler(this.btnAddHotelToAll_Click);
+            this.btnAddHotelToAll.Click += new System.EventHandler(this.BtnAddHotelToAll_Click);
             // 
             // txtMessage
             // 
@@ -216,7 +216,7 @@ namespace Monopoly
             this.btnUnmortgage.TabIndex = 37;
             this.btnUnmortgage.Text = "Un-Mortgage";
             this.btnUnmortgage.UseVisualStyleBackColor = true;
-            this.btnUnmortgage.Click += new System.EventHandler(this.btnUnmortgage_Click);
+            this.btnUnmortgage.Click += new System.EventHandler(this.BtnUnmortgage_Click);
             // 
             // UpgradeProperty
             // 

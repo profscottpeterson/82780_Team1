@@ -145,7 +145,7 @@ namespace Monopoly
             this.txtRequesterMoney.Size = new System.Drawing.Size(62, 26);
             this.txtRequesterMoney.TabIndex = 8;
             this.txtRequesterMoney.Text = "0";
-            this.txtRequesterMoney.TextChanged += new System.EventHandler(this.txtRequesterMoney_TextChanged);
+            this.txtRequesterMoney.TextChanged += new System.EventHandler(this.TxtRequesterMoney_TextChanged);
             // 
             // lblRequesterMoney
             // 
@@ -273,7 +273,7 @@ namespace Monopoly
             this.lstRequesterOffering.Name = "lstRequesterOffering";
             this.lstRequesterOffering.Size = new System.Drawing.Size(185, 95);
             this.lstRequesterOffering.TabIndex = 17;
-            this.lstRequesterOffering.DoubleClick += new System.EventHandler(this.lstRequesterOffering_DoubleClick);
+            this.lstRequesterOffering.DoubleClick += new System.EventHandler(this.LstRequesterOffering_DoubleClick);
             // 
             // txtRequesterMoneyOffering
             // 
@@ -390,7 +390,7 @@ namespace Monopoly
             this.lstRequesteeOffering.Name = "lstRequesteeOffering";
             this.lstRequesteeOffering.Size = new System.Drawing.Size(185, 95);
             this.lstRequesteeOffering.TabIndex = 18;
-            this.lstRequesteeOffering.DoubleClick += new System.EventHandler(this.lstRequesteeOffering_DoubleClick);
+            this.lstRequesteeOffering.DoubleClick += new System.EventHandler(this.LstRequesteeOffering_DoubleClick);
             // 
             // btnClose
             // 
@@ -400,7 +400,7 @@ namespace Monopoly
             this.btnClose.TabIndex = 17;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnSubmit
             // 
@@ -411,7 +411,7 @@ namespace Monopoly
             this.btnSubmit.TabIndex = 18;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            this.btnSubmit.Click += new System.EventHandler(this.BtnSubmit_Click);
             // 
             // cmboRequestee
             // 
@@ -422,7 +422,7 @@ namespace Monopoly
             this.cmboRequestee.Name = "cmboRequestee";
             this.cmboRequestee.Size = new System.Drawing.Size(74, 24);
             this.cmboRequestee.TabIndex = 19;
-            this.cmboRequestee.SelectedValueChanged += new System.EventHandler(this.cmboRequestee_SelectedValueChanged);
+            this.cmboRequestee.SelectedValueChanged += new System.EventHandler(this.CmboRequestee_SelectedValueChanged);
             // 
             // lblRequesteeTotal
             // 
@@ -455,7 +455,7 @@ namespace Monopoly
             this.lstRequesteeProperties.TabIndex = 22;
             this.lstRequesteeProperties.UseCompatibleStateImageBehavior = false;
             this.lstRequesteeProperties.View = System.Windows.Forms.View.Details;
-            this.lstRequesteeProperties.DoubleClick += new System.EventHandler(this.lstRequesteeProperties_DoubleClick);
+            this.lstRequesteeProperties.DoubleClick += new System.EventHandler(this.LstRequesteeProperties_DoubleClick);
             // 
             // lstRequesterProperties
             // 
@@ -468,7 +468,7 @@ namespace Monopoly
             this.lstRequesterProperties.TabIndex = 23;
             this.lstRequesterProperties.UseCompatibleStateImageBehavior = false;
             this.lstRequesterProperties.View = System.Windows.Forms.View.Details;
-            this.lstRequesterProperties.DoubleClick += new System.EventHandler(this.lstRequesterProperties_DoubleClick);
+            this.lstRequesterProperties.DoubleClick += new System.EventHandler(this.LstRequesterProperties_DoubleClick);
             // 
             // lblTotalJailCard
             // 
@@ -539,7 +539,7 @@ namespace Monopoly
             this.btnLowerJailCard.TabIndex = 30;
             this.btnLowerJailCard.Text = "-";
             this.btnLowerJailCard.UseVisualStyleBackColor = true;
-            this.btnLowerJailCard.Click += new System.EventHandler(this.btnLowerJailCard_Click);
+            this.btnLowerJailCard.Click += new System.EventHandler(this.BtnLowerJailCard_Click);
             // 
             // btnIncreaseJailCard
             // 
@@ -549,7 +549,7 @@ namespace Monopoly
             this.btnIncreaseJailCard.TabIndex = 31;
             this.btnIncreaseJailCard.Text = "+";
             this.btnIncreaseJailCard.UseVisualStyleBackColor = true;
-            this.btnIncreaseJailCard.Click += new System.EventHandler(this.btnIncreaseJailCard_Click);
+            this.btnIncreaseJailCard.Click += new System.EventHandler(this.BtnIncreaseJailCard_Click);
             // 
             // txtMessage
             // 

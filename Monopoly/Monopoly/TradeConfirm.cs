@@ -24,7 +24,7 @@ namespace Monopoly
         /// <summary>
         /// Reason that the form was closed
         /// </summary>
-        public string reason = string.Empty;
+        public string Reason = string.Empty;
 
         /// <summary>
         /// The game class instance
@@ -52,12 +52,12 @@ namespace Monopoly
         private List<Spot> targetList;
 
         /// <summary>
-        /// The moneychange ocurring, negative means giving to target player while positive is receiving money from target player
+        /// The money change occurring, negative means giving to target player while positive is receiving money from target player
         /// </summary>
         private int moneyChange = 0;
 
         /// <summary>
-        /// jailcards being sent back and forth, negative is giving to target player while positive is receiving from them
+        /// jail cards being sent back and forth, negative is giving to target player while positive is receiving from them
         /// </summary>
         private int jailCardChange = 0;
 
@@ -92,10 +92,10 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">the eventArgs for the button</param>
-        private void btnNo_Click(object sender, EventArgs e)
+        private void BtnNo_Click(object sender, EventArgs e)
         {
             // Set the reason to No
-            this.reason = "No";
+            this.Reason = "No";
 
             this.Close();
         }
@@ -105,75 +105,20 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">the eventArgs for the button</param>
-        private void btnYes_Click(object sender, EventArgs e)
+        private void BtnYes_Click(object sender, EventArgs e)
         {
-            // For each offering to target, set them as the owner to each of those properties
-            foreach (Spot s in this.mainList)
-            {
-                this.game.Board[s.SpotId].Owner = this.target;
-            }
-
-            // Also set the target money to be updated
-            this.game.Players[this.target.PlayerId].Money = this.target.Money - this.moneyChange;
-
-            // For each offering to origin, set them as the owner to each of those properties
-            foreach (Spot s in this.targetList)
-            {
-                this.game.Board[s.SpotId].Owner = this.main;
-            }
-
-            // Also set the target money to be updated
-            this.game.Players[this.main.PlayerId].Money = this.main.Money + this.moneyChange;
-
-            if (this.jailCardChange == 2)
-            {
-                Card temp2 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[1];
-                this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
-                Card temp1 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[0];
-                this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
-
-                this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
-                this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp2);
-            }
-            else if (this.jailCardChange == 1)
-            {
-                Card temp1 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[0];
-                this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
-
-                this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
-            }
-            else if (this.jailCardChange == -1)
-            {
-                Card temp1 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[0];
-                this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
-
-                this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
-            }
-            else if (this.jailCardChange == -2)
-            {
-                Card temp2 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[1];
-                this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
-                Card temp1 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[0];
-                this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
-
-                this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
-                this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp2);
-            }
-
             if (this.target.IsAi == true)
             {
                 int targetMoney = 0;
                 int mainMoney = 0;
 
-                // TODO see why alex did this, it doesn't make sense to add the same amount to both players
-                // ONE of them must lose money
                 if (this.moneyChange > 0)
                 {
                     mainMoney += this.moneyChange;
                 }
                 else
                 {
-                    targetMoney += this.moneyChange; // this should probably be -=
+                    targetMoney += this.moneyChange; 
                 }
 
                 foreach (Spot s in this.targetList)
@@ -203,7 +148,7 @@ namespace Monopoly
                 if (targetMoney > mainMoney)
                 {
                     // Set the reason to Yes
-                    this.reason = "No";
+                    this.Reason = "No";
 
                     // close the form
                     this.Close();
@@ -211,7 +156,60 @@ namespace Monopoly
                 else
                 {
                     // Set the reason to Yes
-                    this.reason = "Yes";
+                    this.Reason = "Yes";
+
+                    // For each offering to target, set them as the owner to each of those properties
+                    foreach (Spot s in this.mainList)
+                    {
+                        this.game.Board[s.SpotId].Owner = this.target;
+                    }
+
+                    // Also set the target money to be updated
+                    this.game.Players[this.target.PlayerId].Money = this.target.Money - this.moneyChange;
+
+                    // For each offering to origin, set them as the owner to each of those properties
+                    foreach (Spot s in this.targetList)
+                    {
+                        this.game.Board[s.SpotId].Owner = this.main;
+                    }
+
+                    // Also set the target money to be updated
+                    this.game.Players[this.main.PlayerId].Money = this.main.Money + this.moneyChange;
+
+                    if (this.jailCardChange == 2)
+                    {
+                        Card temp2 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[1];
+                        this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+                        Card temp1 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[0];
+                        this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                        this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                        this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp2);
+                    }
+                    else if (this.jailCardChange == 1)
+                    {
+                        Card temp1 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[0];
+                        this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                        this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                    }
+                    else if (this.jailCardChange == -1)
+                    {
+                        Card temp1 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[0];
+                        this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                        this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                    }
+                    else if (this.jailCardChange == -2)
+                    {
+                        Card temp2 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[1];
+                        this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+                        Card temp1 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[0];
+                        this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                        this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                        this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp2);
+                    }
 
                     // close the form
                     this.Close();
@@ -220,11 +218,64 @@ namespace Monopoly
             else
             {
                 // Set the reason to Yes
-                this.reason = "Yes";
+                this.Reason = "Yes";
+
+                // For each offering to target, set them as the owner to each of those properties
+                foreach (Spot s in this.mainList)
+                {
+                    this.game.Board[s.SpotId].Owner = this.target;
+                }
+
+                // Also set the target money to be updated
+                this.game.Players[this.target.PlayerId].Money = this.target.Money - this.moneyChange;
+
+                // For each offering to origin, set them as the owner to each of those properties
+                foreach (Spot s in this.targetList)
+                {
+                    this.game.Board[s.SpotId].Owner = this.main;
+                }
+
+                // Also set the target money to be updated
+                this.game.Players[this.main.PlayerId].Money = this.main.Money + this.moneyChange;
+
+                if (this.jailCardChange == 2)
+                {
+                    Card temp2 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[1];
+                    this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+                    Card temp1 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[0];
+                    this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                    this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                    this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp2);
+                }
+                else if (this.jailCardChange == 1)
+                {
+                    Card temp1 = this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards[0];
+                    this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                    this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                }
+                else if (this.jailCardChange == -1)
+                {
+                    Card temp1 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[0];
+                    this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                    this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                }
+                else if (this.jailCardChange == -2)
+                {
+                    Card temp2 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[1];
+                    this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(1);
+                    Card temp1 = this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards[0];
+                    this.game.Players[this.main.PlayerId].GetOutOfJailFreeCards.RemoveAt(0);
+
+                    this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp1);
+                    this.game.Players[this.target.PlayerId].GetOutOfJailFreeCards.Add(temp2);
+                }
 
                 // close the form
                 this.Close();
-            }
+            }           
         }
 
         /// <summary>

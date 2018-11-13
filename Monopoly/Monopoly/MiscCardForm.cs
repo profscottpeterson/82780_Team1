@@ -18,14 +18,14 @@ namespace Monopoly
     using System.Windows.Forms;
 
     /// <summary>
-    /// The MiscCardForm extends the form class
+    /// The MisCardForm extends the form class
     /// </summary>
     public partial class MiscCardForm : Form
     {
         // private Card _card;
 
         /// <summary>
-        /// The current player that is receiving the action of the misc card
+        /// The current player that is receiving the action of the mis card
         /// </summary>
         private Player p;
 
@@ -45,7 +45,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="title">The title of the card</param>
         /// <param name="card">The name of the card</param>
-        /// <param name="p">The player who is recieving the effect of the card</param>
+        /// <param name="p">The player who is receiving the effect of the card</param>
         public MiscCardForm(string title, Card card, Player p)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -112,16 +112,16 @@ namespace Monopoly
         /// <summary>
         /// Gets or sets the properties of picture
         /// </summary>
-        public PictureBox picture { get; set; }
+        public PictureBox Picture { get; set; }
 
         /// <summary>
-        /// The form load event for the MiscCardForm
+        /// The form load event for the MisCardForm
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The eventArguments e</param>
         private void MiscCardForm_Load(object sender, EventArgs e)
         {
-            this.picture = new PictureBox();
+            this.Picture = new PictureBox();
 
             if (this.p.IsAi == true)
             {
@@ -130,7 +130,7 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// btnClose click event
+        /// button Close click event
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The eventArgs for the click event</param>

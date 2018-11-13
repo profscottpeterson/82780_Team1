@@ -273,7 +273,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender control</param>
         /// <param name="e">The eventArgs for the click event</param>
-        private void btnChooseImage1_Click(object sender, EventArgs e)
+        private void BtnChooseImage1_Click(object sender, EventArgs e)
         {
             this.ChooseImage(0);
         }
@@ -283,7 +283,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender control</param>
         /// <param name="e">The eventArgs for the click event</param>
-        private void btnChooseImage2_Click(object sender, EventArgs e)
+        private void BtnChooseImage2_Click(object sender, EventArgs e)
         {
             this.ChooseImage(1);
         }
@@ -293,7 +293,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender control</param>
         /// <param name="e">The eventArgs for the click event</param>
-        private void btnChooseImage3_Click(object sender, EventArgs e)
+        private void BtnChooseImage3_Click(object sender, EventArgs e)
         {
             this.ChooseImage(2);
         }
@@ -303,7 +303,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender control</param>
         /// <param name="e">The eventArgs for the click event</param>
-        private void btnChooseImage4_Click(object sender, EventArgs e)
+        private void BtnChooseImage4_Click(object sender, EventArgs e)
         {
             this.ChooseImage(3);
         }

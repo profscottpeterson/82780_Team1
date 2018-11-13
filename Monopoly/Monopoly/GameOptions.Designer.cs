@@ -374,7 +374,7 @@ namespace Monopoly
             this.btnChooseImage1.TabIndex = 10;
             this.btnChooseImage1.Text = "Choose Image";
             this.btnChooseImage1.UseVisualStyleBackColor = true;
-            this.btnChooseImage1.Click += new System.EventHandler(this.btnChooseImage1_Click);
+            this.btnChooseImage1.Click += new System.EventHandler(this.BtnChooseImage1_Click);
             // 
             // btnChooseImage2
             // 
@@ -384,7 +384,7 @@ namespace Monopoly
             this.btnChooseImage2.TabIndex = 11;
             this.btnChooseImage2.Text = "Choose Image";
             this.btnChooseImage2.UseVisualStyleBackColor = true;
-            this.btnChooseImage2.Click += new System.EventHandler(this.btnChooseImage2_Click);
+            this.btnChooseImage2.Click += new System.EventHandler(this.BtnChooseImage2_Click);
             // 
             // btnChooseImage3
             // 
@@ -394,7 +394,7 @@ namespace Monopoly
             this.btnChooseImage3.TabIndex = 11;
             this.btnChooseImage3.Text = "Choose Image";
             this.btnChooseImage3.UseVisualStyleBackColor = true;
-            this.btnChooseImage3.Click += new System.EventHandler(this.btnChooseImage3_Click);
+            this.btnChooseImage3.Click += new System.EventHandler(this.BtnChooseImage3_Click);
             // 
             // btnChooseImage4
             // 
@@ -404,7 +404,7 @@ namespace Monopoly
             this.btnChooseImage4.TabIndex = 11;
             this.btnChooseImage4.Text = "Choose Image";
             this.btnChooseImage4.UseVisualStyleBackColor = true;
-            this.btnChooseImage4.Click += new System.EventHandler(this.btnChooseImage4_Click);
+            this.btnChooseImage4.Click += new System.EventHandler(this.BtnChooseImage4_Click);
             // 
             // ofChooseGIfs
             // 

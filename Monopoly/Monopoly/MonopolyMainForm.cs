@@ -1192,6 +1192,7 @@ namespace Monopoly
             if (this.currentPlayer.IsAi == true)
             {
                 this.BtnRoll_Click(sender, e);
+                this.BtnBuyHouseOrHotel_Click(sender, e);
                 this.BtnNextTurn_Click(sender, e);
             }
         }
@@ -1306,7 +1307,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The eventArgs</param>
-        private void btnSmallLoan_Click(object sender, EventArgs e)
+        private void BtnSmallLoan_Click(object sender, EventArgs e)
         {
             this.currentPlayer.Money += 1000;
         }

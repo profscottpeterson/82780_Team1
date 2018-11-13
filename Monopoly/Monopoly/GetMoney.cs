@@ -99,13 +99,69 @@ namespace Monopoly
             // Get the current players list of properties
             this.playerSpots = game.GetPlayersPropertyList(this.currentPlayer);
 
-            this.FillListView(this.listViewProperties, this.playerSpots);
-            this.lblTotalDebt.Text = debt.ToString();
-            this.lblDebtCurrent.Text = debt.ToString();
-            this.lblPlayerName.Text = this.currentPlayer.PlayerName;
-            this.lblMoney.Text = this.currentPlayer.Money.ToString();
+            if (this.currentPlayer.IsAi == false)
+            {
+                this.FillListView(this.listViewProperties, this.playerSpots);
+                this.lblTotalDebt.Text = debt.ToString();
+                this.lblDebtCurrent.Text = debt.ToString();
+                this.lblPlayerName.Text = this.currentPlayer.PlayerName;
+                this.lblMoney.Text = this.currentPlayer.Money.ToString();
 
-            this.FillColors(this.playerSpots);
+                this.FillColors(this.playerSpots);
+            }
+            else
+            {
+                while (this.Debt > 0)
+                {
+                    for (int x = 0; x < this.playerSpots.Count; x++)
+                    {
+                        if (this.Debt > 0)
+                        {
+                            this.currentSpot = this.playerSpots[x];
+                            if (this.currentSpot.HasHotel == true)
+                            {
+                                this.BtnSellHotel_Click(this.currentSpot, EventArgs.Empty);
+                            }
+                            else if (this.currentSpot.NumberOfHouses > 0)
+                            {
+                                this.BtnSellHouse_Click(this.currentSpot, EventArgs.Empty);
+                            }
+                            else if (this.currentSpot.IsMortgaged == false)
+                            {
+                                this.BtnMortgage_Click(this.currentSpot, EventArgs.Empty);
+                            }
+
+                            if (x == this.playerSpots.Count)
+                            {
+                                if (this.Debt > 0)
+                                {
+                                    this.BtnForfeit_Click(this.currentPlayer, EventArgs.Empty);
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    if (this.Debt <= 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        this.BtnForfeit_Click(this.currentPlayer, EventArgs.Empty);
+                        break;
+                    }
+                }
+
+                if (this.Debt <= 0)
+                {
+                    this.BtnSubmit_Click(this.currentPlayer, EventArgs.Empty);
+                }
+            }
         }
 
         /// <summary>
@@ -245,22 +301,25 @@ namespace Monopoly
             this.currentSpot = this.game.Board[this.currentSpot.SpotId];
             this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
 
-            this.lblMoney.Text = this.currentPlayer.Money.ToString();
-
-            int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
-
-            int newDebt = remainingDebt - this.currentSpot.HouseCost / 2;
-
-            if (newDebt < 0)
+            if (this.currentPlayer.IsAi == false)
             {
-                newDebt = 0;
+                this.lblMoney.Text = this.currentPlayer.Money.ToString();
+
+                int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
+
+                int newDebt = remainingDebt - (this.currentSpot.HouseCost / 2);
+
+                if (newDebt < 0)
+                {
+                    newDebt = 0;
+                }
+
+                this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
+
+                this.lblDebtCurrent.Text = newDebt.ToString();
+
+                this.Reset();
             }
-
-            this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
-
-            this.lblDebtCurrent.Text = newDebt.ToString();
-
-            this.Reset();
         }
 
         /// <summary>
@@ -275,22 +334,25 @@ namespace Monopoly
             this.currentSpot = this.game.Board[this.currentSpot.SpotId];
             this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
 
-            this.lblMoney.Text = this.currentPlayer.Money.ToString();
-
-            int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
-
-            int newDebt = remainingDebt - this.currentSpot.HotelCost / 2;
-
-            if (newDebt < 0)
+            if (this.currentPlayer.IsAi == false)
             {
-                newDebt = 0;
+                this.lblMoney.Text = this.currentPlayer.Money.ToString();
+
+                int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
+
+                int newDebt = remainingDebt - (this.currentSpot.HotelCost / 2);
+
+                if (newDebt < 0)
+                {
+                    newDebt = 0;
+                }
+
+                this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
+
+                this.lblDebtCurrent.Text = newDebt.ToString();
+
+                this.Reset();
             }
-
-            this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
-
-            this.lblDebtCurrent.Text = newDebt.ToString();
-
-            this.Reset();
         }
 
         /// <summary>
@@ -305,22 +367,25 @@ namespace Monopoly
             this.currentSpot = this.game.Board[this.currentSpot.SpotId];
             this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
 
-            this.lblMoney.Text = this.currentPlayer.Money.ToString();
-
-            int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
-
-            int newDebt = remainingDebt - this.currentSpot.Mortgage;
-
-            if (newDebt < 0)
+            if (this.currentPlayer.IsAi == false)
             {
-                newDebt = 0;
+                this.lblMoney.Text = this.currentPlayer.Money.ToString();
+
+                int remainingDebt = int.Parse(this.lblDebtCurrent.Text);
+
+                int newDebt = remainingDebt - this.currentSpot.Mortgage;
+
+                if (newDebt < 0)
+                {
+                    newDebt = 0;
+                }
+
+                this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
+
+                this.lblDebtCurrent.Text = newDebt.ToString();
+
+                this.Reset();
             }
-
-            this.FillListView(this.listViewProperties, this.game.GetPlayersPropertyList(this.currentPlayer));
-
-            this.lblDebtCurrent.Text = newDebt.ToString();
-
-            this.Reset();
         }
 
         /// <summary>
@@ -377,7 +442,6 @@ namespace Monopoly
                 {
                     if (this.currentSpot.IsMortgaged == false)
                     {
-
                         // one of the property colors with only 2 properties
                         if (sameType.Count == 1 && (this.currentSpot.Color == Color.Brown || this.currentSpot.Color == Color.DarkBlue))
                         {

@@ -659,7 +659,6 @@ namespace Monopoly
                     money.ShowDialog();
                     money.Close();
                 }
-            
             }
             else if (player.NeedMoreMoney() && player.TotalNetWorth(this.Board) <= 0)
             {

@@ -1065,6 +1065,7 @@ namespace Monopoly
             {
                 this.pbxCurrentPlayerPicture.BackColor = Color.Transparent;
                 this.pbxCurrentPlayerPicture.Image = player.PlayerPictureBox.Image;
+                this.pbxCurrentPlayerPicture.Update();
             }
             else
             {

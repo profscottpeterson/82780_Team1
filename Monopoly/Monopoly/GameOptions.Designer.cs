@@ -135,28 +135,28 @@ namespace Monopoly
         {
             this.cmboNumPlayers = new System.Windows.Forms.ComboBox();
             this.panelPlayer1 = new System.Windows.Forms.Panel();
+            this.btnChooseImage1 = new System.Windows.Forms.Button();
             this.lblPlayerName1 = new System.Windows.Forms.Label();
             this.txtPlayer1Name = new System.Windows.Forms.TextBox();
             this.lblNumPlayer = new System.Windows.Forms.Label();
             this.panelPlayer2 = new System.Windows.Forms.Panel();
+            this.btnChooseImage2 = new System.Windows.Forms.Button();
             this.lblPlayerName2 = new System.Windows.Forms.Label();
             this.txtPlayerName2 = new System.Windows.Forms.TextBox();
             this.chkAI2 = new System.Windows.Forms.CheckBox();
             this.panelPlayer3 = new System.Windows.Forms.Panel();
+            this.btnChooseImage3 = new System.Windows.Forms.Button();
             this.lblPlayerName3 = new System.Windows.Forms.Label();
             this.txtPlayerName3 = new System.Windows.Forms.TextBox();
             this.chkAI3 = new System.Windows.Forms.CheckBox();
             this.panelPlayer4 = new System.Windows.Forms.Panel();
+            this.btnChooseImage4 = new System.Windows.Forms.Button();
             this.lblPlayerName4 = new System.Windows.Forms.Label();
             this.txtPlayerName4 = new System.Windows.Forms.TextBox();
             this.chkAI4 = new System.Windows.Forms.CheckBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
             this.lblMonopoly = new System.Windows.Forms.Label();
-            this.btnChooseImage1 = new System.Windows.Forms.Button();
-            this.btnChooseImage2 = new System.Windows.Forms.Button();
-            this.btnChooseImage3 = new System.Windows.Forms.Button();
-            this.btnChooseImage4 = new System.Windows.Forms.Button();
             this.ofChooseGIfs = new System.Windows.Forms.OpenFileDialog();
             this.panelPlayer1.SuspendLayout();
             this.panelPlayer2.SuspendLayout();
@@ -188,6 +188,16 @@ namespace Monopoly
             this.panelPlayer1.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer1.TabIndex = 1;
             this.panelPlayer1.Visible = false;
+            // 
+            // btnChooseImage1
+            // 
+            this.btnChooseImage1.Location = new System.Drawing.Point(3, 32);
+            this.btnChooseImage1.Name = "btnChooseImage1";
+            this.btnChooseImage1.Size = new System.Drawing.Size(92, 23);
+            this.btnChooseImage1.TabIndex = 10;
+            this.btnChooseImage1.Text = "Choose Image";
+            this.btnChooseImage1.UseVisualStyleBackColor = true;
+            this.btnChooseImage1.Click += new System.EventHandler(this.BtnChooseImage1_Click);
             // 
             // lblPlayerName1
             // 
@@ -226,6 +236,16 @@ namespace Monopoly
             this.panelPlayer2.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer2.TabIndex = 2;
             this.panelPlayer2.Visible = false;
+            // 
+            // btnChooseImage2
+            // 
+            this.btnChooseImage2.Location = new System.Drawing.Point(3, 32);
+            this.btnChooseImage2.Name = "btnChooseImage2";
+            this.btnChooseImage2.Size = new System.Drawing.Size(92, 23);
+            this.btnChooseImage2.TabIndex = 11;
+            this.btnChooseImage2.Text = "Choose Image";
+            this.btnChooseImage2.UseVisualStyleBackColor = true;
+            this.btnChooseImage2.Click += new System.EventHandler(this.BtnChooseImage2_Click);
             // 
             // lblPlayerName2
             // 
@@ -266,6 +286,16 @@ namespace Monopoly
             this.panelPlayer3.TabIndex = 3;
             this.panelPlayer3.Visible = false;
             // 
+            // btnChooseImage3
+            // 
+            this.btnChooseImage3.Location = new System.Drawing.Point(3, 32);
+            this.btnChooseImage3.Name = "btnChooseImage3";
+            this.btnChooseImage3.Size = new System.Drawing.Size(92, 23);
+            this.btnChooseImage3.TabIndex = 11;
+            this.btnChooseImage3.Text = "Choose Image";
+            this.btnChooseImage3.UseVisualStyleBackColor = true;
+            this.btnChooseImage3.Click += new System.EventHandler(this.BtnChooseImage3_Click);
+            // 
             // lblPlayerName3
             // 
             this.lblPlayerName3.AutoSize = true;
@@ -304,6 +334,16 @@ namespace Monopoly
             this.panelPlayer4.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer4.TabIndex = 4;
             this.panelPlayer4.Visible = false;
+            // 
+            // btnChooseImage4
+            // 
+            this.btnChooseImage4.Location = new System.Drawing.Point(3, 32);
+            this.btnChooseImage4.Name = "btnChooseImage4";
+            this.btnChooseImage4.Size = new System.Drawing.Size(92, 23);
+            this.btnChooseImage4.TabIndex = 11;
+            this.btnChooseImage4.Text = "Choose Image";
+            this.btnChooseImage4.UseVisualStyleBackColor = true;
+            this.btnChooseImage4.Click += new System.EventHandler(this.BtnChooseImage4_Click);
             // 
             // lblPlayerName4
             // 
@@ -356,55 +396,15 @@ namespace Monopoly
             // 
             // lblMonopoly
             // 
-            this.lblMonopoly.AutoSize = true;
             this.lblMonopoly.BackColor = System.Drawing.Color.Red;
             this.lblMonopoly.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMonopoly.ForeColor = System.Drawing.Color.FloralWhite;
-            this.lblMonopoly.Location = new System.Drawing.Point(39, 20);
+            this.lblMonopoly.Location = new System.Drawing.Point(12, 9);
             this.lblMonopoly.Name = "lblMonopoly";
-            this.lblMonopoly.Size = new System.Drawing.Size(210, 51);
+            this.lblMonopoly.Size = new System.Drawing.Size(260, 62);
             this.lblMonopoly.TabIndex = 7;
             this.lblMonopoly.Text = "Monopoly";
-            // 
-            // btnChooseImage1
-            // 
-            this.btnChooseImage1.Location = new System.Drawing.Point(3, 32);
-            this.btnChooseImage1.Name = "btnChooseImage1";
-            this.btnChooseImage1.Size = new System.Drawing.Size(92, 23);
-            this.btnChooseImage1.TabIndex = 10;
-            this.btnChooseImage1.Text = "Choose Image";
-            this.btnChooseImage1.UseVisualStyleBackColor = true;
-            this.btnChooseImage1.Click += new System.EventHandler(this.BtnChooseImage1_Click);
-            // 
-            // btnChooseImage2
-            // 
-            this.btnChooseImage2.Location = new System.Drawing.Point(3, 32);
-            this.btnChooseImage2.Name = "btnChooseImage2";
-            this.btnChooseImage2.Size = new System.Drawing.Size(92, 23);
-            this.btnChooseImage2.TabIndex = 11;
-            this.btnChooseImage2.Text = "Choose Image";
-            this.btnChooseImage2.UseVisualStyleBackColor = true;
-            this.btnChooseImage2.Click += new System.EventHandler(this.BtnChooseImage2_Click);
-            // 
-            // btnChooseImage3
-            // 
-            this.btnChooseImage3.Location = new System.Drawing.Point(3, 32);
-            this.btnChooseImage3.Name = "btnChooseImage3";
-            this.btnChooseImage3.Size = new System.Drawing.Size(92, 23);
-            this.btnChooseImage3.TabIndex = 11;
-            this.btnChooseImage3.Text = "Choose Image";
-            this.btnChooseImage3.UseVisualStyleBackColor = true;
-            this.btnChooseImage3.Click += new System.EventHandler(this.BtnChooseImage3_Click);
-            // 
-            // btnChooseImage4
-            // 
-            this.btnChooseImage4.Location = new System.Drawing.Point(3, 32);
-            this.btnChooseImage4.Name = "btnChooseImage4";
-            this.btnChooseImage4.Size = new System.Drawing.Size(92, 23);
-            this.btnChooseImage4.TabIndex = 11;
-            this.btnChooseImage4.Text = "Choose Image";
-            this.btnChooseImage4.UseVisualStyleBackColor = true;
-            this.btnChooseImage4.Click += new System.EventHandler(this.BtnChooseImage4_Click);
+            this.lblMonopoly.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ofChooseGIfs
             // 

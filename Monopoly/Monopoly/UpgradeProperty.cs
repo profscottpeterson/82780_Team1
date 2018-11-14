@@ -25,42 +25,42 @@ namespace Monopoly
         /// <summary>
         /// Gets or sets the game
         /// </summary>
-        public Game game;
+        private Game game;
 
         /// <summary>
         /// Gets or sets the currentPlayer
         /// </summary>
-        public Player CurrentPlayer;
+        private Player currentPlayer;
 
         /// <summary>
         /// holds the list of spots that the currentPlayer has
         /// </summary>
-        public List<Spot> playerSpots = new List<Spot>();
+        private List<Spot> playerSpots = new List<Spot>();
 
         /// <summary>
         /// holds the colors that are eligible for a house
         /// </summary>
-        public List<Color> houseEligible = new List<Color>();
+        private List<Color> houseEligible = new List<Color>();
 
         /// <summary>
         /// Holds the colors that are eligible for a hotel
         /// </summary>
-        public List<Color> hotelEligible = new List<Color>();
+        private List<Color> hotelEligible = new List<Color>();
 
         /// <summary>
         /// Spot s
         /// </summary>
-        public Spot selectedSpot = new Spot();
+        private Spot selectedSpot = new Spot();
 
         /// <summary>
         /// List of spots whose color is selected
         /// </summary>
-        public List<Spot> sameType = new List<Spot>();
+        private List<Spot> sameType = new List<Spot>();
 
         /// <summary>
         /// list of eligible spots
         /// </summary>
-        public List<Spot> eligible = new List<Spot>();
+        private List<Spot> eligible = new List<Spot>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpgradeProperty"/> class
@@ -75,7 +75,7 @@ namespace Monopoly
 
             this.InitializeComponent();
             this.game = game;
-            this.CurrentPlayer = currentPlayer;
+            this.currentPlayer = currentPlayer;
 
             // fill the list with the list of spots that the currentPlayer has
             this.playerSpots = currentPlayer.GetPlayersPropertyList(this.game.Board);
@@ -119,35 +119,35 @@ namespace Monopoly
                 // fill public slot
                 this.eligible = spotsEligible;
 
-                if (CurrentPlayer.IsAi == false)
+                if (this.currentPlayer.IsAi == false)
                 {
                      // add them to the listView
                      this.FillListView(this.listViewProperties, spotsEligible);
                 }
                 else
                 {
-                    foreach (Spot s in eligible)
+                    foreach (Spot s in this.eligible)
                     {
-                        selectedSpot = s;
-                        if (selectedSpot.IsMortgaged == true)
+                        this.selectedSpot = s;
+                        if (this.selectedSpot.IsMortgaged == true)
                         {
-                            if (CurrentPlayer.Money > selectedSpot.Mortgage + 50)
+                            if (this.currentPlayer.Money > this.selectedSpot.Mortgage + 50)
                             {
                                 this.BtnUnmortgage_Click(this.selectedSpot, EventArgs.Empty);
                             }
                         }
-                        else if (selectedSpot.NumberOfHouses < 4)
+                        else if (this.selectedSpot.NumberOfHouses < 4)
                         {
-                            if (CurrentPlayer.Money > selectedSpot.HouseCost + 50)
+                            if (this.currentPlayer.Money > this.selectedSpot.HouseCost + 50)
                             {
                                 this.BtnAddHouse_Click(this.selectedSpot, EventArgs.Empty);
                             }
                         }
-                        else if (selectedSpot.HasHotel == false)
+                        else if (this.selectedSpot.HasHotel == false)
                         {
-                            if (selectedSpot.NumberOfHouses == 4)
+                            if (this.selectedSpot.NumberOfHouses == 4)
                             {
-                                if (CurrentPlayer.Money > selectedSpot.HotelCost + 50)
+                                if (this.currentPlayer.Money > this.selectedSpot.HotelCost + 50)
                                 {
                                     this.BtnAddHotel_Click(this.selectedSpot, EventArgs.Empty);
                                 }
@@ -160,7 +160,7 @@ namespace Monopoly
             }
             else
             {
-                if (CurrentPlayer.IsAi == false)
+                if (this.currentPlayer.IsAi == false)
                 {
                     MessageBox.Show("No Properties Eligible For Upgrade.");
                 }
@@ -265,8 +265,8 @@ namespace Monopoly
         private void BtnAddHouse_Click(object sender, EventArgs e)
         {
             this.game.Board[this.selectedSpot.SpotId].NumberOfHouses++;
-            this.CurrentPlayer.Money = this.CurrentPlayer.Money - this.selectedSpot.HouseCost;
-            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.currentPlayer.Money = this.currentPlayer.Money - this.selectedSpot.HouseCost;
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
 
             this.Reset();
         }
@@ -279,8 +279,8 @@ namespace Monopoly
         private void BtnAddHotel_Click(object sender, EventArgs e)
         {
             this.game.Board[this.selectedSpot.SpotId].HasHotel = true;
-            this.CurrentPlayer.Money = this.CurrentPlayer.Money - this.selectedSpot.HotelCost;
-            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.currentPlayer.Money = this.currentPlayer.Money - this.selectedSpot.HotelCost;
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
 
             this.Reset();
         }
@@ -296,17 +296,17 @@ namespace Monopoly
             {
                 this.game.Board[this.sameType[0].SpotId].NumberOfHouses++;
                 this.game.Board[this.sameType[1].SpotId].NumberOfHouses++;
-                this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HouseCost * 2);
+                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HouseCost * 2);
             }
             else
             {
                 this.game.Board[this.sameType[0].SpotId].NumberOfHouses++;
                 this.game.Board[this.sameType[1].SpotId].NumberOfHouses++;
                 this.game.Board[this.sameType[2].SpotId].NumberOfHouses++;
-                this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HouseCost * 3);
+                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HouseCost * 3);
             }
 
-            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
             this.Reset();
         }
 
@@ -321,17 +321,17 @@ namespace Monopoly
             {
                 this.game.Board[this.sameType[0].SpotId].HasHotel = true;
                 this.game.Board[this.sameType[1].SpotId].HasHotel = true;
-                this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HotelCost * 2);
+                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HotelCost * 2);
             }
             else
             {
                 this.game.Board[this.sameType[0].SpotId].HasHotel = true;
                 this.game.Board[this.sameType[1].SpotId].HasHotel = true;
                 this.game.Board[this.sameType[2].SpotId].HasHotel = true;
-                this.CurrentPlayer.Money = this.CurrentPlayer.Money - (this.selectedSpot.HotelCost * 3);
+                this.currentPlayer.Money = this.currentPlayer.Money - (this.selectedSpot.HotelCost * 3);
             }
 
-            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
             this.Reset();
         }
 
@@ -343,8 +343,8 @@ namespace Monopoly
         private void BtnUnmortgage_Click(object sender, EventArgs e)
         {
             this.game.Board[this.selectedSpot.SpotId].IsMortgaged = false;
-            this.game.Players[this.CurrentPlayer.PlayerId].Money = this.game.Players[this.CurrentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
-            this.lblMoneyTotal.Text = this.game.Players[this.CurrentPlayer.PlayerId].Money.ToString();
+            this.game.Players[this.currentPlayer.PlayerId].Money = this.game.Players[this.currentPlayer.PlayerId].Money - (int)(this.selectedSpot.Mortgage * 1.1);
+            this.lblMoneyTotal.Text = this.game.Players[this.currentPlayer.PlayerId].Money.ToString();
 
             this.Reset();           
         }
@@ -400,7 +400,7 @@ namespace Monopoly
                     {
                         if (this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses)
                         {
-                            if (this.selectedSpot.HouseCost <= this.CurrentPlayer.Money)
+                            if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
                             {
                                 this.btnAddHouse.Enabled = true;
                             }
@@ -418,7 +418,7 @@ namespace Monopoly
                                 }
                                 else if (this.sameType[0].HasHotel)
                                 {
-                                    if (this.CurrentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
                                         this.btnAddHotel.Enabled = true;
                                     }
@@ -429,7 +429,7 @@ namespace Monopoly
                                 }
                                 else
                                 {
-                                    if (this.CurrentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
                                         this.btnAddHotel.Enabled = true;
                                     }
@@ -438,7 +438,7 @@ namespace Monopoly
                                         this.txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
                                     }
 
-                                    if (this.CurrentPlayer.Money >= (this.selectedSpot.HotelCost * 2))
+                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 2))
                                     {
                                         this.btnAddHotelToAll.Enabled = true;
                                     }
@@ -450,7 +450,7 @@ namespace Monopoly
                             }
                             else
                             {
-                                if (this.selectedSpot.HouseCost <= this.CurrentPlayer.Money)
+                                if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
                                 {
                                     this.btnAddHouse.Enabled = true;
                                 }
@@ -459,7 +459,7 @@ namespace Monopoly
                                     this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
                                 }
 
-                                if (this.CurrentPlayer.Money >= (this.selectedSpot.HouseCost * 2))
+                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 2))
                                 {
                                     this.btnAddHouseToAll.Enabled = true;
                                 }
@@ -477,7 +477,7 @@ namespace Monopoly
                 }
                 else
                 {
-                    if (this.CurrentPlayer.Money >= (this.selectedSpot.Mortgage * 1.1))
+                    if (this.currentPlayer.Money >= (this.selectedSpot.Mortgage * 1.1))
                     {
                         this.btnUnmortgage.Enabled = true;
                     }
@@ -495,7 +495,7 @@ namespace Monopoly
                     {
                         if ((this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses) || (this.selectedSpot.NumberOfHouses < this.sameType[1].NumberOfHouses))
                         {
-                            if (this.CurrentPlayer.Money >= this.selectedSpot.HouseCost)
+                            if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
                             {
                                 this.btnAddHouse.Enabled = true;
                             }
@@ -513,7 +513,7 @@ namespace Monopoly
                                 }
                                 else if (this.sameType[0].HasHotel || this.sameType[1].HasHotel)
                                 {
-                                    if (this.CurrentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
                                         this.btnAddHotel.Enabled = true;
                                     }
@@ -524,7 +524,7 @@ namespace Monopoly
                                 }
                                 else
                                 {
-                                    if (this.CurrentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
                                         this.btnAddHotel.Enabled = true;
                                     }
@@ -533,7 +533,7 @@ namespace Monopoly
                                         this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on this property.";
                                     }
 
-                                    if (this.CurrentPlayer.Money >= (this.selectedSpot.HotelCost * 3))
+                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 3))
                                     {
                                         this.btnAddHotelToAll.Enabled = true;
                                         this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
@@ -542,7 +542,7 @@ namespace Monopoly
                             }
                             else
                             {
-                                if (this.CurrentPlayer.Money >= this.selectedSpot.HouseCost)
+                                if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
                                 {
                                     this.btnAddHouse.Enabled = true;
                                 }
@@ -551,7 +551,7 @@ namespace Monopoly
                                     this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
                                 }
 
-                                if (this.CurrentPlayer.Money >= (this.selectedSpot.HouseCost * 3))
+                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 3))
                                 {
                                     this.btnAddHouseToAll.Enabled = true;
                                 }
@@ -573,7 +573,7 @@ namespace Monopoly
                 }
                 else
                 {
-                    if (this.CurrentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
+                    if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
                     {
                         this.btnUnmortgage.Enabled = true;
                     }
@@ -585,7 +585,7 @@ namespace Monopoly
             }
             else if (this.selectedSpot.IsMortgaged)
             {
-                if (this.CurrentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
+                if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
                 {
                     this.btnUnmortgage.Enabled = true;
                 }

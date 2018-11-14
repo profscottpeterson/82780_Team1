@@ -303,7 +303,7 @@ namespace Monopoly
                     newDebt = 0;
                 }
 
-            this.FillListView(this.listViewProperties, currentPlayer.GetPlayersPropertyList(this.game.Board));
+            this.FillListView(this.listViewProperties, this.currentPlayer.GetPlayersPropertyList(this.game.Board));
 
                 this.lblDebtCurrent.Text = newDebt.ToString();
 

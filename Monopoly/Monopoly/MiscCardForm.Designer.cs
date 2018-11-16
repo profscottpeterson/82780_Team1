@@ -47,30 +47,27 @@ namespace Monopoly
             // 
             // cardPictureBox
             // 
-            this.cardPictureBox.Location = new System.Drawing.Point(183, 91);
-            this.cardPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cardPictureBox.Location = new System.Drawing.Point(137, 74);
             this.cardPictureBox.Name = "cardPictureBox";
-            this.cardPictureBox.Size = new System.Drawing.Size(218, 170);
+            this.cardPictureBox.Size = new System.Drawing.Size(164, 138);
             this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.cardPictureBox.TabIndex = 0;
             this.cardPictureBox.TabStop = false;
             // 
             // cardTextLabel
             // 
-            this.cardTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cardTextLabel.Location = new System.Drawing.Point(26, 49);
-            this.cardTextLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cardTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardTextLabel.Location = new System.Drawing.Point(20, 40);
             this.cardTextLabel.Name = "cardTextLabel";
-            this.cardTextLabel.Size = new System.Drawing.Size(531, 23);
+            this.cardTextLabel.Size = new System.Drawing.Size(398, 19);
             this.cardTextLabel.TabIndex = 1;
             this.cardTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnClose
             // 
-            this.BtnClose.Location = new System.Drawing.Point(467, 305);
-            this.BtnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnClose.Location = new System.Drawing.Point(350, 248);
             this.BtnClose.Name = "BtnClose";
-            this.BtnClose.Size = new System.Drawing.Size(100, 28);
+            this.BtnClose.Size = new System.Drawing.Size(75, 23);
             this.BtnClose.TabIndex = 2;
             this.BtnClose.Text = "Close";
             this.BtnClose.UseVisualStyleBackColor = true;
@@ -78,36 +75,34 @@ namespace Monopoly
             // 
             // DescriptionLabel
             // 
-            this.DescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DescriptionLabel.Location = new System.Drawing.Point(114, 265);
+            this.DescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DescriptionLabel.Location = new System.Drawing.Point(86, 215);
+            this.DescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(346, 68);
+            this.DescriptionLabel.Size = new System.Drawing.Size(260, 55);
             this.DescriptionLabel.TabIndex = 3;
             this.DescriptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CardTypeLabel
             // 
-            this.CardTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CardTypeLabel.Location = new System.Drawing.Point(26, 9);
-            this.CardTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CardTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CardTypeLabel.Location = new System.Drawing.Point(20, 7);
             this.CardTypeLabel.Name = "CardTypeLabel";
-            this.CardTypeLabel.Size = new System.Drawing.Size(531, 40);
+            this.CardTypeLabel.Size = new System.Drawing.Size(398, 32);
             this.CardTypeLabel.TabIndex = 4;
             this.CardTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MiscCardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 347);
+            this.ClientSize = new System.Drawing.Size(437, 282);
             this.Controls.Add(this.CardTypeLabel);
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.cardTextLabel);
             this.Controls.Add(this.cardPictureBox);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MiscCardForm";
-            this.Text = "MiscCardForm";
             this.Load += new System.EventHandler(this.MiscCardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).EndInit();
             this.ResumeLayout(false);

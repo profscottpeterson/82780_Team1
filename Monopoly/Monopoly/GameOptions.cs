@@ -45,7 +45,9 @@ namespace Monopoly
         /// <param name="game">The game.</param>
         public GameOptions(Game game)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
+            this.Text = string.Empty;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 

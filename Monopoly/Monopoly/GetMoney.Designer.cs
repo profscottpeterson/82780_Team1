@@ -60,11 +60,11 @@ namespace Monopoly
             // 
             // listViewProperties
             // 
-            this.listViewProperties.Location = new System.Drawing.Point(15, 218);
-            this.listViewProperties.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewProperties.Location = new System.Drawing.Point(11, 177);
+            this.listViewProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listViewProperties.MultiSelect = false;
             this.listViewProperties.Name = "listViewProperties";
-            this.listViewProperties.Size = new System.Drawing.Size(468, 322);
+            this.listViewProperties.Size = new System.Drawing.Size(352, 262);
             this.listViewProperties.TabIndex = 24;
             this.listViewProperties.UseCompatibleStateImageBehavior = false;
             this.listViewProperties.View = System.Windows.Forms.View.Details;
@@ -72,10 +72,9 @@ namespace Monopoly
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(631, 25);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmit.Location = new System.Drawing.Point(473, 20);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 28);
+            this.btnSubmit.Size = new System.Drawing.Size(56, 23);
             this.btnSubmit.TabIndex = 25;
             this.btnSubmit.Text = "Close";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -85,10 +84,9 @@ namespace Monopoly
             // 
             this.lblDebt.AutoSize = true;
             this.lblDebt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDebt.Location = new System.Drawing.Point(16, 11);
-            this.lblDebt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDebt.Location = new System.Drawing.Point(12, 9);
             this.lblDebt.Name = "lblDebt";
-            this.lblDebt.Size = new System.Drawing.Size(115, 46);
+            this.lblDebt.Size = new System.Drawing.Size(93, 37);
             this.lblDebt.TabIndex = 26;
             this.lblDebt.Text = "Debt:";
             // 
@@ -96,10 +94,9 @@ namespace Monopoly
             // 
             this.lblTotalDebt.AutoSize = true;
             this.lblTotalDebt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalDebt.Location = new System.Drawing.Point(148, 11);
-            this.lblTotalDebt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalDebt.Location = new System.Drawing.Point(111, 9);
             this.lblTotalDebt.Name = "lblTotalDebt";
-            this.lblTotalDebt.Size = new System.Drawing.Size(109, 46);
+            this.lblTotalDebt.Size = new System.Drawing.Size(89, 37);
             this.lblTotalDebt.TabIndex = 27;
             this.lblTotalDebt.Text = "Total";
             // 
@@ -107,10 +104,9 @@ namespace Monopoly
             // 
             this.lblDivider.AutoSize = true;
             this.lblDivider.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDivider.Location = new System.Drawing.Point(275, 11);
-            this.lblDivider.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDivider.Location = new System.Drawing.Point(206, 9);
             this.lblDivider.Name = "lblDivider";
-            this.lblDivider.Size = new System.Drawing.Size(67, 46);
+            this.lblDivider.Size = new System.Drawing.Size(55, 37);
             this.lblDivider.TabIndex = 28;
             this.lblDivider.Text = "- >";
             // 
@@ -118,10 +114,9 @@ namespace Monopoly
             // 
             this.lblDebtCurrent.AutoSize = true;
             this.lblDebtCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDebtCurrent.Location = new System.Drawing.Point(356, 11);
-            this.lblDebtCurrent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDebtCurrent.Location = new System.Drawing.Point(267, 9);
             this.lblDebtCurrent.Name = "lblDebtCurrent";
-            this.lblDebtCurrent.Size = new System.Drawing.Size(152, 46);
+            this.lblDebtCurrent.Size = new System.Drawing.Size(124, 37);
             this.lblDebtCurrent.TabIndex = 29;
             this.lblDebtCurrent.Text = "Current";
             // 
@@ -129,10 +124,9 @@ namespace Monopoly
             // 
             this.btnSellHouse.Enabled = false;
             this.btnSellHouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSellHouse.Location = new System.Drawing.Point(512, 266);
-            this.btnSellHouse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSellHouse.Location = new System.Drawing.Point(384, 216);
             this.btnSellHouse.Name = "btnSellHouse";
-            this.btnSellHouse.Size = new System.Drawing.Size(185, 39);
+            this.btnSellHouse.Size = new System.Drawing.Size(139, 32);
             this.btnSellHouse.TabIndex = 34;
             this.btnSellHouse.Text = "Sell House";
             this.btnSellHouse.UseVisualStyleBackColor = true;
@@ -142,10 +136,9 @@ namespace Monopoly
             // 
             this.btnSellHotel.Enabled = false;
             this.btnSellHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSellHotel.Location = new System.Drawing.Point(512, 370);
-            this.btnSellHotel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSellHotel.Location = new System.Drawing.Point(384, 301);
             this.btnSellHotel.Name = "btnSellHotel";
-            this.btnSellHotel.Size = new System.Drawing.Size(185, 39);
+            this.btnSellHotel.Size = new System.Drawing.Size(139, 32);
             this.btnSellHotel.TabIndex = 40;
             this.btnSellHotel.Text = "Sell Hotel";
             this.btnSellHotel.UseVisualStyleBackColor = true;
@@ -155,10 +148,9 @@ namespace Monopoly
             // 
             this.btnMortage.Enabled = false;
             this.btnMortage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMortage.Location = new System.Drawing.Point(512, 484);
-            this.btnMortage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMortage.Location = new System.Drawing.Point(384, 393);
             this.btnMortage.Name = "btnMortage";
-            this.btnMortage.Size = new System.Drawing.Size(275, 42);
+            this.btnMortage.Size = new System.Drawing.Size(206, 34);
             this.btnMortage.TabIndex = 43;
             this.btnMortage.Text = "Mortgage Property";
             this.btnMortage.UseVisualStyleBackColor = true;
@@ -168,10 +160,9 @@ namespace Monopoly
             // 
             this.lblPropertyText.AutoSize = true;
             this.lblPropertyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPropertyText.Location = new System.Drawing.Point(16, 135);
-            this.lblPropertyText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPropertyText.Location = new System.Drawing.Point(12, 110);
             this.lblPropertyText.Name = "lblPropertyText";
-            this.lblPropertyText.Size = new System.Drawing.Size(125, 31);
+            this.lblPropertyText.Size = new System.Drawing.Size(100, 26);
             this.lblPropertyText.TabIndex = 45;
             this.lblPropertyText.Text = "Property:";
             // 
@@ -179,10 +170,9 @@ namespace Monopoly
             // 
             this.lblPropertyName.AutoSize = true;
             this.lblPropertyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPropertyName.Location = new System.Drawing.Point(16, 167);
-            this.lblPropertyName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPropertyName.Location = new System.Drawing.Point(12, 136);
             this.lblPropertyName.Name = "lblPropertyName";
-            this.lblPropertyName.Size = new System.Drawing.Size(240, 31);
+            this.lblPropertyName.Size = new System.Drawing.Size(193, 26);
             this.lblPropertyName.TabIndex = 46;
             this.lblPropertyName.Text = "Choose a Property";
             // 
@@ -190,10 +180,9 @@ namespace Monopoly
             // 
             this.lblMoneyGainFromHouse.AutoSize = true;
             this.lblMoneyGainFromHouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoneyGainFromHouse.Location = new System.Drawing.Point(705, 271);
-            this.lblMoneyGainFromHouse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMoneyGainFromHouse.Location = new System.Drawing.Point(529, 220);
             this.lblMoneyGainFromHouse.Name = "lblMoneyGainFromHouse";
-            this.lblMoneyGainFromHouse.Size = new System.Drawing.Size(82, 31);
+            this.lblMoneyGainFromHouse.Size = new System.Drawing.Size(67, 26);
             this.lblMoneyGainFromHouse.TabIndex = 47;
             this.lblMoneyGainFromHouse.Text = "[num]";
             // 
@@ -201,32 +190,29 @@ namespace Monopoly
             // 
             this.lblMoneyGainFromHotel.AutoSize = true;
             this.lblMoneyGainFromHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoneyGainFromHotel.Location = new System.Drawing.Point(705, 375);
-            this.lblMoneyGainFromHotel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMoneyGainFromHotel.Location = new System.Drawing.Point(529, 305);
             this.lblMoneyGainFromHotel.Name = "lblMoneyGainFromHotel";
-            this.lblMoneyGainFromHotel.Size = new System.Drawing.Size(82, 31);
+            this.lblMoneyGainFromHotel.Size = new System.Drawing.Size(67, 26);
             this.lblMoneyGainFromHotel.TabIndex = 48;
             this.lblMoneyGainFromHotel.Text = "[num]";
             // 
             // txtErrors
             // 
-            this.txtErrors.Location = new System.Drawing.Point(487, 61);
-            this.txtErrors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtErrors.Location = new System.Drawing.Point(365, 50);
             this.txtErrors.Multiline = true;
             this.txtErrors.Name = "txtErrors";
             this.txtErrors.ReadOnly = true;
             this.txtErrors.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrors.Size = new System.Drawing.Size(300, 141);
+            this.txtErrors.Size = new System.Drawing.Size(226, 115);
             this.txtErrors.TabIndex = 49;
             // 
             // lblPlayerName
             // 
             this.lblPlayerName.AutoSize = true;
             this.lblPlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerName.Location = new System.Drawing.Point(220, 58);
-            this.lblPlayerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlayerName.Location = new System.Drawing.Point(165, 47);
             this.lblPlayerName.Name = "lblPlayerName";
-            this.lblPlayerName.Size = new System.Drawing.Size(91, 31);
+            this.lblPlayerName.Size = new System.Drawing.Size(74, 26);
             this.lblPlayerName.TabIndex = 50;
             this.lblPlayerName.Text = "Player";
             // 
@@ -234,10 +220,9 @@ namespace Monopoly
             // 
             this.lblPlayerNameText.AutoSize = true;
             this.lblPlayerNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerNameText.Location = new System.Drawing.Point(19, 58);
-            this.lblPlayerNameText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlayerNameText.Location = new System.Drawing.Point(14, 47);
             this.lblPlayerNameText.Name = "lblPlayerNameText";
-            this.lblPlayerNameText.Size = new System.Drawing.Size(178, 31);
+            this.lblPlayerNameText.Size = new System.Drawing.Size(145, 26);
             this.lblPlayerNameText.TabIndex = 51;
             this.lblPlayerNameText.Text = "Player Name:";
             // 
@@ -245,10 +230,9 @@ namespace Monopoly
             // 
             this.lblMoneyText.AutoSize = true;
             this.lblMoneyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoneyText.Location = new System.Drawing.Point(19, 95);
-            this.lblMoneyText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMoneyText.Location = new System.Drawing.Point(14, 77);
             this.lblMoneyText.Name = "lblMoneyText";
-            this.lblMoneyText.Size = new System.Drawing.Size(103, 31);
+            this.lblMoneyText.Size = new System.Drawing.Size(83, 26);
             this.lblMoneyText.TabIndex = 53;
             this.lblMoneyText.Text = "Money:";
             // 
@@ -256,19 +240,17 @@ namespace Monopoly
             // 
             this.lblMoney.AutoSize = true;
             this.lblMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoney.Location = new System.Drawing.Point(137, 95);
-            this.lblMoney.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMoney.Location = new System.Drawing.Point(103, 77);
             this.lblMoney.Name = "lblMoney";
-            this.lblMoney.Size = new System.Drawing.Size(95, 31);
+            this.lblMoney.Size = new System.Drawing.Size(77, 26);
             this.lblMoney.TabIndex = 52;
             this.lblMoney.Text = "Money";
             // 
             // btnForfeit
             // 
-            this.btnForfeit.Location = new System.Drawing.Point(714, 25);
-            this.btnForfeit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnForfeit.Location = new System.Drawing.Point(536, 20);
             this.btnForfeit.Name = "btnForfeit";
-            this.btnForfeit.Size = new System.Drawing.Size(75, 28);
+            this.btnForfeit.Size = new System.Drawing.Size(56, 23);
             this.btnForfeit.TabIndex = 54;
             this.btnForfeit.Text = "Forfeit";
             this.btnForfeit.UseVisualStyleBackColor = true;
@@ -276,9 +258,9 @@ namespace Monopoly
             // 
             // GetMoney
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 554);
+            this.ClientSize = new System.Drawing.Size(606, 450);
             this.Controls.Add(this.btnForfeit);
             this.Controls.Add(this.lblMoneyText);
             this.Controls.Add(this.lblMoney);
@@ -298,9 +280,8 @@ namespace Monopoly
             this.Controls.Add(this.lblDebt);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.listViewProperties);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GetMoney";
-            this.Text = "GetMoney";
+            this.Text = "Sell";
             this.ResumeLayout(false);
             this.PerformLayout();
 

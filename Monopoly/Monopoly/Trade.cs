@@ -73,7 +73,8 @@ namespace Monopoly
         /// <param name="g">The current game instance</param>
         public Trade(Player p, Game g)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 

@@ -58,7 +58,8 @@ namespace Monopoly
         /// <param name="currentPlayer">The current player</param>
         public GetMoney(Game game, Player currentPlayer)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 

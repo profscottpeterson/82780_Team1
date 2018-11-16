@@ -159,7 +159,7 @@ namespace Monopoly
             {
                 // Sets the forms height to 1000 pixels
                 this.Height = 1000;
-                this.Location = new Point(0, 50);
+                this.Location = new Point(0, 40);
 
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
@@ -262,6 +262,7 @@ namespace Monopoly
                 this.lblPlayerTurn.Text = this.currentPlayer.PlayerName + "'s Turn";
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
                 this.lblGetOutOfJailLabel.Text = "You have " + this.currentPlayer.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
+                this.DoublesLabel.Text = string.Empty;
             }
 
             return result;
@@ -295,18 +296,10 @@ namespace Monopoly
         /// <param name="e">The click event</param>
         private void BtnRoll_Click(object sender, EventArgs e)
         {
-            Random rand = new Random();
-
             int die1 = 0;
             int die2 = 0;
 
-            // Get two random numbers for dice values
-            die1 = rand.Next(1, 7);
-            die2 = rand.Next(1, 7);
-
-            // Have dice images match random numbers that were generated
-            pbxDiceLeft.Image = this.dicePictures.Images[die1 - 1];
-            pbxDiceRight.Image = this.dicePictures.Images[die2 - 1];
+            this.RollingDice(out die1, out die2);
 
             if (this.currentPlayer.InJail == false)
             {
@@ -319,10 +312,12 @@ namespace Monopoly
                     this.doubleCounter++;
                     if (this.doubleCounter >= 3)
                     {
+                        this.DoublesLabel.Text = "Sorry. That was your third doubles in a row. Go to Jail.";
                         this.currentPlayer.SendToJail(this.game.GetSpotByName("Jail"));
                     }
                     else
                     {
+                        this.DoublesLabel.Text = "You rolled doubles and get to roll again.";
                         this.BtnNextTurn.Enabled = false;
                         this.btnRoll.Enabled = true;
                         this.btnRoll.Focus();
@@ -341,6 +336,7 @@ namespace Monopoly
                 }
                 else
                 {
+                    this.DoublesLabel.Text = string.Empty;
                     this.BtnNextTurn.Enabled = true;
                     this.BtnNextTurn.Focus();
                     this.btnRoll.Enabled = false;
@@ -356,11 +352,25 @@ namespace Monopoly
 
                     this.game.RollChecks(this.currentPlayer);
                 }
+
+                // If player was sent to jail
+                if (this.currentPlayer.InJail)
+                {
+                    if (this.doubleCounter < 3)
+                    {
+                        this.DoublesLabel.Text = "You were sent to Jail. End of turn.";
+                    }
+                    
+                    this.BtnNextTurn.Enabled = true;
+                    this.btnRoll.Enabled = false;
+                    this.BtnNextTurn.Focus();
+                }
             }
             else
             {
                 if (die1 == die2)
                 {
+                    this.DoublesLabel.Text = "Rolling doubles enabled you to get out of Jail.";
                     this.currentPlayer.InJail = false;
                     this.currentPlayer.TurnsInJail = 0;
                     int total = die1 + die2;
@@ -371,18 +381,21 @@ namespace Monopoly
                 }
                 else
                 {
+                    this.DoublesLabel.Text = "Sorry. This roll will not get you out of Jail.";
                     this.btnJailPay.Enabled = true;
 
                     this.currentPlayer.TurnsInJail++;
 
                     if (this.currentPlayer.TurnsInJail == 3)
                     {
+                        this.DoublesLabel.Text += " - Paid $50 to get out.";
                         this.currentPlayer.Money -= 50;
                         this.game.CheckIfPlayerHasEnoughMoney(this.currentPlayer);
                         this.currentPlayer.InJail = false;
                         this.currentPlayer.TurnsInJail = 0;
                         int total = die1 + die2;
                         this.game.MovePlayerLocation(this.currentPlayer, total);
+                        this.game.RollChecks(this.currentPlayer);
                     }
                 }
 
@@ -404,6 +417,47 @@ namespace Monopoly
             {
                 this.RestartGame();
             }
+        }
+
+        /// <summary>
+        /// Shows the dice rolling
+        /// </summary>
+        /// <param name="die1">The value of the first die</param>
+        /// <param name="die2">The value of the second die</param>
+        private void RollingDice(out int die1, out int die2)
+        {
+            Random rand = new Random();
+
+            die1 = 0;
+            die2 = 0;
+
+            // Disable roll button so it cannot be clicked while dice are rolling
+            this.btnRoll.Enabled = false;
+
+            // Have dice roll 5 times
+            for (int i = 0; i < 5; i++)
+            {
+                // Get two random numbers for dice values
+                die1 = rand.Next(1, 7);
+                die2 = rand.Next(1, 7);
+
+                // Have dice images match random numbers that were generated
+                pbxDiceLeft.Image = this.dicePictures.Images[die1 - 1];
+                pbxDiceRight.Image = this.dicePictures.Images[die2 - 1];
+
+                // Pause for 200 milliseconds
+                System.Threading.Thread.Sleep(150);
+                Application.DoEvents();
+            }
+
+            if (this.currentPlayer.IsAi)
+            {
+                System.Threading.Thread.Sleep(1000);
+                Application.DoEvents();
+            }
+
+            // Re-enable the roll button when dice are done rolling
+            this.btnRoll.Enabled = true;
         }
 
         /// <summary>
@@ -1163,6 +1217,7 @@ namespace Monopoly
             this.BtnNextTurn.Enabled = false;
             this.btnRoll.Focus();
             this.doubleCounter = 0;
+            this.DoublesLabel.Text = string.Empty;
             this.formBool = false;
             this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
             this.flpCurrentPlayerProps.Controls.Clear();
@@ -1195,7 +1250,11 @@ namespace Monopoly
 
             if (this.currentPlayer.IsAi == true)
             {
-                this.BtnRoll_Click(sender, e);
+                while (this.btnRoll.Enabled)
+                {
+                    this.BtnRoll_Click(sender, e);
+                }
+
                 this.BtnBuyHouseOrHotel_Click(sender, e);
                 this.BtnNextTurn_Click(sender, e);
             }

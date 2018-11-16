@@ -29,22 +29,10 @@ namespace Monopoly
         /// <summary>
         /// Initializes a new instance of the <see cref="MonPopUp"/> class.
         /// </summary>
-        public MonPopUp()
-        {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-
-            this.InitializeComponent();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MonPopUp"/> class.
-        /// </summary>
         /// <param name="s">Spot to display</param>
         public MonPopUp(Spot s)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
@@ -59,7 +47,6 @@ namespace Monopoly
         /// <param name="e">The eventArgs</param>
         private void MonPopUp_Load(object sender, EventArgs e)
         {
-            this.Text = this.spot.SpotName;
             this.SpotNameLabel.Text = this.spot.SpotName;
             this.SpotNameLabel.BackColor = this.spot.Color;
 

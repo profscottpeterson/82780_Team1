@@ -103,7 +103,7 @@ namespace Monopoly
             // 
             // priceLabel
             // 
-            this.priceLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.priceLabel.BackColor = System.Drawing.Color.White;
             this.priceLabel.Location = new System.Drawing.Point(12, 42);
             this.priceLabel.Name = "priceLabel";
             this.priceLabel.Size = new System.Drawing.Size(250, 17);
@@ -113,7 +113,7 @@ namespace Monopoly
             // 
             // mortgageLabel
             // 
-            this.mortgageLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.mortgageLabel.BackColor = System.Drawing.Color.White;
             this.mortgageLabel.Location = new System.Drawing.Point(8, 61);
             this.mortgageLabel.Name = "mortgageLabel";
             this.mortgageLabel.Size = new System.Drawing.Size(254, 17);
@@ -123,7 +123,7 @@ namespace Monopoly
             // 
             // rentLabel
             // 
-            this.rentLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.rentLabel.BackColor = System.Drawing.Color.White;
             this.rentLabel.Location = new System.Drawing.Point(12, 81);
             this.rentLabel.Name = "rentLabel";
             this.rentLabel.Size = new System.Drawing.Size(248, 87);
@@ -144,6 +144,7 @@ namespace Monopoly
             // 
             // pnlQuestion
             // 
+            this.pnlQuestion.BackColor = System.Drawing.Color.Snow;
             this.pnlQuestion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlQuestion.Controls.Add(this.lblYourMoney);
             this.pnlQuestion.Controls.Add(this.lblYourMoneyText);
@@ -209,6 +210,7 @@ namespace Monopoly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(273, 344);
             this.Controls.Add(this.pnlQuestion);
             this.Controls.Add(this.priceLabel);
@@ -216,10 +218,10 @@ namespace Monopoly
             this.Controls.Add(this.rentLabel);
             this.Controls.Add(this.spotNameLabel);
             this.Name = "BuyProp";
-            this.Text = "BuyProp";
             this.pnlQuestion.ResumeLayout(false);
             this.pnlQuestion.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion

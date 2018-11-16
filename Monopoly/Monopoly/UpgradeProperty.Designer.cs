@@ -239,7 +239,7 @@ namespace Monopoly
             this.Controls.Add(this.listViewProperties);
             this.Controls.Add(this.btnClose);
             this.Name = "UpgradeProperty";
-            this.Text = "UpgradeProperty";
+            this.Text = "Upgrade Property";
             this.ResumeLayout(false);
             this.PerformLayout();
 

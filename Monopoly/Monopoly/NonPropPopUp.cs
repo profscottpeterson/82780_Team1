@@ -38,7 +38,9 @@ namespace Monopoly
         /// <param name="game">instance of the game class</param>
         public NonPropPopUp(Spot spot, Game game)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
+            this.Text = string.Empty;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
@@ -54,7 +56,6 @@ namespace Monopoly
         /// <param name="e">The eventArgs</param>
         private void NonPropPopUp_Load(object sender, EventArgs e)
         {
-            this.Text = this.spot.SpotName;
             this.NameLabel.Text = this.spot.SpotName;
             this.PriceLabel.Text = "Price: " + this.spot.Price.ToString("C0");
 

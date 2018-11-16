@@ -108,6 +108,7 @@ namespace Monopoly
             {
                 string formTitle = string.Empty; // This will be the title of the pop up form
                 Card cardDrawn; // Card that will be shown to the player
+                List<Card> pile = new List<Card>();
 
                 switch (currentPlayer.CurrentLocation.Type)
                 {
@@ -115,19 +116,13 @@ namespace Monopoly
                         currentPlayer.OnChanceCard = true;
                         formTitle = "Chance";
                         cardDrawn = this.ChanceCards[0]; // Get "top" card
-                        this.DrawCard(this.ChanceCards, currentPlayer); // Draw card and perform actions
-                                                                                  // Set picture in picturebox
-                                                                                  // cardPopup.picture.Image = new Bitmap("filename");
-                                                                                  // Other logic
+                        pile = this.ChanceCards;
                         break;
                     case SpotType.CommunityChest:
                         currentPlayer.OnComCard = true;
                         formTitle = "Community";
                         cardDrawn = this.CommunityChestCards[0];  // Get "top" card
-                        this.DrawCard(this.CommunityChestCards, currentPlayer); // Draw card and perform actions
-                                                                                          // Set picture in picturebox
-                                                                                          // cardPopup.picture.Image = new Bitmap("filename");
-                                                                                          // Other logic
+                        pile = this.CommunityChestCards;
                         break;
                     default:
                         cardDrawn = null;
@@ -137,15 +132,21 @@ namespace Monopoly
                 if (cardDrawn != null)
                 {
                     MiscCardForm miscCardForm = new MiscCardForm(formTitle, cardDrawn, currentPlayer); // instantiate form
+                    miscCardForm.StartPosition = FormStartPosition.CenterParent;
                     miscCardForm.ShowDialog(); // Show the card form
+
+                    this.DrawCard(pile, currentPlayer); // Draw card and perform actions
                 }
+
+                // Since DrawCard calls this method again to do the checks if the card sends the player to a new location
+                return;
             }
 
             // Check to see if rent needs to be paid and pay it if so
             this.CheckPayRent(currentPlayer, currentPlayer.CurrentLocation);
 
             // Check to see if spot landed on can be bought
-            if (this.ShowBuyPropertyButton(currentPlayer, currentPlayer.CurrentLocation))
+            if (this.CheckBuyProperty(currentPlayer, currentPlayer.CurrentLocation))
             {
                 ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
                 BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, this);
@@ -311,7 +312,7 @@ namespace Monopoly
         /// <param name="currentPlayer">The current player</param>
         /// <param name="currentLocation">The spot landed on</param>
         /// <returns>A boolean indicating whether the spot landed on can be bought</returns>
-        public bool ShowBuyPropertyButton(Player currentPlayer, Spot currentLocation)
+        public bool CheckBuyProperty(Player currentPlayer, Spot currentLocation)
         {
             // Check to see if the current location is a property, railroad, or utility
             if (currentLocation.Type == SpotType.Property || currentLocation.Type == SpotType.Railroad ||
@@ -515,35 +516,45 @@ namespace Monopoly
             }
             else
             {
+                // Declare spot to not overwrite the card's new location null value
+                Spot newLocation;
+
                 // Card is a movement card
                 if (top.NewLocation == null)
                 {
                     if (top.Description.Contains("Railroad"))
                     {
                         // Find the nearest railroad
-                        top.NewLocation = currentPlayer.CurrentLocation.FindNearestSpotOfGivenType(this.Board, SpotType.Railroad);
+                        newLocation = currentPlayer.CurrentLocation.FindNearestSpotOfGivenType(this.Board, SpotType.Railroad);
                     }
                     else if (top.Description.Contains("Utility"))
                     {
                         // Find the nearest utility
-                        top.NewLocation = currentPlayer.CurrentLocation.FindNearestSpotOfGivenType(this.Board, SpotType.Utility);
+                        newLocation = currentPlayer.CurrentLocation.FindNearestSpotOfGivenType(this.Board, SpotType.Utility);
                     }
                     else
                     {
                         // Card is go back 3 spaces
                         int index = this.Board.IndexOf(currentPlayer.CurrentLocation);
                         index = (index - 3 + this.Board.Count) % this.Board.Count;
-                        top.NewLocation = this.Board[index];
+                        newLocation = this.Board[index];
                     }
                 }
+                else
+                {
+                    newLocation = top.NewLocation;
+                }
 
-                if (top.NewLocation.Type != SpotType.Jail)
+                if (newLocation.Type != SpotType.Jail)
                 {
                     // If player was not sent to jail, check to see if they passed Go
-                    this.CheckPassGo(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, top.NewLocation, currentPlayer);
+                    this.CheckPassGo(this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation, newLocation, currentPlayer);
 
                     // Reset player's current location
-                    this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = top.NewLocation;
+                    this.Players[this.Players.IndexOf(currentPlayer)].CurrentLocation = newLocation;
+
+                    // Go through the roll checks for new property landed on
+                    this.RollChecks(currentPlayer);
                 }
                 else
                 {
@@ -1016,7 +1027,7 @@ namespace Monopoly
             Card tempCard = new Card(0, "Advance To Go", CardType.Chance, this.Board[0], chanceImages.Images[0]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.Board[23], chanceImages.Images[1]);
+            tempCard = new Card(1, "Advance to Illinois Ave", CardType.Chance, this.GetSpotByName("Illinois Avenue"), chanceImages.Images[1]);
             this.ChanceCards.Add(tempCard);
 
             tempCard = new Card(2, "Advance to St. Charles Place", CardType.Chance, this.Board[11], chanceImages.Images[2]);
@@ -1049,10 +1060,10 @@ namespace Monopoly
             tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, false, chanceImages.Images[10]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.Board[5], chanceImages.Images[11]);
+            tempCard = new Card(12, "Take a trip to Reading Railroad", CardType.Chance, this.GetSpotByName("Reading Railroad"), chanceImages.Images[11]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.Board[39], chanceImages.Images[12]);
+            tempCard = new Card(13, "Take a walk on the Boardwalk", CardType.Chance, this.GetSpotByName("Boardwalk"), chanceImages.Images[12]);
             this.ChanceCards.Add(tempCard);
 
             tempCard = new Card(14, "You have been elected Chairman of the Board", CardType.Chance, 50, false, false, chanceImages.Images[13]);
@@ -1065,7 +1076,7 @@ namespace Monopoly
             this.ChanceCards.Add(tempCard);
 
             // Community Chest Cards
-            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.Board[0], communityChestImages.Images[0]);
+            tempCard = new Card(0, "Advance To Go", CardType.CommunityChest, this.GetSpotByName("Go"), communityChestImages.Images[0]);
             this.CommunityChestCards.Add(tempCard);
 
             tempCard = new Card(1, "Doctor's fees", CardType.CommunityChest, 50, true, false, communityChestImages.Images[1]);
@@ -1074,7 +1085,7 @@ namespace Monopoly
             tempCard = new Card(2, "Get Out of Jail Free", CardType.CommunityChest, communityChestImages.Images[2]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(3, "Go to Jail", CardType.CommunityChest, this.Board[10], communityChestImages.Images[3]);
+            tempCard = new Card(3, "Go directly to Jail", CardType.CommunityChest, this.Board[10], communityChestImages.Images[3]);
             this.CommunityChestCards.Add(tempCard);
 
             tempCard = new Card(4, "Grand Opera Night", CardType.CommunityChest, 50, false, true, communityChestImages.Images[4]);
@@ -1092,10 +1103,10 @@ namespace Monopoly
             tempCard = new Card(8, "Life insurance matures", CardType.CommunityChest, 100, true, true, communityChestImages.Images[8]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 50, true, false, communityChestImages.Images[9]);
+            tempCard = new Card(9, "Hospital Fees", CardType.CommunityChest, 100, true, false, communityChestImages.Images[9]);
             this.CommunityChestCards.Add(tempCard);
 
-            tempCard = new Card(10, "School fees", CardType.CommunityChest, 50, true, false, communityChestImages.Images[10]);
+            tempCard = new Card(10, "School fees", CardType.CommunityChest, 150, true, false, communityChestImages.Images[10]);
             this.CommunityChestCards.Add(tempCard);
 
             tempCard = new Card(11, "Receive $25 consultancy fee", CardType.CommunityChest, 25, true, true, communityChestImages.Images[11]);
@@ -1108,6 +1119,12 @@ namespace Monopoly
             this.CommunityChestCards.Add(tempCard);
 
             tempCard = new Card(14, "You are assessed for street repairs", CardType.CommunityChest, 40, true, false, communityChestImages.Images[14]);
+            this.CommunityChestCards.Add(tempCard);
+
+            tempCard = new Card(15, "Bank error in your favor", CardType.CommunityChest, 200, true, true, communityChestImages.Images[15]);
+            this.CommunityChestCards.Add(tempCard);
+
+            tempCard = new Card(16, "From sale of stock you get $45", CardType.CommunityChest, 45, true, true, communityChestImages.Images[16]);
             this.CommunityChestCards.Add(tempCard);
         }
 

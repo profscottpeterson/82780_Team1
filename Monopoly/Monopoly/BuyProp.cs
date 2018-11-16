@@ -51,7 +51,9 @@ namespace Monopoly
         /// <param name="g">The game</param>
         public BuyProp(Spot spot, Player p, Game g)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
+            this.Text = string.Empty;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 

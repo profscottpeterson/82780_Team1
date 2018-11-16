@@ -415,6 +415,7 @@ namespace Monopoly
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 423);
+            this.ControlBox = false;
             this.Controls.Add(this.lblMonopoly);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnStart);
@@ -424,8 +425,8 @@ namespace Monopoly
             this.Controls.Add(this.lblNumPlayer);
             this.Controls.Add(this.panelPlayer1);
             this.Controls.Add(this.cmboNumPlayers);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameOptions";
-            this.Text = "GameOptions";
             this.panelPlayer1.ResumeLayout(false);
             this.panelPlayer1.PerformLayout();
             this.panelPlayer2.ResumeLayout(false);

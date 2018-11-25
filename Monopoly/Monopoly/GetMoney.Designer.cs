@@ -56,12 +56,13 @@ namespace Monopoly
             this.lblMoneyText = new System.Windows.Forms.Label();
             this.lblMoney = new System.Windows.Forms.Label();
             this.btnForfeit = new System.Windows.Forms.Button();
+            this.BtnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewProperties
             // 
             this.listViewProperties.Location = new System.Drawing.Point(11, 177);
-            this.listViewProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewProperties.Margin = new System.Windows.Forms.Padding(2);
             this.listViewProperties.MultiSelect = false;
             this.listViewProperties.Name = "listViewProperties";
             this.listViewProperties.Size = new System.Drawing.Size(352, 262);
@@ -256,11 +257,22 @@ namespace Monopoly
             this.btnForfeit.UseVisualStyleBackColor = true;
             this.btnForfeit.Click += new System.EventHandler(this.BtnForfeit_Click);
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.Location = new System.Drawing.Point(444, 20);
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Size = new System.Drawing.Size(23, 23);
+            this.BtnHelp.TabIndex = 55;
+            this.BtnHelp.Text = "?";
+            this.BtnHelp.UseVisualStyleBackColor = true;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
             // GetMoney
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 450);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.btnForfeit);
             this.Controls.Add(this.lblMoneyText);
             this.Controls.Add(this.lblMoney);
@@ -308,5 +320,6 @@ namespace Monopoly
         private System.Windows.Forms.Label lblMoneyText;
         private System.Windows.Forms.Label lblMoney;
         private System.Windows.Forms.Button btnForfeit;
+        private System.Windows.Forms.Button BtnHelp;
     }
 }

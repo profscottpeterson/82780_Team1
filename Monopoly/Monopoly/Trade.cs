@@ -537,5 +537,11 @@ namespace Monopoly
                 this.btnLowerJailCard.Enabled = false;
             }
         }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            HelpMenu hm = new HelpMenu("Trade Screen");
+            hm.ShowDialog();
+        }
     }
 }

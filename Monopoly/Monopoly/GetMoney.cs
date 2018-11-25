@@ -433,7 +433,7 @@ namespace Monopoly
                     if (this.currentSpot.IsMortgaged == false)
                     {
                         // one of the property colors with only 2 properties
-                        if (sameType.Count == 1 && (this.currentSpot.Color == Color.Brown || this.currentSpot.Color == Color.DarkBlue))
+                        if (sameType.Count == 1 && (this.currentSpot.Color == Color.Purple || this.currentSpot.Color == Color.DarkBlue))
                         {
                             // both properties have the same number of houses
                             if (sameType[0].NumberOfHouses == this.currentSpot.NumberOfHouses)
@@ -536,6 +536,12 @@ namespace Monopoly
                     this.lblPropertyName.ForeColor = Color.Blue;
                 }
             }
+        }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            HelpMenu hm = new HelpMenu("Sell Screen");
+            hm.ShowDialog();
         }
     }
 }

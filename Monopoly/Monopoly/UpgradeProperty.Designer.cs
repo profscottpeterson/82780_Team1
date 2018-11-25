@@ -53,6 +53,7 @@ namespace Monopoly
             this.lblPropertyName = new System.Windows.Forms.Label();
             this.lblPropertyDesc = new System.Windows.Forms.Label();
             this.btnUnmortgage = new System.Windows.Forms.Button();
+            this.BtnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClose
@@ -218,11 +219,22 @@ namespace Monopoly
             this.btnUnmortgage.UseVisualStyleBackColor = true;
             this.btnUnmortgage.Click += new System.EventHandler(this.BtnUnmortgage_Click);
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.Location = new System.Drawing.Point(451, 51);
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Size = new System.Drawing.Size(25, 23);
+            this.BtnHelp.TabIndex = 38;
+            this.BtnHelp.Text = "?";
+            this.BtnHelp.UseVisualStyleBackColor = true;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
             // UpgradeProperty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 483);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.btnUnmortgage);
             this.Controls.Add(this.lblPropertyName);
             this.Controls.Add(this.lblPropertyDesc);
@@ -321,5 +333,6 @@ namespace Monopoly
         /// button to unmortgage a property
         /// </summary>
         private System.Windows.Forms.Button btnUnmortgage;
+        private System.Windows.Forms.Button BtnHelp;
     }
 }

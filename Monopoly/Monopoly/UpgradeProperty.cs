@@ -616,5 +616,11 @@ namespace Monopoly
             // add them to the listView
             // FillListView(listViewProperties, eligible);
         }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            HelpMenu hm = new HelpMenu("Upgrade Screen");
+            hm.ShowDialog();
+        }
     }
 }

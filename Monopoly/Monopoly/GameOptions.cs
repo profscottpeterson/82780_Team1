@@ -309,5 +309,11 @@ namespace Monopoly
         {
             this.ChooseImage(3);
         }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            HelpMenu hm = new HelpMenu("Game Setup");
+            hm.ShowDialog();
+        }
     }
 }

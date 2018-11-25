@@ -82,6 +82,7 @@ namespace Monopoly
             this.btnLowerJailCard = new System.Windows.Forms.Button();
             this.btnIncreaseJailCard = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
+            this.BtnHelp = new System.Windows.Forms.Button();
             this.grpRequesterOffering.SuspendLayout();
             this.grpRequesteeOffering.SuspendLayout();
             this.SuspendLayout();
@@ -563,11 +564,22 @@ namespace Monopoly
             this.txtMessage.Text = "Choose  ->\r\na player to \r\ntrade with";
             this.txtMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.Location = new System.Drawing.Point(428, 43);
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Size = new System.Drawing.Size(26, 23);
+            this.BtnHelp.TabIndex = 33;
+            this.BtnHelp.Text = "?";
+            this.BtnHelp.UseVisualStyleBackColor = true;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
             // Trade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 615);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.btnIncreaseJailCard);
             this.Controls.Add(this.btnLowerJailCard);
@@ -654,5 +666,6 @@ namespace Monopoly
         private System.Windows.Forms.Button btnLowerJailCard;
         private System.Windows.Forms.Button btnIncreaseJailCard;
         private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.Button BtnHelp;
     }
 }

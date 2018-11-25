@@ -118,29 +118,30 @@ namespace Monopoly
         private void InitializeComponent()
         {
             this.grpRequesteeOffering = new System.Windows.Forms.GroupBox();
+            this.lblRequesteeBeforeJailCard = new System.Windows.Forms.Label();
             this.lblRequesteeOriginTotal = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblRequesteeMoneyNew = new System.Windows.Forms.Label();
+            this.lblRequesteeAfterJailCard = new System.Windows.Forms.Label();
             this.lblArrow2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblRequsteeMoneyOffering = new System.Windows.Forms.Label();
             this.lstRequesteeOffering = new System.Windows.Forms.ListBox();
             this.grpRequesterOffering = new System.Windows.Forms.GroupBox();
+            this.lblRequesterBeforeJailCard = new System.Windows.Forms.Label();
             this.lblRequesterOriginTotal = new System.Windows.Forms.Label();
+            this.lblJailRequesterArrow = new System.Windows.Forms.Label();
             this.lblRequesterMoneyNew = new System.Windows.Forms.Label();
+            this.lblRequesterAfterJailCard = new System.Windows.Forms.Label();
             this.lblArrow1 = new System.Windows.Forms.Label();
+            this.lblJailText = new System.Windows.Forms.Label();
             this.lblRequesterMoneyOffering = new System.Windows.Forms.Label();
             this.lstRequesterOffering = new System.Windows.Forms.ListBox();
             this.lblDoubleArrow = new System.Windows.Forms.Label();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.btnYes = new System.Windows.Forms.Button();
             this.btnNo = new System.Windows.Forms.Button();
-            this.lblRequesterBeforeJailCard = new System.Windows.Forms.Label();
-            this.lblJailRequesterArrow = new System.Windows.Forms.Label();
-            this.lblRequesterAfterJailCard = new System.Windows.Forms.Label();
-            this.lblJailText = new System.Windows.Forms.Label();
-            this.lblRequesteeBeforeJailCard = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblRequesteeAfterJailCard = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.BtnHelp = new System.Windows.Forms.Button();
             this.grpRequesteeOffering.SuspendLayout();
             this.grpRequesterOffering.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +164,16 @@ namespace Monopoly
             this.grpRequesteeOffering.TabStop = false;
             this.grpRequesteeOffering.Text = "Offering";
             // 
+            // lblRequesteeBeforeJailCard
+            // 
+            this.lblRequesteeBeforeJailCard.AutoSize = true;
+            this.lblRequesteeBeforeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeBeforeJailCard.Location = new System.Drawing.Point(118, 160);
+            this.lblRequesteeBeforeJailCard.Name = "lblRequesteeBeforeJailCard";
+            this.lblRequesteeBeforeJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesteeBeforeJailCard.TabIndex = 37;
+            this.lblRequesteeBeforeJailCard.Text = "0";
+            // 
             // lblRequesteeOriginTotal
             // 
             this.lblRequesteeOriginTotal.AutoSize = true;
@@ -172,6 +183,16 @@ namespace Monopoly
             this.lblRequesteeOriginTotal.Size = new System.Drawing.Size(40, 17);
             this.lblRequesteeOriginTotal.TabIndex = 27;
             this.lblRequesteeOriginTotal.Text = "Total";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(147, 160);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 20);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "->";
             // 
             // lblRequesteeMoneyNew
             // 
@@ -183,6 +204,16 @@ namespace Monopoly
             this.lblRequesteeMoneyNew.TabIndex = 26;
             this.lblRequesteeMoneyNew.Text = "Total";
             // 
+            // lblRequesteeAfterJailCard
+            // 
+            this.lblRequesteeAfterJailCard.AutoSize = true;
+            this.lblRequesteeAfterJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesteeAfterJailCard.Location = new System.Drawing.Point(173, 160);
+            this.lblRequesteeAfterJailCard.Name = "lblRequesteeAfterJailCard";
+            this.lblRequesteeAfterJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesteeAfterJailCard.TabIndex = 35;
+            this.lblRequesteeAfterJailCard.Text = "0";
+            // 
             // lblArrow2
             // 
             this.lblArrow2.AutoSize = true;
@@ -192,6 +223,16 @@ namespace Monopoly
             this.lblArrow2.Size = new System.Drawing.Size(23, 20);
             this.lblArrow2.TabIndex = 25;
             this.lblArrow2.Text = "->";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 20);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Jail Free Card:";
             // 
             // lblRequsteeMoneyOffering
             // 
@@ -231,6 +272,16 @@ namespace Monopoly
             this.grpRequesterOffering.TabStop = false;
             this.grpRequesterOffering.Text = "Offering";
             // 
+            // lblRequesterBeforeJailCard
+            // 
+            this.lblRequesterBeforeJailCard.AutoSize = true;
+            this.lblRequesterBeforeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesterBeforeJailCard.Location = new System.Drawing.Point(124, 160);
+            this.lblRequesterBeforeJailCard.Name = "lblRequesterBeforeJailCard";
+            this.lblRequesterBeforeJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesterBeforeJailCard.TabIndex = 33;
+            this.lblRequesterBeforeJailCard.Text = "0";
+            // 
             // lblRequesterOriginTotal
             // 
             this.lblRequesterOriginTotal.AutoSize = true;
@@ -240,6 +291,16 @@ namespace Monopoly
             this.lblRequesterOriginTotal.Size = new System.Drawing.Size(40, 17);
             this.lblRequesterOriginTotal.TabIndex = 26;
             this.lblRequesterOriginTotal.Text = "Total";
+            // 
+            // lblJailRequesterArrow
+            // 
+            this.lblJailRequesterArrow.AutoSize = true;
+            this.lblJailRequesterArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJailRequesterArrow.Location = new System.Drawing.Point(153, 160);
+            this.lblJailRequesterArrow.Name = "lblJailRequesterArrow";
+            this.lblJailRequesterArrow.Size = new System.Drawing.Size(23, 20);
+            this.lblJailRequesterArrow.TabIndex = 32;
+            this.lblJailRequesterArrow.Text = "->";
             // 
             // lblRequesterMoneyNew
             // 
@@ -251,6 +312,16 @@ namespace Monopoly
             this.lblRequesterMoneyNew.TabIndex = 25;
             this.lblRequesterMoneyNew.Text = "Total";
             // 
+            // lblRequesterAfterJailCard
+            // 
+            this.lblRequesterAfterJailCard.AutoSize = true;
+            this.lblRequesterAfterJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequesterAfterJailCard.Location = new System.Drawing.Point(179, 160);
+            this.lblRequesterAfterJailCard.Name = "lblRequesterAfterJailCard";
+            this.lblRequesterAfterJailCard.Size = new System.Drawing.Size(18, 20);
+            this.lblRequesterAfterJailCard.TabIndex = 31;
+            this.lblRequesterAfterJailCard.Text = "0";
+            // 
             // lblArrow1
             // 
             this.lblArrow1.AutoSize = true;
@@ -260,6 +331,16 @@ namespace Monopoly
             this.lblArrow1.Size = new System.Drawing.Size(23, 20);
             this.lblArrow1.TabIndex = 24;
             this.lblArrow1.Text = "->";
+            // 
+            // lblJailText
+            // 
+            this.lblJailText.AutoSize = true;
+            this.lblJailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJailText.Location = new System.Drawing.Point(12, 160);
+            this.lblJailText.Name = "lblJailText";
+            this.lblJailText.Size = new System.Drawing.Size(111, 20);
+            this.lblJailText.TabIndex = 30;
+            this.lblJailText.Text = "Jail Free Card:";
             // 
             // lblRequesterMoneyOffering
             // 
@@ -321,91 +402,22 @@ namespace Monopoly
             this.btnNo.UseVisualStyleBackColor = true;
             this.btnNo.Click += new System.EventHandler(this.BtnNo_Click);
             // 
-            // lblRequesterBeforeJailCard
+            // BtnHelp
             // 
-            this.lblRequesterBeforeJailCard.AutoSize = true;
-            this.lblRequesterBeforeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequesterBeforeJailCard.Location = new System.Drawing.Point(124, 160);
-            this.lblRequesterBeforeJailCard.Name = "lblRequesterBeforeJailCard";
-            this.lblRequesterBeforeJailCard.Size = new System.Drawing.Size(18, 20);
-            this.lblRequesterBeforeJailCard.TabIndex = 33;
-            this.lblRequesterBeforeJailCard.Text = "0";
-            // 
-            // lblJailRequesterArrow
-            // 
-            this.lblJailRequesterArrow.AutoSize = true;
-            this.lblJailRequesterArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJailRequesterArrow.Location = new System.Drawing.Point(153, 160);
-            this.lblJailRequesterArrow.Name = "lblJailRequesterArrow";
-            this.lblJailRequesterArrow.Size = new System.Drawing.Size(23, 20);
-            this.lblJailRequesterArrow.TabIndex = 32;
-            this.lblJailRequesterArrow.Text = "->";
-            // 
-            // lblRequesterAfterJailCard
-            // 
-            this.lblRequesterAfterJailCard.AutoSize = true;
-            this.lblRequesterAfterJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequesterAfterJailCard.Location = new System.Drawing.Point(179, 160);
-            this.lblRequesterAfterJailCard.Name = "lblRequesterAfterJailCard";
-            this.lblRequesterAfterJailCard.Size = new System.Drawing.Size(18, 20);
-            this.lblRequesterAfterJailCard.TabIndex = 31;
-            this.lblRequesterAfterJailCard.Text = "0";
-            // 
-            // lblJailText
-            // 
-            this.lblJailText.AutoSize = true;
-            this.lblJailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJailText.Location = new System.Drawing.Point(12, 160);
-            this.lblJailText.Name = "lblJailText";
-            this.lblJailText.Size = new System.Drawing.Size(111, 20);
-            this.lblJailText.TabIndex = 30;
-            this.lblJailText.Text = "Jail Free Card:";
-            // 
-            // lblRequesteeBeforeJailCard
-            // 
-            this.lblRequesteeBeforeJailCard.AutoSize = true;
-            this.lblRequesteeBeforeJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequesteeBeforeJailCard.Location = new System.Drawing.Point(118, 160);
-            this.lblRequesteeBeforeJailCard.Name = "lblRequesteeBeforeJailCard";
-            this.lblRequesteeBeforeJailCard.Size = new System.Drawing.Size(18, 20);
-            this.lblRequesteeBeforeJailCard.TabIndex = 37;
-            this.lblRequesteeBeforeJailCard.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(147, 160);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 20);
-            this.label2.TabIndex = 36;
-            this.label2.Text = "->";
-            // 
-            // lblRequesteeAfterJailCard
-            // 
-            this.lblRequesteeAfterJailCard.AutoSize = true;
-            this.lblRequesteeAfterJailCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequesteeAfterJailCard.Location = new System.Drawing.Point(173, 160);
-            this.lblRequesteeAfterJailCard.Name = "lblRequesteeAfterJailCard";
-            this.lblRequesteeAfterJailCard.Size = new System.Drawing.Size(18, 20);
-            this.lblRequesteeAfterJailCard.TabIndex = 35;
-            this.lblRequesteeAfterJailCard.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 20);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Jail Free Card:";
+            this.BtnHelp.Location = new System.Drawing.Point(408, 245);
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Size = new System.Drawing.Size(25, 23);
+            this.BtnHelp.TabIndex = 23;
+            this.BtnHelp.Text = "?";
+            this.BtnHelp.UseVisualStyleBackColor = true;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // TradeConfirm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 349);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.btnYes);
             this.Controls.Add(this.lblQuestion);
@@ -434,5 +446,6 @@ namespace Monopoly
         private System.Windows.Forms.Label lblJailRequesterArrow;
         private System.Windows.Forms.Label lblRequesterAfterJailCard;
         private System.Windows.Forms.Label lblJailText;
+        private System.Windows.Forms.Button BtnHelp;
     }
 }

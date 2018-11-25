@@ -299,6 +299,9 @@ namespace Monopoly
             int die1 = 0;
             int die2 = 0;
 
+            btnJailFreeCard.Enabled = false;
+            btnJailPay.Enabled = false;
+
             this.RollingDice(out die1, out die2);
 
             if (this.currentPlayer.InJail == false)
@@ -1367,6 +1370,12 @@ namespace Monopoly
         private void BtnSmallLoan_Click(object sender, EventArgs e)
         {
             this.currentPlayer.Money += 1000;
+        }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            HelpMenu hm = new HelpMenu("Board Screen");
+            hm.ShowDialog();
         }
     }
 }

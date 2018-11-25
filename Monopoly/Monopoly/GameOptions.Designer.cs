@@ -158,6 +158,7 @@ namespace Monopoly
             this.btnQuit = new System.Windows.Forms.Button();
             this.lblMonopoly = new System.Windows.Forms.Label();
             this.ofChooseGIfs = new System.Windows.Forms.OpenFileDialog();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.panelPlayer1.SuspendLayout();
             this.panelPlayer2.SuspendLayout();
             this.panelPlayer3.SuspendLayout();
@@ -172,7 +173,7 @@ namespace Monopoly
             "2",
             "3",
             "4"});
-            this.cmboNumPlayers.Location = new System.Drawing.Point(128, 94);
+            this.cmboNumPlayers.Location = new System.Drawing.Point(126, 103);
             this.cmboNumPlayers.Name = "cmboNumPlayers";
             this.cmboNumPlayers.Size = new System.Drawing.Size(121, 21);
             this.cmboNumPlayers.TabIndex = 0;
@@ -183,7 +184,7 @@ namespace Monopoly
             this.panelPlayer1.Controls.Add(this.btnChooseImage1);
             this.panelPlayer1.Controls.Add(this.lblPlayerName1);
             this.panelPlayer1.Controls.Add(this.txtPlayer1Name);
-            this.panelPlayer1.Location = new System.Drawing.Point(40, 121);
+            this.panelPlayer1.Location = new System.Drawing.Point(38, 130);
             this.panelPlayer1.Name = "panelPlayer1";
             this.panelPlayer1.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer1.TabIndex = 1;
@@ -219,7 +220,7 @@ namespace Monopoly
             // lblNumPlayer
             // 
             this.lblNumPlayer.AutoSize = true;
-            this.lblNumPlayer.Location = new System.Drawing.Point(26, 97);
+            this.lblNumPlayer.Location = new System.Drawing.Point(24, 106);
             this.lblNumPlayer.Name = "lblNumPlayer";
             this.lblNumPlayer.Size = new System.Drawing.Size(96, 13);
             this.lblNumPlayer.TabIndex = 2;
@@ -231,7 +232,7 @@ namespace Monopoly
             this.panelPlayer2.Controls.Add(this.lblPlayerName2);
             this.panelPlayer2.Controls.Add(this.txtPlayerName2);
             this.panelPlayer2.Controls.Add(this.chkAI2);
-            this.panelPlayer2.Location = new System.Drawing.Point(40, 185);
+            this.panelPlayer2.Location = new System.Drawing.Point(38, 194);
             this.panelPlayer2.Name = "panelPlayer2";
             this.panelPlayer2.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer2.TabIndex = 2;
@@ -280,7 +281,7 @@ namespace Monopoly
             this.panelPlayer3.Controls.Add(this.lblPlayerName3);
             this.panelPlayer3.Controls.Add(this.txtPlayerName3);
             this.panelPlayer3.Controls.Add(this.chkAI3);
-            this.panelPlayer3.Location = new System.Drawing.Point(40, 250);
+            this.panelPlayer3.Location = new System.Drawing.Point(38, 259);
             this.panelPlayer3.Name = "panelPlayer3";
             this.panelPlayer3.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer3.TabIndex = 3;
@@ -329,7 +330,7 @@ namespace Monopoly
             this.panelPlayer4.Controls.Add(this.lblPlayerName4);
             this.panelPlayer4.Controls.Add(this.txtPlayerName4);
             this.panelPlayer4.Controls.Add(this.chkAI4);
-            this.panelPlayer4.Location = new System.Drawing.Point(40, 314);
+            this.panelPlayer4.Location = new System.Drawing.Point(38, 323);
             this.panelPlayer4.Name = "panelPlayer4";
             this.panelPlayer4.Size = new System.Drawing.Size(209, 58);
             this.panelPlayer4.TabIndex = 4;
@@ -375,7 +376,7 @@ namespace Monopoly
             // btnStart
             // 
             this.btnStart.Enabled = false;
-            this.btnStart.Location = new System.Drawing.Point(40, 378);
+            this.btnStart.Location = new System.Drawing.Point(38, 387);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(91, 23);
             this.btnStart.TabIndex = 9;
@@ -385,7 +386,7 @@ namespace Monopoly
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(158, 378);
+            this.btnQuit.Location = new System.Drawing.Point(156, 387);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(91, 23);
             this.btnQuit.TabIndex = 6;
@@ -410,12 +411,23 @@ namespace Monopoly
             // 
             this.ofChooseGIfs.Filter = "\"Image files(*.png;*.jpg;*.gif;*.JPEG;)|*.png;*.jpg;*.gif;*.JPEG;\"";
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(245, 74);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(27, 23);
+            this.btnHelp.TabIndex = 10;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
             // GameOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 423);
+            this.ClientSize = new System.Drawing.Size(284, 433);
             this.ControlBox = false;
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.lblMonopoly);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnStart);
@@ -471,5 +483,6 @@ namespace Monopoly
         /// Dialog box to allow the user to select an image for their player
         /// </summary>
         private System.Windows.Forms.OpenFileDialog ofChooseGIfs;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

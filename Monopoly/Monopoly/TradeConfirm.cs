@@ -311,5 +311,11 @@ namespace Monopoly
             this.lblRequesteeBeforeJailCard.Text = this.target.GetOutOfJailFreeCards.Count.ToString();
             this.lblRequesteeAfterJailCard.Text = (this.target.GetOutOfJailFreeCards.Count - this.jailCardChange).ToString();
         }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            HelpMenu hm = new HelpMenu("Trade Confirm Screen");
+            hm.ShowDialog();
+        }
     }
 }

@@ -257,9 +257,17 @@ namespace Monopoly
                 // Shows the players the current players image or color as well as the current player
                 this.SetCurrentPlayerImage(this.currentPlayer);
                 this.lblOtherPlayersHand.Text = string.Empty;
+                this.lblOtherPlayerBalance.Text = string.Empty;
                 this.formBool = true;
                 this.SetUpPlayerHandOptions();
-                this.lblPlayerTurn.Text = this.currentPlayer.PlayerName + "'s Turn";
+                if (currentPlayer.PlayerName.Length > 20)
+                {
+                    this.lblPlayerTurn.Text = currentPlayer.PlayerName.Substring(0, 18) + "..." + "'s Turn";
+                }
+                else
+                {
+                    this.lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
+                }
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
                 this.lblGetOutOfJailLabel.Text = "You have " + this.currentPlayer.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
                 this.DoublesLabel.Text = string.Empty;
@@ -412,7 +420,7 @@ namespace Monopoly
 
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
-            //// this.formBool = false;
+             this.formBool = false;
             this.flpOtherPlayerHand.Controls.Clear();
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
 
@@ -784,7 +792,8 @@ namespace Monopoly
         {
             this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
             this.lblGetOutOfJailLabel.Text = "You have " + player.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
-            lblOtherPlayersHand.Text = string.Empty;
+            this.lblOtherPlayersHand.Text = string.Empty;
+            this.lblOtherPlayerBalance.Text = string.Empty;
             panelToUse.Controls.Clear();
             List<Spot> currentPlayerSpots = new List<Spot>();
             currentPlayerSpots = player.GetPlayersPropertyList(this.game.Board);
@@ -917,17 +926,40 @@ namespace Monopoly
             if (this.formBool == false)
             {
                 this.SetCurrentPlayerImage(player);
-                this.lblPlayerTurn.Text = player.PlayerName + "'s Turn";
+                if (player.PlayerName.Length > 20)
+                {
+                    this.lblPlayerTurn.Text = player.PlayerName.Substring(0, 18) + "..." + "'s Turn";
+                }
+                else
+                {
+                    this.lblPlayerTurn.Text = player.PlayerName + "'s Turn";
+                }
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
                 this.formBool = true;
             }
             else
             {
                 this.SetUpPlayerHandOptions();
-                this.lblOtherPlayersHand.Text = player.PlayerName;
+
+                string stringForUpdating = string.Empty;
+
+                if (player.PlayerName.Length > 15)
+                {
+                    stringForUpdating = player.PlayerName.Substring(0, 10) + "...";
+                    this.lblOtherPlayersHand.Text = stringForUpdating + "'s hand";
+                }
+                else
+                {
+                    stringForUpdating = player.PlayerName;
+                    this.lblOtherPlayersHand.Text = player.PlayerName + "'s hand";
+                }
+
+                this.lblOtherPlayerBalance.Text = stringForUpdating + "'s balance: " + player.Money.ToString("c0");
+
                 if (this.lblOtherPlayersHand.Text == this.currentPlayer.PlayerName)
                 {
                     this.lblOtherPlayersHand.Text = string.Empty;
+                    this.lblOtherPlayerBalance.Text = string.Empty;
                 }
             }
 
@@ -1083,7 +1115,14 @@ namespace Monopoly
                     this.radioButtons[x] = new RadioButton();
                     if (this.game.Players[x].IsActive == true)
                     {
-                        this.radioButtons[x].Text = this.game.Players[x].PlayerName;
+                        if (this.game.Players[x].PlayerName.Length > 10)
+                        {
+                            this.radioButtons[x].Text = this.game.Players[x].PlayerName.Substring(0, 9)+"...";
+                        }
+                        else
+                        {
+                            this.radioButtons[x].Text = this.game.Players[x].PlayerName;
+                        }
                         this.radioButtons[x].Font = new Font("Microsoft Sans Serif", 13);
                         this.radioButtons[x].Tag = this.game.Players[x].PlayerId;
                     }
@@ -1094,7 +1133,7 @@ namespace Monopoly
                     RadioButton r = this.radioButtons[x];
                     if (playerStatus[x] == true)
                     {
-                        if (r.Text != this.currentPlayer.PlayerName)
+                        if (r.Tag.ToString() != this.currentPlayer.PlayerId.ToString())
                         {
                             if (r.Text != string.Empty)
                             {

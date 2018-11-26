@@ -102,3 +102,4 @@ C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopol
 C:\Users\Fernando G\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
 C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.HelpMenu.resources
+C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.HelpMenu.resources

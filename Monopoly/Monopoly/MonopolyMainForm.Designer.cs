@@ -111,6 +111,7 @@ namespace Monopoly
             this.lblGetOutOfJailLabel = new System.Windows.Forms.Label();
             this.DoublesLabel = new System.Windows.Forms.Label();
             this.BtnHelp = new System.Windows.Forms.Button();
+            this.lblOtherPlayerBalance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
@@ -176,11 +177,10 @@ namespace Monopoly
             // 
             // lblPlayerTurn
             // 
-            this.lblPlayerTurn.AutoSize = true;
-            this.lblPlayerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayerTurn.Location = new System.Drawing.Point(906, 9);
             this.lblPlayerTurn.Name = "lblPlayerTurn";
-            this.lblPlayerTurn.Size = new System.Drawing.Size(156, 26);
+            this.lblPlayerTurn.Size = new System.Drawing.Size(156, 58);
             this.lblPlayerTurn.TabIndex = 49;
             this.lblPlayerTurn.Text = "Player 1\'s Turn";
             // 
@@ -213,7 +213,7 @@ namespace Monopoly
             this.flpCurrentPlayerProps.BackColor = System.Drawing.Color.PeachPuff;
             this.flpCurrentPlayerProps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpCurrentPlayerProps.ForeColor = System.Drawing.Color.Black;
-            this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 105);
+            this.flpCurrentPlayerProps.Location = new System.Drawing.Point(911, 110);
             this.flpCurrentPlayerProps.Name = "flpCurrentPlayerProps";
             this.flpCurrentPlayerProps.Size = new System.Drawing.Size(460, 330);
             this.flpCurrentPlayerProps.TabIndex = 54;
@@ -238,7 +238,7 @@ namespace Monopoly
             // 
             this.lblCurrentBalance.AutoSize = true;
             this.lblCurrentBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBalance.Location = new System.Drawing.Point(909, 56);
+            this.lblCurrentBalance.Location = new System.Drawing.Point(907, 65);
             this.lblCurrentBalance.Name = "lblCurrentBalance";
             this.lblCurrentBalance.Size = new System.Drawing.Size(153, 22);
             this.lblCurrentBalance.TabIndex = 55;
@@ -313,7 +313,7 @@ namespace Monopoly
             this.flpPlayerHandOptions.BackColor = System.Drawing.Color.PeachPuff;
             this.flpPlayerHandOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpPlayerHandOptions.ForeColor = System.Drawing.Color.Black;
-            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 441);
+            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 446);
             this.flpPlayerHandOptions.Name = "flpPlayerHandOptions";
             this.flpPlayerHandOptions.Size = new System.Drawing.Size(460, 44);
             this.flpPlayerHandOptions.TabIndex = 61;
@@ -324,7 +324,7 @@ namespace Monopoly
             this.flpOtherPlayerHand.BackColor = System.Drawing.Color.PeachPuff;
             this.flpOtherPlayerHand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpOtherPlayerHand.ForeColor = System.Drawing.Color.Black;
-            this.flpOtherPlayerHand.Location = new System.Drawing.Point(911, 528);
+            this.flpOtherPlayerHand.Location = new System.Drawing.Point(911, 533);
             this.flpOtherPlayerHand.Name = "flpOtherPlayerHand";
             this.flpOtherPlayerHand.Size = new System.Drawing.Size(460, 330);
             this.flpOtherPlayerHand.TabIndex = 62;
@@ -332,10 +332,10 @@ namespace Monopoly
             // lblOtherPlayersHand
             // 
             this.lblOtherPlayersHand.AutoSize = true;
-            this.lblOtherPlayersHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 498);
+            this.lblOtherPlayersHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 503);
             this.lblOtherPlayersHand.Name = "lblOtherPlayersHand";
-            this.lblOtherPlayersHand.Size = new System.Drawing.Size(60, 26);
+            this.lblOtherPlayersHand.Size = new System.Drawing.Size(52, 24);
             this.lblOtherPlayersHand.TabIndex = 63;
             this.lblOtherPlayersHand.Text = "(null)";
             // 
@@ -422,7 +422,7 @@ namespace Monopoly
             // 
             // pbxCurrentPlayerPicture
             // 
-            this.pbxCurrentPlayerPicture.Location = new System.Drawing.Point(1093, 9);
+            this.pbxCurrentPlayerPicture.Location = new System.Drawing.Point(1093, 14);
             this.pbxCurrentPlayerPicture.Name = "pbxCurrentPlayerPicture";
             this.pbxCurrentPlayerPicture.Size = new System.Drawing.Size(80, 80);
             this.pbxCurrentPlayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -920,7 +920,7 @@ namespace Monopoly
             // lblGetOutOfJailLabel
             // 
             this.lblGetOutOfJailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGetOutOfJailLabel.Location = new System.Drawing.Point(1179, 9);
+            this.lblGetOutOfJailLabel.Location = new System.Drawing.Point(1179, 14);
             this.lblGetOutOfJailLabel.Name = "lblGetOutOfJailLabel";
             this.lblGetOutOfJailLabel.Size = new System.Drawing.Size(192, 80);
             this.lblGetOutOfJailLabel.TabIndex = 67;
@@ -941,7 +941,7 @@ namespace Monopoly
             // BtnHelp
             // 
             this.BtnHelp.ForeColor = System.Drawing.Color.Black;
-            this.BtnHelp.Location = new System.Drawing.Point(1344, 76);
+            this.BtnHelp.Location = new System.Drawing.Point(1344, 81);
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.Size = new System.Drawing.Size(27, 23);
             this.BtnHelp.TabIndex = 69;
@@ -949,12 +949,23 @@ namespace Monopoly
             this.BtnHelp.UseVisualStyleBackColor = true;
             this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
+            // lblOtherPlayerBalance
+            // 
+            this.lblOtherPlayerBalance.AutoSize = true;
+            this.lblOtherPlayerBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOtherPlayerBalance.Location = new System.Drawing.Point(1099, 504);
+            this.lblOtherPlayerBalance.Name = "lblOtherPlayerBalance";
+            this.lblOtherPlayerBalance.Size = new System.Drawing.Size(52, 24);
+            this.lblOtherPlayerBalance.TabIndex = 70;
+            this.lblOtherPlayerBalance.Text = "(null)";
+            // 
             // MonopolyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
             this.ClientSize = new System.Drawing.Size(1384, 961);
+            this.Controls.Add(this.lblOtherPlayerBalance);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.DoublesLabel);
             this.Controls.Add(this.lblGetOutOfJailLabel);
@@ -1155,6 +1166,7 @@ namespace Monopoly
         private System.Windows.Forms.Label lblGetOutOfJailLabel;
         private System.Windows.Forms.Label DoublesLabel;
         private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Label lblOtherPlayerBalance;
     }
 }
 

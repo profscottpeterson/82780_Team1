@@ -17,6 +17,10 @@ namespace Monopoly
         public HelpMenu(string textStart)
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ControlBox = false;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.message = new string[lstOptions.Items.Count];
             this.fillMessages();
             this.lstOptions.SelectedItem = textStart;
@@ -34,7 +38,7 @@ namespace Monopoly
                 " - If a player lands on an unowned colored property, railroad or utility, he or she may purchase the property if he or she has enough money.\n" +
                 " - If a player lands on an owned, unmortgaged colored property, he or she must pay the owner the sum determined by houses, hotels and base rent.\n" +
                 " - If a player lands on an owned railroad, he or she must pay the rent as determined by the owner's number of railroads. (1 owned = $25, 2 owned = $50, 3 owned = $100, 4 owned = $200)\n" +
-                " - If a player lands on an owned utility, he or she msut pay the rent as his or her role multiplied by 4x or 10x for one or both utilities being owned, respectively.\n" +
+                " - If a player lands on an owned utility, he or she must pay the rent as his or her role multiplied by 4x or 10x for one or both utilities being owned, respectively.\n" +
                 " - If a player lands on his or her own property, or a mortgaged property, nothing happens.\n" +
                 " - If a player lands on \"Luxury Tax\" or \"Income Tax\", he or she must pay $200 or 10% of his or her total net worth. This is automatically chosen.\n" +
                 " - If a player passes or lands on \"GO\" he or she gets $200.\n" +
@@ -45,8 +49,8 @@ namespace Monopoly
                 " - If a player rolls three doubles in a single turn, he or she is sent directly to jail.\n\n" +
                 "Jail - A player in jail can trade, collect rent, sell and upgrade properties. He or she must get out of jail before being able to move.\n" +
                 " - A player can get out of jail by rolling doubles while in jail. He or she then moves out of jail as determined by the sum of the dice.\n" +
-                " - A player can pay $50 to get out of jail on any turn and will be placed in the \"Just Visintg\" area. He or she will be able to roll next turn.\n" +
-                " - A player can use a \"Get Out of Jail Free\" card and will be placed in the \"Just Visitng\" area. He or she will be able to roll next turn.\n" +
+                " - A player can pay $50 to get out of jail on any turn and will be placed in the \"Just Visiting\" area. He or she will be able to roll next turn.\n" +
+                " - A player can use a \"Get Out of Jail Free\" card and will be placed in the \"Just Visiting\" area. He or she will be able to roll next turn.\n" +
                 " - If a player in jail doesn't get doubles after 3 rolls in jail, he or she must pay $50 and will move the number of spaces as determined by the third roll.\n\n" +
                 "Rent - A player landing on a property owned by another player must pay that player rent.\n" +
                 " - Once a player owns all properties of a single color, the base rent for those properties is doubled. This still applies if a property is mortgaged.\n" +
@@ -102,12 +106,13 @@ namespace Monopoly
 
             // Trade confirm
             this.message[4] = "This window brings up the full trade deal and prompts the responding party to accept or decline the trade.\n\n" +
-                "Yes Button - Accepts the trade and the money, proerty and \"Get Out of Jail Free\" card changes are enacted.\n\n" +
+                "Yes Button - Accepts the trade and the money, property and \"Get Out of Jail Free\" card changes are enacted.\n\n" +
                 "No Button - The responding party does not accept the trade and the trade confirm window is cancelled.";
 
             // Upgrade
             this.message[5] = "This window allows the player to build houses and hotels on his or her properties. A player can also un-mortgage properties here. " +
-                "This button will not work if the player does not currently own any mortgaged properties or properties that are eligible for an upgrade.\n\n" +
+                "This button will not work if the player does not currently own any mortgaged properties or properties that are eligible for an upgrade." +
+                "The text box under the unmortgage button will show errors if they arise.\n\n" +
                 "The list of player properties on the left of the screen shows the properties that are eligible for an upgrade or can be un-mortgaged. When " +
                 "a property is clicked from the list, the available buttons are enabled.\n\n" +
                 "Add House Button - This button will add a house to the selected property.\n\n" +
@@ -120,7 +125,7 @@ namespace Monopoly
             // Sell 
             this.message[6] = "This window allows the player to mortgage properties or sell buildings that are currently on properties. If this window was brought up because " +
                 "of an inability to pay with his or her current balance (dictated by the debt on the top of the window), he or she will not be able to close the window until " +
-                "his or her debt is paid.\n\n" +
+                "his or her debt is paid. The box on the top right of the screen shows errors if they arise.\n\n" +
                 "A list of the players properties is on the left as well as current houses, hotels and whether each property is mortgaged. By clicking on one of these properties, " +
                 "the \"Sell House\", \"Sell Hotel\" and \"Mortgage\" buttons will appear if that property can perform any of those actions. The amount to be gained will appear next to the " +
                 "button when a property is clicked.\n\n" +

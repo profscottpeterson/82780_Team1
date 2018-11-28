@@ -112,6 +112,7 @@ namespace Monopoly
             this.DoublesLabel = new System.Windows.Forms.Label();
             this.BtnHelp = new System.Windows.Forms.Button();
             this.lblOtherPlayerBalance = new System.Windows.Forms.Label();
+            this.lblSelectAPlayer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).BeginInit();
@@ -186,11 +187,11 @@ namespace Monopoly
             // 
             // btnTradeRequest
             // 
-            this.btnTradeRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTradeRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnTradeRequest.ForeColor = System.Drawing.Color.Black;
-            this.btnTradeRequest.Location = new System.Drawing.Point(911, 872);
+            this.btnTradeRequest.Location = new System.Drawing.Point(12, 906);
             this.btnTradeRequest.Name = "btnTradeRequest";
-            this.btnTradeRequest.Size = new System.Drawing.Size(147, 28);
+            this.btnTradeRequest.Size = new System.Drawing.Size(228, 50);
             this.btnTradeRequest.TabIndex = 3;
             this.btnTradeRequest.Text = "Trade Request";
             this.btnTradeRequest.UseVisualStyleBackColor = true;
@@ -246,11 +247,11 @@ namespace Monopoly
             // 
             // btnSell
             // 
-            this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnSell.ForeColor = System.Drawing.Color.Black;
-            this.btnSell.Location = new System.Drawing.Point(1068, 872);
+            this.btnSell.Location = new System.Drawing.Point(294, 906);
             this.btnSell.Name = "btnSell";
-            this.btnSell.Size = new System.Drawing.Size(147, 28);
+            this.btnSell.Size = new System.Drawing.Size(228, 50);
             this.btnSell.TabIndex = 4;
             this.btnSell.Text = "Sell";
             this.btnSell.UseVisualStyleBackColor = true;
@@ -258,11 +259,11 @@ namespace Monopoly
             // 
             // btnBuyHouseOrHotel
             // 
-            this.btnBuyHouseOrHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuyHouseOrHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnBuyHouseOrHotel.ForeColor = System.Drawing.Color.Black;
-            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(1224, 872);
+            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(576, 906);
             this.btnBuyHouseOrHotel.Name = "btnBuyHouseOrHotel";
-            this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(147, 28);
+            this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(228, 50);
             this.btnBuyHouseOrHotel.TabIndex = 5;
             this.btnBuyHouseOrHotel.Text = "Upgrade";
             this.btnBuyHouseOrHotel.UseVisualStyleBackColor = true;
@@ -313,7 +314,7 @@ namespace Monopoly
             this.flpPlayerHandOptions.BackColor = System.Drawing.Color.PeachPuff;
             this.flpPlayerHandOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpPlayerHandOptions.ForeColor = System.Drawing.Color.Black;
-            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 446);
+            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 483);
             this.flpPlayerHandOptions.Name = "flpPlayerHandOptions";
             this.flpPlayerHandOptions.Size = new System.Drawing.Size(460, 44);
             this.flpPlayerHandOptions.TabIndex = 61;
@@ -324,7 +325,7 @@ namespace Monopoly
             this.flpOtherPlayerHand.BackColor = System.Drawing.Color.PeachPuff;
             this.flpOtherPlayerHand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpOtherPlayerHand.ForeColor = System.Drawing.Color.Black;
-            this.flpOtherPlayerHand.Location = new System.Drawing.Point(911, 533);
+            this.flpOtherPlayerHand.Location = new System.Drawing.Point(911, 570);
             this.flpOtherPlayerHand.Name = "flpOtherPlayerHand";
             this.flpOtherPlayerHand.Size = new System.Drawing.Size(460, 330);
             this.flpOtherPlayerHand.TabIndex = 62;
@@ -333,7 +334,7 @@ namespace Monopoly
             // 
             this.lblOtherPlayersHand.AutoSize = true;
             this.lblOtherPlayersHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 503);
+            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 535);
             this.lblOtherPlayersHand.Name = "lblOtherPlayersHand";
             this.lblOtherPlayersHand.Size = new System.Drawing.Size(52, 24);
             this.lblOtherPlayersHand.TabIndex = 63;
@@ -343,7 +344,7 @@ namespace Monopoly
             // 
             this.QuitGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitGameBtn.ForeColor = System.Drawing.Color.Black;
-            this.QuitGameBtn.Location = new System.Drawing.Point(1143, 906);
+            this.QuitGameBtn.Location = new System.Drawing.Point(1140, 906);
             this.QuitGameBtn.Name = "QuitGameBtn";
             this.QuitGameBtn.Size = new System.Drawing.Size(228, 50);
             this.QuitGameBtn.TabIndex = 64;
@@ -356,7 +357,7 @@ namespace Monopoly
             // 
             this.BtnRestartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRestartGame.ForeColor = System.Drawing.Color.Black;
-            this.BtnRestartGame.Location = new System.Drawing.Point(911, 906);
+            this.BtnRestartGame.Location = new System.Drawing.Point(858, 906);
             this.BtnRestartGame.Name = "BtnRestartGame";
             this.BtnRestartGame.Size = new System.Drawing.Size(228, 50);
             this.BtnRestartGame.TabIndex = 65;
@@ -411,9 +412,9 @@ namespace Monopoly
             // btnSmallLoan
             // 
             this.btnSmallLoan.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnSmallLoan.Location = new System.Drawing.Point(12, 926);
+            this.btnSmallLoan.Location = new System.Drawing.Point(1377, 81);
             this.btnSmallLoan.Name = "btnSmallLoan";
-            this.btnSmallLoan.Size = new System.Drawing.Size(168, 23);
+            this.btnSmallLoan.Size = new System.Drawing.Size(10, 23);
             this.btnSmallLoan.TabIndex = 66;
             this.btnSmallLoan.TabStop = false;
             this.btnSmallLoan.Text = "You should not see this button";
@@ -953,11 +954,21 @@ namespace Monopoly
             // 
             this.lblOtherPlayerBalance.AutoSize = true;
             this.lblOtherPlayerBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOtherPlayerBalance.Location = new System.Drawing.Point(1099, 504);
+            this.lblOtherPlayerBalance.Location = new System.Drawing.Point(1099, 536);
             this.lblOtherPlayerBalance.Name = "lblOtherPlayerBalance";
             this.lblOtherPlayerBalance.Size = new System.Drawing.Size(52, 24);
             this.lblOtherPlayerBalance.TabIndex = 70;
             this.lblOtherPlayerBalance.Text = "(null)";
+            // 
+            // lblSelectAPlayer
+            // 
+            this.lblSelectAPlayer.AutoSize = true;
+            this.lblSelectAPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectAPlayer.Location = new System.Drawing.Point(908, 450);
+            this.lblSelectAPlayer.Name = "lblSelectAPlayer";
+            this.lblSelectAPlayer.Size = new System.Drawing.Size(471, 22);
+            this.lblSelectAPlayer.TabIndex = 71;
+            this.lblSelectAPlayer.Text = "Select a name to view another player\'s hand and balance.";
             // 
             // MonopolyMainForm
             // 
@@ -965,11 +976,12 @@ namespace Monopoly
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(114)))), ((int)(((byte)(150)))));
             this.ClientSize = new System.Drawing.Size(1384, 961);
+            this.Controls.Add(this.lblSelectAPlayer);
+            this.Controls.Add(this.btnSmallLoan);
             this.Controls.Add(this.lblOtherPlayerBalance);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.DoublesLabel);
             this.Controls.Add(this.lblGetOutOfJailLabel);
-            this.Controls.Add(this.btnSmallLoan);
             this.Controls.Add(this.BtnRestartGame);
             this.Controls.Add(this.QuitGameBtn);
             this.Controls.Add(this.lblOtherPlayersHand);
@@ -1167,6 +1179,7 @@ namespace Monopoly
         private System.Windows.Forms.Label DoublesLabel;
         private System.Windows.Forms.Button BtnHelp;
         private System.Windows.Forms.Label lblOtherPlayerBalance;
+        private System.Windows.Forms.Label lblSelectAPlayer;
     }
 }
 

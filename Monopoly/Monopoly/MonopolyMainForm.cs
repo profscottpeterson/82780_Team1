@@ -134,7 +134,7 @@ namespace Monopoly
         /// </summary>
         public MonopolyMainForm()
         {
-            ////this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ControlBox = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -179,6 +179,8 @@ namespace Monopoly
 
                     // Assigns a click event to the picture box
                     p.Click += delegate { this.PropertyClickEvent(this.game.Board[(int)p.Tag]); };
+                    p.MouseHover += delegate { this.PropertyHoverEvent(this.game.Board[(int) p.Tag]); };
+                    p.MouseLeave += delegate { this.PropertyHoverExitEvent(this.game.Board[(int) p.Tag]); };
                 }
 
                 this.spotPicture = spotPictures;
@@ -294,6 +296,38 @@ namespace Monopoly
                 NonPropPopUp popUp = new NonPropPopUp(spot, this.game);
                 popUp.StartPosition = FormStartPosition.CenterParent;
                 popUp.ShowDialog();
+            }
+        }
+
+        private void PropertyHoverEvent(Spot spot)
+        {
+            Control[] c = this.Controls.Find("remove", true);
+            if ( c.Length > 0)
+            {
+                this.Controls.Remove(this.Controls.Find("remove", true)[0]);
+            }
+            
+            Label l = new Label();
+            Point p = MousePosition;
+            p.Y -= 50;
+            l.AutoSize = true;
+            l.Name = "remove";
+            
+            l.Text = spot.SpotName;
+            l.ForeColor = Color.Black;
+            l.BackColor = Color.White;
+            l.Location = p;
+
+            this.Controls.Add(l);
+            l.BringToFront();
+        }
+
+        private void PropertyHoverExitEvent(Spot spot)
+        {
+            Control[] c = this.Controls.Find("remove", true);
+            if (c.Length > 0)
+            {
+                this.Controls.Remove(this.Controls.Find("remove", true)[0]);
             }
         }
 
@@ -914,6 +948,14 @@ namespace Monopoly
             foreach (PictureBox pbx in pictureBoxes)
             {
                 pbx.Click += delegate { this.PropertyClickEvent(currentPlayerSpots[int.Parse(pbx.Tag.ToString())]); };
+                pbx.MouseHover += delegate
+                {
+                    this.PropertyHoverEvent(currentPlayerSpots[int.Parse(pbx.Tag.ToString())]);
+                };
+                pbx.MouseLeave += delegate
+                {
+                    this.PropertyHoverExitEvent(currentPlayerSpots[int.Parse(pbx.Tag.ToString())]);
+                };
             }
 
             foreach (Panel panel in playerPropertyPanels)

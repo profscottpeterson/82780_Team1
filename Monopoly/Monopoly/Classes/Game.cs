@@ -148,7 +148,6 @@ namespace Monopoly
             // Check to see if spot landed on can be bought
             if (this.CheckBuyProperty(currentPlayer, currentPlayer.CurrentLocation))
             {
-                ////TODO: CHECK THE BUY PROPERTY CODE - AKA THE BUYPROP FORM AND CODE IN THIS IF STATEMENT AND THERE
                 BuyProp buyProp = new BuyProp(currentPlayer.CurrentLocation, currentPlayer, this);
                 if (buyProp.IsDisposed == false)
                 {
@@ -337,11 +336,10 @@ namespace Monopoly
         {
             if (currentLocation.Type == SpotType.Tax)
             {
-                // TODO: or pay 10% - add form
                 int tenPercent = (int)(currentPlayer.TotalNetWorth(this.Board) * .1);
                 
                 // Choose for the player whether the 200 or 10% of their total net worth is lower
-                if (currentLocation.Rent > tenPercent)
+                if (currentLocation.Rent < tenPercent)
                 {
                     // Pay Tax
                     this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;

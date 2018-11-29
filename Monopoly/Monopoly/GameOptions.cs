@@ -141,6 +141,8 @@ namespace Monopoly
         /// <param name="e">The event</param>
         private void BtnStart_Click(object sender, EventArgs e)
         {
+            this.TempPlayers.Clear();
+
             Player tempPlayer;
 
             if (this.panelPlayer1.Visible)

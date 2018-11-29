@@ -130,30 +130,21 @@ namespace Monopoly
                     foreach (Spot s in this.eligible)
                     {
                         this.selectedSpot = s;
-                        if (this.selectedSpot.IsMortgaged == true)
+
+                        // List that holds the spots of the same type
+                        this.sameType.Clear();
+
+                        // Get a list of spots that share the same color
+                        foreach (Spot g in this.playerSpots)
                         {
-                            if (this.currentPlayer.Money > this.selectedSpot.Mortgage + 50)
+                            if (g.Color == this.selectedSpot.Color && g.SpotName != this.selectedSpot.SpotName)
                             {
-                                this.BtnUnmortgage_Click(this.selectedSpot, EventArgs.Empty);
+                                this.sameType.Add(g);
                             }
                         }
-                        else if (this.selectedSpot.NumberOfHouses < 4)
-                        {
-                            if (this.currentPlayer.Money > this.selectedSpot.HouseCost + 50)
-                            {
-                                this.BtnAddHouse_Click(this.selectedSpot, EventArgs.Empty);
-                            }
-                        }
-                        else if (this.selectedSpot.HasHotel == false)
-                        {
-                            if (this.selectedSpot.NumberOfHouses == 4)
-                            {
-                                if (this.currentPlayer.Money > this.selectedSpot.HotelCost + 50)
-                                {
-                                    this.BtnAddHotel_Click(this.selectedSpot, EventArgs.Empty);
-                                }
-                            }
-                        }
+
+                        // add houses/unmortgage/hotels to possible properties
+                        PropertyLogic();
                     }
 
                     this.Close();
@@ -392,209 +383,7 @@ namespace Monopoly
             btnUnmortgage.Enabled = false;
             txtMessage.Text = string.Empty;
 
-            // Activate buttons as they are possible
-            if (this.sameType.Count == 1)
-            {
-                if (!this.selectedSpot.IsMortgaged)
-                {
-                    if (!this.sameType[0].IsMortgaged)
-                    {
-                        if (this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses)
-                        {
-                            if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
-                            {
-                                this.btnAddHouse.Enabled = true;
-                            }
-                            else
-                            {
-                                this.txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
-                            }
-                        }
-                        else if (this.selectedSpot.NumberOfHouses == this.sameType[0].NumberOfHouses)
-                        {
-                            if (this.selectedSpot.NumberOfHouses == 4 && this.sameType[0].NumberOfHouses == 4)
-                            {
-                                if (this.selectedSpot.HasHotel)
-                                {
-                                }
-                                else if (this.sameType[0].HasHotel)
-                                {
-                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
-                                    {
-                                        this.btnAddHotel.Enabled = true;
-                                    }
-                                    else
-                                    {
-                                        this.txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
-                                    {
-                                        this.btnAddHotel.Enabled = true;
-                                    }
-                                    else
-                                    {
-                                        this.txtMessage.Text = txtMessage.Text + " Not enough money to put a hotel on this property.";
-                                    }
-
-                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 2))
-                                    {
-                                        this.btnAddHotelToAll.Enabled = true;
-                                    }
-                                    else
-                                    {
-                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
-                                {
-                                    this.btnAddHouse.Enabled = true;
-                                }
-                                else
-                                {
-                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
-                                }
-
-                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 2))
-                                {
-                                    this.btnAddHouseToAll.Enabled = true;
-                                }
-                                else
-                                {
-                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on all properties of this color.";
-                                }
-                            }
-                        }
-                        else
-                        {
-                            this.txtMessage.Text = this.txtMessage.Text + " This property has either more houses or a hotel than the other properties of the same color.";
-                        }
-                    }
-                }
-                else
-                {
-                    if (this.currentPlayer.Money >= (this.selectedSpot.Mortgage * 1.1))
-                    {
-                        this.btnUnmortgage.Enabled = true;
-                    }
-                    else
-                    {
-                        this.txtMessage.Text = this.txtMessage.Text + "You do not have enough money to un-mortgage this property";
-                    }
-                }
-            }
-            else if (this.sameType.Count == 2)
-            {
-                if (!this.selectedSpot.IsMortgaged)
-                {
-                    if (!this.sameType[0].IsMortgaged && !this.sameType[1].IsMortgaged)
-                    {
-                        if ((this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses) || (this.selectedSpot.NumberOfHouses < this.sameType[1].NumberOfHouses))
-                        {
-                            if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
-                            {
-                                this.btnAddHouse.Enabled = true;
-                            }
-                            else
-                            {
-                                this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
-                            }
-                        }
-                        else if ((this.selectedSpot.NumberOfHouses == this.sameType[0].NumberOfHouses) && (this.selectedSpot.NumberOfHouses == this.sameType[1].NumberOfHouses))
-                        {
-                            if (this.selectedSpot.NumberOfHouses == 4 && this.sameType[0].NumberOfHouses == 4 && this.sameType[1].NumberOfHouses == 4)
-                            {
-                                if (this.selectedSpot.HasHotel)
-                                {
-                                }
-                                else if (this.sameType[0].HasHotel || this.sameType[1].HasHotel)
-                                {
-                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
-                                    {
-                                        this.btnAddHotel.Enabled = true;
-                                    }
-                                    else
-                                    {
-                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on this property.";
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
-                                    {
-                                        this.btnAddHotel.Enabled = true;
-                                    }
-                                    else
-                                    {
-                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on this property.";
-                                    }
-
-                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 3))
-                                    {
-                                        this.btnAddHotelToAll.Enabled = true;
-                                        this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a hotel on all properties of this color.";
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
-                                {
-                                    this.btnAddHouse.Enabled = true;
-                                }
-                                else
-                                {
-                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on this property.";
-                                }
-
-                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 3))
-                                {
-                                    this.btnAddHouseToAll.Enabled = true;
-                                }
-                                else
-                                {
-                                    this.txtMessage.Text = this.txtMessage.Text + " Not enough money to put a house on all of the properties of this color.";
-                                }
-                            }
-                        }
-                        else
-                        {
-                            this.txtMessage.Text = "This property has either more houses or a hotel than the other properties of the same color.";
-                        }
-                    }
-                    else
-                    {
-                        this.txtMessage.Text = "Other properties of this color are mortgaged - nothing can be upgraded on any of these properties.";
-                    }
-                }
-                else
-                {
-                    if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
-                    {
-                        this.btnUnmortgage.Enabled = true;
-                    }
-                    else
-                    {
-                        this.txtMessage.Text = this.txtMessage.Text + "You do not have enough money to un-mortgage this property";
-                    }
-                }
-            }
-            else if (this.selectedSpot.IsMortgaged)
-            {
-                if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
-                {
-                    this.btnUnmortgage.Enabled = true;
-                }
-                else
-                {
-                    this.txtMessage.Text = "You do not have enough money to un-mortgage this property";
-                }
-            }
+            PropertyLogic();
 
             // Add the selected spot to the list of spots for that color
             this.sameType.Add(this.selectedSpot);
@@ -615,6 +404,313 @@ namespace Monopoly
 
             // add them to the listView
             // FillListView(listViewProperties, eligible);
+        }
+
+        private void PropertyLogic()
+        {
+            // Activate buttons as they are possible
+            if (this.sameType.Count == 1)
+            {
+                if (!this.selectedSpot.IsMortgaged)
+                {
+                    if (!this.sameType[0].IsMortgaged)
+                    {
+                        if (this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses)
+                        {
+                            if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
+                            {
+                                if (currentPlayer.IsAi == false)
+                                {
+                                    this.btnAddHouse.Enabled = true;
+                                }
+                                else
+                                {
+                                    this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                }
+                                
+                            }
+                            else
+                            {
+                                this.txtMessage.Text = txtMessage.Text + " Not enough money to put a house on this property.";
+                            }
+                        }
+                        else if (this.selectedSpot.NumberOfHouses == this.sameType[0].NumberOfHouses)
+                        {
+                            if (this.selectedSpot.NumberOfHouses == 4 && this.sameType[0].NumberOfHouses == 4)
+                            {
+                                if (this.selectedSpot.HasHotel)
+                                {
+                                }
+                                else if (this.sameType[0].HasHotel)
+                                {
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    {
+                                        if (currentPlayer.IsAi == false)
+                                        {
+                                            this.btnAddHotel.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        this.txtMessage.Text =
+                                            txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    {
+                                        if (currentPlayer.IsAi == false)
+                                        {
+                                            this.btnAddHotel.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.txtMessage.Text =
+                                            txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                    }
+
+                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 2))
+                                    {
+                                        if (currentPlayer.IsAi == false)
+                                        {
+                                            this.btnAddHotelToAll.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            this.BtnAddHotelToAll_Click(currentPlayer, EventArgs.Empty);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.txtMessage.Text =
+                                            this.txtMessage.Text +
+                                            " Not enough money to put a hotel on all properties of this color.";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
+                                {
+                                    if (currentPlayer.IsAi == false)
+                                    {
+                                        this.btnAddHouse.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                    }
+                                }
+                                else
+                                {
+                                    this.txtMessage.Text =
+                                        this.txtMessage.Text + " Not enough money to put a house on this property.";
+                                }
+
+                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 2))
+                                {
+                                    if (currentPlayer.IsAi == false)
+                                    {
+                                        this.btnAddHouseToAll.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        this.BtnAddHouseToAll_Click(currentPlayer, EventArgs.Empty);
+                                    }
+                                }
+                                else
+                                {
+                                    this.txtMessage.Text = this.txtMessage.Text +
+                                                           " Not enough money to put a house on all properties of this color.";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.txtMessage.Text = this.txtMessage.Text +
+                                                   " This property has either more houses or a hotel than the other properties of the same color.";
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.currentPlayer.Money >= (this.selectedSpot.Mortgage * 1.1))
+                    {
+                        if (this.currentPlayer.IsAi == false)
+                        {
+                            this.btnUnmortgage.Enabled = true;
+                        }
+                        else
+                        {
+                            this.BtnUnmortgage_Click(this.currentPlayer, EventArgs.Empty);
+                        }
+                    }
+                    else
+                    {
+                        this.txtMessage.Text =
+                            this.txtMessage.Text + "You do not have enough money to un-mortgage this property";
+                    }
+                }
+            }
+            else if (this.sameType.Count == 2)
+            {
+                if (!this.selectedSpot.IsMortgaged)
+                {
+                    if (!this.sameType[0].IsMortgaged && !this.sameType[1].IsMortgaged)
+                    {
+                        if ((this.selectedSpot.NumberOfHouses < this.sameType[0].NumberOfHouses) ||
+                            (this.selectedSpot.NumberOfHouses < this.sameType[1].NumberOfHouses))
+                        {
+                            if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
+                            {
+                                if (currentPlayer.IsAi == false)
+                                {
+                                    this.btnAddHouse.Enabled = true;
+                                }
+                                else
+                                {
+                                    this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                }
+                            }
+                            else
+                            {
+                                this.txtMessage.Text =
+                                    this.txtMessage.Text + " Not enough money to put a house on this property.";
+                            }
+                        }
+                        else if ((this.selectedSpot.NumberOfHouses == this.sameType[0].NumberOfHouses) &&
+                                 (this.selectedSpot.NumberOfHouses == this.sameType[1].NumberOfHouses))
+                        {
+                            if (this.selectedSpot.NumberOfHouses == 4 && this.sameType[0].NumberOfHouses == 4 &&
+                                this.sameType[1].NumberOfHouses == 4)
+                            {
+                                if (this.selectedSpot.HasHotel)
+                                {
+                                }
+                                else if (this.sameType[0].HasHotel || this.sameType[1].HasHotel)
+                                {
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    {
+                                        if (currentPlayer.IsAi == false)
+                                        {
+                                            this.btnAddHotel.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.txtMessage.Text =
+                                            this.txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
+                                    {
+                                        if (currentPlayer.IsAi == false)
+                                        {
+                                            this.btnAddHotel.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.txtMessage.Text =
+                                            this.txtMessage.Text + " Not enough money to put a hotel on this property.";
+                                    }
+
+                                    if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 3))
+                                    {
+                                        this.btnAddHotelToAll.Enabled = true;
+                                        this.txtMessage.Text =
+                                            this.txtMessage.Text +
+                                            " Not enough money to put a hotel on all properties of this color.";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
+                                {
+                                    if (currentPlayer.IsAi == false)
+                                    {
+                                        this.btnAddHouse.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                    }
+                                }
+                                else
+                                {
+                                    this.txtMessage.Text =
+                                        this.txtMessage.Text + " Not enough money to put a house on this property.";
+                                }
+
+                                if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 3))
+                                {
+                                    this.btnAddHouseToAll.Enabled = true;
+                                }
+                                else
+                                {
+                                    this.txtMessage.Text = this.txtMessage.Text +
+                                                           " Not enough money to put a house on all of the properties of this color.";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.txtMessage.Text =
+                                "This property has either more houses or a hotel than the other properties of the same color.";
+                        }
+                    }
+                    else
+                    {
+                        this.txtMessage.Text =
+                            "Other properties of this color are mortgaged - nothing can be upgraded on any of these properties.";
+                    }
+                }
+                else
+                {
+                    if (this.currentPlayer.Money >= (int) (this.selectedSpot.Mortgage * 1.1))
+                    {
+                        this.btnUnmortgage.Enabled = true;
+                    }
+                    else
+                    {
+                        this.txtMessage.Text =
+                            this.txtMessage.Text + "You do not have enough money to un-mortgage this property";
+                    }
+                }
+            }
+            else if (this.selectedSpot.IsMortgaged)
+            {
+                if (this.currentPlayer.Money >= (int) (this.selectedSpot.Mortgage * 1.1))
+                {
+                    this.btnUnmortgage.Enabled = true;
+                }
+                else
+                {
+                    this.txtMessage.Text = "You do not have enough money to un-mortgage this property";
+                }
+            }
         }
 
         private void BtnHelp_Click(object sender, EventArgs e)

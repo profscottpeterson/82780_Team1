@@ -135,6 +135,7 @@ namespace Monopoly
         public MonopolyMainForm()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+
             this.ControlBox = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -159,7 +160,7 @@ namespace Monopoly
             {
                 // Sets the forms height to 1000 pixels
                 this.Height = 1000;
-                this.Location = new Point(0, 40);
+                this.CenterToScreen();
 
                 // Finds each spot on the board and adds them to a list
                 List<PictureBox> spotPictures = new List<PictureBox>();
@@ -299,6 +300,7 @@ namespace Monopoly
             }
         }
 
+
         private void PropertyHoverEvent(Spot spot)
         {
             Control[] c = this.Controls.Find("remove", true);
@@ -306,14 +308,20 @@ namespace Monopoly
             {
                 this.Controls.Remove(this.Controls.Find("remove", true)[0]);
             }
-            
+
             Label l = new Label();
-            Point p = MousePosition;
-            p.Y -= 50;
+            Point p = spot.SpotBox.Location;
+            p.Y += 20;
             l.AutoSize = true;
-            l.Name = "remove";
             
-            l.Text = spot.SpotName;
+            l.Name = "remove";
+            l.Text = spot.SpotName + "\n";
+
+            if (spot.Type == SpotType.Property || spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
+            {
+                l.Text = l.Text + "(Click to see more)";
+            }
+
             l.ForeColor = Color.Black;
             l.BackColor = Color.White;
             l.Location = p;

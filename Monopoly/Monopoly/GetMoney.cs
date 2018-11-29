@@ -136,7 +136,7 @@ namespace Monopoly
                             {
                                 if (this.Debt > 0)
                                 {
-                                    this.BtnForfeit_Click(this.currentPlayer, EventArgs.Empty);
+                                    this.game.CheckPayRent(currentPlayer, currentSpot);
                                     break;
                                 }
                             }
@@ -155,7 +155,7 @@ namespace Monopoly
                     }
                     else
                     {
-                        this.BtnForfeit_Click(this.currentPlayer, EventArgs.Empty);
+                        this.game.CheckPayRent(currentPlayer, currentSpot);
                         break;
                     }
                 }

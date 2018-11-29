@@ -179,6 +179,7 @@ namespace Monopoly
         /// </summary>
         public Spot()
         {
+            // Empty constructor used for miscellaneous things.
         }
 
         /// <summary>

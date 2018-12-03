@@ -419,6 +419,7 @@ namespace Monopoly
             this.btnSmallLoan.TabStop = false;
             this.btnSmallLoan.Text = "You should not see this button";
             this.btnSmallLoan.UseVisualStyleBackColor = true;
+            this.btnSmallLoan.Visible = false;
             this.btnSmallLoan.Click += new System.EventHandler(this.BtnSmallLoan_Click);
             // 
             // pbxCurrentPlayerPicture
@@ -1050,6 +1051,7 @@ namespace Monopoly
             this.Name = "MonopolyMainForm";
             this.Text = "Monopoly";
             this.Load += new System.EventHandler(this.MonopolyMainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MonopolyMainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbxCurrentPlayerPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiceLeft)).EndInit();

@@ -130,10 +130,21 @@ namespace Monopoly
         private bool formBool = false;
 
         /// <summary>
+        /// Cheat code to give player money: Shift, M, O, N (in that order, separately)
+        /// </summary>
+        private List<Keys> cheatCode = new List<Keys>() { Keys.ShiftKey, Keys.M, Keys.O, Keys.N };
+
+        /// <summary>
+        /// Sequence the user has entered.
+        /// </summary>
+        private List<Keys> cheatCodeKeysPressed = new List<Keys>();
+
+        /// <summary>
         /// Initializes a new instance of the MonopolyMainForm class.
         /// </summary>
         public MonopolyMainForm()
         {
+            this.KeyPreview = true; // enables key combinations
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 
             this.ControlBox = false;
@@ -1465,6 +1476,35 @@ namespace Monopoly
         {
             HelpMenu hm = new HelpMenu("Board Screen");
             hm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Key combination gives current player 1k. 
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The eventArgs</param>
+        private void MonopolyMainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Capture keys/tries one by one. 
+            // If key is not recognized, it will break the code.
+
+            if(cheatCode.Contains(e.KeyCode))
+            {
+                cheatCodeKeysPressed.Add(e.KeyCode); // will add key to list in the order it came in
+
+                // Check if cheat code is now completed by checking if the sequence matches the code.
+                if (cheatCode.SequenceEqual(cheatCodeKeysPressed))
+                {
+                    this.currentPlayer.Money += 1000;
+                    this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
+                    cheatCodeKeysPressed.Clear();
+                }
+            }
+            else
+            {
+                cheatCodeKeysPressed.Clear();
+            }
+
         }
     }
 }

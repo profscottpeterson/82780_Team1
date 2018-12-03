@@ -314,9 +314,9 @@ namespace Monopoly
             this.flpPlayerHandOptions.BackColor = System.Drawing.Color.PeachPuff;
             this.flpPlayerHandOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpPlayerHandOptions.ForeColor = System.Drawing.Color.Black;
-            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 483);
+            this.flpPlayerHandOptions.Location = new System.Drawing.Point(911, 463);
             this.flpPlayerHandOptions.Name = "flpPlayerHandOptions";
-            this.flpPlayerHandOptions.Size = new System.Drawing.Size(460, 44);
+            this.flpPlayerHandOptions.Size = new System.Drawing.Size(460, 60);
             this.flpPlayerHandOptions.TabIndex = 61;
             // 
             // flpOtherPlayerHand
@@ -332,11 +332,10 @@ namespace Monopoly
             // 
             // lblOtherPlayersHand
             // 
-            this.lblOtherPlayersHand.AutoSize = true;
-            this.lblOtherPlayersHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 535);
+            this.lblOtherPlayersHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOtherPlayersHand.Location = new System.Drawing.Point(908, 526);
             this.lblOtherPlayersHand.Name = "lblOtherPlayersHand";
-            this.lblOtherPlayersHand.Size = new System.Drawing.Size(52, 24);
+            this.lblOtherPlayersHand.Size = new System.Drawing.Size(215, 41);
             this.lblOtherPlayersHand.TabIndex = 63;
             this.lblOtherPlayersHand.Text = "(null)";
             // 
@@ -953,11 +952,10 @@ namespace Monopoly
             // 
             // lblOtherPlayerBalance
             // 
-            this.lblOtherPlayerBalance.AutoSize = true;
-            this.lblOtherPlayerBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOtherPlayerBalance.Location = new System.Drawing.Point(1099, 536);
+            this.lblOtherPlayerBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOtherPlayerBalance.Location = new System.Drawing.Point(1155, 526);
             this.lblOtherPlayerBalance.Name = "lblOtherPlayerBalance";
-            this.lblOtherPlayerBalance.Size = new System.Drawing.Size(52, 24);
+            this.lblOtherPlayerBalance.Size = new System.Drawing.Size(216, 41);
             this.lblOtherPlayerBalance.TabIndex = 70;
             this.lblOtherPlayerBalance.Text = "(null)";
             // 
@@ -965,7 +963,7 @@ namespace Monopoly
             // 
             this.lblSelectAPlayer.AutoSize = true;
             this.lblSelectAPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectAPlayer.Location = new System.Drawing.Point(908, 450);
+            this.lblSelectAPlayer.Location = new System.Drawing.Point(908, 441);
             this.lblSelectAPlayer.Name = "lblSelectAPlayer";
             this.lblSelectAPlayer.Size = new System.Drawing.Size(471, 22);
             this.lblSelectAPlayer.TabIndex = 71;

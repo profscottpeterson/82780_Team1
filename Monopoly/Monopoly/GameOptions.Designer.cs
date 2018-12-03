@@ -212,6 +212,7 @@ namespace Monopoly
             // txtPlayer1Name
             // 
             this.txtPlayer1Name.Location = new System.Drawing.Point(97, 7);
+            this.txtPlayer1Name.MaxLength = 20;
             this.txtPlayer1Name.Name = "txtPlayer1Name";
             this.txtPlayer1Name.Size = new System.Drawing.Size(100, 20);
             this.txtPlayer1Name.TabIndex = 1;
@@ -260,6 +261,7 @@ namespace Monopoly
             // txtPlayerName2
             // 
             this.txtPlayerName2.Location = new System.Drawing.Point(97, 7);
+            this.txtPlayerName2.MaxLength = 20;
             this.txtPlayerName2.Name = "txtPlayerName2";
             this.txtPlayerName2.Size = new System.Drawing.Size(100, 20);
             this.txtPlayerName2.TabIndex = 3;
@@ -309,6 +311,7 @@ namespace Monopoly
             // txtPlayerName3
             // 
             this.txtPlayerName3.Location = new System.Drawing.Point(97, 7);
+            this.txtPlayerName3.MaxLength = 20;
             this.txtPlayerName3.Name = "txtPlayerName3";
             this.txtPlayerName3.Size = new System.Drawing.Size(100, 20);
             this.txtPlayerName3.TabIndex = 5;
@@ -358,6 +361,7 @@ namespace Monopoly
             // txtPlayerName4
             // 
             this.txtPlayerName4.Location = new System.Drawing.Point(97, 7);
+            this.txtPlayerName4.MaxLength = 20;
             this.txtPlayerName4.Name = "txtPlayerName4";
             this.txtPlayerName4.Size = new System.Drawing.Size(100, 20);
             this.txtPlayerName4.TabIndex = 7;

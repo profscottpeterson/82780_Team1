@@ -274,17 +274,21 @@ namespace Monopoly
                 this.lblOtherPlayerBalance.Text = string.Empty;
                 this.formBool = true;
                 this.SetUpPlayerHandOptions();
+
                 if (currentPlayer.PlayerName.Length > 20)
                 {
+                    this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName.Substring(0, 18) + "...'s Turn";
                     this.lblPlayerTurn.Text = currentPlayer.PlayerName.Substring(0, 18) + "..." + "'s Turn";
                 }
                 else
                 {
+                    this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName + "'s Turn";
                     this.lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
                 }
+
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
                 this.lblGetOutOfJailLabel.Text = "You have " + this.currentPlayer.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
-                this.DoublesLabel.Text = string.Empty;
+                // this.DoublesLabel.Text = string.Empty;
             }
 
             return result;
@@ -490,6 +494,8 @@ namespace Monopoly
         /// <param name="die2">The value of the second die</param>
         private void RollingDice(out int die1, out int die2)
         {
+            this.TurnFormButtonsOff();
+            
             Random rand = new Random();
 
             die1 = 0;
@@ -522,6 +528,7 @@ namespace Monopoly
 
             // Re-enable the roll button when dice are done rolling
             this.btnRoll.Enabled = true;
+            this.TurnFormButtonsOn();
         }
 
         /// <summary>
@@ -1006,7 +1013,7 @@ namespace Monopoly
 
                 if (player.PlayerName.Length > 15)
                 {
-                    stringForUpdating = player.PlayerName.Substring(0, 10) + "...";
+                    stringForUpdating = player.PlayerName.Substring(0, 13) + "...";
                     this.lblOtherPlayersHand.Text = stringForUpdating + "'s hand";
                 }
                 else
@@ -1176,16 +1183,17 @@ namespace Monopoly
                     this.radioButtons[x] = new RadioButton();
                     if (this.game.Players[x].IsActive == true)
                     {
-                        if (this.game.Players[x].PlayerName.Length > 10)
+                        if (this.game.Players[x].PlayerName.Length > 15)
                         {
-                            this.radioButtons[x].Text = this.game.Players[x].PlayerName.Substring(0, 9)+"...";
+                            this.radioButtons[x].Text = this.game.Players[x].PlayerName.Substring(0, 13)+"...";
                         }
                         else
                         {
                             this.radioButtons[x].Text = this.game.Players[x].PlayerName;
                         }
-                        this.radioButtons[x].Font = new Font("Microsoft Sans Serif", 13);
+                        this.radioButtons[x].Font = new Font("Microsoft Sans Serif", 12);
                         this.radioButtons[x].Tag = this.game.Players[x].PlayerId;
+                        this.radioButtons[x].AutoSize = true;
                     }
                 }
 
@@ -1353,6 +1361,7 @@ namespace Monopoly
 
             if (this.currentPlayer.IsAi == true)
             {
+                this.flpPlayerHandOptions.Enabled = false;
                 while (this.btnRoll.Enabled)
                 {
                     this.BtnRoll_Click(sender, e);
@@ -1360,6 +1369,19 @@ namespace Monopoly
 
                 this.BtnBuyHouseOrHotel_Click(sender, e);
                 this.BtnNextTurn_Click(sender, e);
+            }
+            else
+            {
+                this.flpPlayerHandOptions.Enabled = true;
+                if (this.currentPlayer.PlayerName.Length > 20)
+                {
+                    this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName.Substring(0, 18) + "...'s Turn";
+                }
+                else
+                {
+
+                    this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName + "'s Turn";
+                }
             }
         }
 
@@ -1476,6 +1498,40 @@ namespace Monopoly
         {
             HelpMenu hm = new HelpMenu("Board Screen");
             hm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Disables the form buttons while ai are playing
+        /// </summary>
+        private void TurnFormButtonsOff()
+        {
+            this.btnSell.Enabled = false;
+            this.btnBuyHouseOrHotel.Enabled = false;
+            this.QuitGameBtn.Enabled = false;
+            this.BtnRestartGame.Enabled = false;
+            this.btnTradeRequest.Enabled = false;
+            this.BtnHelp.Enabled = false;
+            foreach (PictureBox p in this.spotPicture)
+            {
+                p.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Enables the form buttons for the human players
+        /// </summary>
+        private void TurnFormButtonsOn()
+        {
+            this.btnSell.Enabled = true;
+            this.btnBuyHouseOrHotel.Enabled = true;
+            this.QuitGameBtn.Enabled = true;
+            this.BtnRestartGame.Enabled = true;
+            this.btnTradeRequest.Enabled = true;
+            this.BtnHelp.Enabled = true;
+            foreach (PictureBox p in this.spotPicture)
+            {
+                p.Enabled = true;
+            }
         }
 
         /// <summary>

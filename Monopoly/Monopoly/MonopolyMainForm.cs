@@ -1499,6 +1499,10 @@ namespace Monopoly
                     this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
                     cheatCodeKeysPressed.Clear();
                 }
+                else if(cheatCode.Count == cheatCodeKeysPressed.Count)
+                {
+                    cheatCodeKeysPressed.Clear();
+                }
             }
             else
             {

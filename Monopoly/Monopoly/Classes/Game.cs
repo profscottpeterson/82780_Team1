@@ -533,7 +533,7 @@ namespace Monopoly
                             if (this.Players[i] == currentPlayer)
                             {
                                 // Give current player the amount listed on the card times the number of other players
-                                this.Players[this.Players.IndexOf(currentPlayer)].Money += top.Amount * (this.Players.Count - 1);
+                                this.Players[this.Players.IndexOf(currentPlayer)].Money += top.Amount * (this.ActivePlayers() - 1);
                             }
                             else
                             {
@@ -1053,7 +1053,7 @@ namespace Monopoly
             tempCard = new Card(9, "Go directly to Jail", CardType.Chance, this.Board[10], chanceImages.Images[8]);
             this.ChanceCards.Add(tempCard);
 
-            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance, chanceImages.Images[9]);
+            tempCard = new Card(10, "Make general repairs on all your property", CardType.Chance, 25, true, false, chanceImages.Images[9]);
             this.ChanceCards.Add(tempCard);
 
             tempCard = new Card(11, "Pay poor tax of $15", CardType.Chance, 15, true, false, chanceImages.Images[10]);

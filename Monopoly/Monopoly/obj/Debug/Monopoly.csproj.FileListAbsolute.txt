@@ -104,3 +104,4 @@ C:\Users\Trisha\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.cs
 C:\Users\iambr\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.HelpMenu.resources
 C:\Users\Owner\Source\Repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.HelpMenu.resources
 C:\Users\Fernando G\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.HelpMenu.resources
+C:\Users\Trisha\source\repos\82780_Team1\Monopoly\Monopoly\obj\Debug\Monopoly.HelpMenu.resources

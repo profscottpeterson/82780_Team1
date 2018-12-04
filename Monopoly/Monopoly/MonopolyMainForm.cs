@@ -125,11 +125,6 @@ namespace Monopoly
         private int doubleCounter = 0;
 
         /// <summary>
-        /// Determines which player to display using the set up player method
-        /// </summary>
-        private bool formBool = false;
-
-        /// <summary>
         /// Cheat code to give player money: Shift, M, O, N (in that order, separately)
         /// </summary>
         private List<Keys> cheatCode = new List<Keys>() { Keys.ShiftKey, Keys.M, Keys.O, Keys.N };
@@ -272,7 +267,6 @@ namespace Monopoly
                 this.SetCurrentPlayerImage(this.currentPlayer);
                 this.lblOtherPlayersHand.Text = string.Empty;
                 this.lblOtherPlayerBalance.Text = string.Empty;
-                this.formBool = true;
                 this.SetUpPlayerHandOptions();
 
                 if (this.currentPlayer.PlayerName.Length > 20)
@@ -299,6 +293,7 @@ namespace Monopoly
         /// <param name="spot">Property clicked on</param>
         private void PropertyClickEvent(Spot spot)
         {
+            // If the spot is a buy-able property then call the MonPopUp form
             if (spot.Type == SpotType.Property)
             {
                 MonPopUp popUp = new MonPopUp(spot);
@@ -306,6 +301,7 @@ namespace Monopoly
                 popUp.ShowDialog();
             }
 
+            // If the spot type is a railroad or a utility, call the NonPropPopUp form
             if (spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
             {
                 NonPropPopUp popUp = new NonPropPopUp(spot, this.game);
@@ -320,20 +316,25 @@ namespace Monopoly
         /// <param name="spot">The desired spot</param>
         private void PropertyHoverEvent(Spot spot)
         {
+            // Remove previous label
             Control[] c = this.Controls.Find("remove", true);
+
             if (c.Length > 0)
             {
                 this.Controls.Remove(this.Controls.Find("remove", true)[0]);
             }
 
+            // Create a new label and place it near the spot that is hovered over
             Label l = new Label();
             Point p = spot.SpotBox.Location;
             p.Y += 20;
             l.AutoSize = true;
             
+            // Set the name to remove to find it later
             l.Name = "remove";
             l.Text = spot.SpotName + "\n";
 
+            // If it is a buy-able spot, add click to see more to the label
             if (spot.Type == SpotType.Property || spot.Type == SpotType.Railroad || spot.Type == SpotType.Utility)
             {
                 l.Text = l.Text + "(Click to see more)";
@@ -343,6 +344,7 @@ namespace Monopoly
             l.BackColor = Color.White;
             l.Location = p;
 
+            // Add the label
             this.Controls.Add(l);
             l.BringToFront();
         }
@@ -353,6 +355,7 @@ namespace Monopoly
         /// <param name="spot">The passed spot</param>
         private void PropertyHoverExitEvent(Spot spot)
         {
+            // Remove the label from the form
             Control[] c = this.Controls.Find("remove", true);
             if (c.Length > 0)
             {
@@ -367,12 +370,14 @@ namespace Monopoly
         /// <param name="e">The click event</param>
         private void BtnRoll_Click(object sender, EventArgs e)
         {
+            // Values for the two dice
             int die1 = 0;
             int die2 = 0;
 
             btnJailFreeCard.Enabled = false;
             btnJailPay.Enabled = false;
 
+            // Method for the animation of the dice
             this.RollingDice(out die1, out die2);
 
             if (this.currentPlayer.InJail == false)
@@ -442,6 +447,7 @@ namespace Monopoly
             }
             else
             {
+                // Take the player out of jail if they rolled doubles
                 if (die1 == die2)
                 {
                     this.DoublesLabel.Text = "Rolling doubles enabled you to get out of Jail.";
@@ -460,6 +466,7 @@ namespace Monopoly
 
                     this.currentPlayer.TurnsInJail++;
 
+                    // Allow the player to leave jail
                     if (this.currentPlayer.TurnsInJail == 3)
                     {
                         this.DoublesLabel.Text += " - Paid $50 to get out.";
@@ -483,10 +490,10 @@ namespace Monopoly
 
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
-            this.formBool = false;
             this.flpOtherPlayerHand.Controls.Clear();
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
 
+            // Restart the game
             if (this.game.RestartGame)
             {
                 this.RestartGame();
@@ -500,7 +507,7 @@ namespace Monopoly
         /// <param name="die2">The value of the second die</param>
         private void RollingDice(out int die1, out int die2)
         {
-            this.TurnFormButtonsOff();
+            this.TurnFormButtonsOffOrOn(false);
             
             Random rand = new Random();
 
@@ -534,7 +541,7 @@ namespace Monopoly
 
             // Re-enable the roll button when dice are done rolling
             this.btnRoll.Enabled = true;
-            this.TurnFormButtonsOn();
+            this.TurnFormButtonsOffOrOn(true);
         }
 
         /// <summary>
@@ -854,22 +861,30 @@ namespace Monopoly
         /// </summary>
         /// <param name="player">The current player</param>
         /// <param name="panelToUse">The panel to use</param>
-        private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse)
+        private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse, bool condition)
         {
+            // Sets the form labels to the next player values
             this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
             this.lblGetOutOfJailLabel.Text = "You have " + player.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
             this.lblOtherPlayersHand.Text = string.Empty;
             this.lblOtherPlayerBalance.Text = string.Empty;
             panelToUse.Controls.Clear();
+
+            // Gets the list of the players spots
             List<Spot> currentPlayerSpots = new List<Spot>();
             currentPlayerSpots = player.GetPlayersPropertyList(this.game.Board);
+
+            // Arrays to be used to add information to the players hand
             PictureBox[] pictureBoxes = new PictureBox[currentPlayerSpots.Count];
             Panel[] playerPropertyPanels = new Panel[currentPlayerSpots.Count];
             Label[] playerPropertyLabels = new Label[currentPlayerSpots.Count];
+
+            // If the player owns properties
             if (pictureBoxes.Length > 0)
             {
                 for (int r = 0; r < pictureBoxes.Length; r++)
                 {
+                    // Create new controls
                     pictureBoxes[r] = new PictureBox();
                     playerPropertyPanels[r] = new Panel();
                     playerPropertyLabels[r] = new Label();
@@ -877,6 +892,7 @@ namespace Monopoly
 
                 foreach (PictureBox pb in pictureBoxes)
                 {
+                    // Sets each picture box point and size
                     Point point = new Point(5, 30);
                     pb.Width = 70;
                     pb.Height = 115;
@@ -885,6 +901,7 @@ namespace Monopoly
 
                 foreach (Panel pl in playerPropertyPanels)
                 {
+                    // Sets the size of each panel
                     pl.Width = 80;
                     pl.Height = 150;
                     pl.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -892,22 +909,27 @@ namespace Monopoly
 
                 foreach (Label lbl in playerPropertyLabels)
                 {
+                    // Sets the size of each label
                     lbl.MaximumSize = new Size(80, 40);
                     lbl.AutoSize = true;
                     lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                 }
 
+                // Temporary variables for creating the player properties in their hand
                 Spot s = new Spot();
                 Image tempImage = new Bitmap(70, 115);
                 PictureBox p = new PictureBox();
                 Panel panel = new Panel();
                 Label label = new Label();
+
                 for (int g = 0; g < currentPlayerSpots.Count; g++)
                 {
                     p = pictureBoxes[g];
                     s = currentPlayerSpots[g];
                     panel = playerPropertyPanels[g];
                     label = playerPropertyLabels[g];
+
+                    // Checks for the color of the property and assigns it an image
                     if (s.Color == Color.Black)
                     {
                         if (s.Type == SpotType.Utility)
@@ -970,6 +992,7 @@ namespace Monopoly
                         p.Image = tempImage;
                     }
 
+                    // Set the tags and text of the temporary controls
                     p.Tag = g.ToString();
                     panel.Tag = g.ToString();
                     label.Tag = g.ToString();
@@ -977,6 +1000,7 @@ namespace Monopoly
                 }
             }
 
+            // Adds click, mouse hover, and mouse leave events to the controls in a players hand
             foreach (PictureBox pbx in pictureBoxes)
             {
                 pbx.Click += delegate { this.PropertyClickEvent(currentPlayerSpots[int.Parse(pbx.Tag.ToString())]); };
@@ -990,6 +1014,7 @@ namespace Monopoly
                 };
             }
 
+            // Adds the panels to the panel on the form to display the players hand
             foreach (Panel panel in playerPropertyPanels)
             {
                 panel.Controls.Add(playerPropertyLabels[int.Parse(panel.Tag.ToString())]);
@@ -997,7 +1022,8 @@ namespace Monopoly
                 panelToUse.Controls.Add(panel);
             }
 
-            if (this.formBool == false)
+            // Checks whether to update the form for the current player or a different player
+            if (condition == true)
             {
                 this.SetCurrentPlayerImage(player);
                 if (player.PlayerName.Length > 20)
@@ -1010,10 +1036,10 @@ namespace Monopoly
                 }
 
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
-                this.formBool = true;
             }
             else
             {
+                // Sets up the other player's hand and labels
                 this.SetUpPlayerHandOptions();
 
                 string stringForUpdating = string.Empty;
@@ -1078,7 +1104,6 @@ namespace Monopoly
                         hotel.Size = new Size(23, 23);
 
                         hotel.BackColor = Color.Firebrick;
-                        ////hotel.BackColor = Color.Black;
 
                         Point p = temp.Location;
 
@@ -1216,7 +1241,7 @@ namespace Monopoly
                             {
                                 r.CheckedChanged += delegate
                                 {
-                                    this.SetNextPlayer(this.game.Players[int.Parse(r.Tag.ToString())], this.flpOtherPlayerHand);
+                                    this.SetNextPlayer(this.game.Players[int.Parse(r.Tag.ToString())], this.flpOtherPlayerHand, false);
 
                                     this.checkedPlayer = this.game.Players[int.Parse(r.Tag.ToString())];
                                 };
@@ -1258,11 +1283,11 @@ namespace Monopoly
             tradeForm.StartPosition = FormStartPosition.CenterParent;
             tradeForm.ShowDialog();          
 
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
 
             if (this.checkedPlayer != null)
             {
-                this.SetNextPlayer(this.checkedPlayer, this.flpOtherPlayerHand);
+               // this.SetNextPlayer(this.checkedPlayer, this.flpOtherPlayerHand, false);
             }
         }
 
@@ -1278,14 +1303,12 @@ namespace Monopoly
             money.ShowDialog();
             money.Close();
 
-            this.formBool = false;
-
             this.flpOtherPlayerHand.Controls.Clear();
             this.lblOtherPlayersHand.Text = string.Empty;
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
             this.SetUpPlayerHandOptions();
 
-            // If a player foreited
+            // If a player forfeited
             if (money.DialogResult == DialogResult.Cancel)
             {
                 this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
@@ -1293,12 +1316,11 @@ namespace Monopoly
                 this.BtnNextTurn.Enabled = false;
                 this.btnRoll.Focus();
                 this.doubleCounter = 0;
-                this.formBool = false;
                 this.flpCurrentPlayerProps.Controls.Clear();
                 this.flpOtherPlayerHand.Controls.Clear();
                 this.lblOtherPlayersHand.Text = string.Empty;
                 this.flpPlayerHandOptions.Controls.Clear();
-                this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+                this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
                 this.SetUpPlayerHandOptions();
             }
 
@@ -1322,7 +1344,7 @@ namespace Monopoly
                 this.currentPlayer = this.game.Players[this.currentPlayer.PlayerId];
             }
 
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
         }
 
         /// <summary>
@@ -1337,7 +1359,6 @@ namespace Monopoly
             this.btnRoll.Focus();
             this.doubleCounter = 0;
             this.DoublesLabel.Text = string.Empty;
-            this.formBool = false;
             this.currentPlayer = this.game.NextPlayer(this.currentPlayer);
             this.flpCurrentPlayerProps.Controls.Clear();
             this.flpOtherPlayerHand.Controls.Clear();
@@ -1365,7 +1386,7 @@ namespace Monopoly
                 this.btnJailFreeCard.Enabled = false;
             }
 
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
 
             if (this.currentPlayer.IsAi == true)
             {
@@ -1481,7 +1502,7 @@ namespace Monopoly
             this.btnJailFreeCard.Enabled = false;
 
             // Set up the current player's information on the form
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
+            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
 
             // Loop through the list of players
             foreach (Player player in this.game.Players)
@@ -1515,38 +1536,20 @@ namespace Monopoly
         /// <summary>
         /// Disables the form buttons while ai are playing
         /// </summary>
-        private void TurnFormButtonsOff()
+        private void TurnFormButtonsOffOrOn(bool condition)
         {
-            this.btnSell.Enabled = false;
-            this.btnBuyHouseOrHotel.Enabled = false;
-            this.QuitGameBtn.Enabled = false;
-            this.BtnRestartGame.Enabled = false;
-            this.btnTradeRequest.Enabled = false;
-            this.BtnHelp.Enabled = false;
-            this.flpOtherPlayerHand.Enabled = false;
-            this.flpCurrentPlayerProps.Enabled = false;
+            // Turns on or off the buttons on the form
+            this.btnSell.Enabled = condition;
+            this.btnBuyHouseOrHotel.Enabled = condition;
+            this.QuitGameBtn.Enabled = condition;
+            this.BtnRestartGame.Enabled = condition;
+            this.btnTradeRequest.Enabled = condition;
+            this.BtnHelp.Enabled = condition;
+            this.flpOtherPlayerHand.Enabled = condition;
+            this.flpCurrentPlayerProps.Enabled = condition;
             foreach (PictureBox p in this.spotPicture)
             {
-                p.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// Enables the form buttons for the human players
-        /// </summary>
-        private void TurnFormButtonsOn()
-        {
-            this.btnSell.Enabled = true;
-            this.btnBuyHouseOrHotel.Enabled = true;
-            this.QuitGameBtn.Enabled = true;
-            this.BtnRestartGame.Enabled = true;
-            this.btnTradeRequest.Enabled = true;
-            this.BtnHelp.Enabled = true;
-            this.flpOtherPlayerHand.Enabled = true;
-            this.flpCurrentPlayerProps.Enabled = true;
-            foreach (PictureBox p in this.spotPicture)
-            {
-                p.Enabled = true;
+                p.Enabled = condition;
             }
         }
 

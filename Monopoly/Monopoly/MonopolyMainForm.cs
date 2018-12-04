@@ -275,20 +275,19 @@ namespace Monopoly
                 this.formBool = true;
                 this.SetUpPlayerHandOptions();
 
-                if (currentPlayer.PlayerName.Length > 20)
+                if (this.currentPlayer.PlayerName.Length > 20)
                 {
                     this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName.Substring(0, 18) + "...'s Turn";
-                    this.lblPlayerTurn.Text = currentPlayer.PlayerName.Substring(0, 18) + "..." + "'s Turn";
+                    this.lblPlayerTurn.Text = this.currentPlayer.PlayerName.Substring(0, 18) + "..." + "'s Turn";
                 }
                 else
                 {
                     this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName + "'s Turn";
-                    this.lblPlayerTurn.Text = currentPlayer.PlayerName + "'s Turn";
+                    this.lblPlayerTurn.Text = this.currentPlayer.PlayerName + "'s Turn";
                 }
 
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
                 this.lblGetOutOfJailLabel.Text = "You have " + this.currentPlayer.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
-                // this.DoublesLabel.Text = string.Empty;
             }
 
             return result;
@@ -315,11 +314,14 @@ namespace Monopoly
             }
         }
 
-
+        /// <summary>
+        /// The click event for rolling the two dice on the form
+        /// </summary>
+        /// <param name="spot">The desired spot</param>
         private void PropertyHoverEvent(Spot spot)
         {
             Control[] c = this.Controls.Find("remove", true);
-            if ( c.Length > 0)
+            if (c.Length > 0)
             {
                 this.Controls.Remove(this.Controls.Find("remove", true)[0]);
             }
@@ -345,6 +347,10 @@ namespace Monopoly
             l.BringToFront();
         }
 
+        /// <summary>
+        /// The click event for rolling the two dice on the form
+        /// </summary>
+        /// <param name="spot">The passed spot</param>
         private void PropertyHoverExitEvent(Spot spot)
         {
             Control[] c = this.Controls.Find("remove", true);
@@ -477,7 +483,7 @@ namespace Monopoly
 
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
-             this.formBool = false;
+            this.formBool = false;
             this.flpOtherPlayerHand.Controls.Clear();
             this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps);
 
@@ -1002,6 +1008,7 @@ namespace Monopoly
                 {
                     this.lblPlayerTurn.Text = player.PlayerName + "'s Turn";
                 }
+
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + player.Money.ToString("c0");
                 this.formBool = true;
             }
@@ -1185,12 +1192,13 @@ namespace Monopoly
                     {
                         if (this.game.Players[x].PlayerName.Length > 15)
                         {
-                            this.radioButtons[x].Text = this.game.Players[x].PlayerName.Substring(0, 13)+"...";
+                            this.radioButtons[x].Text = this.game.Players[x].PlayerName.Substring(0, 13) + "...";
                         }
                         else
                         {
                             this.radioButtons[x].Text = this.game.Players[x].PlayerName;
                         }
+
                         this.radioButtons[x].Font = new Font("Microsoft Sans Serif", 12);
                         this.radioButtons[x].Tag = this.game.Players[x].PlayerId;
                         this.radioButtons[x].AutoSize = true;
@@ -1379,7 +1387,6 @@ namespace Monopoly
                 }
                 else
                 {
-
                     this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName + "'s Turn";
                 }
             }
@@ -1494,6 +1501,11 @@ namespace Monopoly
             this.currentPlayer.Money += 1000;
         }
 
+        /// <summary>
+        /// The click event for the help button on the Monopoly Main Form
+        /// </summary>
+        /// <param name="sender">The help button</param>
+        /// <param name="e">The click event</param>
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             HelpMenu hm = new HelpMenu("Board Screen");
@@ -1543,28 +1555,26 @@ namespace Monopoly
         {
             // Capture keys/tries one by one. 
             // If key is not recognized, it will break the code.
-
-            if(cheatCode.Contains(e.KeyCode))
+            if (this.cheatCode.Contains(e.KeyCode))
             {
-                cheatCodeKeysPressed.Add(e.KeyCode); // will add key to list in the order it came in
+                this.cheatCodeKeysPressed.Add(e.KeyCode); // will add key to list in the order it came in
 
                 // Check if cheat code is now completed by checking if the sequence matches the code.
-                if (cheatCode.SequenceEqual(cheatCodeKeysPressed))
+                if (this.cheatCode.SequenceEqual(this.cheatCodeKeysPressed))
                 {
                     this.currentPlayer.Money += 1000;
                     this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
-                    cheatCodeKeysPressed.Clear();
+                    this.cheatCodeKeysPressed.Clear();
                 }
-                else if(cheatCode.Count == cheatCodeKeysPressed.Count)
+                else if (this.cheatCode.Count == this.cheatCodeKeysPressed.Count)
                 {
-                    cheatCodeKeysPressed.Clear();
+                    this.cheatCodeKeysPressed.Clear();
                 }
             }
             else
             {
-                cheatCodeKeysPressed.Clear();
+                this.cheatCodeKeysPressed.Clear();
             }
-
         }
     }
 }

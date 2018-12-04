@@ -144,7 +144,7 @@ namespace Monopoly
                         }
 
                         // add houses/unmortgage/hotels to possible properties
-                        PropertyLogic();
+                        this.PropertyLogic();
                     }
 
                     this.Close();
@@ -328,7 +328,7 @@ namespace Monopoly
         }
 
         /// <summary>
-        /// unmortgage the selected property
+        /// un-mortgage the selected property
         /// </summary>
         /// <param name="sender">button that send the click event</param>
         /// <param name="e">event args</param>
@@ -383,7 +383,7 @@ namespace Monopoly
             btnUnmortgage.Enabled = false;
             txtMessage.Text = string.Empty;
 
-            PropertyLogic();
+            this.PropertyLogic();
 
             // Add the selected spot to the list of spots for that color
             this.sameType.Add(this.selectedSpot);
@@ -406,6 +406,9 @@ namespace Monopoly
             // FillListView(listViewProperties, eligible);
         }
 
+        /// <summary>
+        /// The method for enabling or disabling the buttons on the upgrade property form
+        /// </summary>
         private void PropertyLogic()
         {
             // Activate buttons as they are possible
@@ -419,15 +422,14 @@ namespace Monopoly
                         {
                             if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
                             {
-                                if (currentPlayer.IsAi == false)
+                                if (this.currentPlayer.IsAi == false)
                                 {
                                     this.btnAddHouse.Enabled = true;
                                 }
                                 else
                                 {
-                                    this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
-                                }
-                                
+                                    this.BtnAddHouse_Click(this.currentPlayer, EventArgs.Empty);
+                                }                              
                             }
                             else
                             {
@@ -445,15 +447,14 @@ namespace Monopoly
                                 {
                                     if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        if (currentPlayer.IsAi == false)
+                                        if (this.currentPlayer.IsAi == false)
                                         {
                                             this.btnAddHotel.Enabled = true;
                                         }
                                         else
                                         {
-                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
-                                        }
-                                        
+                                            this.BtnAddHotel_Click(this.currentPlayer, EventArgs.Empty);
+                                        }                                       
                                     }
                                     else
                                     {
@@ -465,13 +466,13 @@ namespace Monopoly
                                 {
                                     if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        if (currentPlayer.IsAi == false)
+                                        if (this.currentPlayer.IsAi == false)
                                         {
                                             this.btnAddHotel.Enabled = true;
                                         }
                                         else
                                         {
-                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                            this.BtnAddHotel_Click(this.currentPlayer, EventArgs.Empty);
                                         }
                                     }
                                     else
@@ -482,13 +483,13 @@ namespace Monopoly
 
                                     if (this.currentPlayer.Money >= (this.selectedSpot.HotelCost * 2))
                                     {
-                                        if (currentPlayer.IsAi == false)
+                                        if (this.currentPlayer.IsAi == false)
                                         {
                                             this.btnAddHotelToAll.Enabled = true;
                                         }
                                         else
                                         {
-                                            this.BtnAddHotelToAll_Click(currentPlayer, EventArgs.Empty);
+                                            this.BtnAddHotelToAll_Click(this.currentPlayer, EventArgs.Empty);
                                         }
                                     }
                                     else
@@ -503,13 +504,13 @@ namespace Monopoly
                             {
                                 if (this.selectedSpot.HouseCost <= this.currentPlayer.Money)
                                 {
-                                    if (currentPlayer.IsAi == false)
+                                    if (this.currentPlayer.IsAi == false)
                                     {
                                         this.btnAddHouse.Enabled = true;
                                     }
                                     else
                                     {
-                                        this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                        this.BtnAddHouse_Click(this.currentPlayer, EventArgs.Empty);
                                     }
                                 }
                                 else
@@ -520,13 +521,13 @@ namespace Monopoly
 
                                 if (this.currentPlayer.Money >= (this.selectedSpot.HouseCost * 2))
                                 {
-                                    if (currentPlayer.IsAi == false)
+                                    if (this.currentPlayer.IsAi == false)
                                     {
                                         this.btnAddHouseToAll.Enabled = true;
                                     }
                                     else
                                     {
-                                        this.BtnAddHouseToAll_Click(currentPlayer, EventArgs.Empty);
+                                        this.BtnAddHouseToAll_Click(this.currentPlayer, EventArgs.Empty);
                                     }
                                 }
                                 else
@@ -574,13 +575,13 @@ namespace Monopoly
                         {
                             if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
                             {
-                                if (currentPlayer.IsAi == false)
+                                if (this.currentPlayer.IsAi == false)
                                 {
                                     this.btnAddHouse.Enabled = true;
                                 }
                                 else
                                 {
-                                    this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                    this.BtnAddHouse_Click(this.currentPlayer, EventArgs.Empty);
                                 }
                             }
                             else
@@ -602,13 +603,13 @@ namespace Monopoly
                                 {
                                     if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        if (currentPlayer.IsAi == false)
+                                        if (this.currentPlayer.IsAi == false)
                                         {
                                             this.btnAddHotel.Enabled = true;
                                         }
                                         else
                                         {
-                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                            this.BtnAddHotel_Click(this.currentPlayer, EventArgs.Empty);
                                         }
                                     }
                                     else
@@ -621,13 +622,13 @@ namespace Monopoly
                                 {
                                     if (this.currentPlayer.Money >= this.selectedSpot.HotelCost)
                                     {
-                                        if (currentPlayer.IsAi == false)
+                                        if (this.currentPlayer.IsAi == false)
                                         {
                                             this.btnAddHotel.Enabled = true;
                                         }
                                         else
                                         {
-                                            this.BtnAddHotel_Click(currentPlayer, EventArgs.Empty);
+                                            this.BtnAddHotel_Click(this.currentPlayer, EventArgs.Empty);
                                         }
                                     }
                                     else
@@ -649,13 +650,13 @@ namespace Monopoly
                             {
                                 if (this.currentPlayer.Money >= this.selectedSpot.HouseCost)
                                 {
-                                    if (currentPlayer.IsAi == false)
+                                    if (this.currentPlayer.IsAi == false)
                                     {
                                         this.btnAddHouse.Enabled = true;
                                     }
                                     else
                                     {
-                                        this.BtnAddHouse_Click(currentPlayer, EventArgs.Empty);
+                                        this.BtnAddHouse_Click(this.currentPlayer, EventArgs.Empty);
                                     }
                                 }
                                 else
@@ -713,6 +714,11 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// The click event for the help button
+        /// </summary>
+        /// <param name="sender">The help button</param>
+        /// <param name="e">The click event</param>
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             HelpMenu hm = new HelpMenu("Upgrade Screen");

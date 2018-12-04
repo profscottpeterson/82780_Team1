@@ -312,6 +312,11 @@ namespace Monopoly
             this.ChooseImage(3);
         }
 
+        /// <summary>
+        /// The click event for opening the help menu
+        /// </summary>
+        /// <param name="sender">The help button</param>
+        /// <param name="e">The click event</param>
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             HelpMenu hm = new HelpMenu("Game Setup");

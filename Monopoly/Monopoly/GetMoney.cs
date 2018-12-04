@@ -136,7 +136,7 @@ namespace Monopoly
                             {
                                 if (this.Debt > 0)
                                 {
-                                    this.game.CheckPayRent(currentPlayer, currentSpot);
+                                    this.game.CheckPayRent(this.currentPlayer, this.currentSpot);
                                     break;
                                 }
                             }
@@ -155,7 +155,7 @@ namespace Monopoly
                     }
                     else
                     {
-                        this.game.CheckPayRent(currentPlayer, currentSpot);
+                        this.game.CheckPayRent(this.currentPlayer, this.currentSpot);
                         break;
                     }
                 }
@@ -538,6 +538,11 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// The click event for showing the help form
+        /// </summary>
+        /// <param name="sender">The help button</param>
+        /// <param name="e">The click event</param>
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             HelpMenu hm = new HelpMenu("Sell Screen");

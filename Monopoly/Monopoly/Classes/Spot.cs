@@ -240,7 +240,7 @@ namespace Monopoly
         /// <summary>
         /// Gets the mortgage price of the property
         /// The player gets this amount when they put the property on mortgage - and stop receiving rent
-        /// The player has to pay this amount plus 10 percent interest to unmortgage the property
+        /// The player has to pay this amount plus 10 percent interest to un-mortgage the property
         /// </summary>
         public int Mortgage { get; }
 

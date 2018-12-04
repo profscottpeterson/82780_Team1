@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="HelpMenu.Designer.cs">
       <DependentUpon>HelpMenu.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="MiscCardForm.cs">
       <SubType>Form</SubType>

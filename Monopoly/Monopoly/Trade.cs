@@ -538,6 +538,11 @@ namespace Monopoly
             }
         }
 
+        /// <summary>
+        /// The click event for the help button on the Trade form
+        /// </summary>
+        /// <param name="sender">The help button</param>
+        /// <param name="e">The click event</param>
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             HelpMenu hm = new HelpMenu("Trade Screen");

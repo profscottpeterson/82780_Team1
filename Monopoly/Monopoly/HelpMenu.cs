@@ -1,22 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="HelpMenu.cs" company="null">
+//     Company null (not copyrighted)
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Monopoly
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The HelpMenu class extends the Form class
+    /// </summary>
     public partial class HelpMenu : Form
     {
-        string[] message;
+        /// <summary>
+        /// A string to hold the possible messages that will be displayed to the user.
+        /// </summary>
+        public string[] message;
 
+        /// <summary>
+        /// Initializes a new instance of the HelpMenu class.
+        /// </summary>
+        /// <param name="textStart">The index to be selected first</param>
         public HelpMenu(string textStart)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ControlBox = false;
             this.MaximizeBox = false;
@@ -26,11 +42,9 @@ namespace Monopoly
             this.lstOptions.SelectedItem = textStart;
         }
 
-        private void lstOptions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.rtbDesc.Text = this.message[this.lstOptions.SelectedIndex];
-        }
-
+        /// <summary>
+        /// The method to fill the text box based on what the user wants
+        /// </summary>
         public void fillMessages()
         {
             // Gane rules
@@ -136,6 +150,21 @@ namespace Monopoly
                 "Forfeit Button - This button removes the player from the game.";
         }
 
+        /// <summary>
+        /// The selection changed event for list of options
+        /// </summary>
+        /// <param name="sender">The list of options</param>
+        /// <param name="e">The click event</param>
+        private void lstOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.rtbDesc.Text = this.message[this.lstOptions.SelectedIndex];
+        }
+
+        /// <summary>
+        /// The click event for closing the help menu
+        /// </summary>
+        /// <param name="sender">The close button</param>
+        /// <param name="e">The click event</param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -94,6 +94,108 @@ namespace Monopoly
         public bool RestartGame { get; set; }
 
         /// <summary>
+        /// Returns a list of colors for every property that is eligible for a house.
+        /// </summary>
+        /// <param name="prop">The players properties</param>
+        /// <returns>A list of colors</returns>
+        public static List<Color> CheckIfEligibleForHouse(List<Spot> prop)
+        {
+            // create a list of colors to hold which colors are eligible for houses 
+            List<Color> houseOkay = new List<Color>();
+
+            // Create counters for every color
+            int numPurple = 0; // out of 2
+            int numLightBlue = 0; // out of 3
+            int numPink = 0; // out of 3
+            int numOrange = 0; // out of 3
+            int numRed = 0; // out of 3
+            int numYellow = 0; // out of 3
+            int numGreen = 0; // out of 3
+            int numDarkBlue = 0; // out of 2
+
+            // Check through the list and add each color to the respective counter
+            foreach (Spot s in prop)
+            {
+                if (s.Color == Color.Purple)
+                {
+                    numPurple++;
+                }
+                else if (s.Color == Color.LightBlue)
+                {
+                    numLightBlue++;
+                }
+                else if (s.Color == Color.MediumVioletRed)
+                {
+                    numPink++;
+                }
+                else if (s.Color == Color.DarkOrange)
+                {
+                    numOrange++;
+                }
+                else if (s.Color == Color.Red)
+                {
+                    numRed++;
+                }
+                else if (s.Color == Color.Yellow)
+                {
+                    numYellow++;
+                }
+                else if (s.Color == Color.Green)
+                {
+                    numGreen++;
+                }
+                else if (s.Color == Color.DarkBlue)
+                {
+                    numDarkBlue++;
+                }
+            }
+
+            // Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
+            if (numPurple == 2)
+            {
+                houseOkay.Add(Color.Purple);
+            }
+
+            if (numLightBlue == 3)
+            {
+                houseOkay.Add(Color.LightBlue);
+            }
+
+            if (numPink == 3)
+            {
+                houseOkay.Add(Color.MediumVioletRed);
+            }
+
+            if (numOrange == 3)
+            {
+                houseOkay.Add(Color.DarkOrange);
+            }
+
+            if (numRed == 3)
+            {
+                houseOkay.Add(Color.Red);
+            }
+
+            if (numYellow == 3)
+            {
+                houseOkay.Add(Color.Yellow);
+            }
+
+            if (numGreen == 3)
+            {
+                houseOkay.Add(Color.Green);
+            }
+
+            if (numDarkBlue == 2)
+            {
+                houseOkay.Add(Color.DarkBlue);
+            }
+
+            // return the list
+            return houseOkay;
+        }
+
+        /// <summary>
         /// Checks to see what type of spot the current player landed on
         /// and does corresponding action
         /// </summary>
@@ -707,6 +809,7 @@ namespace Monopoly
             // Set player to inactive
             player.IsActive = false;
             player.PlayerPictureBox.Visible = false;
+            player.PlayerPictureBox.Update();
 
             // Get the next player
             this.NextPlayer(player);
@@ -731,108 +834,6 @@ namespace Monopoly
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Returns a list of colors for every property that is eligible for a house.
-        /// </summary>
-        /// <param name="prop">The players properties</param>
-        /// <returns>A list of colors</returns>
-        public static List<Color> CheckIfEligibleForHouse(List<Spot> prop)
-        {
-            // create a list of colors to hold which colors are eligible for houses 
-            List<Color> houseOkay = new List<Color>();
-
-            // Create counters for every color
-            int numPurple = 0; // out of 2
-            int numLightBlue = 0; // out of 3
-            int numPink = 0; // out of 3
-            int numOrange = 0; // out of 3
-            int numRed = 0; // out of 3
-            int numYellow = 0; // out of 3
-            int numGreen = 0; // out of 3
-            int numDarkBlue = 0; // out of 2
-
-            // Check through the list and add each color to the respective counter
-            foreach (Spot s in prop)
-            {
-                if (s.Color == Color.Purple)
-                {
-                    numPurple++;
-                }
-                else if (s.Color == Color.LightBlue)
-                {
-                    numLightBlue++;
-                }
-                else if (s.Color == Color.MediumVioletRed)
-                {
-                    numPink++;
-                }
-                else if (s.Color == Color.DarkOrange)
-                {
-                    numOrange++;
-                }
-                else if (s.Color == Color.Red)
-                {
-                    numRed++;
-                }
-                else if (s.Color == Color.Yellow)
-                {
-                    numYellow++;
-                }
-                else if (s.Color == Color.Green)
-                {
-                    numGreen++;
-                }
-                else if (s.Color == Color.DarkBlue)
-                {
-                    numDarkBlue++;
-                }
-            }
-
-            // Check each color to see if they have all of one color THEN ADD IT TO THE COLOR LIST
-            if (numPurple == 2)
-            {
-                houseOkay.Add(Color.Purple);
-            }
-
-            if (numLightBlue == 3)
-            {
-                houseOkay.Add(Color.LightBlue);
-            }
-
-            if (numPink == 3)
-            {
-                houseOkay.Add(Color.MediumVioletRed);
-            }
-
-            if (numOrange == 3)
-            {
-                houseOkay.Add(Color.DarkOrange);
-            }
-
-            if (numRed == 3)
-            {
-                houseOkay.Add(Color.Red);
-            }
-
-            if (numYellow == 3)
-            {
-                houseOkay.Add(Color.Yellow);
-            }
-
-            if (numGreen == 3)
-            {
-                houseOkay.Add(Color.Green);
-            }
-
-            if (numDarkBlue == 2)
-            {
-                houseOkay.Add(Color.DarkBlue);
-            }
-
-            // return the list
-            return houseOkay;
         }
 
         /// <summary>

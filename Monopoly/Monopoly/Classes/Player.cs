@@ -97,9 +97,9 @@ namespace Monopoly
         public bool IsActive { get; set; }
 
         /// <summary>
-        /// Returns a bool indicating whether a player needs more money
+        /// Returns a boolean indicating whether a player needs more money
         /// </summary>
-        /// <returns>A bool indicating whether a player needs more money</returns>
+        /// <returns>A boolean indicating whether a player needs more money</returns>
         public bool NeedMoreMoney()
         {
             // True if a player's money is less than zero

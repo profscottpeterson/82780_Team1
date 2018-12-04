@@ -312,6 +312,11 @@ namespace Monopoly
             this.lblRequesteeAfterJailCard.Text = (this.target.GetOutOfJailFreeCards.Count - this.jailCardChange).ToString();
         }
 
+        /// <summary>
+        /// The click event the help button on the TradeConfirm form
+        /// </summary>
+        /// <param name="sender">The help button</param>
+        /// <param name="e">The click event</param>
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             HelpMenu hm = new HelpMenu("Trade Confirm Screen");

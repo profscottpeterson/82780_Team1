@@ -1523,6 +1523,8 @@ namespace Monopoly
             this.BtnRestartGame.Enabled = false;
             this.btnTradeRequest.Enabled = false;
             this.BtnHelp.Enabled = false;
+            this.flpOtherPlayerHand.Enabled = false;
+            this.flpCurrentPlayerProps.Enabled = false;
             foreach (PictureBox p in this.spotPicture)
             {
                 p.Enabled = false;
@@ -1540,6 +1542,8 @@ namespace Monopoly
             this.BtnRestartGame.Enabled = true;
             this.btnTradeRequest.Enabled = true;
             this.BtnHelp.Enabled = true;
+            this.flpOtherPlayerHand.Enabled = true;
+            this.flpCurrentPlayerProps.Enabled = true;
             foreach (PictureBox p in this.spotPicture)
             {
                 p.Enabled = true;

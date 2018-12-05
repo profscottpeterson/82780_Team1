@@ -38,16 +38,16 @@ namespace Monopoly
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.message = new string[lstOptions.Items.Count];
-            this.fillMessages();
+            this.FillMessages();
             this.lstOptions.SelectedItem = textStart;
         }
 
         /// <summary>
         /// The method to fill the text box based on what the user wants
         /// </summary>
-        public void fillMessages()
+        public void FillMessages()
         {
-            // Gane rules
+            // Game rules
             this.message[0] = "Rolling - The player clicks the roll button and his or her piece moves forward as determined by the sum of the dice.\n" +
                 " - If a player lands on an unowned colored property, railroad or utility, he or she may purchase the property if he or she has enough money.\n" +
                 " - If a player lands on an owned, unmortgaged colored property, he or she must pay the owner the sum determined by houses, hotels and base rent.\n" +
@@ -79,14 +79,15 @@ namespace Monopoly
                 "Properties\n" +
                 " - When a property is first landed on, the player may purchase the property for the listed price.\n" +
                 " - Properties with no houses or hotels can be mortgaged to the bank to reclaim the mortgage value on the card.\n" +
-                " - Mortgaged properties can be unmortgaged by paying the mortgage value + 10%.";
+                " - Mortgaged properties can be un-mortgaged by paying the mortgage value + 10%.";
 
             // Game setup 
             this.message[1] = "This window is for choosing how many players are playing and who is an AI player.\n\n" +
                 " - The first step is to choose a number of players from the drop down box.\n\n" +
                 " - Options for each of the players (1 - the number you chose) will appear below. A picture and name can be chosen for each player. Each player other than " +
                 "player one will also have an option to be an AI.\n\n" +
-                " - The start button will be available after choosing the number of players. Clicking this button will start the game with the selected amount of players.";
+                " - The start button will be available after choosing the number of players. Clicking this button will start the game with the selected amount of players.\n\n" +
+                " - The names entered can only be up to 20 characters.";
 
             // board 
             this.message[2] = "This is the main game window. The board and options for the players to perform on his or her turns are featured on this window. \n\n" +

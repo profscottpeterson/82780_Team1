@@ -441,14 +441,19 @@ namespace Monopoly
                 int tenPercent = (int)(currentPlayer.TotalNetWorth(this.Board) * .1);
                 
                 // Choose for the player whether the 200 or 10% of their total net worth is lower
-                if (currentLocation.Rent < tenPercent)
+                if (currentLocation.Rent >= tenPercent)
+                {
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= tenPercent;
+                }
+                else
                 {
                     // Pay Tax
                     this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;
                 }
-                else
+
+                if (tenPercent == 0)
                 {
-                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= tenPercent;
+                    this.Players[this.Players.IndexOf(currentPlayer)].Money -= currentLocation.Rent;
                 }
 
                 // Check that player had enough money to pay tax
@@ -809,6 +814,7 @@ namespace Monopoly
             // Set player to inactive
             player.IsActive = false;
             player.PlayerPictureBox.Visible = false;
+            player.PlayerPictureBox.Image = null;
             player.PlayerPictureBox.Update();
 
             // Get the next player
@@ -834,6 +840,8 @@ namespace Monopoly
                     }
                 }
             }
+
+            //
         }
 
         /// <summary>

@@ -120,6 +120,11 @@ namespace Monopoly
         private RadioButton[] radioButtons;
 
         /// <summary>
+        /// The list of player pictureboxes
+        /// </summary>
+        private List<PictureBox> playerBoxes;
+
+        /// <summary>
         /// How many doubles have been rolled in a turn
         /// </summary>
         private int doubleCounter = 0;
@@ -191,6 +196,18 @@ namespace Monopoly
                 }
 
                 this.spotPicture = spotPictures;
+
+                foreach (Spot s in game.Board)
+                {
+                    s.IsAvailable = true;
+                    s.IsMortgaged = false;
+                    s.NumberOfHouses = 0;
+                    s.HasHotel = false;
+                    s.Owner = null;
+                }
+
+                this.flpCurrentPlayerProps.Controls.Clear();
+                this.flpOtherPlayerHand.Controls.Clear();
             }
         }
 
@@ -224,11 +241,11 @@ namespace Monopoly
                 this.currentPlayer = this.game.Players[0];
 
                 // Sets the players picture box to their picture box on the form
-                List<PictureBox> playerBoxes = new List<PictureBox>();
+                playerBoxes = new List<PictureBox>();
                 for (int i = 0; i < this.game.Players.Count; i++)
                 {
                     playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
-                    
+
                     if (this.game.Players[i].PlayerPictureBox.Image == null)
                     {
                         this.game.Players[i].PlayerPictureBox = playerBoxes[i];
@@ -269,10 +286,10 @@ namespace Monopoly
                 this.lblOtherPlayerBalance.Text = string.Empty;
                 this.SetUpPlayerHandOptions();
 
-                if (this.currentPlayer.PlayerName.Length > 20)
+                if (this.currentPlayer.PlayerName.Length > 18)
                 {
                     this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName.Substring(0, 18) + "...'s Turn";
-                    this.lblPlayerTurn.Text = this.currentPlayer.PlayerName.Substring(0, 18) + "..." + "'s Turn";
+                    this.lblPlayerTurn.Text = this.currentPlayer.PlayerName.Substring(0, 14) + "..." + "'s Turn";
                 }
                 else
                 {
@@ -283,6 +300,9 @@ namespace Monopoly
                 this.lblCurrentBalance.Text = "Current Balance: " + '\n' + this.currentPlayer.Money.ToString("c0");
                 this.lblGetOutOfJailLabel.Text = "You have " + this.currentPlayer.GetOutOfJailFreeCards.Count + " get out of jail free cards.";
             }
+
+            this.flpCurrentPlayerProps.Controls.Clear();
+            this.flpOtherPlayerHand.Controls.Clear();
 
             return result;
         }
@@ -491,7 +511,16 @@ namespace Monopoly
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
             this.flpOtherPlayerHand.Controls.Clear();
-            this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
+            if (currentPlayer.IsActive == false)
+            {
+                this.playerBoxes[currentPlayer.PlayerId].Visible = false;
+                this.BtnNextTurn_Click(this.currentPlayer, EventArgs.Empty); 
+            }
+            else
+            {
+                this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
+            }
+
 
             // Restart the game
             if (this.game.RestartGame)
@@ -1026,9 +1055,9 @@ namespace Monopoly
             if (condition == true)
             {
                 this.SetCurrentPlayerImage(player);
-                if (player.PlayerName.Length > 20)
+                if (player.PlayerName.Length > 18)
                 {
-                    this.lblPlayerTurn.Text = player.PlayerName.Substring(0, 18) + "..." + "'s Turn";
+                    this.lblPlayerTurn.Text = player.PlayerName.Substring(0, 14) + "..." + "'s Turn";
                 }
                 else
                 {
@@ -1411,6 +1440,8 @@ namespace Monopoly
                     this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName + "'s Turn";
                 }
             }
+            this.Update();
+            this.Invalidate();
         }
 
         /// <summary>
@@ -1491,6 +1522,27 @@ namespace Monopoly
         /// </summary>
         private void RestartGame()
         {
+            foreach (PictureBox p in playerBoxes)
+            {
+                p.Image = null;
+                if (p.Tag.ToString() == "1")
+                {
+                    p.BackColor = Color.Red;
+                }
+                else if (p.Tag.ToString() == "2")
+                {
+                    p.BackColor = Color.Green;
+                }
+                else if (p.Tag.ToString() == "3")
+                {
+                    p.BackColor = Color.Blue;
+                }
+                else
+                {
+                    p.BackColor = Color.FromArgb(255, 128, 0);
+                }
+            }
+
             // Call StartGame to start a new game with game options form
             this.StartGame();
 
@@ -1538,6 +1590,7 @@ namespace Monopoly
         /// </summary>
         private void TurnFormButtonsOffOrOn(bool condition)
         {
+            
             // Turns on or off the buttons on the form
             this.btnSell.Enabled = condition;
             this.btnBuyHouseOrHotel.Enabled = condition;

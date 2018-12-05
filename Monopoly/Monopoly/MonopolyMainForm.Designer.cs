@@ -181,7 +181,7 @@ namespace Monopoly
             this.lblPlayerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayerTurn.Location = new System.Drawing.Point(906, 9);
             this.lblPlayerTurn.Name = "lblPlayerTurn";
-            this.lblPlayerTurn.Size = new System.Drawing.Size(156, 58);
+            this.lblPlayerTurn.Size = new System.Drawing.Size(181, 58);
             this.lblPlayerTurn.TabIndex = 49;
             this.lblPlayerTurn.Text = "Player 1\'s Turn";
             // 
@@ -189,7 +189,7 @@ namespace Monopoly
             // 
             this.btnTradeRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnTradeRequest.ForeColor = System.Drawing.Color.Black;
-            this.btnTradeRequest.Location = new System.Drawing.Point(12, 906);
+            this.btnTradeRequest.Location = new System.Drawing.Point(15, 906);
             this.btnTradeRequest.Name = "btnTradeRequest";
             this.btnTradeRequest.Size = new System.Drawing.Size(228, 50);
             this.btnTradeRequest.TabIndex = 3;
@@ -249,7 +249,7 @@ namespace Monopoly
             // 
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnSell.ForeColor = System.Drawing.Color.Black;
-            this.btnSell.Location = new System.Drawing.Point(294, 906);
+            this.btnSell.Location = new System.Drawing.Point(297, 906);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(228, 50);
             this.btnSell.TabIndex = 4;
@@ -261,7 +261,7 @@ namespace Monopoly
             // 
             this.btnBuyHouseOrHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnBuyHouseOrHotel.ForeColor = System.Drawing.Color.Black;
-            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(576, 906);
+            this.btnBuyHouseOrHotel.Location = new System.Drawing.Point(579, 906);
             this.btnBuyHouseOrHotel.Name = "btnBuyHouseOrHotel";
             this.btnBuyHouseOrHotel.Size = new System.Drawing.Size(228, 50);
             this.btnBuyHouseOrHotel.TabIndex = 5;
@@ -343,7 +343,7 @@ namespace Monopoly
             // 
             this.QuitGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitGameBtn.ForeColor = System.Drawing.Color.Black;
-            this.QuitGameBtn.Location = new System.Drawing.Point(1140, 906);
+            this.QuitGameBtn.Location = new System.Drawing.Point(1143, 906);
             this.QuitGameBtn.Name = "QuitGameBtn";
             this.QuitGameBtn.Size = new System.Drawing.Size(228, 50);
             this.QuitGameBtn.TabIndex = 64;
@@ -356,7 +356,7 @@ namespace Monopoly
             // 
             this.BtnRestartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRestartGame.ForeColor = System.Drawing.Color.Black;
-            this.BtnRestartGame.Location = new System.Drawing.Point(858, 906);
+            this.BtnRestartGame.Location = new System.Drawing.Point(861, 906);
             this.BtnRestartGame.Name = "BtnRestartGame";
             this.BtnRestartGame.Size = new System.Drawing.Size(228, 50);
             this.BtnRestartGame.TabIndex = 65;
@@ -411,9 +411,9 @@ namespace Monopoly
             // btnSmallLoan
             // 
             this.btnSmallLoan.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnSmallLoan.Location = new System.Drawing.Point(1377, 81);
+            this.btnSmallLoan.Location = new System.Drawing.Point(1369, 9);
             this.btnSmallLoan.Name = "btnSmallLoan";
-            this.btnSmallLoan.Size = new System.Drawing.Size(10, 23);
+            this.btnSmallLoan.Size = new System.Drawing.Size(1, 1);
             this.btnSmallLoan.TabIndex = 66;
             this.btnSmallLoan.TabStop = false;
             this.btnSmallLoan.Text = "You should not see this button";

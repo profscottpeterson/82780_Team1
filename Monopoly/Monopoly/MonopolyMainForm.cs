@@ -120,7 +120,7 @@ namespace Monopoly
         private RadioButton[] radioButtons;
 
         /// <summary>
-        /// The list of player pictureboxes
+        /// The list of player picture boxes
         /// </summary>
         private List<PictureBox> playerBoxes;
 
@@ -190,14 +190,25 @@ namespace Monopoly
                     this.game.Board[(int)p.Tag].SpotBox = p;
 
                     // Assigns a click event to the picture box
-                    p.Click += delegate { this.PropertyClickEvent(this.game.Board[(int)p.Tag]); };
-                    p.MouseHover += delegate { this.PropertyHoverEvent(this.game.Board[(int) p.Tag]); };
-                    p.MouseLeave += delegate { this.PropertyHoverExitEvent(this.game.Board[(int) p.Tag]); };
+                    p.Click += delegate
+                    {
+                        this.PropertyClickEvent(this.game.Board[(int)p.Tag]); 
+                    };
+
+                    p.MouseHover += delegate
+                    {
+                        this.PropertyHoverEvent(this.game.Board[(int)p.Tag]); 
+                    };
+
+                    p.MouseLeave += delegate
+                    {
+                        this.PropertyHoverExitEvent(this.game.Board[(int)p.Tag]); 
+                    };
                 }
 
                 this.spotPicture = spotPictures;
 
-                foreach (Spot s in game.Board)
+                foreach (Spot s in this.game.Board)
                 {
                     s.IsAvailable = true;
                     s.IsMortgaged = false;
@@ -241,19 +252,19 @@ namespace Monopoly
                 this.currentPlayer = this.game.Players[0];
 
                 // Sets the players picture box to their picture box on the form
-                playerBoxes = new List<PictureBox>();
+                this.playerBoxes = new List<PictureBox>();
                 for (int i = 0; i < this.game.Players.Count; i++)
                 {
-                    playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
+                    this.playerBoxes.Add((PictureBox)Controls.Find("picPlayer" + (i + 1), true)[0]);
 
                     if (this.game.Players[i].PlayerPictureBox.Image == null)
                     {
-                        this.game.Players[i].PlayerPictureBox = playerBoxes[i];
+                        this.game.Players[i].PlayerPictureBox = this.playerBoxes[i];
                     }
                     else
                     {
-                        playerBoxes[i].BackColor = Color.Empty;
-                        playerBoxes[i].Image = this.game.Players[i].PlayerPictureBox.Image;
+                        this.playerBoxes[i].BackColor = Color.Empty;
+                        this.playerBoxes[i].Image = this.game.Players[i].PlayerPictureBox.Image;
                     }
                 }
 
@@ -511,16 +522,15 @@ namespace Monopoly
             this.btnJailFreeCard.Enabled = false;
             this.btnJailPay.Enabled = false;
             this.flpOtherPlayerHand.Controls.Clear();
-            if (currentPlayer.IsActive == false)
+            if (this.currentPlayer.IsActive == false)
             {
-                this.playerBoxes[currentPlayer.PlayerId].Visible = false;
+                this.playerBoxes[this.currentPlayer.PlayerId].Visible = false;
                 this.BtnNextTurn_Click(this.currentPlayer, EventArgs.Empty); 
             }
             else
             {
                 this.SetNextPlayer(this.currentPlayer, this.flpCurrentPlayerProps, true);
             }
-
 
             // Restart the game
             if (this.game.RestartGame)
@@ -890,6 +900,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="player">The current player</param>
         /// <param name="panelToUse">The panel to use</param>
+        /// <param name="condition">Whether to use the method for the current player or a different player</param>
         private void SetNextPlayer(Player player, FlowLayoutPanel panelToUse, bool condition)
         {
             // Sets the form labels to the next player values
@@ -1316,7 +1327,7 @@ namespace Monopoly
 
             if (this.checkedPlayer != null)
             {
-               // this.SetNextPlayer(this.checkedPlayer, this.flpOtherPlayerHand, false);
+               this.SetNextPlayer(this.checkedPlayer, this.flpOtherPlayerHand, false);
             }
         }
 
@@ -1440,6 +1451,7 @@ namespace Monopoly
                     this.DoublesLabel.Text = "It is " + this.currentPlayer.PlayerName + "'s Turn";
                 }
             }
+
             this.Update();
             this.Invalidate();
         }
@@ -1522,7 +1534,7 @@ namespace Monopoly
         /// </summary>
         private void RestartGame()
         {
-            foreach (PictureBox p in playerBoxes)
+            foreach (PictureBox p in this.playerBoxes)
             {
                 p.Image = null;
                 if (p.Tag.ToString() == "1")
@@ -1588,9 +1600,9 @@ namespace Monopoly
         /// <summary>
         /// Disables the form buttons while ai are playing
         /// </summary>
+        /// <param name="condition">The condition</param>
         private void TurnFormButtonsOffOrOn(bool condition)
         {
-            
             // Turns on or off the buttons on the form
             this.btnSell.Enabled = condition;
             this.btnBuyHouseOrHotel.Enabled = condition;

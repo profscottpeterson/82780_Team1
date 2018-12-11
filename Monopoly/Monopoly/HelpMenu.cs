@@ -24,7 +24,7 @@ namespace Monopoly
         /// <summary>
         /// A string to hold the possible messages that will be displayed to the user.
         /// </summary>
-        public string[] message;
+        private string[] message;
 
         /// <summary>
         /// Initializes a new instance of the HelpMenu class.
@@ -156,7 +156,7 @@ namespace Monopoly
         /// </summary>
         /// <param name="sender">The list of options</param>
         /// <param name="e">The click event</param>
-        private void lstOptions_SelectedIndexChanged(object sender, EventArgs e)
+        private void LstOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.rtbDesc.Text = this.message[this.lstOptions.SelectedIndex];
         }

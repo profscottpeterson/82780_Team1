@@ -22,11 +22,6 @@ namespace Monopoly
     public partial class TradeConfirm : Form
     {
         /// <summary>
-        /// Reason that the form was closed
-        /// </summary>
-        public string Reason = string.Empty;
-
-        /// <summary>
         /// The game class instance
         /// </summary>
         private Game game;
@@ -86,6 +81,11 @@ namespace Monopoly
             this.moneyChange = moneyChange;
             this.jailCardChange = jailCardChange;
         }
+
+        /// <summary>
+        /// Gets the reason for the form closing
+        /// </summary>
+        public string Reason { get; private set; } = string.Empty;
 
         /// <summary>
         /// The button click event for the No button

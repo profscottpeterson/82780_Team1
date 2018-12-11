@@ -388,7 +388,7 @@ namespace Monopoly
             Random random = new Random();
 
             // Get a random number between 1 and 6 (values of a die)
-            // For some reason, this is always the value of die 1
+            // For some Reason, this is always the value of die 1
             int rent = random.Next(6) + 1;
 
             if (p.IsAi == false)

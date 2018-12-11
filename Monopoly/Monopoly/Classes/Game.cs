@@ -840,8 +840,6 @@ namespace Monopoly
                     }
                 }
             }
-
-            //
         }
 
         /// <summary>

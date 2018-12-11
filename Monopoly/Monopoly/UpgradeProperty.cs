@@ -690,7 +690,7 @@ namespace Monopoly
                 }
                 else
                 {
-                    if (this.currentPlayer.Money >= (int) (this.selectedSpot.Mortgage * 1.1))
+                    if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
                     {
                         this.btnUnmortgage.Enabled = true;
                     }
@@ -703,7 +703,7 @@ namespace Monopoly
             }
             else if (this.selectedSpot.IsMortgaged)
             {
-                if (this.currentPlayer.Money >= (int) (this.selectedSpot.Mortgage * 1.1))
+                if (this.currentPlayer.Money >= (int)(this.selectedSpot.Mortgage * 1.1))
                 {
                     this.btnUnmortgage.Enabled = true;
                 }

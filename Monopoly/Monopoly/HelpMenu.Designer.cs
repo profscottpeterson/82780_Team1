@@ -51,7 +51,7 @@
             this.lstOptions.Name = "lstOptions";
             this.lstOptions.Size = new System.Drawing.Size(182, 264);
             this.lstOptions.TabIndex = 0;
-            this.lstOptions.SelectedIndexChanged += new System.EventHandler(this.lstOptions_SelectedIndexChanged);
+            this.lstOptions.SelectedIndexChanged += new System.EventHandler(this.LstOptions_SelectedIndexChanged);
             // 
             // rtbDesc
             // 
